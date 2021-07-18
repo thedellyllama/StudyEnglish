@@ -1,7 +1,7 @@
 package com.del.studyenglish1;
 
 public class Topic {
-    public static final int ADVERBS_OF_FREQUENCY = 1;
+    public static final int ADVERBS_OF_FREQUENCY_ID = 1;
     public static final int ARTICLES_1 = 2;
     public static final int ARTICLES_2 = 3;
     public static final int COUNTABLE_UNCOUNTABLE_1 = 4;
@@ -70,6 +70,17 @@ public class Topic {
     @Override
     public String toString() {
         return getName();
+    }
+
+    //list of difficulties
+    public static String[] getAllDifficultyLevels() {
+        return new String[] {
+                DIFFICULTY_A1,
+                DIFFICULTY_A2,
+                DIFFICULTY_B1,
+                DIFFICULTY_B2,
+                DIFFICULTY_C1
+        };
     }
 }
 

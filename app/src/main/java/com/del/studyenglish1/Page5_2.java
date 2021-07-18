@@ -76,6 +76,8 @@ public class Page5_2 extends Fragment {
             level_name = getArguments().getString(ARG_LEVEL_NAME);
         }
         textViewType.setText(level_name + ": " + type);
+        //adapter = new TopicAdapter(getActivity(), getAllItems());
+        //adapter = new TopicAdapter(getActivity(), dbHelper.getTopics1(type, level_name));
         //newDb.getTopics(type, level_name);
 
         //loadTopicLevels();
@@ -112,21 +114,48 @@ public class Page5_2 extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-    }
+    }/*
+private Cursor getAllItems2() {
+    type = getArguments().getString(ARG_TYPE);
+    level_name = getArguments().getString(ARG_LEVEL_NAME);
 
+    //getTopics1(type, level_name);
+}*/
     private Cursor getAllItems() {
+        type = getArguments().getString(ARG_TYPE);
+        level_name = getArguments().getString(ARG_LEVEL_NAME);
+        String selection = QuizContract.TopicsTable.COLUMN_DIFFICULTY + " = ?";
+/*
+        String selection = QuizContract.TopicsTable.COLUMN_TYPE + " = ? " +
+                " AND " + QuizContract.TopicsTable.COLUMN_DIFFICULTY + " = ?";
+        String[] selectionArgs = new String[]{type, level_name};
+      */
+        String[] selectionArgs = new String[]{level_name};
+
         /*change variables here to get the topics we want!!!*/
         return newDb.query(
                 QuizContract.TopicsTable.TABLE_NAME,
                 new String[]{QuizContract.TopicsTable.COLUMN_NAME},
+                selection,
+                selectionArgs,
                 null,
                 null,
-                null,
-                null,
-                QuizContract.TopicsTable.COLUMN_NAME + " DESC"
+                null
                 );
     }
-/**
+
+/*
+    private Cursor getAllItems() {
+    return newDb.query(
+                QuizContract.TopicsTable.TABLE_NAME,
+               null,
+                null,
+                null,
+                null,
+                null,
+                QuizContract.TopicsTable.ColumnName + " DESC"
+                );
+    }
     private void loadTopics() {
         type = getArguments().getString(ARG_TYPE);
         level_name = getArguments().getString(ARG_LEVEL_NAME);

@@ -44,6 +44,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 TopicsTable._ID + " INTEGER, " +
                 TopicsTable.COLUMN_NAME + " TEXT, " +
                 TopicsTable.COLUMN_DIFFICULTY + " TEXT, " +
+                TopicsTable.COLUMN_TYPE + " TEXT, " +
                 " PRIMARY KEY (" + TopicsTable._ID  + ", " + TopicsTable.COLUMN_DIFFICULTY + ") " +
                 //"FOREIGN KEY(" + TopicsTable.COLUMN_DIFFICULTY + ") REFERENCES " +
                 //DifficultyTable.TABLE_NAME + "(" + DifficultyTable.COLUMN_NAME + ")" + "ON DELETE CASCADE" +
@@ -56,13 +57,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION1 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
+                QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER_NR + " INTEGER, " +
                 QuestionsTable.COLUMN_DIFFICULTY + " TEXT, " +
                 QuestionsTable.COLUMN_TOPIC_ID + " INTEGER, " +
                 "FOREIGN KEY(" + QuestionsTable.COLUMN_TOPIC_ID + ") REFERENCES " +
-                TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ")" + "ON DELETE CASCADE, " +
-                "FOREIGN KEY(" + QuestionsTable.COLUMN_DIFFICULTY + ") REFERENCES " +
-                TopicsTable.TABLE_NAME + "(" + QuizContract.TopicsTable.COLUMN_DIFFICULTY + ")" + "ON DELETE CASCADE" +
+                TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ")" + "ON DELETE CASCADE" +
+                //"FOREIGN KEY(" + QuestionsTable.COLUMN_DIFFICULTY + ") REFERENCES " +
+                //TopicsTable.TABLE_NAME + "(" + QuizContract.TopicsTable.COLUMN_DIFFICULTY + ")" + "ON DELETE CASCADE" +
                 ")";
 
 
@@ -92,7 +94,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addTopic(c1);
         Topic c2 = new Topic("Used to", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
         addTopic(c2);
-        Topic c3 = new Topic("Colours", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY);
+        Topic c3 = new Topic("Colours", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY);
         addTopic(c3);
     }
 
@@ -100,16 +102,21 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         ContentValues cv = new ContentValues();
         cv.put(TopicsTable.COLUMN_NAME, topic.getName());
+        cv.put(TopicsTable.COLUMN_DIFFICULTY, topic.getDifficulty());
+        cv.put(TopicsTable.COLUMN_TYPE, topic.getType());
         db.insert(TopicsTable.TABLE_NAME, null, cv);
     }
 
 
     private void fillQuestionsTable() {
-        Question q = new Question("Select the correct sentence", "I am tired always", "I am always tired", "Always I am tired", "I always am tired", 2, Topic.DIFFICULTY_A1, Topic.ADVERBS_OF_FREQUENCY);
+        Question q = new Question("Select the correct sentence", "I am tired always",
+                "I am always tired", "Always I am tired", "I always am tired",
+                2, Topic.DIFFICULTY_A1, Topic.ADVERBS_OF_FREQUENCY_ID);
         addQuestion(q);
-        Question q1 = new Question("Select the correct sentence","Our teacher is often late.", "Our teacher often is late.",
+        Question q1 = new Question("Select the correct sentence","Our teacher is often late.",
+                "Our teacher often is late.",
                 "Is often our teacher late?", "Often our teacher is late",
-                1, Topic.DIFFICULTY_A1, Topic.ADVERBS_OF_FREQUENCY);
+                1, Topic.DIFFICULTY_A1, Topic.ADVERBS_OF_FREQUENCY_ID);
         addQuestion(q1);
     }
 
@@ -119,6 +126,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION1, question.getOption1());
         cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
+        cv.put(QuestionsTable.COLUMN_OPTION4, question.getOption4());
         cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
         cv.put(QuestionsTable.COLUMN_DIFFICULTY, question.getDifficulty());
         cv.put(QuestionsTable.COLUMN_TOPIC_ID, question.getTopicId());
@@ -135,6 +143,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 Topic topic = new Topic();
                 topic.setId(c.getInt(c.getColumnIndex(TopicsTable._ID)));
                 topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
+                topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
+                topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
                 topicList.add(topic);
             } while (c.moveToNext());
         }
@@ -155,6 +165,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
+                question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
                 question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
                 question.setTopicId(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_TOPIC_ID)));
@@ -165,19 +176,36 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         c.close();
         return questionList;
     }
-/**
+
+    public Cursor getTopics1(String type, String difficulty) {
+        //filter difficulty and type
+        String[] selectionArgs = new String[]{type, difficulty};
+        String selection = TopicsTable.COLUMN_TYPE + " = ? " +
+                " AND " + TopicsTable.COLUMN_DIFFICULTY + " = ? ";
+        Cursor c = db.query(
+                TopicsTable.TABLE_NAME,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        return c;
+    }
+
     public ArrayList<Topic> getTopics(String type, String difficulty) {
         ArrayList<Topic> topicList = new ArrayList<>();
         db = getReadableDatabase();
 
-        //filter difficulty and type
-        String selection = TopicsTable.COLUMN_TYPE + " =? " +
-                " AND " + TopicsTable.COLUMN_DIFFICULTY + " =? ";
-        String[] selectionArgs = new String[] {type, difficulty};
 
+        //filter difficulty and type
+        String[] selectionArgs = new String[]{type, difficulty};
+        String selection = TopicsTable.COLUMN_TYPE + " = ? " +
+                " AND " + TopicsTable.COLUMN_DIFFICULTY + " = ? ";
         Cursor c = db.query(
                 TopicsTable.TABLE_NAME,
-                new String[]{TopicsTable.COLUMN_NAME},
+                null,
                 selection,
                 selectionArgs,
                 null,
@@ -197,7 +225,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         }
         c.close();
         return topicList;
-    }**/
+    }
 
     public ArrayList<Question> getQuestions(int topicID, String difficulty) {
         ArrayList<Question> questionList = new ArrayList<>();
@@ -227,6 +255,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
+                question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
                 question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
                 question.setTopicId(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_TOPIC_ID)));
