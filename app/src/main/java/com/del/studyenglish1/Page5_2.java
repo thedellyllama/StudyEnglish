@@ -6,17 +6,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Page5_2#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class Page5_2 extends Fragment {
     private static final String ARG_TYPE = "argType";
     private static final String ARG_LEVEL_NAME = "argLevelName";
@@ -28,9 +27,10 @@ public class Page5_2 extends Fragment {
 
     private Page5 page5;
     private Page5_1 page5_1;
-    private TextView textView;
+    private TextView textViewType;
     private TextView changeLevel;
     private TextView changeType;
+    private RecyclerView recyclerTopic;
 
     public Page5_2() {
         // Required empty public constructor
@@ -50,13 +50,16 @@ public class Page5_2 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_page5_2, container, false);
-        TextView textViewType = v.findViewById(R.id.text_view_type);
+        textViewType = v.findViewById(R.id.text_view_type);
+        recyclerTopic = v.findViewById(R.id.recycler_topic);
 
         if (getArguments() != null) {
             type = getArguments().getString(ARG_TYPE);
             level_name = getArguments().getString(ARG_LEVEL_NAME);
         }
         textViewType.setText(level_name + ": " + type);
+
+        //loadTopicLevels();
 
         return v;
     }
@@ -66,7 +69,6 @@ public class Page5_2 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textView = (TextView) view.findViewById(R.id.text_view_select_topic);
         changeLevel = (TextView) view.findViewById(R.id.text_view_change_level);
         changeType = (TextView) view.findViewById(R.id.text_view_change_type);
 
@@ -92,4 +94,14 @@ public class Page5_2 extends Fragment {
             }
         });
     }
+/*
+    private void loadTopicLevels() {
+        DbHelper dbHelper = DbHelper.getInstance(getContext());
+        List<Topic> topics = dbHelper.getAllTopics();
+
+        ArrayAdapter<Topic> adapterTopic = new ArrayAdapter<>(getContext(), android.R.layout.simple_selectable_list_item, topics);
+        adapterTopic.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        recyclerTopic.setAdapter(adapterTopic);
+
+    }*/
 }
