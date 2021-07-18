@@ -1,11 +1,15 @@
 package com.del.studyenglish1;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Page5_2 extends Fragment {
@@ -31,6 +36,11 @@ public class Page5_2 extends Fragment {
     private TextView changeLevel;
     private TextView changeType;
     private RecyclerView recyclerTopic;
+    //TopicAdapter adapter;
+    //ArrayList<Topic> topics = new ArrayList<>();
+    private SQLiteDatabase newDb;
+    private TopicAdapter adapter;
+
 
     public Page5_2() {
         // Required empty public constructor
@@ -51,13 +61,22 @@ public class Page5_2 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_page5_2, container, false);
         textViewType = v.findViewById(R.id.text_view_type);
-        recyclerTopic = v.findViewById(R.id.recycler_topic);
+
+        QuizDbHelper dbHelper = new QuizDbHelper(getActivity());
+        newDb = dbHelper.getReadableDatabase();
+        RecyclerView recyclerView = v.findViewById(R.id.recycler_topic);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new TopicAdapter(getActivity(), getAllItems());
+       // adapter = new TopicAdapter(getActivity(), dbHelper.getTopics(type, level));
+
+        recyclerView.setAdapter(adapter);
 
         if (getArguments() != null) {
             type = getArguments().getString(ARG_TYPE);
             level_name = getArguments().getString(ARG_LEVEL_NAME);
         }
         textViewType.setText(level_name + ": " + type);
+        //newDb.getTopics(type, level_name);
 
         //loadTopicLevels();
 
@@ -94,9 +113,30 @@ public class Page5_2 extends Fragment {
             }
         });
     }
+
+    private Cursor getAllItems() {
+        /*change variables here to get the topics we want!!!*/
+        return newDb.query(
+                QuizContract.TopicsTable.TABLE_NAME,
+                new String[]{QuizContract.TopicsTable.COLUMN_NAME},
+                null,
+                null,
+                null,
+                null,
+                QuizContract.TopicsTable.COLUMN_NAME + " DESC"
+                );
+    }
+/**
+    private void loadTopics() {
+        type = getArguments().getString(ARG_TYPE);
+        level_name = getArguments().getString(ARG_LEVEL_NAME);
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getActivity());
+        List<Topic> topics = dbHelper.getTopics(type, level_name);
+
+    }**/
 /*
     private void loadTopicLevels() {
-        DbHelper dbHelper = DbHelper.getInstance(getContext());
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         List<Topic> topics = dbHelper.getAllTopics();
 
         ArrayAdapter<Topic> adapterTopic = new ArrayAdapter<>(getContext(), android.R.layout.simple_selectable_list_item, topics);

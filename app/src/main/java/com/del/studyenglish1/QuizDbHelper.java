@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import com.del.studyenglish1.QuizContract.*;
 
-public class DbHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "StudyEnglish.db";
-    private static final int DATABASE_VERSION = 1;
+public class QuizDbHelper extends SQLiteOpenHelper {
+    public static final String DATABASE_NAME = "StudyEnglish.db";
+    public static final int DATABASE_VERSION = 1;
 
-    private static DbHelper instance;
+    private static QuizDbHelper instance;
     private SQLiteDatabase db;
 
-    private DbHelper(@Nullable Context context) {
+    public QuizDbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -28,9 +28,9 @@ public class DbHelper extends SQLiteOpenHelper {
      * synchronised in case we want to access it from other methods
      * static so we don't have to create a quizDbHelper object first
      */
-    public static synchronized  DbHelper getInstance(Context context) {
+    public static synchronized QuizDbHelper getInstance(Context context) {
         if (instance == null) {
-            instance = new DbHelper(context.getApplicationContext());
+            instance = new QuizDbHelper(context.getApplicationContext());
         }
         return instance;
     }
@@ -88,11 +88,11 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void fillTopicsTable() {
-        Topic c1 = new Topic("Adverbs of Frequency", "A1", "Grammar");
+        Topic c1 = new Topic("Adverbs of Frequency", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
         addTopic(c1);
-        Topic c2 = new Topic("Used to", "B1", "Grammar");
+        Topic c2 = new Topic("Used to", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
         addTopic(c2);
-        Topic c3 = new Topic("Colours", "A1", "Vocabulary");
+        Topic c3 = new Topic("Colours", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY);
         addTopic(c3);
     }
 
@@ -103,7 +103,10 @@ public class DbHelper extends SQLiteOpenHelper {
         db.insert(TopicsTable.TABLE_NAME, null, cv);
     }
 
+
     private void fillQuestionsTable() {
+        Question q = new Question("Select the correct sentence", "I am tired always", "I am always tired", "Always I am tired", "I always am tired", 2, Topic.DIFFICULTY_A1, Topic.ADVERBS_OF_FREQUENCY);
+        addQuestion(q);
         Question q1 = new Question("Select the correct sentence","Our teacher is often late.", "Our teacher often is late.",
                 "Is often our teacher late?", "Often our teacher is late",
                 1, Topic.DIFFICULTY_A1, Topic.ADVERBS_OF_FREQUENCY);
@@ -162,6 +165,39 @@ public class DbHelper extends SQLiteOpenHelper {
         c.close();
         return questionList;
     }
+/**
+    public ArrayList<Topic> getTopics(String type, String difficulty) {
+        ArrayList<Topic> topicList = new ArrayList<>();
+        db = getReadableDatabase();
+
+        //filter difficulty and type
+        String selection = TopicsTable.COLUMN_TYPE + " =? " +
+                " AND " + TopicsTable.COLUMN_DIFFICULTY + " =? ";
+        String[] selectionArgs = new String[] {type, difficulty};
+
+        Cursor c = db.query(
+                TopicsTable.TABLE_NAME,
+                new String[]{TopicsTable.COLUMN_NAME},
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            do {
+                Topic topic = new Topic();
+                topic.setId(c.getInt(c.getColumnIndex(TopicsTable._ID)));
+                topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
+                topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
+                topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
+                topicList.add(topic);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return topicList;
+    }**/
 
     public ArrayList<Question> getQuestions(int topicID, String difficulty) {
         ArrayList<Question> questionList = new ArrayList<>();
