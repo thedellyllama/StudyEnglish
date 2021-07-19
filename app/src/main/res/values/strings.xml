@@ -1,26 +1,35 @@
 <resources>
     <string name="app_name">StudyEnglish</string>
     <string name="select_level">Select level:</string>
+    <string name="my_profile">My Profile</string>
+    <string name="view">view:</string>
+    <string name="select_type">Select activity type:</string>
+    <string name="select_topic">Select topic: </string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //LINKS
+    <string name="change_level">change level</string>
+    <string name="change_type">change type</string>
+    <string name="change_topic">change topic</string>
+    <string name="explanation">explanation</string>
     <string name="check_level">check your level here</string>
+
+    //BUTTONS
     <string name="a1_level">BEGINNER: A1</string>
     <string name="a2_level">PRE-INTERMEDIATE: A2</string>
     <string name="b1_level">INTERMEDIATE: B1</string>
     <string name="b2_level">UPPER INTERMEDIATE: B2</string>
     <string name="c1_level">ADVANCED: C1</string>
-
-    <string name="type_focus">What type of activity do you want to focus on today?</string>
     <string name="grammar">GRAMMAR</string>
     <string name="vocab">VOCABULARY</string>
     <string name="reading">READING</string>
+    <string name="further_explanation">FURTHER EXPLANATION</string>
+    <string name="activities">ACTIVITIES</string>
+    <string name="revision">REVISION ACTIVITY</string>
+    <string name="num_1">1</string>
+    <string name="num_2">2</string>
+    <string name="num_3">3</string>
+    <string name="num_4">4</string>
 
-    <string name="my_profile">My Profile</string>
-    <string name="view">view:</string>
-    <string name="change_level">change level</string>
-    <string name="change_type">change type</string>
-    <string name="change_topic">change topic</string>
 
-    <string name="select_type">Select activity type:</string>
-    <string name="select_topic">Select topic: </string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

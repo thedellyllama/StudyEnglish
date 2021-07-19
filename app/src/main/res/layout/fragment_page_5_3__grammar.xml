@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,6 +6,18 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/white_background"
     tools:context=".Page5">
+
+    <TextView
+        android:id="@+id/text_link2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_type"
+        android:textColor="@color/blue_app"
+        android:textStyle="italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_link"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_link" />
 
     <TextView
         android:id="@+id/header_name"
@@ -22,12 +33,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_level"
+        android:id="@+id/text_view_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_marginTop="70dp"
-        android:text="@string/select_type"
+        android:text="TextView"
         android:textColor="@color/blue_app"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -36,78 +46,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/image_logo"
-        android:layout_width="144dp"
-        android:layout_height="154dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_level"
-        tools:src="@tools:sample/avatars" />
-
     <TextView
-        android:id="@+id/text_view_select_topic"
-        android:layout_width="255dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/select_type"
-        android:textColor="@color/blue_app"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_logo" />
-
-    <Button
-        android:id="@+id/button_grammar"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/grammar"
-        app:backgroundTint="@color/blue_app"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_select_topic" />
-
-    <Button
-        android:id="@+id/button_vocab"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/vocab"
-        app:backgroundTint="@color/blue_app"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_grammar" />
-
-    <Button
-        android:id="@+id/button_reading"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading"
-        app:backgroundTint="@color/blue_app"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_vocab" />
-
-    <TextView
-        android:id="@+id/text_change_level"
+        android:id="@+id/text_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="@string/change_level"
         android:textColor="@color/blue_app"
         android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/text_link2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_activities" />
+
+    <TextView
+        android:id="@+id/text_view_explanation_full"
+        android:layout_width="304dp"
+        android:layout_height="315dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_reading" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_topic" />
+
+    <Button
+        android:id="@+id/button_further_explanation"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/further_explanation"
+        app:backgroundTint="@color/blue_app"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_explanation_full" />
+
+    <Button
+        android:id="@+id/button_activities"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/activities"
+        app:backgroundTint="@color/blue_app"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_further_explanation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
