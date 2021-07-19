@@ -26,14 +26,16 @@ public class Question implements Parcelable {
         }
 
         public Question(String question, String option1, String option2, String option3,
-                        String option4, int answerNr, String difficulty, int topicId) {
+                        String option4, int answerNr,
+                        //String difficulty,
+                        int topicId) {
             this.question = question;
             this.option1 = option1;
             this.option2 = option2;
             this.option3 = option3;
             this.option4 = option4;
             this.answerNr = answerNr;
-            this.difficulty = difficulty;
+            //this.difficulty = difficulty;
             this.topicId = topicId;
         }
 
@@ -45,7 +47,7 @@ public class Question implements Parcelable {
             option3 = in.readString();
             option4 = in.readString();
             answerNr = in.readInt();
-            difficulty = in.readString();
+            //difficulty = in.readString();
             topicId = in.readInt();
         }
 
@@ -58,7 +60,7 @@ public class Question implements Parcelable {
             dest.writeString(option3);
             dest.writeString(option4);
             dest.writeInt(answerNr);
-            dest.writeString(difficulty);
+            //dest.writeString(difficulty);
             dest.writeInt(topicId);
         }
 
@@ -135,6 +137,7 @@ public class Question implements Parcelable {
             this.answerNr = answerNr;
         }
 
+        /*
         public String getDifficulty() {
             return difficulty;
         }
@@ -142,7 +145,7 @@ public class Question implements Parcelable {
         public void setDifficulty(String difficulty) {
             this.difficulty = difficulty;
         }
-
+*/
         public int getTopicId() {
             return topicId;
         }
@@ -150,7 +153,7 @@ public class Question implements Parcelable {
         public void setTopicId(int topicId) {
             this.topicId = topicId;
         }
-
+/*
         public static String[] getAllDifficultyLevels() {
             return new String[]{
                     DIFFICULTY_A1,
@@ -159,7 +162,7 @@ public class Question implements Parcelable {
                     DIFFICULTY_B2,
                     DIFFICULTY_C1
             };
-        }
+        }*/
     }
 
 

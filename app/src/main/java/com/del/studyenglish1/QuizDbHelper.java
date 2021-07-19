@@ -41,11 +41,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_TOPICS_TABLE = "CREATE TABLE " +
                 TopicsTable.TABLE_NAME + "( " +
-                TopicsTable._ID + " INTEGER, " +
+                TopicsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 TopicsTable.COLUMN_NAME + " TEXT, " +
                 TopicsTable.COLUMN_DIFFICULTY + " TEXT, " +
-                TopicsTable.COLUMN_TYPE + " TEXT, " +
-                " PRIMARY KEY (" + TopicsTable._ID  + ", " + TopicsTable.COLUMN_DIFFICULTY + ") " +
+                TopicsTable.COLUMN_TYPE + " TEXT" +
+                //" PRIMARY KEY (" + TopicsTable._ID  + ", " + TopicsTable.COLUMN_DIFFICULTY + ") " +
                 //"FOREIGN KEY(" + TopicsTable.COLUMN_DIFFICULTY + ") REFERENCES " +
                 //DifficultyTable.TABLE_NAME + "(" + DifficultyTable.COLUMN_NAME + ")" + "ON DELETE CASCADE" +
                 ")";
@@ -59,7 +59,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER_NR + " INTEGER, " +
-                QuestionsTable.COLUMN_DIFFICULTY + " TEXT, " +
+                //QuestionsTable.COLUMN_DIFFICULTY + " TEXT, " +
                 QuestionsTable.COLUMN_TOPIC_ID + " INTEGER, " +
                 "FOREIGN KEY(" + QuestionsTable.COLUMN_TOPIC_ID + ") REFERENCES " +
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ")" + "ON DELETE CASCADE" +
@@ -90,12 +90,44 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillTopicsTable() {
-        Topic c1 = new Topic("Adverbs of Frequency", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        Topic c1 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
         addTopic(c1);
-        Topic c2 = new Topic("Used to", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        Topic c2 = new Topic("A1 Grammar 2", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
         addTopic(c2);
-        Topic c3 = new Topic("Colours", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY);
+        Topic c3 = new Topic("B1 Vocabulary", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY);
         addTopic(c3);
+        Topic c4 = new Topic("B1 reading", Topic.DIFFICULTY_B1, Topic.TYPE_READING);
+        addTopic(c4);
+        Topic c5 = new Topic("C1 vocabulary", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY);
+        addTopic(c5);
+        Topic c6 = new Topic("C1 vocabulary 2", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY);
+        addTopic(c6);
+        Topic c7 = new Topic("B2 Grammar", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR);
+        addTopic(c7);
+        Topic c8 = new Topic("A1 Vocabulary", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY);
+        addTopic(c8);
+        Topic c9 = new Topic("A1 Reading", Topic.DIFFICULTY_A1, Topic.TYPE_READING);
+        addTopic(c9);
+        Topic c10 = new Topic("A1 Grammar 3", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c10);
+        Topic c11 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c11);
+        Topic c12 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c12);
+        Topic c13 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c13);
+        Topic c14 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c14);
+        Topic c15 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c15);
+        Topic c16 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c16);
+        Topic c17 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c17);
+        Topic c18 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c18);
+        Topic c19 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        addTopic(c19);
     }
 
     private void addTopic(Topic topic) {
@@ -111,12 +143,16 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     private void fillQuestionsTable() {
         Question q = new Question("Select the correct sentence", "I am tired always",
                 "I am always tired", "Always I am tired", "I always am tired",
-                2, Topic.DIFFICULTY_A1, Topic.ADVERBS_OF_FREQUENCY_ID);
+                2,
+                //Topic.DIFFICULTY_A1,
+                Topic.ADVERBS_OF_FREQUENCY_ID);
         addQuestion(q);
         Question q1 = new Question("Select the correct sentence","Our teacher is often late.",
                 "Our teacher often is late.",
                 "Is often our teacher late?", "Often our teacher is late",
-                1, Topic.DIFFICULTY_A1, Topic.ADVERBS_OF_FREQUENCY_ID);
+                1,
+                //Topic.DIFFICULTY_A1,
+                Topic.ADVERBS_OF_FREQUENCY_ID);
         addQuestion(q1);
     }
 
@@ -128,7 +164,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
         cv.put(QuestionsTable.COLUMN_OPTION4, question.getOption4());
         cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
-        cv.put(QuestionsTable.COLUMN_DIFFICULTY, question.getDifficulty());
+        //cv.put(QuestionsTable.COLUMN_DIFFICULTY, question.getDifficulty());
         cv.put(QuestionsTable.COLUMN_TOPIC_ID, question.getTopicId());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
@@ -143,7 +179,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 Topic topic = new Topic();
                 topic.setId(c.getInt(c.getColumnIndex(TopicsTable._ID)));
                 topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
-                topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
+                //topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
                 topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
                 topicList.add(topic);
             } while (c.moveToNext());
@@ -167,7 +203,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
-                question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
+                //question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
                 question.setTopicId(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_TOPIC_ID)));
                 questionList.add(question);
             } while (c.moveToNext());
@@ -233,8 +269,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         //filter difficulty and topic id
 
-        String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? " +
-                " AND " + QuestionsTable.COLUMN_DIFFICULTY + " = ? ";
+        String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? ";
+ //               " AND " + QuestionsTable.COLUMN_DIFFICULTY + " = ? ";
         String[] selectionArgs = new String[] {String.valueOf(topicID), difficulty};
 
         Cursor c = db.query(
@@ -257,7 +293,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
-                question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
+                //question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
                 question.setTopicId(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_TOPIC_ID)));
                 questionList.add(question);
             } while (c.moveToNext());
