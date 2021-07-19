@@ -16,9 +16,9 @@ public class Topic {
     public static final String DIFFICULTY_B2 = "B2";
     public static final String DIFFICULTY_C1 = "C1";
 
-    public static final String TYPE_READING = "Reading";
-    public static final String TYPE_GRAMMAR = "Grammar";
-    public static final String TYPE_VOCABULARY = "Vocabulary";
+    public static final String TYPE_READING = "READING";
+    public static final String TYPE_GRAMMAR = "GRAMMAR";
+    public static final String TYPE_VOCABULARY = "VOCABULARY";
 
     private int id;
     private String name;
@@ -70,6 +70,16 @@ public class Topic {
     @Override
     public String toString() {
         return getName();
+    }
+
+
+    //list of all types
+    public static String[] getAllActivityTypes() {
+        return new String[] {
+                TYPE_GRAMMAR,
+                TYPE_VOCABULARY,
+                TYPE_READING
+        };
     }
 
     //list of difficulties

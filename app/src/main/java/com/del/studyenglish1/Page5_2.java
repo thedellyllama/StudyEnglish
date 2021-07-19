@@ -8,18 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Page5_2 extends Fragment {
     private static final String ARG_TYPE = "argType";
@@ -35,9 +30,7 @@ public class Page5_2 extends Fragment {
     private TextView textViewType;
     private TextView changeLevel;
     private TextView changeType;
-    private RecyclerView recyclerTopic;
-    //TopicAdapter adapter;
-    //ArrayList<Topic> topics = new ArrayList<>();
+    private RecyclerView recyclerView;
     private SQLiteDatabase newDb;
     private TopicAdapter adapter;
 
@@ -64,10 +57,9 @@ public class Page5_2 extends Fragment {
 
         QuizDbHelper dbHelper = new QuizDbHelper(getActivity());
         newDb = dbHelper.getReadableDatabase();
-        RecyclerView recyclerView = v.findViewById(R.id.recycler_topic);
+        recyclerView = v.findViewById(R.id.recycler_topic);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new TopicAdapter(getActivity(), getAllItems());
-       // adapter = new TopicAdapter(getActivity(), dbHelper.getTopics(type, level));
+        adapter = new TopicAdapter(getActivity(), getTopics());
 
         recyclerView.setAdapter(adapter);
 
@@ -76,11 +68,6 @@ public class Page5_2 extends Fragment {
             level_name = getArguments().getString(ARG_LEVEL_NAME);
         }
         textViewType.setText(level_name + ": " + type);
-        //adapter = new TopicAdapter(getActivity(), getAllItems());
-        //adapter = new TopicAdapter(getActivity(), dbHelper.getTopics1(type, level_name));
-        //newDb.getTopics(type, level_name);
-
-        //loadTopicLevels();
 
         return v;
     }
@@ -114,25 +101,19 @@ public class Page5_2 extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-    }/*
-private Cursor getAllItems2() {
-    type = getArguments().getString(ARG_TYPE);
-    level_name = getArguments().getString(ARG_LEVEL_NAME);
+    }
 
-    //getTopics1(type, level_name);
-}*/
-    private Cursor getAllItems() {
+    /**
+     * @return Cursor finds all topics filtered by chosen type and level
+     */
+    private Cursor getTopics() {
         type = getArguments().getString(ARG_TYPE);
         level_name = getArguments().getString(ARG_LEVEL_NAME);
-        String selection = QuizContract.TopicsTable.COLUMN_DIFFICULTY + " = ?";
-/*
+
         String selection = QuizContract.TopicsTable.COLUMN_TYPE + " = ? " +
                 " AND " + QuizContract.TopicsTable.COLUMN_DIFFICULTY + " = ?";
         String[] selectionArgs = new String[]{type, level_name};
-      */
-        String[] selectionArgs = new String[]{level_name};
 
-        /*change variables here to get the topics we want!!!*/
         return newDb.query(
                 QuizContract.TopicsTable.TABLE_NAME,
                 new String[]{QuizContract.TopicsTable.COLUMN_NAME},
@@ -144,33 +125,4 @@ private Cursor getAllItems2() {
                 );
     }
 
-/*
-    private Cursor getAllItems() {
-    return newDb.query(
-                QuizContract.TopicsTable.TABLE_NAME,
-               null,
-                null,
-                null,
-                null,
-                null,
-                QuizContract.TopicsTable.ColumnName + " DESC"
-                );
-    }
-    private void loadTopics() {
-        type = getArguments().getString(ARG_TYPE);
-        level_name = getArguments().getString(ARG_LEVEL_NAME);
-        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getActivity());
-        List<Topic> topics = dbHelper.getTopics(type, level_name);
-
-    }**/
-/*
-    private void loadTopicLevels() {
-        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
-        List<Topic> topics = dbHelper.getAllTopics();
-
-        ArrayAdapter<Topic> adapterTopic = new ArrayAdapter<>(getContext(), android.R.layout.simple_selectable_list_item, topics);
-        adapterTopic.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        recyclerTopic.setAdapter(adapterTopic);
-
-    }*/
 }
