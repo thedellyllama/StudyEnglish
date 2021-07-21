@@ -49,13 +49,11 @@ public class Page5_1 extends Fragment {
         View v = inflater.inflate(R.layout.fragment_page5_1, container, false);
         TextView textViewLevel = v.findViewById(R.id.text_view_level);
 
-
         if (getArguments() != null) {
             level = getArguments().getString(ARG_LEVEL);
             level_name  = getArguments().getString(ARG_LEVEL_NAME);
         }
         textViewLevel.setText(level);
-
         return v;
     }
 
@@ -82,7 +80,6 @@ public class Page5_1 extends Fragment {
         button_grammar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 selected_type = button_grammar.getText().toString();
                 nextPageType(selected_type, level, level_name);
             }

@@ -25,21 +25,10 @@ public class MyTopicAdapter extends ArrayAdapter<Topic> {
     public View getView(int position, View view, ViewGroup parent) {
 
         View listItemView = view;
-        //Button topicButton = (Button) listItemView.findViewById(R.id.button_topic_item);
-        //TopicHolder holder = null;
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.topic_item, parent, false);
         }
-       // holder = new TopicHolder();
-        //holder.topic = topicsList.get(position);
-
-        //holder.button.setTag(holder.topic);
-
-        //listItemView.setTag(holder);
-        //setUpItem(holder);
-
-
         Topic chosenTopic = getItem(position);
         Button topicButton = (Button) listItemView.findViewById(R.id.button_topic_item);
         topicButton.setText(chosenTopic.getName());
