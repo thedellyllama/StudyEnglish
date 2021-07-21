@@ -169,8 +169,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
-    public List<Topic> getAllTopics() {
-        List<Topic> topicList = new ArrayList<>();
+    public ArrayList<Topic> getAllTopics() {
+        ArrayList<Topic> topicList = new ArrayList<>();
         db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TopicsTable.TABLE_NAME, null);
 
@@ -212,7 +212,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         c.close();
         return questionList;
     }
-
+/*
     public Cursor getTopics1(String type, String difficulty) {
         //filter difficulty and type
         String[] selectionArgs = new String[]{type, difficulty};
@@ -229,11 +229,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         );
         return c;
     }
-
+*/
     public ArrayList<Topic> getTopics(String type, String difficulty) {
         ArrayList<Topic> topicList = new ArrayList<>();
         db = getReadableDatabase();
-
 
         //filter difficulty and type
         String[] selectionArgs = new String[]{type, difficulty};
