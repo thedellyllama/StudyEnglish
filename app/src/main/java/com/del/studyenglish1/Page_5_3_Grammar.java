@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class Page_5_3_Grammar extends Fragment {
@@ -25,6 +26,14 @@ public class Page_5_3_Grammar extends Fragment {
     private String level;
 
     private TextView textViewTopic;
+    private TextView changeLevel;
+    private TextView changeType;
+    private TextView changeTopic;
+
+    private Page5 page5;
+    private Page5_1 page5_1;
+    private Page5_2 page5_2;
+
     public Page_5_3_Grammar() {
         // Required empty public constructor
     }
@@ -56,4 +65,28 @@ public class Page_5_3_Grammar extends Fragment {
 
         return v;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //changeLevel = (TextView) view.findViewById(R.id.text_view_change_level);
+        //changeType = (TextView) view.findViewById(R.id.text_view_change_type);
+        changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
+
+       changeTopic.setOnClickListener(new View.OnClickListener() {
+
+           @Override
+           public void onClick(View v) {
+               changeTopicPage(type, level, level_name);
+           }
+       });
+    }
+
+    private void changeTopicPage(String type, String level, String level_name) {
+        page5_2 = page5_2.newInstance(type, level, level_name);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, page5_2);
+        fragmentTransaction.commit();
+    }
+
 }
