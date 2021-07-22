@@ -2,63 +2,95 @@ package com.del.studyenglish1;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Page5_4_Grammar#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.w3c.dom.Text;
+
 public class Page5_4_Grammar extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_TOPIC = "argTopic";
+    private static final String ARG_TYPE = "argType";
+    private static final String ARG_LEVEL_NAME = "argLevelName";
+    private static final String ARG_LEVEL = "argLevel";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String topic;
+    private String type;
+    private String level_name;
+    private String level;
 
-    public Page5_4_Grammar() {
-        // Required empty public constructor
-    }
+    private TextView textViewTopic;
+    private TextView changeTopic;
+    private TextView toExplanation;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Page5_4_Grammar.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Page5_4_Grammar newInstance(String param1, String param2) {
+    private Page_5_3_Grammar page_5_3_grammar;
+    private Page5_2 page5_2;
+
+    public static Page5_4_Grammar newInstance(String topic, String type, String level_name) {
         Page5_4_Grammar fragment = new Page5_4_Grammar();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_TOPIC, topic);
+        args.putString(ARG_TYPE, type);
+        args.putString(ARG_LEVEL_NAME, level_name);
         fragment.setArguments(args);
         return fragment;
     }
 
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_page5_4_grammar, container, false);
+        textViewTopic = v.findViewById(R.id.text_view_topic);
+
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            topic = getArguments().getString(ARG_TOPIC);
+            type = getArguments().getString(ARG_TYPE);
+            level_name = getArguments().getString(ARG_LEVEL_NAME);
+            level = getArguments().getString(ARG_LEVEL);
         }
+        textViewTopic.setText(topic);
+        return v;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page5_4_grammar, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
+        toExplanation = (TextView) view.findViewById(R.id.text_view_explanation);
+
+        changeTopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toExplanationPage(topic, type, level_name);
+            }
+        });
+
+        toExplanation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeTopicPage(type, level, level_name);
+            }
+        });
+    }
+
+    private void toExplanationPage(String topic, String type, String level_name) {
+        page5_2 = page5_2.newInstance(type, level, level_name);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, page5_2);
+        fragmentTransaction.commit();
+    }
+
+    private void changeTopicPage(String type, String level, String level_name) {
+        page_5_3_grammar = page_5_3_grammar.newInstance(topic, type, level_name);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, page_5_3_grammar);
+        fragmentTransaction.commit();
     }
 }
