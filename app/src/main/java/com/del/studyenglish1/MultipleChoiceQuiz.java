@@ -165,7 +165,7 @@ public class MultipleChoiceQuiz extends Fragment {
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page5_4_grammar = page5_4_grammar.newInstance(topicID, topic, type, level_name);
+                page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
                 fragmentTransaction.commit();
@@ -196,7 +196,7 @@ public class MultipleChoiceQuiz extends Fragment {
             answeredAttempts = 0;
             buttonCheck.setText("CHECK ANSWER");
         } else {
-            finishQuiz(topicID, topic, type, level_name);
+            finishQuiz(topic, type, level_name);
             //finishQuiz(topic, type, level_name);
 
         }
@@ -257,11 +257,11 @@ public class MultipleChoiceQuiz extends Fragment {
         }
     }
 
-    private void finishQuiz(int topicID, String topic, String type, String level_name) {
+    private void finishQuiz(String topic, String type, String level_name) {
 
         /**update quiz completed column in db**/
 
-        page5_4_grammar = page5_4_grammar.newInstance(topicID, topic, type, level_name);
+        page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
         fragmentTransaction.commit();
@@ -269,7 +269,7 @@ public class MultipleChoiceQuiz extends Fragment {
 
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
-            finishQuiz(topicID, topic, type, level_name);
+            finishQuiz(topic, type, level_name);
 
             /**page5_4_grammar.newInstance(topic, type, level_name);
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
