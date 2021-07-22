@@ -162,14 +162,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("Select the correct phrase:", "Our teacher is often late.", "Our teacher often is late.", "Is often our teacher late?", "Often our teacher is late", 1, Topic.ADVERBS_OF_FREQUENCY_ID);
-        Question q2 = new Question("Select the correct phrase:", "I am tired always.", "I am always tired.", "Always I am tired.", "Tired I am always.", 2, Topic.ADVERBS_OF_FREQUENCY_ID);
-        Question q3 = new Question("Select the correct phrase:", "My sister watches TV hardly ever.", "My sister doesn't hardly ever watch TV.", "My sister watches TV hardly ever.", "My sister hardly ever watches TV.", 4, Topic.ADVERBS_OF_FREQUENCY_ID);
-        Question q4 = new Question("Select the correct phrase:", "We never eat sushi.", "We eat sushi never.", "We eat never sushi.", "Never we eat sushi.", 1, Topic.ADVERBS_OF_FREQUENCY_ID);
-        Question q5 = new Question("Select the correct phrase:", "English they study every day.", "They study every day English.", "They every day study English.", "They study English every day.", 4, Topic.ADVERBS_OF_FREQUENCY_ID);
-        Question q6 = new Question("Select the correct phrase:", "He doesn't wake up early usually.", "Does he wake up usually early?", "He doesn't usually wake up early.", "He usually doesn't wake up early.", 3, Topic.ADVERBS_OF_FREQUENCY_ID);
-        Question q7 = new Question("Select the correct phrase:", "Do you go to the cinema often?", "Do you go often to the cinema?", "Do often you go to the cinema?", "Do you often go to the cinema?", 1, Topic.ADVERBS_OF_FREQUENCY_ID);
-        Question q8 = new Question("Select the correct phrase:", "I always wears a hat", "I always wear a hat", "I wear a hat always", "I wear always a hat", 2, Topic.ADVERBS_OF_FREQUENCY_ID);
+        Question q1 = new Question("Select the correct phrase:", "Our teacher is often late.", "Our teacher often is late.", "Is often our teacher late?", "Often our teacher is late", 1, Topic.t5_ID);
+        Question q2 = new Question("Select the correct phrase:", "I am tired always.", "I am always tired.", "Always I am tired.", "Tired I am always.", 2, Topic.t5_ID);
+        Question q3 = new Question("Select the correct phrase:", "My sister watches TV hardly ever.", "My sister doesn't hardly ever watch TV.", "My sister watches TV hardly ever.", "My sister hardly ever watches TV.", 4, Topic.t5_ID);
+        Question q4 = new Question("Select the correct phrase:", "We never eat sushi.", "We eat sushi never.", "We eat never sushi.", "Never we eat sushi.", 1, Topic.t5_ID);
+        Question q5 = new Question("Select the correct phrase:", "English they study every day.", "They study every day English.", "They every day study English.", "They study English every day.", 4, Topic.t5_ID);
+        Question q6 = new Question("Select the correct phrase:", "He doesn't wake up early usually.", "Does he wake up usually early?", "He doesn't usually wake up early.", "He usually doesn't wake up early.", 3, Topic.t5_ID);
+        Question q7 = new Question("Select the correct phrase:", "Do you go to the cinema often?", "Do you go often to the cinema?", "Do often you go to the cinema?", "Do you often go to the cinema?", 1, Topic.t5_ID);
+        Question q8 = new Question("Select the correct phrase:", "I always wears a hat", "I always wear a hat", "I wear a hat always", "I wear always a hat", 2, Topic.t5_ID);
 
         addQuestion(q1);
         addQuestion(q2);
@@ -269,10 +269,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return topicList;
     }
 
-    public ArrayList<Question> getQuestions(int topicID, String difficulty) {
+    public ArrayList<Question> getQuestions(int topicID) {
         ArrayList<Question> questionList = new ArrayList<>();
-        db = getReadableDatabase();
-
         //filter topic id
         String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? ";
         String[] selectionArgs = new String[] {String.valueOf(topicID)};
@@ -304,4 +302,38 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         c.close();
         return questionList;
     }
+
+    public int getTopicId(String selected_topic, String type, String level_name) {
+        int topicId = 0;
+        db = getReadableDatabase();
+
+        //filter difficulty and type
+        String[] selectionArgs = new String[]{selected_topic, type, level_name};
+        String selection = TopicsTable.COLUMN_NAME + " = ? " +
+                " AND " + TopicsTable.COLUMN_TYPE + " = ? " +
+                " AND " + TopicsTable.COLUMN_DIFFICULTY + " = ? ";
+        Cursor c = db.query(
+                TopicsTable.TABLE_NAME,
+                new String[]{TopicsTable._ID},
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            do {
+                Topic topic = new Topic();
+                topic.setId(c.getInt(c.getColumnIndex(TopicsTable._ID)));
+                //topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
+                //topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
+                //topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
+                topicId = (int) topic.getId();
+            } while (c.moveToNext());
+        }
+        c.close();
+        return topicId;
+    }
+
 }

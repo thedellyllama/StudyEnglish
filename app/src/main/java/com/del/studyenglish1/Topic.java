@@ -1,6 +1,22 @@
 package com.del.studyenglish1;
 
 public class Topic {
+    public static final int t1_ID = 1;
+    public static final int t2_ID = 2;
+    public static final int t3_ID = 3;
+    public static final int t4_ID = 4;
+    public static final int t5_ID = 5;
+    public static final int t6_ID = 6;
+    public static final int t7_ID = 7;
+    public static final int t8_ID = 8;
+    public static final int t9_ID = 9;
+    public static final int t10_ID = 10;
+    public static final int t11_ID = 11;
+    public static final int t12_ID = 12;
+    public static final int t13_ID = 13;
+    public static final int t14_ID = 14;
+
+/*
     public static final int ADVERBS_OF_FREQUENCY_ID = 1;
     public static final int ARTICLES_1 = 2;
     public static final int ARTICLES_2 = 3;
@@ -9,6 +25,7 @@ public class Topic {
     public static final int PAST_CONTINUOUS = 6;
     public static final int USED_TO = 7;
     public static final int ADJECTIVES2 = 8;
+    */
 
     public static final String DIFFICULTY_A1 = "A1";
     public static final String DIFFICULTY_A2 = "A2";
