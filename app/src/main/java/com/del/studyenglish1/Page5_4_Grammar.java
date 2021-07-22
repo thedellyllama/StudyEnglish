@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -20,6 +21,8 @@ public class Page5_4_Grammar extends Fragment {
     private static final String ARG_TYPE = "argType";
     private static final String ARG_LEVEL_NAME = "argLevelName";
     private static final String ARG_LEVEL = "argLevel";
+    private static final String ARG_TOPIC_ID = "argTopicID";
+
 
     private String topic;
     private String type;
@@ -29,9 +32,14 @@ public class Page5_4_Grammar extends Fragment {
     private TextView textViewTopic;
     private TextView changeTopic;
     private TextView toExplanation;
+    private Button activity1;
+    private Button activity2;
+    private Button activity3;
+    private Button activity4;
 
     private Page_5_3_Grammar page_5_3_grammar;
     private Page5_2 page5_2;
+    private MultipleChoiceQuiz multipleChoiceQuiz;
 
     public static Page5_4_Grammar newInstance(String topic, String type, String level_name) {
         Page5_4_Grammar fragment = new Page5_4_Grammar();
@@ -64,6 +72,17 @@ public class Page5_4_Grammar extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
         toExplanation = (TextView) view.findViewById(R.id.text_view_explanation);
+        activity1 = (Button) view.findViewById(R.id.button_activity1);
+        activity2 = (Button) view.findViewById(R.id.button_activity2);
+        activity3 = (Button) view.findViewById(R.id.button_activity3);
+        activity4 = (Button) view.findViewById(R.id.button_activity4);
+
+        activity1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMultipleChoiceQuiz(topic, type, level_name, 1);
+            }
+        });
 
         changeTopic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +110,16 @@ public class Page5_4_Grammar extends Fragment {
         page_5_3_grammar = page_5_3_grammar.newInstance(topic, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, page_5_3_grammar);
+        fragmentTransaction.commit();
+    }
+
+    private void openMultipleChoiceQuiz(String topic, String type, String level_name, int activity_num) {
+        //int topicId = topic.getID()
+        //multipleChoiceQuiz = multipleChoiceQuiz.newInstance(topicID, topic, type, level_name, activity_num);
+
+        multipleChoiceQuiz = multipleChoiceQuiz.newInstance(topic, type, level_name, activity_num);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, multipleChoiceQuiz);
         fragmentTransaction.commit();
     }
 }
