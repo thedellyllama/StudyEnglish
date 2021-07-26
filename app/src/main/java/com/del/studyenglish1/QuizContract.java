@@ -28,4 +28,25 @@ public final class QuizContract {
         public static final String COLUMN_ACT_NUM = "activity_num";
     }
 
+    public static class ActivityTable implements BaseColumns {
+        public static final String TABLE_NAME = "quiz_activities";
+        public static final String COLUMN_TOPIC_ID = "topic_id";
+        public static final String COLUMN_ACT_NUM = "activity_num";
+        public static final String COLUMN_COMPLETED= "activity_completed";
+    }
+
+    public static class GrammarTable implements BaseColumns {
+        public static final String TABLE_NAME = "information_grammar";
+        public static final String COLUMN_TOPIC_ID = "topic_id";
+        public static final String COLUMN_EXPLANATION = "explanation";
+    }
+
+    public static class VocabTable implements BaseColumns {
+        public static final String TABLE_NAME = "information_vocabulary";
+        public static final String COLUMN_TOPIC_ID = "topic_id";
+        public static final String COLUMN_NAME = "new_vocabulary";
+        public static final String COLUMN_DEFINITION = "definition";
+
+    }
+
 }

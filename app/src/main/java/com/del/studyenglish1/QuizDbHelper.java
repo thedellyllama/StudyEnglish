@@ -68,17 +68,30 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ")" + "ON DELETE CASCADE" +
                 ")";
 
+        final String SQL_CREATE_ACTIVITY_TABLE = "CREATE TABLE " +
+                ActivityTable.TABLE_NAME + " ( " +
+                ActivityTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ActivityTable.COLUMN_TOPIC_ID +  " INTEGER, " +
+                ActivityTable.COLUMN_ACT_NUM + " INTEGER, " +
+                ActivityTable.COLUMN_COMPLETED + " BOOLEAN, " +
+                "FOREIGN KEY(" + ActivityTable.COLUMN_TOPIC_ID + ") REFERENCES " +
+                TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
+                ")";
+
         db.execSQL(SQL_CREATE_TOPICS_TABLE);
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
+        db.execSQL(SQL_CREATE_ACTIVITY_TABLE);
 
         fillTopicsTable();
         fillQuestionsTable();
+        fillActivityTable();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TopicsTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ActivityTable.TABLE_NAME);
         onCreate(db);
     }
 
@@ -162,6 +175,27 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_TOPIC_ID, question.getTopicId());
         cv.put(QuestionsTable.COLUMN_ACT_NUM, question.getActivityNum());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
+    }
+
+    private void fillActivityTable() {
+
+        Activity a1 = new Activity(Topic.t5_ID, 1, Activity.FALSE);
+        Activity a2 = new Activity(Topic.t5_ID, 2, Activity.FALSE);
+        Activity a3 = new Activity(Topic.t5_ID, 3, Activity.FALSE);
+        Activity a4 = new Activity(Topic.t5_ID, 4, Activity.FALSE);
+
+        addActivity(a1);
+        addActivity(a2);
+        addActivity(a3);
+        addActivity(a4);
+
+    }
+
+    private void addActivity(Activity activity) {
+        ContentValues cv = new ContentValues();
+        cv.put(ActivityTable.COLUMN_TOPIC_ID, activity.getTopicId());
+        cv.put(ActivityTable.COLUMN_ACT_NUM, activity.getActivityNum());
+        cv.put(ActivityTable.COLUMN_COMPLETED, activity.isCompleted());
     }
 
     public ArrayList<Topic> getAllTopics() {
@@ -315,6 +349,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return topicId;
     }
 
+    //update activity table
     public void updateActivitiesCompleted(int topicId) {
         db = getWritableDatabase();
         int activities_completed = 0;
