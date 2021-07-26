@@ -24,13 +24,16 @@ public class InformationDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         if (getArguments() != null) {
             questionCount = getArguments().getInt(ARG_COUNT);
-            time = (questionCount * 30)/60;
+            if (questionCount < 3) {
+                time = 1;
+            } else {
+                time = (questionCount * 30) / 60;
+            }
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Information")
                 .setMessage("Number of questions: " + questionCount
                         + "\nEstimated time to complete: " + time + " minutes")
-                .setCancelable(true)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -2,6 +2,7 @@ package com.del.studyenglish1;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -42,6 +43,7 @@ public class MultipleChoiceQuiz extends Fragment {
     private String level_name;
     private String level;
     private int topicID;
+    private int activity_num;
 
     private TextView textViewQuestion;
     private TextView textViewQuestionCount;
@@ -66,6 +68,8 @@ public class MultipleChoiceQuiz extends Fragment {
 
     Page5_4_Grammar page5_4_grammar;
     InformationDialog informationDialog;
+
+    private SQLiteDatabase newDb;
 
     public static MultipleChoiceQuiz newInstance(String topic, String type, String level_name, int activity_num) {
     //public static MultipleChoiceQuiz newInstance(int topicID, String topic, String type, String level_name, int activity_num) {
@@ -102,6 +106,7 @@ public class MultipleChoiceQuiz extends Fragment {
             topic = getArguments().getString(ARG_TOPIC);
             type = getArguments().getString(ARG_TYPE);
             level_name = getArguments().getString(ARG_LEVEL_NAME);
+            activity_num = getArguments().getInt(ARG_ACTIVITY_NUM);
             //level = getArguments().getString(ARG_LEVEL);
             //topicID = getArguments().getInt(ARG_TOPIC_ID);
         }
@@ -127,7 +132,7 @@ public class MultipleChoiceQuiz extends Fragment {
         //if (savedInstanceState == null) {
             QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
             int topicID = dbHelper.getTopicId(topic, type, level_name);
-            questionList = dbHelper.getQuestions(topicID);
+            questionList = dbHelper.getQuestions(topicID, activity_num);
             questionCountTotal = questionList.size();
             showActivityDetails(questionCountTotal);
             Collections.shuffle(questionList);
@@ -215,9 +220,13 @@ public class MultipleChoiceQuiz extends Fragment {
             showSolution();
             //set answered correctly in db to TRUE
         } else if (answeredAttempts > 1) {
+            questionList.add(currentQuestion);
+            questionCountTotal++;
             //no well done message
             showSolution();
             //set answered correctly in db to FALSE
+            //add question to end of array
+
         } else {
             //answeredAttempts++;
             rbGroup.clearCheck();
@@ -262,12 +271,15 @@ public class MultipleChoiceQuiz extends Fragment {
 
     private void finishQuiz(String topic, String type, String level_name) {
 
-        /**update quiz completed column in db**/
+        /**update activities_completed column in db**/
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        dbHelper.updateActivitiesCompleted(topicID);
 
         page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
         fragmentTransaction.commit();
+
     }
 
     public void onBackPressed() {
@@ -302,7 +314,7 @@ public class MultipleChoiceQuiz extends Fragment {
     /**
      * method to show activity information: estimated time needed, number of questions
      */
-    private void showActivityDetails(int questionCountTotal) {
+    public void showActivityDetails(int questionCountTotal) {
         informationDialog = informationDialog.newInstance(questionCountTotal);
         informationDialog.show(getActivity().getSupportFragmentManager(), "example dialog");
     }

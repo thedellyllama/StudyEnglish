@@ -30,6 +30,7 @@ public class Page5_4_Grammar extends Fragment {
     private String type;
     private String level_name;
     private String level;
+    private int activityNum;
 
     private TextView textViewTopic;
     private TextView changeTopic;
@@ -83,7 +84,35 @@ public class Page5_4_Grammar extends Fragment {
             @Override
             public void onClick(View v) {
                 //showActivityDetails();
-                openMultipleChoiceQuiz(topic, type, level_name, 1);
+                activityNum = 1;
+                openMultipleChoiceQuiz(topic, type, level_name, activityNum);
+            }
+        });
+
+        activity2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //showActivityDetails();
+                activityNum = 2;
+                openMultipleChoiceQuiz(topic, type, level_name, activityNum);
+            }
+        });
+
+        activity3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //showActivityDetails();
+                activityNum = 3;
+                openMultipleChoiceQuiz(topic, type, level_name, activityNum);
+            }
+        });
+
+        activity4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //showActivityDetails();
+                activityNum = 4;
+                openMultipleChoiceQuiz(topic, type, level_name, activityNum);
             }
         });
 

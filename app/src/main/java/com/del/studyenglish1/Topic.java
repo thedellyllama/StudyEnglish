@@ -16,16 +16,6 @@ public class Topic {
     public static final int t13_ID = 13;
     public static final int t14_ID = 14;
 
-/*
-    public static final int ADVERBS_OF_FREQUENCY_ID = 1;
-    public static final int ARTICLES_1 = 2;
-    public static final int ARTICLES_2 = 3;
-    public static final int COUNTABLE_UNCOUNTABLE_1 = 4;
-    public static final int ADJECTIVES1 = 5;
-    public static final int PAST_CONTINUOUS = 6;
-    public static final int USED_TO = 7;
-    public static final int ADJECTIVES2 = 8;
-    */
 
     public static final String DIFFICULTY_A1 = "A1";
     public static final String DIFFICULTY_A2 = "A2";
@@ -37,18 +27,26 @@ public class Topic {
     public static final String TYPE_GRAMMAR = "GRAMMAR";
     public static final String TYPE_VOCABULARY = "VOCABULARY";
 
+    public static final int NUM_GRAMMAR = 4;
+    public static final int NUM_VOCAB = 4;
+    public static final int NUM_READING = 2;
+
     private int id;
     private String name;
     private String difficulty;
     private String type;
+    private int activitiesCount;
+    private int activitiesCompleted;
 
     public Topic() {
     }
 
-    public Topic(String name, String difficulty, String type) {
+    public Topic(String name, String difficulty, String type, int activitiesCount) {
         this.name = name;
         this.difficulty = difficulty;
         this.type = type;
+        this.activitiesCount = activitiesCount;
+        activitiesCompleted = 0;
     }
 
     public int getId() {
@@ -81,6 +79,22 @@ public class Topic {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getActivitiesCount() {
+        return activitiesCount;
+    }
+
+    public void setActivitiesCount(int activitiesCount) {
+        this.activitiesCount = activitiesCount;
+    }
+
+    public int getActivitiesCompleted() {
+        return activitiesCompleted;
+    }
+
+    public void setActivitiesCompleted(int activitiesCompleted) {
+        this.activitiesCompleted = activitiesCompleted;
     }
 
     //so the adapter returns to the name of the topic instead of class name

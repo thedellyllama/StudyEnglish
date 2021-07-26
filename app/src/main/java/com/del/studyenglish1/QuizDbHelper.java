@@ -5,12 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
+
 import com.del.studyenglish1.QuizContract.*;
+
+import static android.widget.Toast.LENGTH_SHORT;
+import static java.security.AccessController.getContext;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "StudyEnglish.db";
@@ -44,7 +48,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 TopicsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 TopicsTable.COLUMN_NAME + " TEXT, " +
                 TopicsTable.COLUMN_DIFFICULTY + " TEXT, " +
-                TopicsTable.COLUMN_TYPE + " TEXT" +
+                TopicsTable.COLUMN_TYPE + " TEXT, " +
+                TopicsTable.COLUMN_ACT_COUNT + " INTEGER, " +
+                TopicsTable.COLUMN_ACT_COMPLETED + " INTEGER" +
                 ")";
 
         final String SQL_CREATE_QUESTIONS_TABLE = "CREATE TABLE " +
@@ -55,8 +61,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
-                QuestionsTable.COLUMN_ANSWER_NR + " INTEGER, " +
+                QuestionsTable.COLUMN_ANSWER_NUM + " INTEGER, " +
                 QuestionsTable.COLUMN_TOPIC_ID + " INTEGER, " +
+                QuestionsTable.COLUMN_ACT_NUM + " INTEGER, " +
                 "FOREIGN KEY(" + QuestionsTable.COLUMN_TOPIC_ID + ") REFERENCES " +
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ")" + "ON DELETE CASCADE" +
                 ")";
@@ -82,20 +89,20 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillTopicsTable() {
-        Topic t1 = new Topic("PRESENT SIMPLE - TO BE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t2 = new Topic("POSSESSIVE ADJECTIVES & SUBJECT PRONOUNS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t3 = new Topic("ADJECTIVES", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t4 = new Topic("QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t5 = new Topic("ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t6 = new Topic("PREPOSITIONS OF TIME", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t7 = new Topic("PREPOSITIONS OF PLACE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t8 = new Topic("PRESENT CONTINUOUS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t9 = new Topic("IMPERATIVE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t10 = new Topic("PAST SIMPLE - TO BE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t11 = new Topic("PAST SIMPLE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t12 = new Topic("PAST SIMPLE - NEGATIVES & QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t13 = new Topic("VERBS + TO + INFINITIVE & VERBS + ING", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        Topic t14 = new Topic("COUNTABLE & UNCOUNTABLE NOUNS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
+        Topic t1 = new Topic("PRESENT SIMPLE - TO BE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t2 = new Topic("POSSESSIVE ADJECTIVES & SUBJECT PRONOUNS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t3 = new Topic("ADJECTIVES", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t4 = new Topic("QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t5 = new Topic("ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t6 = new Topic("PREPOSITIONS OF TIME", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t7 = new Topic("PREPOSITIONS OF PLACE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t8 = new Topic("PRESENT CONTINUOUS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t9 = new Topic("IMPERATIVE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t10 = new Topic("PAST SIMPLE - TO BE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t11 = new Topic("PAST SIMPLE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t12 = new Topic("PAST SIMPLE - NEGATIVES & QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t13 = new Topic("VERBS + TO + INFINITIVE & VERBS + ING", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t14 = new Topic("COUNTABLE & UNCOUNTABLE NOUNS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
 
         addTopic(t1);
         addTopic(t2);
@@ -111,46 +118,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addTopic(t12);
         addTopic(t13);
         addTopic(t14);
-
-       Topic c1 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c1);
-        Topic c2 = new Topic("A1 Grammar 2", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c2);
-        Topic c3 = new Topic("B1 Vocabulary", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY);
-        addTopic(c3);
-        Topic c4 = new Topic("B1 reading", Topic.DIFFICULTY_B1, Topic.TYPE_READING);
-        addTopic(c4);
-        Topic c5 = new Topic("C1 vocabulary", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY);
-        addTopic(c5);
-        Topic c6 = new Topic("C1 vocabulary 2", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY);
-        addTopic(c6);
-        Topic c7 = new Topic("B2 Grammar", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR);
-        addTopic(c7);
-        Topic c8 = new Topic("A1 Vocabulary", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY);
-        addTopic(c8);
-        Topic c9 = new Topic("A1 Reading", Topic.DIFFICULTY_A1, Topic.TYPE_READING);
-        addTopic(c9);
-        Topic c10 = new Topic("A1 Grammar 3", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c10);
-        Topic c11 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c11);
-        Topic c12 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c12);
-        Topic c13 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c13);
-        Topic c14 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c14);
-        Topic c15 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c15);
-        Topic c16 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c16);
-        Topic c17 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c17);
-        Topic c18 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c18);
-        Topic c19 = new Topic("A1 Grammar", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR);
-        addTopic(c19);
-
     }
 
     private void addTopic(Topic topic) {
@@ -162,14 +129,15 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("Select the correct phrase:", "Our teacher is often late.", "Our teacher often is late.", "Is often our teacher late?", "Often our teacher is late", 1, Topic.t5_ID);
-        Question q2 = new Question("Select the correct phrase:", "I am tired always.", "I am always tired.", "Always I am tired.", "Tired I am always.", 2, Topic.t5_ID);
-        Question q3 = new Question("Select the correct phrase:", "My sister watches TV hardly ever.", "My sister doesn't hardly ever watch TV.", "My sister watches TV hardly ever.", "My sister hardly ever watches TV.", 4, Topic.t5_ID);
-        Question q4 = new Question("Select the correct phrase:", "We never eat sushi.", "We eat sushi never.", "We eat never sushi.", "Never we eat sushi.", 1, Topic.t5_ID);
-        Question q5 = new Question("Select the correct phrase:", "English they study every day.", "They study every day English.", "They every day study English.", "They study English every day.", 4, Topic.t5_ID);
-        Question q6 = new Question("Select the correct phrase:", "He doesn't wake up early usually.", "Does he wake up usually early?", "He doesn't usually wake up early.", "He usually doesn't wake up early.", 3, Topic.t5_ID);
-        Question q7 = new Question("Select the correct phrase:", "Do you go to the cinema often?", "Do you go often to the cinema?", "Do often you go to the cinema?", "Do you often go to the cinema?", 1, Topic.t5_ID);
-        Question q8 = new Question("Select the correct phrase:", "I always wears a hat", "I always wear a hat", "I wear a hat always", "I wear always a hat", 2, Topic.t5_ID);
+        Question q1 = new Question("Select the correct phrase:", "Our teacher is often late.", "Our teacher often is late.", "Is often our teacher late?", "Often our teacher is late", 1, Topic.t5_ID, 1);
+        Question q2 = new Question("Select the correct phrase:", "I am tired always.", "I am always tired.", "Always I am tired.", "Tired I am always.", 2, Topic.t5_ID, 1);
+        Question q3 = new Question("Select the correct phrase:", "My sister watches TV hardly ever.", "My sister doesn't hardly ever watch TV.", "My sister watches TV hardly ever.", "My sister hardly ever watches TV.", 4, Topic.t5_ID, 1);
+        Question q4 = new Question("Select the correct phrase:", "We never eat sushi.", "We eat sushi never.", "We eat never sushi.", "Never we eat sushi.", 1, Topic.t5_ID, 1);
+        Question q5 = new Question("Select the correct phrase:", "English they study every day.", "They study every day English.", "They every day study English.", "They study English every day.", 4, Topic.t5_ID, 1);
+        Question q6 = new Question("Select the correct phrase:", "He doesn't wake up early usually.", "Does he wake up usually early?", "He doesn't usually wake up early.", "He usually doesn't wake up early.", 3, Topic.t5_ID, 1);
+        Question q7 = new Question("Select the correct phrase:", "Do you go to the cinema often?", "Do you go often to the cinema?", "Do often you go to the cinema?", "Do you often go to the cinema?", 1, Topic.t5_ID, 1);
+        Question q8 = new Question("Select the correct phrase:", "I always wears a hat", "I always wear a hat", "I wear a hat always", "I wear always a hat", 2, Topic.t5_ID, 1);
+        Question q9 = new Question("Select the incorrect phrase:", "He doesn't wake up early usually.", "I always wear a hat", "Do often you go to the cinema?", "I am always tired.", 1, Topic.t5_ID, 2);
 
         addQuestion(q1);
         addQuestion(q2);
@@ -179,6 +147,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q6);
         addQuestion(q7);
         addQuestion(q8);
+        addQuestion(q9);
+
     }
 
     private void addQuestion(Question question) {
@@ -188,8 +158,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
         cv.put(QuestionsTable.COLUMN_OPTION4, question.getOption4());
-        cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
+        cv.put(QuestionsTable.COLUMN_ANSWER_NUM, question.getAnswerNr());
         cv.put(QuestionsTable.COLUMN_TOPIC_ID, question.getTopicId());
+        cv.put(QuestionsTable.COLUMN_ACT_NUM, question.getActivityNum());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
@@ -205,6 +176,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
                 //topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
                 topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
+                topic.setActivitiesCount(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COUNT)));
+                topic.setActivitiesCompleted(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COMPLETED)));
                 topicList.add(topic);
             } while (c.moveToNext());
         }
@@ -226,9 +199,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
-                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
+                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NUM)));
                 //question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
                 question.setTopicId(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_TOPIC_ID)));
+                question.setActivityNum(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ACT_NUM)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
@@ -262,6 +236,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
                 topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
                 topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
+                topic.setActivitiesCount(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COUNT)));
+                topic.setActivitiesCompleted(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COMPLETED)));
                 topicList.add(topic);
             } while (c.moveToNext());
         }
@@ -269,11 +245,13 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return topicList;
     }
 
-    public ArrayList<Question> getQuestions(int topicID) {
+    public ArrayList<Question> getQuestions(int topicID, int activityNum) {
         ArrayList<Question> questionList = new ArrayList<>();
+        //will also need to filter activity number
         //filter topic id
-        String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? ";
-        String[] selectionArgs = new String[] {String.valueOf(topicID)};
+        String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? AND "
+                + QuestionsTable.COLUMN_ACT_NUM + " = ? ";
+        String[] selectionArgs = new String[] {String.valueOf(topicID), String.valueOf(activityNum)};
 
         Cursor c = db.query(
                 QuestionsTable.TABLE_NAME,
@@ -294,8 +272,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
-                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
+                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NUM)));
                 question.setTopicId(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_TOPIC_ID)));
+                question.setActivityNum(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ACT_NUM)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
@@ -335,5 +314,44 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         c.close();
         return topicId;
     }
+
+    public void updateActivitiesCompleted(int topicId) {
+        db = getWritableDatabase();
+        int activities_completed = 0;
+
+        String[] selectionArgs = new String[]{String.valueOf(topicId)};
+        String selection = TopicsTable._ID + " = ? ";
+        Cursor c = db.query(
+                TopicsTable.TABLE_NAME,
+                new String[]{TopicsTable.COLUMN_ACT_COMPLETED},
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        if (c.moveToFirst()) {
+            do {
+                Topic topic = new Topic();
+                topic.setActivitiesCompleted(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COMPLETED)));
+                if (topic.getActivitiesCompleted() != 0) {
+                    activities_completed = (int) topic.getActivitiesCompleted();
+                } else activities_completed = 0;
+            } while (c.moveToNext());
+        }
+        c.close();
+        activities_completed++;
+        String selection1 = "UPDATE " + TopicsTable.TABLE_NAME + " SET "
+                + TopicsTable.COLUMN_ACT_COMPLETED + " = " +
+                activities_completed + " WHERE "
+                + TopicsTable._ID + " = " + topicId;
+        db.execSQL(selection1);
+    }
+
+    public void correctlyAnswered() {
+        db = getWritableDatabase();
+        String selection = "UPDATE " + QuestionsTable.TABLE_NAME ;
+    }
+
 
 }

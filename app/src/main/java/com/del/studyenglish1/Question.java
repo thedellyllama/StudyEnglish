@@ -20,6 +20,7 @@ public class Question implements Parcelable {
         private int answerNr;
         private String difficulty;
         private int topicId;
+        private int activityNum;
 
         public Question() {
 
@@ -28,7 +29,7 @@ public class Question implements Parcelable {
         public Question(String question, String option1, String option2, String option3,
                         String option4, int answerNr,
                         //String difficulty,
-                        int topicId) {
+                        int topicId, int activityNum) {
             this.question = question;
             this.option1 = option1;
             this.option2 = option2;
@@ -37,6 +38,7 @@ public class Question implements Parcelable {
             this.answerNr = answerNr;
             //this.difficulty = difficulty;
             this.topicId = topicId;
+            this.activityNum = activityNum;
         }
 
         protected Question(Parcel in) {
@@ -49,6 +51,7 @@ public class Question implements Parcelable {
             answerNr = in.readInt();
             //difficulty = in.readString();
             topicId = in.readInt();
+            activityNum = in.readInt();
         }
 
     @Override
@@ -62,6 +65,7 @@ public class Question implements Parcelable {
             dest.writeInt(answerNr);
             //dest.writeString(difficulty);
             dest.writeInt(topicId);
+            dest.writeInt(activityNum);
         }
 
         @Override
@@ -134,18 +138,22 @@ public class Question implements Parcelable {
         }
 
         public void setAnswerNr(int answerNr) {
-            this.answerNr = answerNr;
-        }
+        this.answerNr = answerNr;
+    }
 
-        /*
-        public String getDifficulty() {
-            return difficulty;
-        }
+        public int getActivityNum() {  return activityNum;    }
 
-        public void setDifficulty(String difficulty) {
-            this.difficulty = difficulty;
-        }
-*/
+        public void setActivityNum(int activityNum) { this.activityNum = activityNum;    }
+
+    /*
+            public String getDifficulty() {
+                return difficulty;
+            }
+
+            public void setDifficulty(String difficulty) {
+                this.difficulty = difficulty;
+            }
+    */
         public int getTopicId() {
             return topicId;
         }
