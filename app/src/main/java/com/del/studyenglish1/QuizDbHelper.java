@@ -78,13 +78,38 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
                 ")";
 
+        final String SQL_CREATE_GRAMMAR_TABLE = "CREATE TABLE " +
+                GrammarTable.TABLE_NAME + " ( " +
+                GrammarTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                GrammarTable.COLUMN_TOPIC_ID +  " INTEGER, " +
+                GrammarTable.COLUMN_EXPLANATION + " STRING, " +
+                "FOREIGN KEY(" + ActivityTable.COLUMN_TOPIC_ID + ") REFERENCES " +
+                TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
+                ")";
+
+        final String SQL_CREATE_VOCAB_TABLE = "CREATE TABLE " +
+                VocabTable.TABLE_NAME + " ( " +
+                VocabTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                VocabTable.COLUMN_TOPIC_ID +  " INTEGER, " +
+                VocabTable.COLUMN_NAME + " STRING, " +
+                VocabTable.COLUMN_DEFINITION + " STRING, " +
+                "FOREIGN KEY(" + ActivityTable.COLUMN_TOPIC_ID + ") REFERENCES " +
+                TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
+                ")";
+
+
+
         db.execSQL(SQL_CREATE_TOPICS_TABLE);
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
         db.execSQL(SQL_CREATE_ACTIVITY_TABLE);
+        db.execSQL(SQL_CREATE_GRAMMAR_TABLE);
+        db.execSQL(SQL_CREATE_VOCAB_TABLE);
 
         fillTopicsTable();
         fillQuestionsTable();
         fillActivityTable();
+        fillGrammarTable();
+        fillVocabTable();
     }
 
     @Override
@@ -92,6 +117,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TopicsTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ActivityTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + GrammarTable.TABLE_NAME);
         onCreate(db);
     }
 
@@ -196,7 +222,33 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(ActivityTable.COLUMN_TOPIC_ID, activity.getTopicId());
         cv.put(ActivityTable.COLUMN_ACT_NUM, activity.getActivityNum());
         cv.put(ActivityTable.COLUMN_COMPLETED, activity.isCompleted());
+        db.insert(ActivityTable.TABLE_NAME, null, cv);
     }
+
+    private void fillGrammarTable() {
+
+
+    }
+
+    private void addGrammar(Grammar grammar) {
+        ContentValues cv = new ContentValues();
+        cv.put(GrammarTable.COLUMN_TOPIC_ID, grammar.getTopicId());
+        cv.put(GrammarTable.COLUMN_EXPLANATION, grammar.getExplanation());
+        db.insert(GrammarTable.TABLE_NAME, null, cv);
+    }
+
+    private void fillVocabTable() {
+
+    }
+
+    private void addVocab(Vocabulary vocabulary) {
+        ContentValues cv = new ContentValues();
+        cv.put(VocabTable.COLUMN_TOPIC_ID, vocabulary.getTopicId());
+        cv.put(VocabTable.COLUMN_NAME, vocabulary.getName());
+        cv.put(VocabTable.COLUMN_DEFINITION, vocabulary.getDefinition());
+        db.insert(VocabTable.TABLE_NAME, null, cv);
+    }
+
 
     public ArrayList<Topic> getAllTopics() {
         ArrayList<Topic> topicList = new ArrayList<>();
@@ -348,7 +400,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         c.close();
         return topicId;
     }
-
+/*
     //update activity table
     public void updateActivitiesCompleted(int topicId) {
         db = getWritableDatabase();
@@ -386,7 +438,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     public void correctlyAnswered() {
         db = getWritableDatabase();
         String selection = "UPDATE " + QuestionsTable.TABLE_NAME ;
-    }
+    } */
 
 
 }
