@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class Page5_4_Grammar extends Fragment {
 
     private static final String ARG_TOPIC = "argTopic";
@@ -80,6 +82,7 @@ public class Page5_4_Grammar extends Fragment {
         activity1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //showActivityDetails();
                 openMultipleChoiceQuiz(topic, type, level_name, 1);
             }
         });
@@ -113,7 +116,7 @@ public class Page5_4_Grammar extends Fragment {
         fragmentTransaction.commit();
     }
 
-    private void openMultipleChoiceQuiz(String topic, String type, String level_name, int activity_num) {
+    public void openMultipleChoiceQuiz(String topic, String type, String level_name, int activity_num) {
         //int topicId = topic.getID()
         //multipleChoiceQuiz = multipleChoiceQuiz.newInstance(topicID, topic, type, level_name, activity_num);
 
@@ -122,4 +125,6 @@ public class Page5_4_Grammar extends Fragment {
         fragmentTransaction.replace(R.id.nav_host_fragment, multipleChoiceQuiz);
         fragmentTransaction.commit();
     }
+
+
 }

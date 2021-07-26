@@ -65,6 +65,7 @@ public class MultipleChoiceQuiz extends Fragment {
     private long backPressedTime;
 
     Page5_4_Grammar page5_4_grammar;
+    InformationDialog informationDialog;
 
     public static MultipleChoiceQuiz newInstance(String topic, String type, String level_name, int activity_num) {
     //public static MultipleChoiceQuiz newInstance(int topicID, String topic, String type, String level_name, int activity_num) {
@@ -128,8 +129,10 @@ public class MultipleChoiceQuiz extends Fragment {
             int topicID = dbHelper.getTopicId(topic, type, level_name);
             questionList = dbHelper.getQuestions(topicID);
             questionCountTotal = questionList.size();
+            showActivityDetails(questionCountTotal);
             Collections.shuffle(questionList);
             showNextQuestion();
+        showActivityDetails(questionCountTotal);
         /*} else {
             questionList = savedInstanceState.getParcelableArrayList(KEY_QUESTION_LIST);
             questionCountTotal = questionList.size();
@@ -295,6 +298,15 @@ public class MultipleChoiceQuiz extends Fragment {
         outState.putInt(KEY_ANSWER_ATTEMPTS, answeredAttempts);
         outState.putParcelableArrayList(KEY_QUESTION_LIST, questionList);
     }
+
+    /**
+     * method to show activity information: estimated time needed, number of questions
+     */
+    private void showActivityDetails(int questionCountTotal) {
+        informationDialog = informationDialog.newInstance(questionCountTotal);
+        informationDialog.show(getActivity().getSupportFragmentManager(), "example dialog");
+    }
+
 /*
     public MultipleChoiceQuiz() {
         // Required empty public constructor
