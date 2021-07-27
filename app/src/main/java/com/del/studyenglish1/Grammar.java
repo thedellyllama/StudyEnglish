@@ -1,8 +1,12 @@
 package com.del.studyenglish1;
 
 public class Grammar {
+
     private int topicId;
     private String explanation;
+
+    public Grammar() {
+            }
 
     public Grammar(int topicId, String explanation) {
         this.topicId = topicId;

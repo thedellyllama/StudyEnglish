@@ -226,7 +226,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillGrammarTable() {
-
+        Grammar g1 = new Grammar(Topic.t5_ID, "Adverbs of frequency describe how often something happens.\n Subject \u002B Adverb \u002B Main Verb\n Sam always passes his exams.\n Subject \u002B be/have \u002B Adverb\n She is usually busy on Saturdays.\n\n always\n usually/normally\n often\n sometimes\n occasionally\n hardly ever\n never\n\n every day\n every week \n every month\n every year\n once a week\n twice a month\n three times a day\n");
+        addGrammar(g1);
 
     }
 
@@ -399,6 +400,31 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         }
         c.close();
         return topicId;
+    }
+
+    public String getGrammarExplanation(int topicId) {
+        String grammar_explanation = "";
+        db = getReadableDatabase();
+        String[] selectionArgs = new String[]{String.valueOf(topicId)};
+        String selection = GrammarTable.COLUMN_TOPIC_ID + " = ? ";
+        Cursor c = db.query(
+                GrammarTable.TABLE_NAME,
+                new String[]{GrammarTable.COLUMN_EXPLANATION},
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        if (c.moveToFirst()) {
+            do {
+                Grammar grammar = new Grammar();
+                grammar.setExplanation(c.getString(c.getColumnIndex(GrammarTable.COLUMN_EXPLANATION)));
+                grammar_explanation = (String) grammar.getExplanation();
+            } while (c.moveToNext());
+        }
+        c.close();
+        return grammar_explanation;
     }
 /*
     //update activity table

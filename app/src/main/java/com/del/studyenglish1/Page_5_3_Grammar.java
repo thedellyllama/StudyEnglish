@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class Page_5_3_Grammar extends Fragment {
     private String level;
 
     private TextView textViewTopic;
+    private TextView textViewExplanation;
     private TextView changeLevel;
     private TextView changeType;
     private TextView changeTopic;
@@ -57,12 +59,19 @@ public class Page_5_3_Grammar extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_page_5_3__grammar, container, false);
         textViewTopic = v.findViewById(R.id.text_view_topic);
+        textViewExplanation = v.findViewById(R.id.text_view_explanation);
+        textViewExplanation.setMovementMethod(new ScrollingMovementMethod());
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+
 
         if (getArguments() != null) {
             topic = getArguments().getString(ARG_TOPIC);
             type = getArguments().getString(ARG_TYPE);
             level_name = getArguments().getString(ARG_LEVEL_NAME);
         }
+        int topicId = dbHelper.getTopicId(topic, type, level_name);
+        String explanation = dbHelper.getGrammarExplanation(topicId);
+        textViewExplanation.setText(explanation);
         textViewTopic.setText(level_name + ": " + topic);
 
         return v;
