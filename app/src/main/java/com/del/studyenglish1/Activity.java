@@ -9,6 +9,8 @@ public class Activity {
     private int activityNum;
     private boolean completed;
 
+    public Activity(){}
+
     public Activity(int topicId, int activityNum, boolean completed) {
         this.topicId = topicId;
         this.activityNum = activityNum;
