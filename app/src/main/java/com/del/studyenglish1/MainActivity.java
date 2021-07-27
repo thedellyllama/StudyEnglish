@@ -7,6 +7,7 @@ import androidx.navigation.Navigation;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {//implements Page5.Page5Listener {
+    private Page4 page4;
     private Page5 page5;
     //private Page5_1 page5_1;
 
@@ -21,10 +22,12 @@ public class MainActivity extends AppCompatActivity {//implements Page5.Page5Lis
 
 
         page5 = new Page5();
+        page4 = new Page4();
         /** page5_1 = new Page5_1();**/
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.nav_host_fragment, page5)
+                //.add(R.id.nav_host_fragment, page5)
+                .add(R.id.nav_host_fragment, page4)
                 .commit();
     }
 
