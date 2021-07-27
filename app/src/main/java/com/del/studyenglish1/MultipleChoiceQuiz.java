@@ -68,6 +68,8 @@ public class MultipleChoiceQuiz extends Fragment {
 
     Page5_4_Grammar page5_4_grammar;
     InformationDialog informationDialog;
+    private int buttonGreen;
+    private int buttonBlue;
 
     private SQLiteDatabase newDb;
 
@@ -101,6 +103,9 @@ public class MultipleChoiceQuiz extends Fragment {
         buttonCheck = v.findViewById(R.id.button_check);
         buttonClose = v.findViewById(R.id.button_close);
         textColorDefaultRb = rb1.getTextColors();
+        buttonGreen = getResources().getColor(R.color.green_button);
+        buttonBlue = getResources().getColor(R.color.blue_app);
+
 
         if (getArguments() != null) {
             topic = getArguments().getString(ARG_TOPIC);
@@ -186,6 +191,7 @@ public class MultipleChoiceQuiz extends Fragment {
         rb2.setTextColor(textColorDefaultRb);
         rb3.setTextColor(textColorDefaultRb);
         rb4.setTextColor(textColorDefaultRb);
+        buttonCheck.setBackgroundColor(buttonBlue);
         rbGroup.clearCheck();
 
         if (questionCounter < questionCountTotal) {
@@ -216,28 +222,30 @@ public class MultipleChoiceQuiz extends Fragment {
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
 
         if (answerNr == currentQuestion.getAnswerNr()) {
+            buttonCheck.setBackgroundColor(buttonGreen);
             //well done message
-            showSolution();
+            showSolution(true);
             //set answered correctly in db to TRUE
         } else if (answeredAttempts > 1) {
             questionList.add(currentQuestion);
             questionCountTotal++;
             //no well done message
-            showSolution();
+            showSolution(false);
             //set answered correctly in db to FALSE
             //add question to end of array
 
         } else {
             //answeredAttempts++;
             rbGroup.clearCheck();
-            buttonCheck.setText("Try again!");
+            buttonCheck.setBackgroundColor(Color.RED);
+            buttonCheck.setText("Incorrect.\nTry Again!");
             answered = false;
             rbSelected.setTextColor(Color.RED);
         }
 
     }
 
-    private void showSolution() {
+    private void showSolution(boolean answeredCorrectly) {
         rb1.setTextColor(Color.RED);
         rb2.setTextColor(Color.RED);
         rb3.setTextColor(Color.RED);
@@ -245,35 +253,39 @@ public class MultipleChoiceQuiz extends Fragment {
 
         switch (currentQuestion.getAnswerNr()) {
             case 1:
-                rb1.setTextColor(Color.GREEN);
+                rb1.setTextColor(buttonGreen);
                 //textViewQuestion.setText("Answer 1 is correct");
                 break;
             case 2:
-                rb2.setTextColor(Color.GREEN);
+                rb2.setTextColor(buttonGreen);
                 //textViewQuestion.setText("Answer 2 is correct");
                 break;
             case 3:
-                rb3.setTextColor(Color.GREEN);
+                rb3.setTextColor(buttonGreen);
                 //textViewQuestion.setText("Answer 3 is correct");
                 break;
             case 4:
-                rb4.setTextColor(Color.GREEN);
+                rb4.setTextColor(buttonGreen);
                 //textViewQuestion.setText("Answer 4 is correct");
                 break;
         }
 
         if (questionCounter < questionCountTotal) {
-            buttonCheck.setText("Next");
+            if (answeredCorrectly) {
+                buttonCheck.setText("Correct!\nNext Question");
+            } else {
+                buttonCheck.setText("Next Question");
+            }
         } else {
-            buttonCheck.setText("Finish");
+            buttonCheck.setText("Well done!\nFinish Quiz");
         }
     }
 
     private void finishQuiz(String topic, String type, String level_name) {
 
         /**update activities_completed column in db**/
-        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
-        dbHelper.updateActivitiesCompleted(topicID);
+        //QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        //dbHelper.updateActivitiesCompleted(topicID);
 
         page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

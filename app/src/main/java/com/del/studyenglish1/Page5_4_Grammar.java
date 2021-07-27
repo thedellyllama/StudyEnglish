@@ -13,10 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
 public class Page5_4_Grammar extends Fragment {
 
     private static final String ARG_TOPIC = "argTopic";
@@ -74,7 +70,7 @@ public class Page5_4_Grammar extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
-        toExplanation = (TextView) view.findViewById(R.id.text_view_explanation);
+        toExplanation = (TextView) view.findViewById(R.id.text_view_to_explanation);
         activity1 = (Button) view.findViewById(R.id.button_activity1);
         activity2 = (Button) view.findViewById(R.id.button_activity2);
         activity3 = (Button) view.findViewById(R.id.button_activity3);
