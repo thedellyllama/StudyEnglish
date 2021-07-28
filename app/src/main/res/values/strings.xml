@@ -2,6 +2,7 @@
     <string name="app_name">StudyEnglish</string>
     <string name="select_level">Select level:</string>
     <string name="my_profile">My Profile</string>
+    <string name="my_goals">My Learning Goals</string>
     <string name="view">view:</string>
     <string name="select_type">Select activity type:</string>
     <string name="select_topic">Select topic: </string>
@@ -11,6 +12,8 @@
     <string name="dictionary">DICTIONARY</string>
     <string name="home">HOME</string>
     <string name="study">STUDY</string>
+    <string name="want_to">I want to complete: </string>
+    <string name="search">search</string>
 
     //LINKS
     <string name="change_level">change level</string>
@@ -18,6 +21,7 @@
     <string name="change_topic">change topic</string>
     <string name="explanation">explanation</string>
     <string name="check_level">check your level here</string>
+
 
     //BUTTONS
     <string name="a1_level">BEGINNER: A1</string>
@@ -36,6 +40,9 @@
     <string name="num_3">3</string>
     <string name="num_4">4</string>
     <string name="check">CHECK ANSWER</string>
+    <string name="daily">DAILY</string>
+    <string name="weekly">WEEKLY</string>
+    <string name="update">UPDATE</string>
 
 
 </resources>
