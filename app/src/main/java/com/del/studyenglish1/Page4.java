@@ -20,7 +20,10 @@ public class Page4 extends Fragment {
     private CardView cardDictionary;
     private CardView cardStudy;
 
-    private Page5 page5;
+    private Fragment page5;
+    private Fragment page6;
+    private Fragment page7;
+    private Fragment page8;
 
 
     public Page4(){}
@@ -34,12 +37,42 @@ public class Page4 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        NavController navController = Navigation.findNavController(view);
+        //NavController navController = Navigation.findNavController(view);
 
         cardProfile = view.findViewById(R.id.card_view_profile);
         cardGoals = view.findViewById(R.id.card_view_goals);
         cardDictionary = view.findViewById(R.id.card_view_dictionary);
         cardStudy = view.findViewById(R.id.card_view_study);
+
+        cardProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page7 = new Page7();
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, page7);
+                fragmentTransaction.commit();
+            }
+        });
+
+        cardGoals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page6 = new Page6();
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, page6);
+                fragmentTransaction.commit();
+            }
+        });
+
+        cardDictionary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page8 = new Page8();
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, page8);
+                fragmentTransaction.commit();
+            }
+        });
 
         cardStudy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +83,7 @@ public class Page4 extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
 
     }
 
