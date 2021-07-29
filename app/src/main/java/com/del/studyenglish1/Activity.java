@@ -1,17 +1,21 @@
 package com.del.studyenglish1;
 
 public class Activity {
-    public static final boolean FALSE = false;
-    public static final boolean TRUE = true;
+    public static final String FALSE = "FALSE";
+    public static final String TRUE = "TRUE";
+    public static final int ACT_NUM_1 = 1;
+    public static final int ACT_NUM_2 = 2;
+    public static final int ACT_NUM_3 = 3;
+    public static final int ACT_NUM_4 = 4;
 
 
     private int topicId;
     private int activityNum;
-    private boolean completed;
+    private String completed;
 
     public Activity(){}
 
-    public Activity(int topicId, int activityNum, boolean completed) {
+    public Activity(int topicId, int activityNum, String completed) {
         this.topicId = topicId;
         this.activityNum = activityNum;
         this.completed = completed;
@@ -33,11 +37,11 @@ public class Activity {
         this.activityNum = activityNum;
     }
 
-    public boolean isCompleted() {
+    public String getCompleted() {
         return completed;
     }
 
-    public void setCompleted(boolean completed) {
+    public void setCompleted(String completed) {
         this.completed = completed;
     }
 }
