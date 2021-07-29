@@ -284,13 +284,19 @@ public class MultipleChoiceQuiz extends Fragment {
     private void finishQuiz(String topic, String type, String level_name) {
 
         /**update activities_completed column in db**/
-        //QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        topicID = dbHelper.getTopicId(topic, type, level_name);
+        dbHelper.activityCompleted(topicID, activity_num);
+        dbHelper.updateActCount(topicID);
+        //dbHelper.activityCompleted(topicID, activity_num);
         //dbHelper.updateActivitiesCompleted(topicID);
 
         page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
         fragmentTransaction.commit();
+        //page5_4_grammar.buttonTextUpdated(activity_num);
+
 
     }
 
