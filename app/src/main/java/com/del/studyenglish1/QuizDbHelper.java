@@ -5,16 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
 import com.del.studyenglish1.QuizContract.*;
-
-import static android.widget.Toast.LENGTH_SHORT;
-import static java.security.AccessController.getContext;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "StudyEnglish.db";
@@ -65,7 +61,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_TOPIC_ID + " INTEGER, " +
                 QuestionsTable.COLUMN_ACT_NUM + " INTEGER, " +
                 "FOREIGN KEY(" + QuestionsTable.COLUMN_TOPIC_ID + ") REFERENCES " +
-                TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ")" + "ON DELETE CASCADE" +
+                TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE " +
+              // " FOREIGN KEY(" + QuestionsTable.COLUMN_ACT_NUM + ") REFERENCES " +
+               //ActivityTable.TABLE_NAME + "(" + TopicsTable._ID + ")" +
                 ")";
 
         final String SQL_CREATE_ACTIVITY_TABLE = "CREATE TABLE " +
@@ -167,16 +165,38 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(TopicsTable.TABLE_NAME, null, cv);
     }
 
+    private void fillActivityTable() {
+
+        Activity a1 = new Activity(Topic.t5_ID, Activity.ACT_NUM_1, Activity.FALSE);
+        Activity a2 = new Activity(Topic.t5_ID, Activity.ACT_NUM_2, Activity.FALSE);
+        Activity a3 = new Activity(Topic.t5_ID, Activity.ACT_NUM_3, Activity.FALSE);
+        Activity a4 = new Activity(Topic.t5_ID, Activity.ACT_NUM_4, Activity.FALSE);
+
+        addActivity(a1);
+        addActivity(a2);
+        addActivity(a3);
+        addActivity(a4);
+
+    }
+
+    private void addActivity(Activity activity) {
+        ContentValues cv = new ContentValues();
+        cv.put(ActivityTable.COLUMN_TOPIC_ID, activity.getTopicId());
+        cv.put(ActivityTable.COLUMN_ACT_NUM, activity.getActivityNum());
+        cv.put(ActivityTable.COLUMN_COMPLETED, activity.getCompleted());
+        db.insert(ActivityTable.TABLE_NAME, null, cv);
+    }
+
     private void fillQuestionsTable() {
-        Question q1 = new Question("Select the correct phrase:", "Our teacher is often late.", "Our teacher often is late.", "Is often our teacher late?", "Often our teacher is late", 1, Topic.t5_ID, 1);
-        Question q2 = new Question("Select the correct phrase:", "I am tired always.", "I am always tired.", "Always I am tired.", "Tired I am always.", 2, Topic.t5_ID, 1);
-        Question q3 = new Question("Select the correct phrase:", "My sister watches TV hardly ever.", "My sister doesn't hardly ever watch TV.", "My sister watches TV hardly ever.", "My sister hardly ever watches TV.", 4, Topic.t5_ID, 1);
-        Question q4 = new Question("Select the correct phrase:", "We never eat sushi.", "We eat sushi never.", "We eat never sushi.", "Never we eat sushi.", 1, Topic.t5_ID, 1);
-        Question q5 = new Question("Select the correct phrase:", "English they study every day.", "They study every day English.", "They every day study English.", "They study English every day.", 4, Topic.t5_ID, 1);
-        Question q6 = new Question("Select the correct phrase:", "He doesn't wake up early usually.", "Does he wake up usually early?", "He doesn't usually wake up early.", "He usually doesn't wake up early.", 3, Topic.t5_ID, 1);
-        Question q7 = new Question("Select the correct phrase:", "Do you go to the cinema often?", "Do you go often to the cinema?", "Do often you go to the cinema?", "Do you often go to the cinema?", 1, Topic.t5_ID, 1);
-        Question q8 = new Question("Select the correct phrase:", "I always wears a hat", "I always wear a hat", "I wear a hat always", "I wear always a hat", 2, Topic.t5_ID, 1);
-        Question q9 = new Question("Select the incorrect phrase:", "He doesn't wake up early usually.", "I always wear a hat", "Do often you go to the cinema?", "I am always tired.", 1, Topic.t5_ID, 2);
+        Question q1 = new Question("Select the correct phrase:", "Our teacher is often late.", "Our teacher often is late.", "Is often our teacher late?", "Often our teacher is late", 1, Topic.t5_ID, Activity.ACT_NUM_1);
+        Question q2 = new Question("Select the correct phrase:", "I am tired always.", "I am always tired.", "Always I am tired.", "Tired I am always.", 2, Topic.t5_ID, Activity.ACT_NUM_1);
+        Question q3 = new Question("Select the correct phrase:", "My sister watches TV hardly ever.", "My sister doesn't hardly ever watch TV.", "My sister watches TV hardly ever.", "My sister hardly ever watches TV.", 4, Topic.t5_ID, Activity.ACT_NUM_1);
+        Question q4 = new Question("Select the correct phrase:", "We never eat sushi.", "We eat sushi never.", "We eat never sushi.", "Never we eat sushi.", 1, Topic.t5_ID, Activity.ACT_NUM_1);
+        Question q5 = new Question("Select the correct phrase:", "English they study every day.", "They study every day English.", "They every day study English.", "They study English every day.", 4, Topic.t5_ID, Activity.ACT_NUM_1);
+        Question q6 = new Question("Select the correct phrase:", "He doesn't wake up early usually.", "Does he wake up usually early?", "He doesn't usually wake up early.", "He usually doesn't wake up early.", 3, Topic.t5_ID, Activity.ACT_NUM_1);
+        Question q7 = new Question("Select the correct phrase:", "Do you go to the cinema often?", "Do you go often to the cinema?", "Do often you go to the cinema?", "Do you often go to the cinema?", 1, Topic.t5_ID, Activity.ACT_NUM_1);
+        Question q8 = new Question("Select the correct phrase:", "I always wears a hat", "I always wear a hat", "I wear a hat always", "I wear always a hat", 2, Topic.t5_ID, Activity.ACT_NUM_1);
+        Question q9 = new Question("Select the incorrect phrase:", "He doesn't wake up early usually.", "I always wear a hat", "Do often you go to the cinema?", "I am always tired.", 1, Topic.t5_ID, Activity.ACT_NUM_2);
 
         addQuestion(q1);
         addQuestion(q2);
@@ -203,27 +223,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
-    private void fillActivityTable() {
 
-        Activity a1 = new Activity(Topic.t5_ID, 1, Activity.FALSE);
-        Activity a2 = new Activity(Topic.t5_ID, 2, Activity.FALSE);
-        Activity a3 = new Activity(Topic.t5_ID, 3, Activity.FALSE);
-        Activity a4 = new Activity(Topic.t5_ID, 4, Activity.FALSE);
-
-        addActivity(a1);
-        addActivity(a2);
-        addActivity(a3);
-        addActivity(a4);
-
-    }
-
-    private void addActivity(Activity activity) {
-        ContentValues cv = new ContentValues();
-        cv.put(ActivityTable.COLUMN_TOPIC_ID, activity.getTopicId());
-        cv.put(ActivityTable.COLUMN_ACT_NUM, activity.getActivityNum());
-        cv.put(ActivityTable.COLUMN_COMPLETED, activity.isCompleted());
-        db.insert(ActivityTable.TABLE_NAME, null, cv);
-    }
 
     private void fillGrammarTable() {
         Grammar g1 = new Grammar(Topic.t5_ID, "Adverbs of frequency describe how often something happens.\n Subject \u002B Adverb \u002B Main Verb\n Sam always passes his exams.\n Subject \u002B be/have \u002B Adverb\n She is usually busy on Saturdays.\n\n always\n usually/normally\n often\n sometimes\n occasionally\n hardly ever\n never\n\n every day\n every week \n every month\n every year\n once a week\n twice a month\n three times a day\n");
@@ -336,8 +336,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         ArrayList<Question> questionList = new ArrayList<>();
         //will also need to filter activity number
         //filter topic id
-        String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? AND "
-                + QuestionsTable.COLUMN_ACT_NUM + " = ? ";
+        String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? "
+                + " AND " + QuestionsTable.COLUMN_ACT_NUM + " = ? ";
         String[] selectionArgs = new String[] {String.valueOf(topicID), String.valueOf(activityNum)};
 
         Cursor c = db.query(
@@ -404,7 +404,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     public String getGrammarExplanation(int topicId) {
         String grammar_explanation = "";
-        db = getReadableDatabase();
+       // db = getReadableDatabase();
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
         String selection = GrammarTable.COLUMN_TOPIC_ID + " = ? ";
         Cursor c = db.query(
@@ -426,17 +426,59 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         c.close();
         return grammar_explanation;
     }
-/*
-    //update activity table
-    public void updateActivitiesCompleted(int topicId) {
-        db = getWritableDatabase();
-        int activities_completed = 0;
 
+    /*method to update the 'completed' column of Activity Table to true when activity is completed */
+    public boolean activityCompleted(int topicId, int activity_num) {
+        //identify corresponding row in activity table and return activity_id
+        String STRING_SQL_UPDATE_ACTIVITY_COMPLETED = "UPDATE " + ActivityTable.TABLE_NAME
+                + " SET " + ActivityTable.COLUMN_COMPLETED + "= 'TRUE' WHERE " +
+                ActivityTable.COLUMN_TOPIC_ID + " = " + topicId + " AND " +
+                ActivityTable.COLUMN_ACT_NUM + " = " + activity_num
+                ;
+
+    db.execSQL(STRING_SQL_UPDATE_ACTIVITY_COMPLETED);
+        return true;
+    }
+
+    /* method to get the total activity count for a topic*/
+    public int getActivityCount(int topicId) {
+        ArrayList<Activity> activityList = new ArrayList<>();
+        //db = getReadableDatabase();
+
+        //create an Array List of Activity objects of the given Topic ID
+        String[] selectionArgs = new String[]{String.valueOf(topicId)};
+        String selection = ActivityTable.COLUMN_TOPIC_ID + " = ? ";
+        Cursor c = db.query(
+                ActivityTable.TABLE_NAME,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        if (c.moveToFirst()) {
+            do {
+                Activity activity = new Activity();
+                activity.setTopicId(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_TOPIC_ID)));
+                activity.setActivityNum(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_ACT_NUM)));
+                activity.setCompleted(c.getString(c.getColumnIndex(ActivityTable.COLUMN_COMPLETED)));
+                activityList.add(activity);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return activityList.size();
+    }
+
+    /*method to return the number of completed activities in topic*/
+    public int getActivityCompleted(int topicId) {
+        int activitiesCompleted = 0;
+        //create an Array List of Activity objects of the given Topic ID
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
         String selection = TopicsTable._ID + " = ? ";
         Cursor c = db.query(
                 TopicsTable.TABLE_NAME,
-                new String[]{TopicsTable.COLUMN_ACT_COMPLETED},
+                null,
                 selection,
                 selectionArgs,
                 null,
@@ -447,24 +489,97 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             do {
                 Topic topic = new Topic();
                 topic.setActivitiesCompleted(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COMPLETED)));
-                if (topic.getActivitiesCompleted() != 0) {
-                    activities_completed = (int) topic.getActivitiesCompleted();
-                } else activities_completed = 0;
+                activitiesCompleted = topic.getActivitiesCompleted();
             } while (c.moveToNext());
         }
         c.close();
-        activities_completed++;
-        String selection1 = "UPDATE " + TopicsTable.TABLE_NAME + " SET "
-                + TopicsTable.COLUMN_ACT_COMPLETED + " = " +
-                activities_completed + " WHERE "
-                + TopicsTable._ID + " = " + topicId;
-        db.execSQL(selection1);
+        return activitiesCompleted;
+        /*
+        boolean t = true;
+        ArrayList<Activity> activityList = new ArrayList<>();
+        //db = getReadableDatabase();
+
+        //create an Array List of Activity objects of the given Topic ID
+        String[] selectionArgs = new String[]{String.valueOf(topicId)};
+        String selection = ActivityTable.COLUMN_TOPIC_ID + " = ? "
+                + "AND " + ActivityTable.COLUMN_COMPLETED;
+        Cursor c = db.query(
+                ActivityTable.TABLE_NAME,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        if (c.moveToFirst()) {
+            do {
+                Activity activity = new Activity();
+                activity.setTopicId(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_TOPIC_ID)));
+                activity.setActivityNum(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_ACT_NUM)));
+                activity.setCompleted(c.getString(c.getColumnIndex(ActivityTable.COLUMN_COMPLETED)));
+                activityList.add(activity);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return activityList.size();
+
+         */
     }
 
-    public void correctlyAnswered() {
-        db = getWritableDatabase();
-        String selection = "UPDATE " + QuestionsTable.TABLE_NAME ;
-    } */
+    /*method to update the activities completed column of Topics Table*/
+    public void updateActCount(int topicId) {
+
+        //update activity table
+        //get the activities_completed value from Topics Table
+        int activities_completed = getActivityCompleted(topicId);
+        int activities_count = getActivityCount(topicId);
 
 
+        //increase activities_completed value if has not already been completed
+        if (activities_completed < activities_count) {
+            activities_completed++;
+
+            //update activities_completed value
+            String SQL_UPDATE_ACT_COMPLETED = " UPDATE " + TopicsTable.TABLE_NAME
+                    + " SET " + TopicsTable.COLUMN_ACT_COMPLETED + " = "
+                    + activities_completed
+                    + " WHERE " + TopicsTable._ID + " = " + topicId
+                    ;
+            db.execSQL(SQL_UPDATE_ACT_COMPLETED);
+        }
+
+    }
+
+    /*method to check whether an activity num in topic has been completed*/
+    public boolean checkCompleted(int topicId, int activity_num) {
+        //ArrayList<Activity> activityList = new ArrayList<>();
+        //db = getReadableDatabase();
+        boolean activityCompleted = false;
+
+        //create an Array List of Activity objects of the given Topic ID
+        String[] selectionArgs = new String[]{String.valueOf(topicId), String.valueOf(activity_num)};
+        String selection = ActivityTable.COLUMN_TOPIC_ID + " = ? "
+                + "AND " + ActivityTable.COLUMN_ACT_NUM + " = ? ";
+        Cursor c = db.query(
+                ActivityTable.TABLE_NAME,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        if (c.moveToFirst()) {
+            do {
+                Activity activity = new Activity();
+                activity.setTopicId(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_TOPIC_ID)));
+                activity.setActivityNum(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_ACT_NUM)));
+                activity.setCompleted(c.getString(c.getColumnIndex(ActivityTable.COLUMN_COMPLETED)));
+                activityCompleted = Boolean.parseBoolean(activity.getCompleted());
+            } while (c.moveToNext());
+        }
+        c.close();
+        return activityCompleted;
+    }
 }
