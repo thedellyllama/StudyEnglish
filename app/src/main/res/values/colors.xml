@@ -10,4 +10,5 @@
     <color name="blue_app">#3F8EFC</color>
     <color name="yellow_app">#FFBC0A</color>
     <color name="white_background">#F8F8F8</color>
+    <color name = "green_button">#00B200</color>
 </resources>

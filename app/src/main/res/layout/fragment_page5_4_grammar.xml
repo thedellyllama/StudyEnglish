@@ -15,10 +15,10 @@
         android:text="@string/change_topic"
         android:textColor="@color/blue_app"
         android:textStyle="italic"
-        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_explanation"
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_to_explanation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/text_view_explanation" />
+        app:layout_constraintStart_toEndOf="@+id/text_view_to_explanation" />
 
     <TextView
         android:id="@+id/header_name"
@@ -38,6 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
         android:text="TextView"
         android:textColor="@color/blue_app"
         android:textSize="36sp"
@@ -48,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_explanation"
+        android:id="@+id/text_view_to_explanation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

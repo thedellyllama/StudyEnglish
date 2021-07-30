@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/page5">
+    app:startDestination="@id/nav_page4">
 
     <fragment
-        android:id="@+id/page5"
+        android:id="@+id/nav_page5"
         android:name="com.del.studyenglish1.Page5"
         android:label="fragment_page5_1"
         tools:layout="@layout/fragment_page5_1" >
@@ -21,6 +21,39 @@
         android:label="Page5_1" >
         <action
             android:id="@+id/action_page5_1_to_page5"
-            app:destination="@id/page5" />
+            app:destination="@id/nav_page5" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_page4"
+        android:name="com.del.studyenglish1.Page4"
+        android:label="fragment_page4"
+        tools:layout="@layout/fragment_page4" >
+        <action
+            android:id="@+id/action_page4_to_page5"
+            app:destination="@id/nav_page5" />
+        <action
+            android:id="@+id/action_page4_to_page6"
+            app:destination="@id/nav_page6" />
+        <action
+            android:id="@+id/action_page4_to_page7"
+            app:destination="@id/nav_page7" />
+        <action
+            android:id="@+id/action_page4_to_page8"
+            app:destination="@id/nav_page8" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_page6"
+        android:name="com.del.studyenglish1.Page6"
+        android:label="fragment_page6"
+        tools:layout="@layout/fragment_page6" />
+    <fragment
+        android:id="@+id/nav_page7"
+        android:name="com.del.studyenglish1.Page7"
+        android:label="fragment_page7"
+        tools:layout="@layout/fragment_page7" />
+    <fragment
+        android:id="@+id/nav_page8"
+        android:name="com.del.studyenglish1.Page8"
+        android:label="fragment_page8"
+        tools:layout="@layout/fragment_page8" />
 </navigation>
