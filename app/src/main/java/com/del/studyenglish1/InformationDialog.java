@@ -37,6 +37,7 @@ public class InformationDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        dismiss();
                     }
                 });
 
