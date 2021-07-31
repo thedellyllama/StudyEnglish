@@ -1,13 +1,18 @@
 package com.del.studyenglish1;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -20,18 +25,30 @@ public class Page4 extends Fragment {
     private CardView cardDictionary;
     private CardView cardStudy;
 
-    private Fragment page5;
-    private Fragment page6;
-    private Fragment page7;
-    private Fragment page8;
+    private Page5 page5;
+    private Page6 page6;
+    private Page7 page7;
+    private Page8 page8;
 
+    private TextView textViewCurrentGoals;
+    private TextView textViewCurrentTimeFrame;
+    private int activitiesCompletedDaily;
+    private int activitiesCompletedWeekly;
+    private int activitiesGoal;
+    private String timeFrameGoals;
+    private QuizDbHelper dbHelper;
 
     public Page4(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-          return inflater.inflate(R.layout.fragment_page4, container, false);
+        View view = inflater.inflate(R.layout.fragment_page4, container, false);
+        dbHelper = QuizDbHelper.getInstance(getContext());
+        textViewCurrentGoals = view.findViewById(R.id.text_view_current_goals);
+        textViewCurrentTimeFrame = view.findViewById(R.id.text_view_daily_goals);
+
+          return view;
     }
 
     @Override
@@ -43,6 +60,14 @@ public class Page4 extends Fragment {
         cardGoals = view.findViewById(R.id.card_view_goals);
         cardDictionary = view.findViewById(R.id.card_view_dictionary);
         cardStudy = view.findViewById(R.id.card_view_study);
+
+        timeFrameGoals = dbHelper.getTimeFrameGoals();
+        activitiesGoal = dbHelper.getActivityGoals();
+        activitiesCompletedDaily = dbHelper.getAllActivityCompletedDaily();
+        activitiesCompletedWeekly = dbHelper.getAllActivityCompletedWeekly();
+
+        updateGoals();
+        updateActivitiesCompleted();
 
         cardProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +110,30 @@ public class Page4 extends Fragment {
         });
 
 
+    }
+
+    public void updateActivitiesCompleted() {
+        //QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        //newActivitiesCompletedDaily = dbHelper.getAllActivityCompletedDaily();
+        //newActivitiesCompletedWeekly = dbHelper.getAllActivityCompletedWeekly();
+       /** textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
+        textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
+        textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
+**/
+        if (timeFrameGoals.equals("DAILY")) {
+            textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
+        } else {
+            textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
+        }
+
+        textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
+
+    }
+
+    public void updateGoals() {
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        timeFrameGoals = dbHelper.getTimeFrameGoals();
+        activitiesGoal = dbHelper.getActivityGoals();
     }
 
 }

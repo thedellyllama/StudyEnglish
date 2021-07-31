@@ -83,9 +83,7 @@ public class Page5_4_Grammar extends Fragment {
         changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
         toExplanation = (TextView) view.findViewById(R.id.text_view_to_explanation);
 
-
         updateButtonTexts();
-
 
         activity1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,19 +160,6 @@ public class Page5_4_Grammar extends Fragment {
         fragmentTransaction.commit();
     }
 
-    /*method to update activity text once completed
-    public void buttonTextUpdated(int activity_num) {
-
-        switch (activity_num) {
-            case 1:
-                activity1.setText("✔");
-            case 2:
-                activity2.setText("✔");
-            case 3:
-                activity3.setText("✔");
-        }
-    }*/
-
     /*method to show progress by updating button text and colour after completing activity*/
     public void updateButtonTexts() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
@@ -222,7 +207,5 @@ public class Page5_4_Grammar extends Fragment {
             imageProgress.setImageDrawable(progress4_4);
         }
     }
-
-
 
 }
