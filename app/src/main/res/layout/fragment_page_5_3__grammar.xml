@@ -65,7 +65,7 @@
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_marginTop="24dp"
-        android:text="@string/activities"
+        android:text="@string/activities_caps"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"

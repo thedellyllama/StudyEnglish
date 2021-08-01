@@ -14,6 +14,7 @@
     <string name="study">STUDY</string>
     <string name="want_to">I want to complete: </string>
     <string name="search">search</string>
+    <string name="activities">activities</string>
 
     //LINKS
     <string name="change_level">change level</string>
@@ -21,6 +22,7 @@
     <string name="change_topic">change topic</string>
     <string name="explanation">explanation</string>
     <string name="check_level">check your level here</string>
+    <string name="back_to_app">back to app</string>
 
 
     //BUTTONS
@@ -33,7 +35,7 @@
     <string name="vocab">VOCABULARY</string>
     <string name="reading">READING</string>
     <string name="further_explanation">FURTHER EXPLANATION</string>
-    <string name="activities">ACTIVITIES</string>
+    <string name="activities_caps">ACTIVITIES</string>
     <string name="revision">REVISION ACTIVITY</string>
     <string name="num_1">1</string>
     <string name="num_2">2</string>
@@ -43,6 +45,7 @@
     <string name="daily">DAILY</string>
     <string name="weekly">WEEKLY</string>
     <string name="update">UPDATE</string>
+
 
 
 </resources>

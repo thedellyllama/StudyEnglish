@@ -33,6 +33,7 @@ public final class QuizContract {
         public static final String COLUMN_TOPIC_ID = "topic_id";
         public static final String COLUMN_ACT_NUM = "activity_num";
         public static final String COLUMN_COMPLETED= "activity_completed";
+        public static final String COLUMN_TIME_STAMP = "time_stamp";
     }
 
     public static class GrammarTable implements BaseColumns {
@@ -46,7 +47,12 @@ public final class QuizContract {
         public static final String COLUMN_TOPIC_ID = "topic_id";
         public static final String COLUMN_NAME = "new_vocabulary";
         public static final String COLUMN_DEFINITION = "definition";
+    }
 
+    public static class GoalsTable implements BaseColumns {
+        public static final String TABLE_NAME = "user_goals";
+        public static final String COLUMN_GOAL_ACTIVITY = "goals_activities";
+        public static final String COLUMN_GOAL_TIME_FRAME = "goals_time_frame";
     }
 
 }

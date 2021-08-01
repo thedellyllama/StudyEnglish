@@ -72,6 +72,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 ActivityTable.COLUMN_TOPIC_ID +  " INTEGER, " +
                 ActivityTable.COLUMN_ACT_NUM + " INTEGER, " +
                 ActivityTable.COLUMN_COMPLETED + " BOOLEAN, " +
+                ActivityTable.COLUMN_TIME_STAMP + " DATE, " +
                 "FOREIGN KEY(" + ActivityTable.COLUMN_TOPIC_ID + ") REFERENCES " +
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
                 ")";
@@ -95,6 +96,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
                 ")";
 
+        final String SQL_CREATE_GOALS_TABLE = "CREATE TABLE " +
+                GoalsTable.TABLE_NAME + " ( " +
+                GoalsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                GoalsTable.COLUMN_GOAL_ACTIVITY + " INTEGER, " +
+                GoalsTable.COLUMN_GOAL_TIME_FRAME + " STRING" +
+                ")";
 
 
         db.execSQL(SQL_CREATE_TOPICS_TABLE);
@@ -102,12 +109,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_ACTIVITY_TABLE);
         db.execSQL(SQL_CREATE_GRAMMAR_TABLE);
         db.execSQL(SQL_CREATE_VOCAB_TABLE);
+        db.execSQL(SQL_CREATE_GOALS_TABLE);
 
         fillTopicsTable();
         fillQuestionsTable();
         fillActivityTable();
         fillGrammarTable();
         fillVocabTable();
+        fillGoalsTable();
     }
 
     @Override
@@ -116,6 +125,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ActivityTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + GrammarTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + VocabTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + GoalsTable.TABLE_NAME);
         onCreate(db);
     }
 
@@ -250,6 +261,17 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(VocabTable.TABLE_NAME, null, cv);
     }
 
+    private void fillGoalsTable() {
+        Goal userGoal = new Goal(5, Goal.DAILY);
+        addGoals(userGoal);
+    }
+
+    public void addGoals(Goal goal) {
+        ContentValues cv = new ContentValues();
+        cv.put(GoalsTable.COLUMN_GOAL_ACTIVITY, goal.getGoalActivities());
+        cv.put(GoalsTable.COLUMN_GOAL_TIME_FRAME, goal.getGoalTimeframe());
+        db.insert(GoalsTable.TABLE_NAME, null, cv);
+    }
 
     public ArrayList<Topic> getAllTopics() {
         ArrayList<Topic> topicList = new ArrayList<>();
@@ -293,7 +315,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 questionList.add(question);
             } while (c.moveToNext());
         }
-
         c.close();
         return questionList;
     }
@@ -427,7 +448,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return grammar_explanation;
     }
 
-    /*method to update the 'completed' column of Activity Table to true when activity is completed */
+    /*method to update the 'completed' column of Activity Table to true
+    /*and  update the timestamp when activity is completed */
     public boolean activityCompleted(int topicId, int activity_num) {
         //identify corresponding row in activity table and return activity_id
         String STRING_SQL_UPDATE_ACTIVITY_COMPLETED = "UPDATE " + ActivityTable.TABLE_NAME
@@ -436,9 +458,52 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 ActivityTable.COLUMN_ACT_NUM + " = " + activity_num
                 ;
 
+        String STRING_SQL_UPDATE_TIMESTAMP = "UPDATE " + ActivityTable.TABLE_NAME
+                + " SET " + ActivityTable.COLUMN_TIME_STAMP + " = CURRENT_TIMESTAMP WHERE "
+                + ActivityTable.COLUMN_TOPIC_ID + " = " + topicId + " AND "
+                + ActivityTable.COLUMN_ACT_NUM + " = " + activity_num
+                ;
+
     db.execSQL(STRING_SQL_UPDATE_ACTIVITY_COMPLETED);
+    db.execSQL(STRING_SQL_UPDATE_TIMESTAMP);
         return true;
     }
+    /**method to update the activities_completed column in the Topics Table*/
+    public void activityCompletedTopics(int topicId) {
+        db = getWritableDatabase();
+        int activitiesCompleted = 0;
+        ArrayList<Activity> activityList = new ArrayList<>();
+        String[] selectionArgs = new String[]{String.valueOf(topicId)};
+        String selection = ActivityTable.COLUMN_TOPIC_ID + " = ? "
+                + " AND " + ActivityTable.COLUMN_COMPLETED + " = 'TRUE' ";
+        Cursor c = db.query(
+                ActivityTable.TABLE_NAME,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        if (c.moveToFirst()) {
+            do {
+                Activity activity = new Activity();
+                activity.setTopicId(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_TOPIC_ID)));
+                activity.setActivityNum(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_ACT_NUM)));
+                activity.setCompleted(c.getString(c.getColumnIndex(ActivityTable.COLUMN_COMPLETED)));
+                activityList.add(activity);
+            } while (c.moveToNext());
+        }
+        c.close();
+        activitiesCompleted = activityList.size();
+
+        String STRING_SQL_UPDATE_ACTIVITY_COMPLETED = "UPDATE " + TopicsTable.TABLE_NAME
+                + " SET " + TopicsTable.COLUMN_ACT_COMPLETED + "= " + activitiesCompleted +
+                " WHERE " + TopicsTable._ID + " = " + topicId;
+        db.execSQL(STRING_SQL_UPDATE_ACTIVITY_COMPLETED);
+
+    }
+
 
     /* method to get the total activity count for a topic*/
     public int getActivityCount(int topicId) {
@@ -494,37 +559,54 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         }
         c.close();
         return activitiesCompleted;
-        /*
-        boolean t = true;
-        ArrayList<Activity> activityList = new ArrayList<>();
-        //db = getReadableDatabase();
+     }
 
-        //create an Array List of Activity objects of the given Topic ID
-        String[] selectionArgs = new String[]{String.valueOf(topicId)};
-        String selection = ActivityTable.COLUMN_TOPIC_ID + " = ? "
-                + "AND " + ActivityTable.COLUMN_COMPLETED;
-        Cursor c = db.query(
-                ActivityTable.TABLE_NAME,
-                null,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                null
-        );
+     /**method to return the number of activities completed today**/
+     public int getAllActivityCompletedDaily() {
+         ArrayList<Activity> activityList = new ArrayList<>();
+    db = getReadableDatabase();
+
+         String query = "SELECT * FROM " + ActivityTable.TABLE_NAME
+                 + " WHERE DATE(" + ActivityTable.COLUMN_TIME_STAMP + ") = DATE('now')";
+         Cursor c = db.rawQuery(query, null);
+
+         if (c.moveToFirst()) {
+             do {
+                 Activity activity = new Activity();
+                 activity.setTopicId(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_TOPIC_ID)));
+                 activity.setActivityNum(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_ACT_NUM)));
+                 activity.setCompleted(c.getString(c.getColumnIndex(ActivityTable.COLUMN_COMPLETED)));
+                 //activity.setTimeStamp(c.getBlob(c.getColumnIndex(ActivityTable.TIME_STAMP)));
+                 activityList.add(activity);
+
+             } while (c.moveToNext());
+         }
+         c.close();
+         return activityList.size();
+     }
+
+    /**method to return the number of activities completed today**/
+    public int getAllActivityCompletedWeekly() {
+        ArrayList<Activity> activityList = new ArrayList<>();
+        db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + ActivityTable.TABLE_NAME
+                + " WHERE strftime('%W', " + ActivityTable.COLUMN_TIME_STAMP + ") = strftime('%W', 'now')";
+        Cursor c = db.rawQuery(query, null);
+
         if (c.moveToFirst()) {
             do {
                 Activity activity = new Activity();
                 activity.setTopicId(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_TOPIC_ID)));
                 activity.setActivityNum(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_ACT_NUM)));
                 activity.setCompleted(c.getString(c.getColumnIndex(ActivityTable.COLUMN_COMPLETED)));
+                //activity.setTimeStamp(c.getBlob(c.getColumnIndex(ActivityTable.TIME_STAMP)));
                 activityList.add(activity);
+
             } while (c.moveToNext());
         }
         c.close();
         return activityList.size();
-
-         */
     }
 
     /*method to update the activities completed column of Topics Table*/
@@ -532,13 +614,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         //update activity table
         //get the activities_completed value from Topics Table
+
         int activities_completed = getActivityCompleted(topicId);
         int activities_count = getActivityCount(topicId);
 
 
         //increase activities_completed value if has not already been completed
-        if (activities_completed < activities_count) {
-            activities_completed++;
+        //if (activities_completed < activities_count) {
+          //  activities_completed++;
 
             //update activities_completed value
             String SQL_UPDATE_ACT_COMPLETED = " UPDATE " + TopicsTable.TABLE_NAME
@@ -547,14 +630,13 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                     + " WHERE " + TopicsTable._ID + " = " + topicId
                     ;
             db.execSQL(SQL_UPDATE_ACT_COMPLETED);
-        }
-
+        //}
     }
 
     /*method to check whether an activity num in topic has been completed*/
     public boolean checkCompleted(int topicId, int activity_num) {
         //ArrayList<Activity> activityList = new ArrayList<>();
-        //db = getReadableDatabase();
+        db = getReadableDatabase();
         boolean activityCompleted = false;
 
         //create an Array List of Activity objects of the given Topic ID
@@ -582,4 +664,65 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         c.close();
         return activityCompleted;
     }
+
+    /**method to return the set user goals -> number of activities*/
+    public int getActivityGoals() {
+        db = getReadableDatabase();
+
+        int activityGoals = 0;
+        String query = "SELECT * FROM " + GoalsTable.TABLE_NAME;
+        Cursor c = db.rawQuery(query, null);
+        if (c.moveToFirst()) {
+            do {
+                Goal goal = new Goal();
+                goal.setGoalActivities(c.getInt(c.getColumnIndex(GoalsTable.COLUMN_GOAL_ACTIVITY)));
+                goal.setGoalTimeframe(c.getString(c.getColumnIndex(GoalsTable.COLUMN_GOAL_TIME_FRAME)));
+                activityGoals = goal.getGoalActivities();
+            } while (c.moveToNext());
+        }
+        c.close();
+        return activityGoals;
+    }
+
+    public String getTimeFrameGoals() {
+        db = getReadableDatabase();
+
+        String timeFrame = "";
+        String query = "SELECT * FROM " + GoalsTable.TABLE_NAME;
+        Cursor c = db.rawQuery(query, null);
+        if (c.moveToFirst()) {
+            do {
+                Goal goal = new Goal();
+                goal.setGoalActivities(c.getInt(c.getColumnIndex(GoalsTable.COLUMN_GOAL_ACTIVITY)));
+                goal.setGoalTimeframe(c.getString(c.getColumnIndex(GoalsTable.COLUMN_GOAL_TIME_FRAME)));
+                timeFrame = goal.getGoalTimeframe();
+            } while (c.moveToNext());
+        }
+        c.close();
+        return timeFrame;
+    }
+
+
+    /**method to update user goals**/
+    public void updateGoalActivities(int goalsActivities) {
+        db = getWritableDatabase();
+
+        String SQL_UPDATE_GOALS = " UPDATE " + GoalsTable.TABLE_NAME
+                + " SET " + GoalsTable.COLUMN_GOAL_ACTIVITY + " = "
+                + goalsActivities;
+
+        db.execSQL(SQL_UPDATE_GOALS);
+    }
+
+    /**method to update user goals by timeframe*/
+    public void updateGoalTimeFrame(String goalsTimeFrame) {
+        db = getWritableDatabase();
+
+        String SQL_UPDATE_GOALS = " UPDATE " + GoalsTable.TABLE_NAME
+                + " SET " + GoalsTable.COLUMN_GOAL_TIME_FRAME + " = '"
+                + goalsTimeFrame + "'";
+
+        db.execSQL(SQL_UPDATE_GOALS);
+    }
+
 }

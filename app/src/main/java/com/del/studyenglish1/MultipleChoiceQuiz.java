@@ -287,6 +287,7 @@ public class MultipleChoiceQuiz extends Fragment {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         topicID = dbHelper.getTopicId(topic, type, level_name);
         dbHelper.activityCompleted(topicID, activity_num);
+        dbHelper.activityCompletedTopics(topicID);
         dbHelper.updateActCount(topicID);
         //dbHelper.activityCompleted(topicID, activity_num);
         //dbHelper.updateActivitiesCompleted(topicID);

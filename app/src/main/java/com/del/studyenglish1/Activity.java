@@ -1,5 +1,7 @@
 package com.del.studyenglish1;
 
+import java.sql.Date;
+
 public class Activity {
     public static final String FALSE = "FALSE";
     public static final String TRUE = "TRUE";
@@ -12,6 +14,7 @@ public class Activity {
     private int topicId;
     private int activityNum;
     private String completed;
+    private Date timeStamp;
 
     public Activity(){}
 
@@ -44,4 +47,8 @@ public class Activity {
     public void setCompleted(String completed) {
         this.completed = completed;
     }
+
+    public Date getTimeStamp() { return timeStamp; }
+
+    public void setTimeStamp(Date timeStamp) { this.timeStamp = timeStamp; }
 }
