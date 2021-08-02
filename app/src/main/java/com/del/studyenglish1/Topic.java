@@ -16,6 +16,8 @@ public class Topic {
     public static final int t13_ID = 13;
     public static final int t14_ID = 14;
 
+    public static final int t26_ID = 26;
+    public static final int t27_ID = 27;
 
     public static final String DIFFICULTY_A1 = "A1";
     public static final String DIFFICULTY_A2 = "A2";
