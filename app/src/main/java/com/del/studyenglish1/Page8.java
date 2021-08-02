@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Page8 extends Fragment {
@@ -25,14 +28,18 @@ public class Page8 extends Fragment {
     private Button buttonB1;
     private Button buttonB2;
     private Button buttonC1;
-    private Button buttonAll;
-    private Button search;
+    //private Button buttonAll;
+    private Button buttonSearch;
     private Drawable blueBg;
     private Drawable blueAllBg;
+    private ListView listView;
+    private TextView textViewTopic;
     private int blueApp;
 
     private String selectedLevel;
     private String selectedTopic;
+    private int topicId;
+    private List<Vocabulary> newVocabList;
 
     @Nullable
     @Override
@@ -43,11 +50,13 @@ public class Page8 extends Fragment {
         spinnerTopic = view.findViewById(R.id.spinner_topics);
         buttonA1 = view.findViewById(R.id.button_a1);
         buttonA2 = view.findViewById(R.id.button_a2);
-        buttonB1 = view.findViewById(R.id.button_a1);
-        buttonB2 = view.findViewById(R.id.button_a2);
-        buttonC1 = view.findViewById(R.id.button_a1);
-        buttonAll = view.findViewById(R.id.button_all);
-        search = view.findViewById(R.id.button_search);
+        buttonB1 = view.findViewById(R.id.button_b1);
+        buttonB2 = view.findViewById(R.id.button_b2);
+        buttonC1 = view.findViewById(R.id.button_c1);
+        //buttonAll = view.findViewById(R.id.button_all);
+        buttonSearch = view.findViewById(R.id.button_search);
+        listView = view.findViewById(R.id.list_view_vocab);
+        textViewTopic = view.findViewById(R.id.text_view_topic_name);
         blueBg = getResources().getDrawable(R.drawable.blue_button_bg);
         blueAllBg = getResources().getDrawable(R.drawable.blue_button_all_bg);
         blueApp = getResources().getColor(R.color.blue_app);
@@ -59,6 +68,8 @@ public class Page8 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
 
         buttonA1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +125,7 @@ public class Page8 extends Fragment {
                 buttonC1.setTextColor(Color.WHITE);
             }
         });
-
+/*
         buttonAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +135,23 @@ public class Page8 extends Fragment {
                 buttonAll.setTextColor(Color.WHITE);
             }
         });
+*/
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //get topic id from selected spinner item
+                Topic topic = (Topic) spinnerTopic.getSelectedItem();
+                selectedTopic = topic.getName();
+                topicId = topic.getId();
+                textViewTopic.setText(selectedTopic);
+                QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+                ArrayList <Vocabulary> newVocabList = dbHelper.getVocab(topicId);
+                MyVocabAdapter myVocabAdapter = new MyVocabAdapter(getContext(), newVocabList);
+                listView.setAdapter(myVocabAdapter);
+            }
+        });
+
+
 
 
         //loadLevels();
@@ -165,6 +193,17 @@ public class Page8 extends Fragment {
         adapterTopic.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTopic.setAdapter(adapterTopic);
     }
+/*
+    private void loadVocab(int topicId) {
+        //newVocabList = new ArrayList<Vocabulary>();
+
+
+        MyVocabAdapter myVocabAdapter = new MyVocabAdapter(getContext(), newVocabList);
+        listView.setAdapter(myVocabAdapter);
+
+        //return newVocabList;
+
+    }*/
 
     public void resetButtonColours() {
         buttonA1.setBackground(blueBg);
@@ -172,12 +211,12 @@ public class Page8 extends Fragment {
         buttonB1.setBackground(blueBg);
         buttonB2.setBackground(blueBg);
         buttonC1.setBackground(blueBg);
-        buttonAll.setBackground(blueBg);
+        //buttonAll.setBackground(blueBg);
         buttonA1.setTextColor(blueApp);
         buttonA2.setTextColor(blueApp);
         buttonB1.setTextColor(blueApp);
         buttonB2.setTextColor(blueApp);
         buttonC1.setTextColor(blueApp);
-        buttonAll.setTextColor(blueApp);
+        //buttonAll.setTextColor(blueApp);
     }
 }

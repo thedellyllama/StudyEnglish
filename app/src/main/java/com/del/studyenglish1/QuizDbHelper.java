@@ -281,6 +281,34 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillVocabTable() {
+        Vocabulary v1 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v2 = new Vocabulary(Topic.t27_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v3 = new Vocabulary(Topic.t26_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v4 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v5 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v6 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v7 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v8 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v9 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v10 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v11 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v12 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v13 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+
+
+        addVocab(v1);
+        addVocab(v2);
+        addVocab(v3);
+        addVocab(v4);
+        addVocab(v5);
+        addVocab(v6);
+        addVocab(v7);
+        addVocab(v8);
+        addVocab(v9);
+        addVocab(v10);
+        addVocab(v11);
+        addVocab(v12);
+        addVocab(v13);
 
     }
 
@@ -422,6 +450,36 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         }
         c.close();
         return questionList;
+    }
+
+    public ArrayList<Vocabulary> getVocab(int topicId) {
+        db = getReadableDatabase();
+        ArrayList<Vocabulary> vocabList = new ArrayList<>();
+
+        String selection = VocabTable.COLUMN_TOPIC_ID + " = ? ";
+        String[] selectionArgs = new String[] {String.valueOf(topicId)};
+
+        Cursor c = db.query(
+                VocabTable.TABLE_NAME,
+                null, //returns all columns
+                selection,
+                selectionArgs,
+                null,
+                null,
+                VocabTable.COLUMN_NAME
+        );
+        if (c.moveToFirst()) {
+            do {
+                Vocabulary vocabulary = new Vocabulary();
+                vocabulary.setId(c.getInt(c.getColumnIndex((VocabTable._ID))));
+                vocabulary.setTopicId(c.getInt(c.getColumnIndex(VocabTable.COLUMN_TOPIC_ID)));
+                vocabulary.setName(c.getString(c.getColumnIndex(VocabTable.COLUMN_NAME)));
+                vocabulary.setDefinition(c.getString(c.getColumnIndex(VocabTable.COLUMN_DEFINITION)));
+                vocabList.add(vocabulary);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return vocabList;
     }
 
     public int getTopicId(String selected_topic, String type, String level_name) {
