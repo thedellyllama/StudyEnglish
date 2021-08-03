@@ -152,6 +152,22 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Topic t13 = new Topic("VERBS + TO + INFINITIVE & VERBS + ING", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic t14 = new Topic("COUNTABLE & UNCOUNTABLE NOUNS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
 
+
+        Topic t15 = new Topic("Vocab Topic 1", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t16 = new Topic("Vocab Topic 2", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t17 = new Topic("Vocab Topic 3", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t18 = new Topic("Vocab Topic 4", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t19 = new Topic("Vocab Topic 5", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t20 = new Topic("Vocab Topic 6", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t21 = new Topic("Vocab Topic 7", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t22 = new Topic("Vocab Topic 8", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t23 = new Topic("Vocab Topic 9", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t24 = new Topic("Vocab Topic 10", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t25 = new Topic("Vocab Topic 11", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t26 = new Topic("Vocab Topic 12", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic t27 = new Topic("Vocab Topic 13", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+
+
         addTopic(t1);
         addTopic(t2);
         addTopic(t3);
@@ -166,6 +182,21 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addTopic(t12);
         addTopic(t13);
         addTopic(t14);
+
+        addTopic(t15);
+        addTopic(t16);
+        addTopic(t17);
+        addTopic(t18);
+        addTopic(t19);
+        addTopic(t20);
+        addTopic(t21);
+        addTopic(t22);
+        addTopic(t23);
+        addTopic(t24);
+        addTopic(t25);
+        addTopic(t26);
+        addTopic(t27);
+
     }
 
     private void addTopic(Topic topic) {
@@ -250,6 +281,34 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillVocabTable() {
+        Vocabulary v1 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v2 = new Vocabulary(Topic.t27_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v3 = new Vocabulary(Topic.t26_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v4 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v5 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v6 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v7 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v8 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v9 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v10 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v11 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
+        Vocabulary v12 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+        Vocabulary v13 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
+
+
+        addVocab(v1);
+        addVocab(v2);
+        addVocab(v3);
+        addVocab(v4);
+        addVocab(v5);
+        addVocab(v6);
+        addVocab(v7);
+        addVocab(v8);
+        addVocab(v9);
+        addVocab(v10);
+        addVocab(v11);
+        addVocab(v12);
+        addVocab(v13);
 
     }
 
@@ -273,10 +332,13 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(GoalsTable.TABLE_NAME, null, cv);
     }
 
-    public ArrayList<Topic> getAllTopics() {
+    public ArrayList<Topic> getAllVocabTopics() {
         ArrayList<Topic> topicList = new ArrayList<>();
         db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TopicsTable.TABLE_NAME, null);
+        String query = "SELECT * FROM " + TopicsTable.TABLE_NAME + " WHERE "
+                + TopicsTable.COLUMN_TYPE + " = '" + Topic.TYPE_VOCABULARY +"'"
+                ;
+                Cursor c = db.rawQuery(query, null);
 
         if (c.moveToFirst()) {
             do {
@@ -388,6 +450,36 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         }
         c.close();
         return questionList;
+    }
+
+    public ArrayList<Vocabulary> getVocab(int topicId) {
+        db = getReadableDatabase();
+        ArrayList<Vocabulary> vocabList = new ArrayList<>();
+
+        String selection = VocabTable.COLUMN_TOPIC_ID + " = ? ";
+        String[] selectionArgs = new String[] {String.valueOf(topicId)};
+
+        Cursor c = db.query(
+                VocabTable.TABLE_NAME,
+                null, //returns all columns
+                selection,
+                selectionArgs,
+                null,
+                null,
+                VocabTable.COLUMN_NAME
+        );
+        if (c.moveToFirst()) {
+            do {
+                Vocabulary vocabulary = new Vocabulary();
+                vocabulary.setId(c.getInt(c.getColumnIndex((VocabTable._ID))));
+                vocabulary.setTopicId(c.getInt(c.getColumnIndex(VocabTable.COLUMN_TOPIC_ID)));
+                vocabulary.setName(c.getString(c.getColumnIndex(VocabTable.COLUMN_NAME)));
+                vocabulary.setDefinition(c.getString(c.getColumnIndex(VocabTable.COLUMN_DEFINITION)));
+                vocabList.add(vocabulary);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return vocabList;
     }
 
     public int getTopicId(String selected_topic, String type, String level_name) {

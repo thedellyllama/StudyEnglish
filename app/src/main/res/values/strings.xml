@@ -31,6 +31,12 @@
     <string name="b1_level">INTERMEDIATE: B1</string>
     <string name="b2_level">UPPER INTERMEDIATE: B2</string>
     <string name="c1_level">ADVANCED: C1</string>
+    <string name="a1">A1</string>
+    <string name="a2">A2</string>
+    <string name="b1">B1</string>
+    <string name="b2">B2</string>
+    <string name="c1">C1</string>
+    <string name="all">ALL</string>
     <string name="grammar">GRAMMAR</string>
     <string name="vocab">VOCABULARY</string>
     <string name="reading">READING</string>

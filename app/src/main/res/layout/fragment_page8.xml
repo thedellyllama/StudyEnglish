@@ -11,7 +11,7 @@
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="55dp"
         android:text="@string/dictionary"
         android:textColor="@color/blue_app"
         android:textSize="36sp"
@@ -34,18 +34,146 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
+    <!--
+    <Spinner
+        android:id="@+id/spinner_levels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="24dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/search"
-        android:inputType="textPersonName"
-        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title" />
+-->
+
+    <Button
+        android:id="@+id/button_a1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/blue_button_bg"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:text="@string/a1"
+        android:textColor="@color/blue_app"
+        app:backgroundTint="#00FFFFFF"
+        app:backgroundTintMode="add"
+        app:layout_constraintEnd_toStartOf="@+id/button_a2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+    <Button
+        android:id="@+id/button_a2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/blue_button_bg"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:text="@string/a2"
+        android:textColor="@color/blue_app"
+        app:backgroundTint="#00FFFFFF"
+        app:backgroundTintMode="add"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_a1"
+        app:layout_constraintEnd_toStartOf="@+id/button_b1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_a1" />
+
+    <Button
+        android:id="@+id/button_b1"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/blue_button_bg"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:text="@string/b1"
+        android:textColor="@color/blue_app"
+        app:backgroundTint="#00FFFFFF"
+        app:backgroundTintMode="add"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_a2"
+        app:layout_constraintEnd_toStartOf="@+id/button_b2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_a2" />
+
+    <Button
+        android:id="@+id/button_b2"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/blue_button_bg"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:text="@string/b2"
+        android:textColor="@color/blue_app"
+        app:backgroundTint="#00FFFFFF"
+        app:backgroundTintMode="add"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_b1"
+        app:layout_constraintEnd_toStartOf="@+id/button_c1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_b1" />
+
+    <Button
+        android:id="@+id/button_c1"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/blue_button_bg"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:text="@string/c1"
+        android:textColor="@color/blue_app"
+        app:backgroundTint="#00FFFFFF"
+        app:backgroundTintMode="add"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_b2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_b2" />
+
+    <Spinner
+        android:id="@+id/spinner_topics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_b1" />
+
+    <Button
+        android:id="@+id/button_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/search"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_topics" />
+
+    <TextView
+        android:id="@+id/text_view_topic_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_search" />
+
+    <ListView
+        android:id="@+id/list_view_vocab"
+        android:layout_width="0dp"
+        android:layout_height="308dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_topic_name" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
