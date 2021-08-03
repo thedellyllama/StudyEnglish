@@ -204,6 +204,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(TopicsTable.COLUMN_NAME, topic.getName());
         cv.put(TopicsTable.COLUMN_DIFFICULTY, topic.getDifficulty());
         cv.put(TopicsTable.COLUMN_TYPE, topic.getType());
+        cv.put(TopicsTable.COLUMN_ACT_COUNT, topic.getActivitiesCount());
         db.insert(TopicsTable.TABLE_NAME, null, cv);
     }
 
@@ -480,6 +481,39 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         }
         c.close();
         return vocabList;
+    }
+
+    /**a method to return an array list of topics with >1 completed activity**/
+    public ArrayList<Topic> getTopicProgress() {
+        db = getReadableDatabase();
+        ArrayList<Topic> progressList = new ArrayList<>();
+
+        //String[] selectionArgs = null;
+        String selection = TopicsTable.COLUMN_ACT_COMPLETED + " > 0 ";
+        Cursor c = db.query(
+                TopicsTable.TABLE_NAME,
+                null,
+                selection,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            do {
+                Topic topic = new Topic();
+                topic.setId(c.getInt(c.getColumnIndex(TopicsTable._ID)));
+                topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
+                topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
+                topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
+                topic.setActivitiesCount(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COUNT)));
+                topic.setActivitiesCompleted(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COMPLETED)));
+                progressList.add(topic);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return progressList;
     }
 
     public int getTopicId(String selected_topic, String type, String level_name) {
