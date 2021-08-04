@@ -99,14 +99,14 @@ public class Page_5_3_Grammar extends Fragment {
            }
        });
     }
-    private void changeTopicPage(String type, String level, String level_name) {
+    public void changeTopicPage(String type, String level, String level_name) {
         page5_2 = page5_2.newInstance(type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, page5_2);
         fragmentTransaction.commit();
     }
 
-    private void openActivities(String topic, String type, String level_name) {
+    public void openActivities(String topic, String type, String level_name) {
         page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
