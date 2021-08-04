@@ -12,6 +12,8 @@ public class Question implements Parcelable {
         public static final String DIFFICULTY_C1 = "C1";
 
         private int id;
+        private int imageRef;
+        private String instruction;
         private String question;
         private String option1;
         private String option2;
@@ -26,11 +28,11 @@ public class Question implements Parcelable {
 
         }
 
-        public Question(String question, String option1, String option2, String option3,
+        public Question(String instruction, String option1, String option2, String option3,
                         String option4, int answerNr,
                         //String difficulty,
                         int topicId, int activityNum) {
-            this.question = question;
+            this.instruction = instruction;
             this.option1 = option1;
             this.option2 = option2;
             this.option3 = option3;
@@ -40,6 +42,39 @@ public class Question implements Parcelable {
             this.topicId = topicId;
             this.activityNum = activityNum;
         }
+
+    public Question(String instruction, String question, String option1, String option2, String option3,
+                    String option4, int answerNr,
+                    //String difficulty,
+                    int topicId, int activityNum) {
+        this.instruction = instruction;
+        this.question = question;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
+        this.answerNr = answerNr;
+        //this.difficulty = difficulty;
+        this.topicId = topicId;
+        this.activityNum = activityNum;
+    }
+    public Question(int imageRef, String instruction, String option1, String option2, String option3,
+                    String option4, int answerNr,
+                    //String difficulty,
+                    int topicId, int activityNum) {
+            this.imageRef = imageRef;
+        this.instruction = instruction;
+        this.question = question;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
+        this.answerNr = answerNr;
+        //this.difficulty = difficulty;
+        this.topicId = topicId;
+        this.activityNum = activityNum;
+    }
+
 
         protected Question(Parcel in) {
             id = in.readInt();
@@ -89,7 +124,7 @@ public class Question implements Parcelable {
             return id;
         }
 
-        public void setId(int id) {
+    public void setId(int id) {
             this.id = id;
         }
 
@@ -161,6 +196,23 @@ public class Question implements Parcelable {
         public void setTopicId(int topicId) {
             this.topicId = topicId;
         }
+
+    public int getImageRef() {
+        return imageRef;
+    }
+
+    public void setImageRef(int imageRef) {
+        this.imageRef = imageRef;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
+
 /*
         public static String[] getAllDifficultyLevels() {
             return new String[]{

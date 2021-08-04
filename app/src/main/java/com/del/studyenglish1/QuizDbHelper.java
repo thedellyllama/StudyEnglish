@@ -52,6 +52,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_QUESTIONS_TABLE = "CREATE TABLE " +
                 QuestionsTable.TABLE_NAME + " ( " +
                 QuestionsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                QuestionsTable.COLUMN_INSTRUCTION + " TEXT, " +
+                QuestionsTable.COLUMN_IMAGE_REF + " INTEGER, " +
                 QuestionsTable.COLUMN_QUESTION + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION1 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
@@ -241,6 +243,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q8 = new Question("Select the correct phrase:", "I always wears a hat", "I always wear a hat", "I wear a hat always", "I wear always a hat", 2, Topic.t5_ID, Activity.ACT_NUM_1);
         Question q9 = new Question("Select the incorrect phrase:", "He doesn't wake up early usually.", "I always wear a hat", "Do often you go to the cinema?", "I am always tired.", 1, Topic.t5_ID, Activity.ACT_NUM_2);
 
+        Question q10 = new Question(R.drawable.trousers, "Select the correct phrase", "trousers", "shorts", "pants", "tights", 1, Topic.t27_ID, 1);
+
+
         addQuestion(q1);
         addQuestion(q2);
         addQuestion(q3);
@@ -250,12 +255,15 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q7);
         addQuestion(q8);
         addQuestion(q9);
+        addQuestion(q10);
 
     }
 
     private void addQuestion(Question question) {
         ContentValues cv = new ContentValues();
+        cv.put(QuestionsTable.COLUMN_INSTRUCTION, question.getInstruction());
         cv.put(QuestionsTable.COLUMN_QUESTION, question.getQuestion());
+        cv.put(QuestionsTable.COLUMN_IMAGE_REF, question.getImageRef());
         cv.put(QuestionsTable.COLUMN_OPTION1, question.getOption1());
         cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
@@ -366,7 +374,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             do {
                 Question question = new Question();
                 question.setId(c.getInt(c.getColumnIndex((QuestionsTable._ID))));
+                question.setInstruction(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_INSTRUCTION)));
                 question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
+                question.setImageRef(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_REF)));
                 question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
@@ -438,7 +448,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             do {
                 Question question = new Question();
                 question.setId(c.getInt(c.getColumnIndex((QuestionsTable._ID))));
+                question.setInstruction(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_INSTRUCTION)));
                 question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
+                question.setImageRef(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_REF)));
                 question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
