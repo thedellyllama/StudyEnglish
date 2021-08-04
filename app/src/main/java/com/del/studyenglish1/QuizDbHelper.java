@@ -46,7 +46,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 TopicsTable.COLUMN_DIFFICULTY + " TEXT, " +
                 TopicsTable.COLUMN_TYPE + " TEXT, " +
                 TopicsTable.COLUMN_ACT_COUNT + " INTEGER, " +
-                TopicsTable.COLUMN_ACT_COMPLETED + " INTEGER" +
+                TopicsTable.COLUMN_ACT_COMPLETED + " INTEGER, " +
+                TopicsTable.COLUMN_INFO + " TEXT" +
                 ")";
 
         final String SQL_CREATE_QUESTIONS_TABLE = "CREATE TABLE " +
@@ -78,7 +79,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(" + ActivityTable.COLUMN_TOPIC_ID + ") REFERENCES " +
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
                 ")";
-
+/*
         final String SQL_CREATE_GRAMMAR_TABLE = "CREATE TABLE " +
                 GrammarTable.TABLE_NAME + " ( " +
                 GrammarTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -86,7 +87,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 GrammarTable.COLUMN_EXPLANATION + " STRING, " +
                 "FOREIGN KEY(" + ActivityTable.COLUMN_TOPIC_ID + ") REFERENCES " +
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
-                ")";
+                ")";*/
 
         final String SQL_CREATE_VOCAB_TABLE = "CREATE TABLE " +
                 VocabTable.TABLE_NAME + " ( " +
@@ -109,14 +110,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TOPICS_TABLE);
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
         db.execSQL(SQL_CREATE_ACTIVITY_TABLE);
-        db.execSQL(SQL_CREATE_GRAMMAR_TABLE);
+        //db.execSQL(SQL_CREATE_GRAMMAR_TABLE);
         db.execSQL(SQL_CREATE_VOCAB_TABLE);
         db.execSQL(SQL_CREATE_GOALS_TABLE);
 
         fillTopicsTable();
         fillQuestionsTable();
         fillActivityTable();
-        fillGrammarTable();
+        //fillGrammarTable();
         fillVocabTable();
         fillGoalsTable();
     }
@@ -126,7 +127,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TopicsTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ActivityTable.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + GrammarTable.TABLE_NAME);
+        ////db.execSQL("DROP TABLE IF EXISTS " + GrammarTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + VocabTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + GoalsTable.TABLE_NAME);
         onCreate(db);
@@ -143,7 +144,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Topic t2 = new Topic("POSSESSIVE ADJECTIVES & SUBJECT PRONOUNS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic t3 = new Topic("ADJECTIVES", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic t4 = new Topic("QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t5 = new Topic("ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic t5 = new Topic("ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Adverbs of Frequency are adverbs of time that answer the question \'\'How frequently?\'\' or \'\'How often?\'\'. They tell us how often something happens. Here are some examples:\n-daily, weekly, yearly\n-often, sometimes, rarely\nThe words in a) describe definite frequency.\nThe words in b) describe indefinite frequency\nWe separate them into two groups because they normally go in different positions in the sentence.\n\nAdverbs of definite frequency, typically go in END position.\n-Most companies pay taxes yearly.\n-The manager checks the toilets every hour.\nThe directors meet weekly to review progress.\nSometimes, usually for reasons of emphasis or style, some adverbs of definite frequency may go at the FRONT, for example:\n-Every day, more than five thousand people die on our roads.\n\nHere are some adverbs of indefinite frequency:\n100%\t always, constantly\n\tusually, normally\n\tfrequently, regularly\n\toften\n50%\tsometimes\n\toccasionally\n\trarely, infrequently\n\tseldom\n\thardly ever\n0%\tnever\n\nAdverbs of indefinite frequency mainly go in MID position in the sentence. They go before the main verb (except the main verb TO BE):\n-We usually go shopping on Saturday.\n-I have often done that.\n-She is always late.\n");
         Topic t6 = new Topic("PREPOSITIONS OF TIME", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic t7 = new Topic("PREPOSITIONS OF PLACE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic t8 = new Topic("PRESENT CONTINUOUS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
@@ -207,6 +208,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(TopicsTable.COLUMN_DIFFICULTY, topic.getDifficulty());
         cv.put(TopicsTable.COLUMN_TYPE, topic.getType());
         cv.put(TopicsTable.COLUMN_ACT_COUNT, topic.getActivitiesCount());
+        cv.put(TopicsTable.COLUMN_INFO, topic.getInformation());
         db.insert(TopicsTable.TABLE_NAME, null, cv);
     }
 
@@ -272,21 +274,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_TOPIC_ID, question.getTopicId());
         cv.put(QuestionsTable.COLUMN_ACT_NUM, question.getActivityNum());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
-    }
-
-
-
-    private void fillGrammarTable() {
-        Grammar g1 = new Grammar(Topic.t5_ID, "Adverbs of frequency describe how often something happens.\n Subject \u002B Adverb \u002B Main Verb\n Sam always passes his exams.\n Subject \u002B be/have \u002B Adverb\n She is usually busy on Saturdays.\n\n always\n usually/normally\n often\n sometimes\n occasionally\n hardly ever\n never\n\n every day\n every week \n every month\n every year\n once a week\n twice a month\n three times a day\n");
-        addGrammar(g1);
-
-    }
-
-    private void addGrammar(Grammar grammar) {
-        ContentValues cv = new ContentValues();
-        cv.put(GrammarTable.COLUMN_TOPIC_ID, grammar.getTopicId());
-        cv.put(GrammarTable.COLUMN_EXPLANATION, grammar.getExplanation());
-        db.insert(GrammarTable.TABLE_NAME, null, cv);
     }
 
     private void fillVocabTable() {
@@ -561,14 +548,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return topicId;
     }
 
-    public String getGrammarExplanation(int topicId) {
-        String grammar_explanation = "";
+    public String getTopicInfo(int topicId) {
+        String topic_info = "";
        // db = getReadableDatabase();
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
-        String selection = GrammarTable.COLUMN_TOPIC_ID + " = ? ";
+        String selection = TopicsTable._ID + " = ? ";
         Cursor c = db.query(
-                GrammarTable.TABLE_NAME,
-                new String[]{GrammarTable.COLUMN_EXPLANATION},
+                TopicsTable.TABLE_NAME,
+                new String[]{TopicsTable.COLUMN_INFO},
                 selection,
                 selectionArgs,
                 null,
@@ -577,13 +564,13 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         );
         if (c.moveToFirst()) {
             do {
-                Grammar grammar = new Grammar();
-                grammar.setExplanation(c.getString(c.getColumnIndex(GrammarTable.COLUMN_EXPLANATION)));
-                grammar_explanation = (String) grammar.getExplanation();
+                Topic topic = new Topic();
+                topic.setInformation(c.getString(c.getColumnIndex(TopicsTable.COLUMN_INFO)));
+                topic_info = (String) topic.getInformation();
             } while (c.moveToNext());
         }
         c.close();
-        return grammar_explanation;
+        return topic_info;
     }
 
     /*method to update the 'completed' column of Activity Table to true

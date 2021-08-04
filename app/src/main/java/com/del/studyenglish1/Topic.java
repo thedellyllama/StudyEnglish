@@ -39,6 +39,7 @@ public class Topic {
     private String type;
     private int activitiesCount;
     private int activitiesCompleted;
+    private String information;
 
     public Topic() {
     }
@@ -49,6 +50,15 @@ public class Topic {
         this.type = type;
         this.activitiesCount = activitiesCount;
         activitiesCompleted = 0;
+    }
+
+    public Topic(String name, String difficulty, String type, int activitiesCount, String information) {
+        this.name = name;
+        this.difficulty = difficulty;
+        this.type = type;
+        this.activitiesCount = activitiesCount;
+        activitiesCompleted = 0;
+        this.information = information;
     }
 
     public int getId() {
@@ -97,6 +107,14 @@ public class Topic {
 
     public void setActivitiesCompleted(int activitiesCompleted) {
         this.activitiesCompleted = activitiesCompleted;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
     }
 
     //so the adapter returns to the name of the topic instead of class name

@@ -13,6 +13,7 @@ public final class QuizContract {
         public static final String COLUMN_TYPE = "type";
         public static final String COLUMN_ACT_COUNT = "activities_count";
         public static final String COLUMN_ACT_COMPLETED = "activities_completed";
+        public static final String COLUMN_INFO = "information";
     }
 
     public static class QuestionsTable implements BaseColumns {
