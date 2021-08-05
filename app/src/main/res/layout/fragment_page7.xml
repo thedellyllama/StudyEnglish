@@ -100,8 +100,9 @@
 
     <TextView
         android:id="@+id/text_view_no_progress"
-        android:layout_width="wrap_content"
+        android:layout_width="249dp"
         android:layout_height="wrap_content"
+        android:padding="8dp"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
