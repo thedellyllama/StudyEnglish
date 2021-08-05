@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class Page_5_3_Grammar extends Fragment {
@@ -70,7 +69,7 @@ public class Page_5_3_Grammar extends Fragment {
             level_name = getArguments().getString(ARG_LEVEL_NAME);
         }
         int topicId = dbHelper.getTopicId(topic, type, level_name);
-        String explanation = dbHelper.getGrammarExplanation(topicId);
+        String explanation = dbHelper.getTopicInfo(topicId);
         textViewExplanation.setText(explanation);
         textViewTopic.setText(level_name + ": " + topic);
 

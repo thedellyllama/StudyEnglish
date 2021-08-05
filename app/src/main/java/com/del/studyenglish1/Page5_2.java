@@ -34,6 +34,7 @@ public class Page5_2 extends Fragment {
     private Page5 page5;
     private Page5_1 page5_1;
     private Page_5_3_Grammar page_5_3_grammar;
+    private Page5_4_Grammar page5_4_grammar;
     private TextView textViewType;
     private TextView changeLevel;
     private TextView changeType;
@@ -125,19 +126,16 @@ public class Page5_2 extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                     String topicSelected = listView.getItemAtPosition(position).toString();
-                    Page_5_3_Grammar fragment = Page_5_3_Grammar.newInstance(topicSelected, type, level_name);
-                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
-                    fragmentTransaction.commit();
+                    loadGrammarHomePage(topicSelected, type, level_name);
             }
         });
 
     }
 
-    private void loadGrammarPage(String mTopic, String mType, String mLevel_name) {
-        page_5_3_grammar = page_5_3_grammar.newInstance(mTopic, mType, mLevel_name);
+    public void loadGrammarHomePage(String topicSelected, String type, String level_name) {
+        Page_5_3_Grammar fragment = Page_5_3_Grammar.newInstance(topicSelected, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page_5_3_grammar);
+        fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
         fragmentTransaction.commit();
     }
 
