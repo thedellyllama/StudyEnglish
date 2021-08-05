@@ -15,6 +15,7 @@
     <string name="want_to">I want to complete: </string>
     <string name="search">search</string>
     <string name="activities">activities</string>
+    <string name="what_activity">What type of activity do you want to focus on?</string>
 
     //LINKS
     <string name="change_level">change level</string>

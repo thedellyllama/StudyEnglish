@@ -51,15 +51,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="307dp"
-        android:layout_height="472dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/questions_background"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp"
         android:paddingBottom="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_level_name">
 
@@ -77,13 +78,13 @@
             android:id="@+id/text_view_question"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_instruction" />
+            app:layout_constraintTop_toBottomOf="@+id/image_view_question" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -94,7 +95,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_view_question">
+            app:layout_constraintTop_toBottomOf="@+id/text_view_question">
 
             <RadioButton
                 android:id="@+id/radio_button1"
@@ -139,9 +140,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:paddingLeft="32dp"
             android:paddingRight="32dp"
             android:text="@string/check"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,8 +152,8 @@
 
         <ImageView
             android:id="@+id/image_view_question"
-            android:layout_width="110dp"
-            android:layout_height="101dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +165,7 @@
             android:id="@+id/text_view_instruction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:gravity="center_horizontal"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

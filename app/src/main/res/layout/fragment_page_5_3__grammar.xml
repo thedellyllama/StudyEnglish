@@ -11,14 +11,14 @@
         android:id="@+id/text_view_change_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="100dp"
         android:text="@string/change_topic"
         android:textColor="@color/blue_app"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_activities" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/header_name"
@@ -37,7 +37,7 @@
         android:id="@+id/text_view_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/blue_app"
@@ -52,7 +52,7 @@
         android:id="@+id/text_view_explanation"
         android:layout_width="276dp"
         android:layout_height="337dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="32dp"
         android:gravity="center"
         android:scrollbars="vertical"
         android:text="TextView"
@@ -65,12 +65,15 @@
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/activities_caps"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_change_topic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_explanation" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_explanation"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

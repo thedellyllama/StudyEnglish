@@ -23,7 +23,7 @@
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
         android:text="TextView"
         android:textColor="@color/blue_app"
         android:textSize="36sp"
@@ -33,28 +33,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/image_logo"
-        android:layout_width="103dp"
-        android:layout_height="103dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title"
-        tools:src="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/text_select_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="@string/select_level"
         android:textColor="@color/blue_app"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
     <Button
         android:id="@+id/button_a1"
@@ -64,10 +54,12 @@
         android:text="@string/a1_level"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/button_a2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_select_level" />
+        app:layout_constraintTop_toBottomOf="@+id/text_select_level"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/button_a2"
@@ -77,8 +69,9 @@
         android:text="@string/a2_level"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/button_b1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_a1" />
 
@@ -90,8 +83,9 @@
         android:text="@string/b1_level"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/button_b2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_a2" />
 
@@ -103,8 +97,9 @@
         android:text="@string/b2_level"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/button_c1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_b1" />
 
@@ -113,11 +108,13 @@
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/c1_level"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/text_check_level"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_b2" />
 
@@ -125,13 +122,11 @@
         android:id="@+id/text_check_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="120dp"
         android:text="@string/check_level"
         android:textColor="@color/blue_app"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_c1"
-        app:layout_constraintVertical_bias="0.44" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
