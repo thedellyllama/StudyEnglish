@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,7 @@ public class MultipleChoiceQuiz extends Fragment {
     private TextView textViewQuestionCount;
     private TextView textViewTopic;
     private TextView textViewLevel;
+    private TextView textViewInstruction;
     private RadioGroup rbGroup;
     private RadioButton rb1;
     private RadioButton rb2;
@@ -56,6 +58,7 @@ public class MultipleChoiceQuiz extends Fragment {
     private RadioButton rb4;
     private Button buttonCheck;
     private ImageView buttonClose;
+    private ImageView imageQuestion;
     private ColorStateList textColorDefaultRb;
     private ArrayList<Question> questionList;
     private int questionCounter;
@@ -95,6 +98,8 @@ public class MultipleChoiceQuiz extends Fragment {
         textViewTopic = v.findViewById(R.id.text_view_topic_name);
         textViewLevel = v.findViewById(R.id.text_view_level_name);
         textViewQuestion = v.findViewById(R.id.text_view_question);
+        textViewInstruction = v.findViewById(R.id.text_view_instruction);
+        imageQuestion = v.findViewById(R.id.image_view_question);
         rbGroup = v.findViewById(R.id.radioGroup);
         rb1 = v.findViewById(R.id.radio_button1);
         rb2 = v.findViewById(R.id.radio_button2);
@@ -193,11 +198,24 @@ public class MultipleChoiceQuiz extends Fragment {
         rb4.setTextColor(textColorDefaultRb);
         buttonCheck.setBackgroundColor(buttonBlue);
         rbGroup.clearCheck();
+        imageQuestion.setVisibility(View.INVISIBLE);
 
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
-            textViewQuestion.setText(currentQuestion.getQuestion());
+
+            if (currentQuestion.getImageRef() != 0) {
+                Drawable imageQ = getResources().getDrawable(currentQuestion.getImageRef());
+                imageQuestion.setImageDrawable(imageQ);
+                imageQuestion.setVisibility(View.VISIBLE);
+            }
+            if (currentQuestion.getQuestion() != null) {
+                textViewQuestion.setText(currentQuestion.getQuestion());
+                textViewInstruction.setText(currentQuestion.getInstruction());
+            } else {
+                textViewQuestion.setText(currentQuestion.getInstruction());
+            }
+
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -211,8 +229,6 @@ public class MultipleChoiceQuiz extends Fragment {
             buttonCheck.setText("CHECK ANSWER");
         } else {
             finishQuiz(topic, type, level_name);
-            //finishQuiz(topic, type, level_name);
-
         }
     }
     private void checkAnswer() {
