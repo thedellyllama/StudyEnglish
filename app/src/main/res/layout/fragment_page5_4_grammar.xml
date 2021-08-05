@@ -37,7 +37,7 @@
         android:id="@+id/text_view_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="TextView"
@@ -53,14 +53,14 @@
         android:id="@+id/text_view_to_explanation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="120dp"
         android:text="@string/explanation"
         android:textColor="@color/blue_app"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/text_view_change_topic"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_revision" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/image_progress"
@@ -79,10 +79,12 @@
         android:layout_height="127dp"
         android:layout_marginTop="16dp"
         android:text="@string/num_1"
+        app:layout_constraintBottom_toTopOf="@+id/button_activity3"
         app:layout_constraintEnd_toStartOf="@+id/button_activity2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_progress" />
+        app:layout_constraintTop_toBottomOf="@+id/image_progress"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/button_activity2"
@@ -99,7 +101,9 @@
         android:layout_width="129dp"
         android:layout_height="127dp"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/num_3"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_to_explanation"
         app:layout_constraintEnd_toStartOf="@+id/button_activity4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,18 +117,8 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/button_activity3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_activity3" />
+        app:layout_constraintStart_toEndOf="@+id/button_activity3" /><![CDATA[
 
-    <Button
-        android:id="@+id/button_revision"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/revision"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_activity3" />
     //android:background="@drawable/yellow_button_bg"
     android:text="@string/revision"
     app:backgroundTint="#00FFFFFF"
@@ -134,5 +128,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/button_act3" />
 
+]]>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

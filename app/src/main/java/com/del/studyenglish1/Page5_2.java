@@ -3,7 +3,6 @@ package com.del.studyenglish1;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -120,7 +118,7 @@ public class Page5_2 extends Fragment {
         MyTopicAdapter myTopicAdapter = new MyTopicAdapter(getContext(), topicList);
         listView.setAdapter(myTopicAdapter);
 
-        Button topicButton = (Button) listView.findViewById(R.id.button_topic_item);
+        Button topicButton = listView.findViewById(R.id.text_view_topic_item);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

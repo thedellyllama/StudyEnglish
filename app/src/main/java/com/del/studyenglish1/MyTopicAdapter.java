@@ -1,14 +1,11 @@
 package com.del.studyenglish1;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-
-import androidx.fragment.app.FragmentTransaction;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -30,8 +27,8 @@ public class MyTopicAdapter extends ArrayAdapter<Topic> {
                     R.layout.topic_item, parent, false);
         }
         Topic chosenTopic = getItem(position);
-        Button topicButton = (Button) listItemView.findViewById(R.id.button_topic_item);
-        topicButton.setText(chosenTopic.getName());
+        TextView textView = listItemView.findViewById(R.id.text_view_topic_item);
+        textView.setText(chosenTopic.getName());
         return listItemView;
     }
 

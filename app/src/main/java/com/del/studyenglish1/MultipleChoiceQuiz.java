@@ -203,17 +203,18 @@ public class MultipleChoiceQuiz extends Fragment {
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
-
+            //check if there is an image
             if (currentQuestion.getImageRef() != 0) {
                 Drawable imageQ = getResources().getDrawable(currentQuestion.getImageRef());
                 imageQuestion.setImageDrawable(imageQ);
                 imageQuestion.setVisibility(View.VISIBLE);
             }
+            //if there is a question
             if (currentQuestion.getQuestion() != null) {
                 textViewQuestion.setText(currentQuestion.getQuestion());
                 textViewInstruction.setText(currentQuestion.getInstruction());
             } else {
-                textViewQuestion.setText(currentQuestion.getInstruction());
+                textViewInstruction.setText(currentQuestion.getInstruction());
             }
 
             rb1.setText(currentQuestion.getOption1());
