@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Page5_4_Grammar extends Fragment {
+public class ActivityHomePage extends Fragment {
 
     private static final String ARG_TOPIC = "argTopic";
     private static final String ARG_TYPE = "argType";
@@ -39,17 +39,18 @@ public class Page5_4_Grammar extends Fragment {
     private Button activity4;
     private int yellow;
 
-    private Page_5_3_Grammar page_5_3_grammar;
-    private Page5_2 page5_2;
+    private TopicHomePage topicHomePage;
+    private SelectTopicPage selectTopicPage;
     private MultipleChoiceQuiz multipleChoiceQuiz;
     private ReadingQuiz readingQuiz;
 
-    public static Page5_4_Grammar newInstance(String topic, String type, String level_name) {
-        Page5_4_Grammar fragment = new Page5_4_Grammar();
+    public static ActivityHomePage newInstance(String topic, String type, String level, String level_name) {
+        ActivityHomePage fragment = new ActivityHomePage();
         Bundle args = new Bundle();
         args.putString(ARG_TOPIC, topic);
         args.putString(ARG_TYPE, type);
         args.putString(ARG_LEVEL_NAME, level_name);
+        args.putString(ARG_LEVEL, level);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,7 +58,7 @@ public class Page5_4_Grammar extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_page5_4_grammar, container, false);
+        View v = inflater.inflate(R.layout.fragment_activity_home_page, container, false);
         textViewTopic = v.findViewById(R.id.text_view_topic);
         activity1 = (Button) v.findViewById(R.id.button_activity1);
         activity2 = (Button) v.findViewById(R.id.button_activity2);
@@ -150,16 +151,16 @@ public class Page5_4_Grammar extends Fragment {
     }
 
     public void toExplanationPage(String topic, String type, String level_name) {
-        page5_2 = page5_2.newInstance(type, level, level_name);
+        selectTopicPage = selectTopicPage.newInstance(type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page5_2);
+        fragmentTransaction.replace(R.id.nav_host_fragment, selectTopicPage);
         fragmentTransaction.commit();
     }
 
     public void changeTopicPage(String type, String level, String level_name) {
-        page_5_3_grammar = page_5_3_grammar.newInstance(topic, type, level_name);
+        topicHomePage = topicHomePage.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page_5_3_grammar);
+        fragmentTransaction.replace(R.id.nav_host_fragment, topicHomePage);
         fragmentTransaction.commit();
     }
 

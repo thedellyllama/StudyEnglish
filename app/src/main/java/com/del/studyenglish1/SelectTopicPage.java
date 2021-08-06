@@ -15,12 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 
-public class Page5_2 extends Fragment {
+public class SelectTopicPage extends Fragment {
     private static final String ARG_TYPE = "argType";
     private static final String ARG_LEVEL_NAME = "argLevelName";
     private static final String ARG_LEVEL = "argLevel";
@@ -29,29 +28,29 @@ public class Page5_2 extends Fragment {
     private String level_name;
     private String level;
 
-    private Page5 page5;
-    private Page5_1 page5_1;
-    private Page_5_3_Grammar page_5_3_grammar;
-    private Page5_4_Grammar page5_4_grammar;
+    private SelectLevelPage page5;
+    private SelectTypePage page5_1;
+    // TopicHomePage topicHomePage;
+    private ActivityHomePage activityHomePage;
     private TextView textViewType;
     private TextView changeLevel;
     private TextView changeType;
     private SQLiteDatabase newDb;
-    private ListView recyclerView;
+    //private ListView recyclerView;
     private ListView listView;
-    private MyTopicAdapter myTopicAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    //private MyTopicAdapter myTopicAdapter;
+    //private RecyclerView.LayoutManager mLayoutManager;
 
     //private ArrayList<Topic> mTopics = new ArrayList<>();
 
 
 
-    public Page5_2() {
+    public SelectTopicPage() {
         // Required empty public constructor
     }
 
-    public static Page5_2 newInstance(String type, String level, String level_name) {
-        Page5_2 fragment = new Page5_2();
+    public static SelectTopicPage newInstance(String type, String level, String level_name) {
+        SelectTopicPage fragment = new SelectTopicPage();
         Bundle args = new Bundle();
         args.putString(ARG_TYPE, type);
         args.putString(ARG_LEVEL_NAME, level_name);
@@ -63,7 +62,7 @@ public class Page5_2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_page5_2, container, false);
+        View v = inflater.inflate(R.layout.fragment_select_topic, container, false);
         textViewType = v.findViewById(R.id.text_view_type);
         listView = (ListView) v.findViewById(R.id.recycler_topic);
 
@@ -75,6 +74,7 @@ public class Page5_2 extends Fragment {
         if (getArguments() != null) {
             type = getArguments().getString(ARG_TYPE);
             level_name = getArguments().getString(ARG_LEVEL_NAME);
+            level = getArguments().getString(ARG_LEVEL);
         }
         textViewType.setText(level_name + ": " + type);
         return v;
@@ -124,21 +124,21 @@ public class Page5_2 extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                     String topicSelected = listView.getItemAtPosition(position).toString();
-                    loadGrammarHomePage(topicSelected, type, level_name);
+                    loadTopicHomePage(topicSelected, type, level_name);
             }
         });
 
     }
 
-    public void loadGrammarHomePage(String topicSelected, String type, String level_name) {
-        Page_5_3_Grammar fragment = Page_5_3_Grammar.newInstance(topicSelected, type, level_name);
+    public void loadTopicHomePage(String topicSelected, String type, String level_name) {
+        TopicHomePage fragment = TopicHomePage.newInstance(topicSelected, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
         fragmentTransaction.commit();
     }
 
     private void changeLevelPage() {
-        page5 = new Page5();
+        page5 = new SelectLevelPage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, page5);
         fragmentTransaction.commit();

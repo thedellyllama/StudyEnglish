@@ -1,34 +1,28 @@
 package com.del.studyenglish1;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
-public class Page4 extends Fragment {
+public class HomePage extends Fragment {
 
     private CardView cardProfile;
     private CardView cardGoals;
     private CardView cardDictionary;
     private CardView cardStudy;
 
-    private Page5 page5;
-    private Page6 page6;
-    private Page7 page7;
-    private Page8 page8;
+    private SelectLevelPage selectLevelPage;
+    private GoalsPage goalsPage;
+    private ProfilePage profilePage;
+    private DictionaryPage dictionaryPage;
 
     private TextView textViewCurrentGoals;
     private TextView textViewCurrentTimeFrame;
@@ -38,12 +32,12 @@ public class Page4 extends Fragment {
     private String timeFrameGoals;
     private QuizDbHelper dbHelper;
 
-    public Page4(){}
+    public HomePage(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page4, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         dbHelper = QuizDbHelper.getInstance(getContext());
         textViewCurrentGoals = view.findViewById(R.id.text_view_current_goals);
         textViewCurrentTimeFrame = view.findViewById(R.id.text_view_daily_goals);
@@ -73,9 +67,9 @@ public class Page4 extends Fragment {
         cardProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page7 = new Page7();
+                profilePage = new ProfilePage();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page7);
+                fragmentTransaction.replace(R.id.nav_host_fragment, profilePage);
                 fragmentTransaction.commit();
             }
         });
@@ -83,9 +77,9 @@ public class Page4 extends Fragment {
         cardGoals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page6 = new Page6();
+                goalsPage = new GoalsPage();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page6);
+                fragmentTransaction.replace(R.id.nav_host_fragment, goalsPage);
                 fragmentTransaction.commit();
             }
         });
@@ -93,9 +87,9 @@ public class Page4 extends Fragment {
         cardDictionary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page8 = new Page8();
+                dictionaryPage = new DictionaryPage();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page8);
+                fragmentTransaction.replace(R.id.nav_host_fragment, dictionaryPage);
                 fragmentTransaction.commit();
             }
         });
@@ -103,9 +97,9 @@ public class Page4 extends Fragment {
         cardStudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page5 = new Page5();
+                selectLevelPage = new SelectLevelPage();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page5);
+                fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
                 fragmentTransaction.commit();
             }
         });

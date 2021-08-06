@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Page8 extends Fragment {
+public class DictionaryPage extends Fragment {
 
     //private Spinner spinnerLevel;
     private Spinner spinnerTopic;
@@ -44,7 +44,7 @@ public class Page8 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page8, container, false);
+        View view = inflater.inflate(R.layout.fragment_dictionary_page, container, false);
 
         //spinnerLevel = view.findViewById(R.id.spinner_levels);
         spinnerTopic = view.findViewById(R.id.spinner_topics);
