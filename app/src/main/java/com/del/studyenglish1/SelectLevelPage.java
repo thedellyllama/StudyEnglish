@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-//import com.del.studyenglish1.Page5_1.SelectTypeListener;
+//import com.del.studyenglish1.SelectTypePage.SelectTypeListener;
 
-public class Page5 extends Fragment {
+public class SelectLevelPage extends Fragment {
 
-    private Page5_1 page5_1;
-    private Page5_CheckLevel page5_checkLevel;
+    private SelectTypePage page5_1;
+    private CheckLevelPage page5_checkLevel;
     private String selected_level;
     private String level_name;
     private Button button_a1;
@@ -30,7 +30,7 @@ public class Page5 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_page5, container, false);
+        View v = inflater.inflate(R.layout.fragment_select_level_page, container, false);
         return v;
     }
 
@@ -93,7 +93,7 @@ public class Page5 extends Fragment {
         check_level.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page5_checkLevel = new Page5_CheckLevel();
+                page5_checkLevel = new CheckLevelPage();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, page5_checkLevel);
                 fragmentTransaction.commit();

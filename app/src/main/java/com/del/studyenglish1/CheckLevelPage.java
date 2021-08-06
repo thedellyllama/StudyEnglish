@@ -14,15 +14,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class Page5_CheckLevel extends Fragment {
+public class CheckLevelPage extends Fragment {
     private WebView webView;
     private ImageView imageViewClose;
-    private Page5 page5;
+    private SelectLevelPage selectLevelPage;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_page5_check_level, container, false);
+        View v = inflater.inflate(R.layout.fragment_check_level_page, container, false);
         imageViewClose = v.findViewById(R.id.image_view_close);
         return v;
     }
@@ -40,9 +40,9 @@ public class Page5_CheckLevel extends Fragment {
         imageViewClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page5 = new Page5();
+                selectLevelPage = new SelectLevelPage();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page5);
+                fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
                 fragmentTransaction.commit();
             }
         });

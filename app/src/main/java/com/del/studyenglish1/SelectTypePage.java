@@ -1,6 +1,5 @@
 package com.del.studyenglish1;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,22 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
-public class Page5_1 extends Fragment {
+public class SelectTypePage extends Fragment {
 
-    private Page5_2 page5_2;
+    private SelectTopicPage page5_2;
     private String selected_type;
 
     private static final String ARG_LEVEL = "argLevel";
     private static final String ARG_LEVEL_NAME = "argLevelName";
     private String level;
     private String level_name;
-    private Page5 page5;
+    private SelectLevelPage selectLevelPage;
 
     private TextView textView;
     private TextView changeLevel;
@@ -34,8 +29,8 @@ public class Page5_1 extends Fragment {
     private Button button_vocabulary;
     Button button_reading;
 
-    public static Page5_1 newInstance(String level, String level_name) {
-        Page5_1 fragment = new Page5_1();
+    public static SelectTypePage newInstance(String level, String level_name) {
+        SelectTypePage fragment = new SelectTypePage();
         Bundle args = new Bundle();
         args.putString(ARG_LEVEL, level);
         args.putString(ARG_LEVEL_NAME, level_name);
@@ -46,7 +41,7 @@ public class Page5_1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_page5_1, container, false);
+        View v = inflater.inflate(R.layout.fragment_select_type_page, container, false);
         TextView textViewLevel = v.findViewById(R.id.text_view_level);
 
         if (getArguments() != null) {
@@ -70,9 +65,9 @@ public class Page5_1 extends Fragment {
         changeLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page5 = new Page5();
+                selectLevelPage = new SelectLevelPage();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page5);
+                fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
                 fragmentTransaction.commit();
             }
         });

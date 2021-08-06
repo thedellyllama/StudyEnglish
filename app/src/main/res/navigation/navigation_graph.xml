@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/nav_page4">
+    app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/nav_page5"
-        android:name="com.del.studyenglish1.Page5"
+        android:id="@+id/nav_study"
+        android:name="com.del.studyenglish1.SelectLevelPage"
         android:label="fragment_page5"
-        tools:layout="@layout/fragment_page5" >
+        tools:layout="@layout/fragment_select_level_page" >
         <action
             android:id="@+id/action_nav_page5_to_page5_CheckLevel"
             app:destination="@id/page5_CheckLevel" />
@@ -19,82 +19,63 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_page4"
-        android:name="com.del.studyenglish1.Page4"
-        android:label="fragment_page4"
-        tools:layout="@layout/fragment_page4" >
-        <action
-            android:id="@+id/action_page4_to_page5"
-            app:destination="@id/nav_page5" />
-        <action
-            android:id="@+id/action_page4_to_page6"
-            app:destination="@id/nav_page6" />
-        <action
-            android:id="@+id/action_page4_to_page7"
-            app:destination="@id/nav_page7" />
-        <action
-            android:id="@+id/action_page4_to_page8"
-            app:destination="@id/nav_page8" />
-    </fragment>
+        android:id="@+id/nav_home"
+        android:name="com.del.studyenglish1.HomePage"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" />
+
     <fragment
-        android:id="@+id/nav_page6"
-        android:name="com.del.studyenglish1.Page6"
-        android:label="fragment_page6"
-        tools:layout="@layout/fragment_page6" />
+        android:id="@+id/nav_goals"
+        android:name="com.del.studyenglish1.GoalsPage"
+        android:label="fragment_goals_page"
+        tools:layout="@layout/fragment_goals_page" />
+
     <fragment
-        android:id="@+id/nav_page7"
-        android:name="com.del.studyenglish1.Page7"
-        android:label="fragment_page7"
-        tools:layout="@layout/fragment_page7" />
+        android:id="@+id/nav_profile"
+        android:name="com.del.studyenglish1.ProfilePage"
+        android:label="fragment_profile_page"
+        tools:layout="@layout/fragment_profile_page" />
+
     <fragment
-        android:id="@+id/nav_page8"
-        android:name="com.del.studyenglish1.Page8"
-        android:label="fragment_page8"
-        tools:layout="@layout/fragment_page8" />
+        android:id="@+id/nav_dictionary"
+        android:name="com.del.studyenglish1.DictionaryPage"
+        android:label="fragment_dictionary_page"
+        tools:layout="@layout/fragment_dictionary_page" />
+
     <fragment
         android:id="@+id/page5_CheckLevel"
-        android:name="com.del.studyenglish1.Page5_CheckLevel"
+        android:name="com.del.studyenglish1.CheckLevelPage"
         android:label="fragment_page5_check_level"
-        tools:layout="@layout/fragment_page5_check_level" />
+        tools:layout="@layout/fragment_check_level_page" />
+
     <fragment
         android:id="@+id/multipleChoiceQuiz"
         android:name="com.del.studyenglish1.MultipleChoiceQuiz"
         android:label="fragment_multiple_choice_quiz"
         tools:layout="@layout/fragment_multiple_choice_quiz" />
+
     <fragment
         android:id="@+id/page5_1"
-        android:name="com.del.studyenglish1.Page5_1"
+        android:name="com.del.studyenglish1.SelectTypePage"
         android:label="Page5_1"
-        tools:layout="@layout/fragment_page5_1">
-        <action
-            android:id="@+id/action_page5_1_to_page5_2"
-            app:destination="@id/page5_2" />
-    </fragment>
+        tools:layout="@layout/fragment_select_type_page"/>
+
     <fragment
         android:id="@+id/page5_2"
-        android:name="com.del.studyenglish1.Page5_2"
+        android:name="com.del.studyenglish1.SelectTopicPage"
         android:label="fragment_page5_2"
-        tools:layout="@layout/fragment_page5_2" >
-        <action
-            android:id="@+id/action_page5_2_to_page_5_3_Grammar"
-            app:destination="@id/page_5_3_Grammar" />
-    </fragment>
+        tools:layout="@layout/fragment_select_topic" />
+
     <fragment
         android:id="@+id/page_5_3_Grammar"
-        android:name="com.del.studyenglish1.Page_5_3_Grammar"
+        android:name="com.del.studyenglish1.TopicHomePage"
         android:label="Page_5_3_Grammar"
-        tools:layout="@layout/fragment_page_5_3__grammar">
-        <action
-            android:id="@+id/action_page_5_3_Grammar_to_page5_4_Grammar"
-            app:destination="@id/page5_4_Grammar" />
-    </fragment>
+        tools:layout="@layout/fragment_topic_home_page"/>
+
     <fragment
         android:id="@+id/page5_4_Grammar"
-        android:name="com.del.studyenglish1.Page5_4_Grammar"
+        android:name="com.del.studyenglish1.ActivityHomePage"
         android:label="Page5_4_Grammar"
-        tools:layout="@layout/fragment_page5_4_grammar">
-        <action
-            android:id="@+id/action_page5_4_Grammar_to_multipleChoiceQuiz"
-            app:destination="@id/multipleChoiceQuiz" />
-    </fragment>
+        tools:layout="@layout/fragment_activity_home_page"/>
+
 </navigation>

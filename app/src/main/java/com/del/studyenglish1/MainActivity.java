@@ -5,18 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -34,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         //if statement keeps fragment if device is rotated
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.nav_host_fragment, new Page4())
+                    .replace(R.id.nav_host_fragment, new HomePage())
                     .commit();
         }
     }
@@ -47,20 +40,20 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
-                        case R.id.nav_page4:
-                            selectedFragment = new Page4();
+                        case R.id.nav_home:
+                            selectedFragment = new HomePage();
                             break;
-                        case R.id.nav_page5:
-                            selectedFragment = new Page5();
+                        case R.id.nav_study:
+                            selectedFragment = new SelectLevelPage();
                             break;
-                        case R.id.nav_page6:
-                            selectedFragment = new Page6();
+                        case R.id.nav_goals:
+                            selectedFragment = new GoalsPage();
                             break;
-                        case R.id.nav_page7:
-                            selectedFragment = new Page7();
+                        case R.id.nav_profile:
+                            selectedFragment = new ProfilePage();
                             break;
-                        case R.id.nav_page8:
-                            selectedFragment = new Page8();
+                        case R.id.nav_dictionary:
+                            selectedFragment = new DictionaryPage();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction()

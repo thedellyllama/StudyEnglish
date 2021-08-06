@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/white_background"
-    tools:context=".Page5">
+    tools:context=".SelectLevelPage">
 
     <TextView
         android:id="@+id/text_view_change_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
         android:text="@string/change_topic"
         android:textColor="@color/blue_app"
         android:textStyle="italic"
-        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_to_explanation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/text_view_to_explanation" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/header_name"
@@ -37,10 +37,7 @@
         android:id="@+id/text_view_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="8dp"
-        android:foregroundGravity="center"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/blue_app"
@@ -52,54 +49,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_to_explanation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:text="@string/explanation"
-        android:textColor="@color/blue_app"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_change_topic"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/image_progress"
-        android:layout_width="90dp"
-        android:layout_height="87dp"
+        android:id="@+id/text_view_explanation"
+        android:layout_width="276dp"
+        android:layout_height="337dp"
         android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:scrollbars="vertical"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_topic"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_topic" />
 
     <Button
-        android:id="@+id/button_activity1"
-        android:layout_width="260dp"
-        android:layout_height="90dp"
-        android:text="@string/num_1"
-        app:layout_constraintBottom_toTopOf="@+id/button_activity2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_progress"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <Button
-        android:id="@+id/button_activity2"
-        android:layout_width="260dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/num_2"
+        android:id="@+id/button_activities"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/activities_caps"
+        app:backgroundTint="@color/blue_app"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/text_view_change_topic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_activity1" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_explanation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

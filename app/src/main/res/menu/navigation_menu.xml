@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@id/nav_page7"
+        android:id="@id/nav_profile"
         android:icon="@drawable/user"
         android:title="@string/profile" />
     <item
-        android:id="@id/nav_page6"
+        android:id="@id/nav_goals"
         android:icon="@drawable/goals"
         android:title="@string/goals" />
     <item
-        android:id="@id/nav_page4"
+        android:id="@id/nav_home"
         android:icon="@drawable/homepage"
         android:title="@string/home" />
     <item
-        android:id="@id/nav_page8"
+        android:id="@id/nav_dictionary"
         android:icon="@drawable/dictionary"
         android:title="@string/dictionary" />
     <item
-        android:id="@id/nav_page5"
+        android:id="@id/nav_study"
         android:icon="@drawable/shuttle"
         android:title="@string/study" />
 

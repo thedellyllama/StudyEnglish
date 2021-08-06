@@ -67,13 +67,12 @@ public class ReadingQuiz extends Fragment {
     private int answeredAttempts;
     private long backPressedTime;
 
-
-    Page5_4_Reading page5_4_reading;
+    ActivityHomePageReading activityHomeReading;
     InformationDialog informationDialog;
     private int buttonGreen;
     private int buttonBlue;
 
-    private SQLiteDatabase newDb;
+    //private SQLiteDatabase newDb;
 
     public static ReadingQuiz newInstance(String topic, String type, String level_name, int activity_num) {
     //public static MultipleChoiceQuiz newInstance(int topicID, String topic, String type, String level_name, int activity_num) {
@@ -171,9 +170,9 @@ public class ReadingQuiz extends Fragment {
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page5_4_reading = page5_4_reading.newInstance(topic, type, level_name);
+                activityHomeReading = activityHomeReading.newInstance(topic, type, level, level_name);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_reading);
+                fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
                 fragmentTransaction.commit();
             }
         });
@@ -297,26 +296,26 @@ public class ReadingQuiz extends Fragment {
         //dbHelper.activityCompleted(topicID, activity_num);
         //dbHelper.updateActivitiesCompleted(topicID);
 
-        page5_4_reading = page5_4_reading.newInstance(topic, type, level_name);
+        activityHomeReading = activityHomeReading.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_reading);
+        fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
         fragmentTransaction.commit();
     }
-
+/*
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
             finishQuiz(topic, type, level_name);
 
-            page5_4_reading.newInstance(topic, type, level_name);
+            activityHomeReading.newInstance(topic, type, level, level_name);
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_reading);
+            fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
             fragmentTransaction.commit();
         } else {
             Toast.makeText(getContext(), "Press back again to finish", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
     }
-
+*/
     @Override
     public void onDestroy() {
         super.onDestroy();

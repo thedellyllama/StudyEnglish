@@ -1,6 +1,5 @@
 package com.del.studyenglish1;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -69,7 +68,7 @@ public class MultipleChoiceQuiz extends Fragment {
     private int answeredAttempts;
     private long backPressedTime;
 
-    Page5_4_Grammar page5_4_grammar;
+    ActivityHomePage activityHomePage;
     InformationDialog informationDialog;
     private int buttonGreen;
     private int buttonBlue;
@@ -183,9 +182,9 @@ public class MultipleChoiceQuiz extends Fragment {
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
+                activityHomePage = activityHomePage.newInstance(topic, type, level, level_name);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
+                fragmentTransaction.replace(R.id.nav_host_fragment, activityHomePage);
                 fragmentTransaction.commit();
             }
         });
@@ -309,9 +308,9 @@ public class MultipleChoiceQuiz extends Fragment {
         //dbHelper.activityCompleted(topicID, activity_num);
         //dbHelper.updateActivitiesCompleted(topicID);
 
-        page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
+        activityHomePage = activityHomePage.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
+        fragmentTransaction.replace(R.id.nav_host_fragment, activityHomePage);
         fragmentTransaction.commit();
         //page5_4_grammar.buttonTextUpdated(activity_num);
 

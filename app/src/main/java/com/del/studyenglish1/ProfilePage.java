@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
-public class Page7 extends Fragment {
+public class ProfilePage extends Fragment {
 
     private ListView listView;
 
@@ -31,7 +30,7 @@ public class Page7 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page7, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile_page, container, false);
         dbHelper = QuizDbHelper.getInstance(getContext());
         textViewCurrentGoals = view.findViewById(R.id.text_view_current_goals);
         textViewCurrentTimeFrame = view.findViewById(R.id.text_view_daily_goals);
