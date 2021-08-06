@@ -139,7 +139,7 @@ public class MultipleChoiceQuiz extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
             int topicID = dbHelper.getTopicId(topic, type, level_name);
             questionList = dbHelper.getQuestions(topicID, activity_num);
@@ -148,7 +148,7 @@ public class MultipleChoiceQuiz extends Fragment {
             Collections.shuffle(questionList);
             showNextQuestion();
         showActivityDetails(questionCountTotal);
-        /*} else {
+        } else {
             questionList = savedInstanceState.getParcelableArrayList(KEY_QUESTION_LIST);
             questionCountTotal = questionList.size();
             questionCounter = savedInstanceState.getInt(KEY_QUESTION_COUNT);
@@ -158,9 +158,9 @@ public class MultipleChoiceQuiz extends Fragment {
             answeredAttempts = savedInstanceState.getInt(KEY_ANSWER_ATTEMPTS);
 
             if (answeredAttempts > 1) {
-                showSolution();
+                showSolution(answeredCorrectly);
             }
-        }*/
+        }
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

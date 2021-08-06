@@ -1,6 +1,5 @@
 package com.del.studyenglish1;
 
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -43,6 +42,7 @@ public class Page5_4_Grammar extends Fragment {
     private Page_5_3_Grammar page_5_3_grammar;
     private Page5_2 page5_2;
     private MultipleChoiceQuiz multipleChoiceQuiz;
+    private ReadingQuiz readingQuiz;
 
     public static Page5_4_Grammar newInstance(String topic, String type, String level_name) {
         Page5_4_Grammar fragment = new Page5_4_Grammar();
@@ -90,7 +90,11 @@ public class Page5_4_Grammar extends Fragment {
             public void onClick(View v) {
                 //showActivityDetails();
                 activityNum = 1;
-                openMultipleChoiceQuiz(topic, type, level_name, activityNum);
+                if (type.equals("READING")) {
+                    openReadingQuiz(topic, type, level_name, activityNum);
+                } else {
+                    openMultipleChoiceQuiz(topic, type, level_name, activityNum);
+                }
             }
         });
 
@@ -99,8 +103,11 @@ public class Page5_4_Grammar extends Fragment {
             public void onClick(View v) {
                 //showActivityDetails();
                 activityNum = 2;
-                openMultipleChoiceQuiz(topic, type, level_name, activityNum);
-            }
+                if (type.equals("READING")) {
+                    openReadingQuiz(topic, type, level_name, activityNum);
+                } else {
+                    openMultipleChoiceQuiz(topic, type, level_name, activityNum);
+                }            }
         });
 
         activity3.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +115,11 @@ public class Page5_4_Grammar extends Fragment {
             public void onClick(View v) {
                 //showActivityDetails();
                 activityNum = 3;
-                openMultipleChoiceQuiz(topic, type, level_name, activityNum);
-            }
+                if (type.equals("READING")) {
+                    openReadingQuiz(topic, type, level_name, activityNum);
+                } else {
+                    openMultipleChoiceQuiz(topic, type, level_name, activityNum);
+                }            }
         });
 
         activity4.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +127,11 @@ public class Page5_4_Grammar extends Fragment {
             public void onClick(View v) {
                 //showActivityDetails();
                 activityNum = 4;
-                openMultipleChoiceQuiz(topic, type, level_name, activityNum);
-            }
+                if (type.equals("READING")) {
+                    openReadingQuiz(topic, type, level_name, activityNum);
+                } else {
+                    openMultipleChoiceQuiz(topic, type, level_name, activityNum);
+                }            }
         });
 
         changeTopic.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +173,16 @@ public class Page5_4_Grammar extends Fragment {
         fragmentTransaction.commit();
     }
 
+    public void openReadingQuiz(String topic, String type, String level_name, int activity_num) {
+        //int topicId = topic.getID()
+        //multipleChoiceQuiz = multipleChoiceQuiz.newInstance(topicID, topic, type, level_name, activity_num);
+
+        readingQuiz = readingQuiz.newInstance(topic, type, level_name, activity_num);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, readingQuiz);
+        fragmentTransaction.commit();
+    }
+
     /*method to show progress by updating button text and colour after completing activity*/
     public void updateButtonTexts() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
@@ -188,6 +211,7 @@ public class Page5_4_Grammar extends Fragment {
     public void updateProgressImage() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         int topicId = dbHelper.getTopicId(topic, type, level_name);
+        dbHelper.activityCompletedTopics(topicId);
         int activitiesCompleted = dbHelper.getActivityCompleted(topicId);
         Drawable progress0 = getResources().getDrawable(R.drawable.progress_0);
         Drawable progress1_4 = getResources().getDrawable(R.drawable.progress_1_4);

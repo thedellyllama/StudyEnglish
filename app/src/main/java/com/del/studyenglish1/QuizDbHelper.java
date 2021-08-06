@@ -236,7 +236,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Topic g16 = new Topic(Topic.g16_ID, "FUTURE FORMS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g17 = new Topic(Topic.g17_ID, "MODAL VERBS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g18 = new Topic(Topic.g18_ID, "THERE AND IT", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g19 = new Topic(Topic.g19_ID, "GENERIC PRONOUNDS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic g19 = new Topic(Topic.g19_ID, "GENERIC PRONOUNS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g20 = new Topic(Topic.g20_ID, "COMPOUND NOUNS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g21 = new Topic(Topic.g21_ID, "PASSIVES ", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g22 = new Topic(Topic.g22_ID, "REPORTING VERBS", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
@@ -244,9 +244,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         //Topic g24 = new Topic(Topic.g24_ID, "", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         //Topic g25 = new Topic(Topic.g25_ID, "", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
 
-        Topic v1 = new Topic(Topic.v1_ID, "CLOTHES 1", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v2 = new Topic(Topic.v2_ID, "ACCESSORIES", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v3 = new Topic(Topic.v3_ID, "HOLIDAYS", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic v1 = new Topic(Topic.v1_ID, "CLOTHES 1", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB, "Learning vocabulary will help you improve your English and communicate more effectively!\n\n\nNew vocabulary includes:\n\t-socks\n\t-jumper\n\t-hoodie\n\t-jacket\n\t-shoes\n\t-boots\n\n\nVisit the Dictionary section to read the full definitions!");
+        Topic v2 = new Topic(Topic.v2_ID, "ACCESSORIES", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB, "Learning vocabulary will help you improve your English and communicate more effectively!\n\n\nNew vocabulary includes:\n\t-rucksack\n\t-hat\n\t-gloves\n\t-tie\n\t-watch\n\t-bracelet\n\n\nVisit the Dictionary section to read the full definitions!");
+        Topic v3 = new Topic(Topic.v3_ID, "HOLIDAYS", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB, "Learning vocabulary will help you improve your English and communicate more effectively!\n\n\nNew vocabulary includes:\n\t-caravan\n\t-picnic\n\t-flight\n\t-ticket\n\t-hotel\n\t-passport\n\n\nVisit the Dictionary section to read the full definitions!");
         Topic v4 = new Topic(Topic.v4_ID, "CLOTHES 2", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
         Topic v5 = new Topic(Topic.v5_ID, "BEDROOMS", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
         Topic v6 = new Topic(Topic.v6_ID, "DAILY ROUTINE", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
@@ -270,7 +270,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Topic v24 = new Topic(Topic.v24_ID, "FOOD AND DRINK", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
         Topic v25 = new Topic(Topic.v25_ID, "LEISURE ACTIVITIES", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
 
-        Topic r1 = new Topic(Topic.r1_ID, "TRAVEL", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
+        Topic r1 = new Topic(Topic.r1_ID, "TRAVEL", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING, "Reading is an important skill!\n\nImprove your reading skills and your travel vocabulary by practising.\nThese activities involve looking at the Departures Board in an aiport.");
         Topic r2 = new Topic(Topic.r2_ID, "RESTAURANT", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
         Topic r3 = new Topic(Topic.r3_ID, "JOBS", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
         Topic r4 = new Topic(Topic.r4_ID, "STUDENT CARD APPLICATION", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
@@ -476,6 +476,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Activity a22 = new Activity(Topic.v3_ID, Activity.ACT_NUM_2, Activity.FALSE);
         Activity a23 = new Activity(Topic.v3_ID, Activity.ACT_NUM_3, Activity.FALSE);
         Activity a24 = new Activity(Topic.v3_ID, Activity.ACT_NUM_4, Activity.FALSE);
+        Activity a25 = new Activity(Topic.r1_ID, Activity.ACT_NUM_1, Activity.FALSE);
+        Activity a26 = new Activity(Topic.r1_ID, Activity.ACT_NUM_2, Activity.FALSE);
 
         addActivity(a1);
         addActivity(a2);
@@ -501,6 +503,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addActivity(a22);
         addActivity(a23);
         addActivity(a24);
+        addActivity(a25);
+        addActivity(a26);
 
         /*
         Activity a1 = new Activity(Topic.t5_ID, Activity.ACT_NUM_1, Activity.FALSE);
@@ -740,15 +744,15 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q214 = new Question(R.drawable.flight, "Select the correct word or phrase:", "airport", "ticket", "flight", "ferry", 3, Topic.v3_ID, Activity.ACT_NUM_4);
         Question q215 = new Question("Select the word that is being described:", "landmark", "flight", "tourist", "baggage", 3, Topic.v3_ID, Activity.ACT_NUM_4);
         Question q216 = new Question(R.drawable.campsite, "Select the correct word or phrase:", "campsite", "ferry", "landmark", "ferry", 3, Topic.v3_ID, Activity.ACT_NUM_4);
-        Question q217 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "cancelled", "boarding", "delayed", "departed", 4, Topic.r1_ID, Activity.ACT_NUM_1);
-        Question q218 = new Question(R.drawable.reading_train, "Select the best answer:", "Yes", "Unknown", "Maybe", "No", 4, Topic.r1_ID, Activity.ACT_NUM_2);
-        Question q219 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "cancelled", "boarding", "delayed", "departed", 1, Topic.r1_ID, Activity.ACT_NUM_1);
-        Question q220 = new Question(R.drawable.reading_train, "Select the best answer:", "Yes", "No", "Maybe", "Only if you're quick", 1, Topic.r1_ID, Activity.ACT_NUM_2);
-        Question q221 = new Question(R.drawable.reading_train, "Select the best answer:", "Only if you're quick", "No", "Unknown", "Yes", 1, Topic.r1_ID, Activity.ACT_NUM_2);
-        Question q222 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "cancelled", "boarding", "delayed", "departed", 2, Topic.r1_ID, Activity.ACT_NUM_1);
-        Question q223 = new Question(R.drawable.reading_train, "Select the best answer:", "Copenhagen", "Chicago", "Nice", "Manchester", 2, Topic.r1_ID, Activity.ACT_NUM_2);
-        Question q224 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "cancelled", "boarding", "delayed", "departed", 3, Topic.r1_ID, Activity.ACT_NUM_1);
-        Question q225 = new Question(R.drawable.reading_train, "Select the best answer:", "0.423611111111111", "Cancelled", "Unknown", "0.430555555555556", 3, Topic.r1_ID, Activity.ACT_NUM_2);
+        Question q217 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "The plane has left the airport", "cancelled", "boarding", "delayed", "departed", 4, Topic.r1_ID, Activity.ACT_NUM_1);
+        Question q218 = new Question(R.drawable.reading_plane, "Select the best answer:", "Can you board the flight to Lisbon?", "Yes", "Unknown", "Maybe", "No", 4, Topic.r1_ID, Activity.ACT_NUM_2);
+        Question q219 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "The plane is not going to leave", "cancelled", "boarding", "delayed", "departed", 1, Topic.r1_ID, Activity.ACT_NUM_1);
+        Question q220 = new Question(R.drawable.reading_plane, "Select the best answer:", "Can you get on the flight to Manchester?", "Yes", "No", "Maybe", "Only if you're quick", 1, Topic.r1_ID, Activity.ACT_NUM_2);
+        Question q221 = new Question(R.drawable.reading_plane, "Select the best answer:", "Can you get on flight KL1008?", "Only if you're quick", "No", "Unknown", "Yes", 1, Topic.r1_ID, Activity.ACT_NUM_2);
+        Question q222 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "You can get on the plane now", "cancelled", "boarding", "delayed", "departed", 2, Topic.r1_ID, Activity.ACT_NUM_1);
+        Question q223 = new Question(R.drawable.reading_plane, "Select the best answer:", "Where will flight LH9354 land?", "Copenhagen", "Chicago", "Nice", "Manchester", 2, Topic.r1_ID, Activity.ACT_NUM_2);
+        Question q224 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "The plane is late", "cancelled", "boarding", "delayed", "departed", 3, Topic.r1_ID, Activity.ACT_NUM_1);
+        Question q225 = new Question(R.drawable.reading_plane, "Select the best answer:", "What time will flight BA346 depart?", "0.423611111111111", "Cancelled", "Unknown", "0.430555555555556", 3, Topic.r1_ID, Activity.ACT_NUM_2);
 
         addQuestion(q1);
         addQuestion(q2);
@@ -1409,7 +1413,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     db.execSQL(STRING_SQL_UPDATE_TIMESTAMP);
         return true;
     }
-    /**method to update the activities_completed column in the Topics Table*/
+    /**method to update the activities_completed column in the Topics Table
+     * by counting the number of completed activities from activity table*/
     public void activityCompletedTopics(int topicId) {
         db = getWritableDatabase();
         int activitiesCompleted = 0;
