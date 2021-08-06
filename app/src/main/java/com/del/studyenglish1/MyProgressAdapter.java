@@ -55,19 +55,38 @@ public class MyProgressAdapter extends ArrayAdapter<Topic> {
 
         String levelType = topic.getDifficulty() + ": " + topic.getType();
         int progress = topic.getActivitiesCompleted() / topic.getActivitiesCount();
+        int activityCount = topic.getActivitiesCount();
+        int activitiesCompleted = topic.getActivitiesCompleted();
+
+        if (activityCount == 2) {
+            if (activitiesCompleted == 1) {
+                imageProgress.setImageDrawable(progress1_2);
+            } else if (activitiesCompleted == 2) {
+                    imageProgress.setImageDrawable(progressDone);
+            }
+        } else if (activityCount == 4) {
+                if (activitiesCompleted == 1) {
+                    imageProgress.setImageDrawable(progress1_4);
+                } else if (activitiesCompleted == 2) {
+                    imageProgress.setImageDrawable(progress2_4);
+                } else if (activitiesCompleted == 3) {
+                    imageProgress.setImageDrawable(progress3_4);
+                } else if (activitiesCompleted == 4) {
+                    imageProgress.setImageDrawable(progressDone);
+            }
+        }
+        /*
         if (progress == 1/4) {
             imageProgress.setImageDrawable(progress1_4);
-        } else if (progress == 2/4) {
-            if (topic.getActivitiesCount() == 4) {
-                imageProgress.setImageDrawable(progress2_4);
-            } else {
-                imageProgress.setImageDrawable(progress1_2);
-            }
+        } else if (progress == 2/4 && activityCount == 4) {
+            imageProgress.setImageDrawable(progress2_4);
+        } else if (progress == 2/4 && activityCount == 2)  {
+            imageProgress.setImageDrawable(progress1_2);
         } else if (progress == 3/4) {
             imageProgress.setImageDrawable(progress3_4);
         } else if (progress == 1) {
             imageProgress.setImageDrawable(progressDone);
-        }
+        }*/
         topicLevelType.setText(levelType);
         topicName.setText(topic.getName());
 
