@@ -13,6 +13,10 @@
         android:dividerPadding="8dp"
         android:padding="8dp">
 
+        <Space
+            android:layout_width="12dp"
+            android:layout_height="3dp" />
+
         <TextView
             android:id="@+id/text_view_level_type"
             android:layout_width="120dp"

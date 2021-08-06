@@ -47,7 +47,13 @@ public class Page4 extends Fragment {
         dbHelper = QuizDbHelper.getInstance(getContext());
         textViewCurrentGoals = view.findViewById(R.id.text_view_current_goals);
         textViewCurrentTimeFrame = view.findViewById(R.id.text_view_daily_goals);
+        timeFrameGoals = dbHelper.getTimeFrameGoals();
+        activitiesGoal = dbHelper.getActivityGoals();
+        activitiesCompletedDaily = dbHelper.getAllActivityCompletedDaily();
+        activitiesCompletedWeekly = dbHelper.getAllActivityCompletedWeekly();
 
+        updateGoals();
+        updateActivitiesCompleted();
           return view;
     }
 
@@ -60,11 +66,6 @@ public class Page4 extends Fragment {
         cardGoals = view.findViewById(R.id.card_view_goals);
         cardDictionary = view.findViewById(R.id.card_view_dictionary);
         cardStudy = view.findViewById(R.id.card_view_study);
-
-        timeFrameGoals = dbHelper.getTimeFrameGoals();
-        activitiesGoal = dbHelper.getActivityGoals();
-        activitiesCompletedDaily = dbHelper.getAllActivityCompletedDaily();
-        activitiesCompletedWeekly = dbHelper.getAllActivityCompletedWeekly();
 
         updateGoals();
         updateActivitiesCompleted();
@@ -120,6 +121,28 @@ public class Page4 extends Fragment {
         textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
         textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
 **/
+        activitiesCompletedDaily = dbHelper.getAllActivityCompletedDaily();
+        activitiesCompletedWeekly = dbHelper.getAllActivityCompletedWeekly();
+
+            if (timeFrameGoals.equals("DAILY")) {
+                if (activitiesCompletedDaily >= activitiesGoal) {
+                    //textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
+                    textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
+
+                } else {
+                    textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
+                }
+            } else {
+                if (activitiesCompletedWeekly >= activitiesGoal) {
+                    textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
+                } else {
+                    textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
+                }        activitiesGoal = dbHelper.getActivityGoals();
+                textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
+            }
+
+
+/*
         if (timeFrameGoals.equals("DAILY")) {
             textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
         } else {
@@ -127,7 +150,7 @@ public class Page4 extends Fragment {
         }
 
         textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
-
+*/
     }
 
     public void updateGoals() {

@@ -54,6 +54,8 @@
         android:layout_height="337dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         android:scrollbars="vertical"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,8 +66,8 @@
         android:id="@+id/button_activities"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/activities_caps"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
@@ -73,7 +75,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_explanation"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_explanation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

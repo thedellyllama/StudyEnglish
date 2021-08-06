@@ -37,6 +37,7 @@ public class Page_5_3_Grammar extends Fragment {
     private Page5_1 page5_1;
     private Page5_2 page5_2;
     private Page5_4_Grammar page5_4_grammar;
+    private Page5_4_Reading page5_4_reading;
 
     public Page_5_3_Grammar() {
         // Required empty public constructor
@@ -87,7 +88,11 @@ public class Page_5_3_Grammar extends Fragment {
         activities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivities(topic, type, level_name);
+                if (type.equals("READING")) {
+                    openReadingActivities(topic, type, level_name);
+                } else {
+                    openActivities(topic, type, level_name);
+                }
             }
         });
 
@@ -109,6 +114,13 @@ public class Page_5_3_Grammar extends Fragment {
         page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
+        fragmentTransaction.commit();
+    }
+
+    public void openReadingActivities(String topic, String type, String level_name) {
+        page5_4_reading = page5_4_reading.newInstance(topic, type, level_name);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_reading);
         fragmentTransaction.commit();
     }
 

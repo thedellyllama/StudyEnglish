@@ -1,17 +1,10 @@
 package com.del.studyenglish1;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +15,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MultipleChoiceQuiz extends Fragment {
+public class ReadingQuiz extends Fragment {
 
     private static final String KEY_QUESTION_COUNT = "keyQuestionCount";
     private static final String KEY_ANSWERED = "keyAnswered";
@@ -69,16 +67,17 @@ public class MultipleChoiceQuiz extends Fragment {
     private int answeredAttempts;
     private long backPressedTime;
 
-    Page5_4_Grammar page5_4_grammar;
+
+    Page5_4_Reading page5_4_reading;
     InformationDialog informationDialog;
     private int buttonGreen;
     private int buttonBlue;
 
     private SQLiteDatabase newDb;
 
-    public static MultipleChoiceQuiz newInstance(String topic, String type, String level_name, int activity_num) {
+    public static ReadingQuiz newInstance(String topic, String type, String level_name, int activity_num) {
     //public static MultipleChoiceQuiz newInstance(int topicID, String topic, String type, String level_name, int activity_num) {
-        MultipleChoiceQuiz fragment = new MultipleChoiceQuiz();
+        ReadingQuiz fragment = new ReadingQuiz();
         Bundle args = new Bundle();
         args.putString(ARG_TOPIC, topic);
         args.putString(ARG_TYPE, type);
@@ -92,7 +91,7 @@ public class MultipleChoiceQuiz extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_multiple_choice_quiz, container, false);
+        View v = inflater.inflate(R.layout.fragment_reading_quiz, container, false);
 
         textViewQuestionCount = v.findViewById(R.id.text_view_question_count);
         textViewTopic = v.findViewById(R.id.text_view_topic_name);
@@ -117,21 +116,10 @@ public class MultipleChoiceQuiz extends Fragment {
             type = getArguments().getString(ARG_TYPE);
             level_name = getArguments().getString(ARG_LEVEL_NAME);
             activity_num = getArguments().getInt(ARG_ACTIVITY_NUM);
-            //level = getArguments().getString(ARG_LEVEL);
-            //topicID = getArguments().getInt(ARG_TOPIC_ID);
         }
 
         textViewTopic.setText("Topic: " + topic);
         textViewLevel.setText("Level: " + level_name);
-/*
-        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
-        //int topicID = dbHelper.getTopicId(topic, type, level_name);
-        questionList = dbHelper.getQuestions(topicID);
-        questionCountTotal = questionList.size();
-        Collections.shuffle(questionList);
-        showNextQuestion();
-*/
-
         return v;
     }
 
@@ -183,9 +171,9 @@ public class MultipleChoiceQuiz extends Fragment {
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
+                page5_4_reading = page5_4_reading.newInstance(topic, type, level_name);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
+                fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_reading);
                 fragmentTransaction.commit();
             }
         });
@@ -309,23 +297,20 @@ public class MultipleChoiceQuiz extends Fragment {
         //dbHelper.activityCompleted(topicID, activity_num);
         //dbHelper.updateActivitiesCompleted(topicID);
 
-        page5_4_grammar = page5_4_grammar.newInstance(topic, type, level_name);
+        page5_4_reading = page5_4_reading.newInstance(topic, type, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
+        fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_reading);
         fragmentTransaction.commit();
-        //page5_4_grammar.buttonTextUpdated(activity_num);
-
-
     }
 
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
             finishQuiz(topic, type, level_name);
 
-            /**page5_4_grammar.newInstance(topic, type, level_name);
+            page5_4_reading.newInstance(topic, type, level_name);
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_grammar);
-            fragmentTransaction.commit();**/
+            fragmentTransaction.replace(R.id.nav_host_fragment, page5_4_reading);
+            fragmentTransaction.commit();
         } else {
             Toast.makeText(getContext(), "Press back again to finish", Toast.LENGTH_SHORT).show();
         }
@@ -354,10 +339,5 @@ public class MultipleChoiceQuiz extends Fragment {
         informationDialog = informationDialog.newInstance(questionCountTotal);
         informationDialog.show(getActivity().getSupportFragmentManager(), "example dialog");
     }
-
-/*
-    public MultipleChoiceQuiz() {
-        // Required empty public constructor
-    }*/
 
 }

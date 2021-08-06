@@ -59,11 +59,20 @@ public class Page7 extends Fragment {
     public void updateActivitiesCompleted() {
 
         if (timeFrameGoals.equals("DAILY")) {
-            textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
-        } else {
-            textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
-        }
+            if (activitiesCompletedDaily >= activitiesGoal) {
+                //textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
+                textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
 
+            } else {
+                textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
+            }
+        } else {
+            if (activitiesCompletedWeekly >= activitiesGoal) {
+                textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
+            } else {
+                textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
+            }
+        }
         textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
 
     }

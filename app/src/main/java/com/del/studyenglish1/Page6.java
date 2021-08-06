@@ -92,13 +92,14 @@ public class Page6 extends Fragment {
                 updateButtonColours(buttonYellowOutlineBg, appBlue);
                 updateActivitiesCompleted();
                 //updateGoalImage();
+                /*
                 if (timeFrameGoals.equals("DAILY")) {
                     textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
                 } else {
                     textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
                 }
 
-                textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
+                textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");*/
             }
         });
 
@@ -159,12 +160,22 @@ public class Page6 extends Fragment {
         //textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
        // textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
        // textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
-
         if (timeFrameGoals.equals("DAILY")) {
-            textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
+            if (activitiesCompletedDaily >= activitiesGoal) {
+                //textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
+                textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
+
+            } else {
+                textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
+            }
         } else {
-            textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
+            if (activitiesCompletedWeekly >= activitiesGoal) {
+                textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
+            } else {
+                textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
+            }
         }
+
 
         textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
 
