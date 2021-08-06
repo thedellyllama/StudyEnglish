@@ -43,7 +43,7 @@
     <string name="reading">READING</string>
     <string name="further_explanation">FURTHER EXPLANATION</string>
     <string name="activities_caps">ACTIVITIES</string>
-    <string name="revision">REVISION ACTIVITY</string>
+    <string name="revision_act">REVISION ACTIVITY</string>
     <string name="num_1">1</string>
     <string name="num_2">2</string>
     <string name="num_3">3</string>
@@ -52,6 +52,7 @@
     <string name="daily">DAILY</string>
     <string name="weekly">WEEKLY</string>
     <string name="update">UPDATE</string>
+    <string name="revision">REVISION</string>
 
 
 
