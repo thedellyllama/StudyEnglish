@@ -1180,7 +1180,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
-                question.setId(c.getInt(c.getColumnIndex((QuestionsTable._ID))));
+                //question.setId(c.getInt(c.getColumnIndex((QuestionsTable._ID))));
                 question.setInstruction(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_INSTRUCTION)));
                 question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
                 question.setImageRef(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_REF)));
@@ -1254,7 +1254,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
-                question.setId(c.getInt(c.getColumnIndex((QuestionsTable._ID))));
+                //question.setId(c.getInt(c.getColumnIndex((QuestionsTable._ID))));
                 question.setInstruction(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_INSTRUCTION)));
                 question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
                 question.setImageRef(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_REF)));
@@ -1291,7 +1291,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Vocabulary vocabulary = new Vocabulary();
-                vocabulary.setId(c.getInt(c.getColumnIndex((VocabTable._ID))));
+                //vocabulary.setId(c.getInt(c.getColumnIndex((VocabTable._ID))));
                 vocabulary.setTopicId(c.getInt(c.getColumnIndex(VocabTable.COLUMN_TOPIC_ID)));
                 vocabulary.setName(c.getString(c.getColumnIndex(VocabTable.COLUMN_NAME)));
                 vocabulary.setDefinition(c.getString(c.getColumnIndex(VocabTable.COLUMN_DEFINITION)));

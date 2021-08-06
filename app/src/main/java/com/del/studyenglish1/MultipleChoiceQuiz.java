@@ -198,6 +198,8 @@ public class MultipleChoiceQuiz extends Fragment {
         buttonCheck.setBackgroundColor(buttonBlue);
         rbGroup.clearCheck();
         imageQuestion.setVisibility(View.INVISIBLE);
+        textViewInstruction.setText("");
+        textViewQuestion.setText("");
 
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
