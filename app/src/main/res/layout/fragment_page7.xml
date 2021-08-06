@@ -37,8 +37,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/banner_outline"
         android:layout_width="320dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
         app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -65,7 +65,8 @@
                 android:id="@+id/text_view_current_goals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/blue_app"
                 android:textSize="18sp"
@@ -79,7 +80,7 @@
                 android:id="@+id/text_view_daily_goals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/daily"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -94,8 +95,11 @@
         android:id="@+id/list_view_progress"
         android:layout_width="match_parent"
         android:layout_height="367dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
