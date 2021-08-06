@@ -13,7 +13,7 @@ public class Vocabulary {
         this.name = name;
         this.definition = definition;
     }
-
+/*
     public int getId() {
         return id;
     }
@@ -21,7 +21,7 @@ public class Vocabulary {
     public void setId(int id) {
         this.id = id;
     }
-
+*/
     public int getTopicId() {
         return topicId;
     }

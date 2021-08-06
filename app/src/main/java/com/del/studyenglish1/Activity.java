@@ -11,7 +11,7 @@ public class Activity {
     public static final int ACT_NUM_4 = 4;
 
 
-    private int id;
+    //private int id;
     private int topicId;
     private int activityNum;
     private String completed;
@@ -24,14 +24,14 @@ public class Activity {
         this.activityNum = activityNum;
         this.completed = completed;
     }
-
+/*
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
+    }*/
 
     public int getTopicId() {
         return topicId;

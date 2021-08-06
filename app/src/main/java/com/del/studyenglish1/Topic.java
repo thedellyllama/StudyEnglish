@@ -123,13 +123,26 @@ public class Topic {
     public Topic() {
     }
 
+    /**constructor for Topic object with no information**/
     public Topic(int id, String name, String difficulty, String type, int activitiesCount) {
         this.id = id;
         this.name = name;
         this.difficulty = difficulty;
         this.type = type;
         this.activitiesCount = activitiesCount;
+        this.activitiesCompleted = 0;
+        this.information = "No information available";
+    }
+
+    /**constructor for topics with no activities added and no information*/
+    public Topic(int id, String name, String difficulty, String type) {
+        this.id = id;
+        this.name = name;
+        this.difficulty = difficulty;
+        this.type = type;
+        activitiesCount = 0;
         activitiesCompleted = 0;
+        this.information = "No information available";
     }
 
     public Topic(int id, String name, String difficulty, String type, int activitiesCount, String information) {
@@ -138,7 +151,7 @@ public class Topic {
         this.difficulty = difficulty;
         this.type = type;
         this.activitiesCount = activitiesCount;
-        activitiesCompleted = 0;
+        this.activitiesCompleted = 0;
         this.information = information;
     }
 

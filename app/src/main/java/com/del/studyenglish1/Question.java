@@ -11,7 +11,7 @@ public class Question implements Parcelable {
         public static final String DIFFICULTY_B2 = "B2";
         public static final String DIFFICULTY_C1 = "C1";
 
-        private int id;
+        //private int id;
         private int imageRef;
         private String instruction;
         private String question;
@@ -77,9 +77,7 @@ public class Question implements Parcelable {
 
     /**constructor for Reading Quiz Questions**/
     public Question(int imageRef, String instruction, String question, String option1, String option2, String option3,
-                    String option4, int answerNr,
-                    //String difficulty,
-                    int topicId, int activityNum) {
+                    String option4, int answerNr, int topicId, int activityNum) {
         this.imageRef = imageRef;
         this.instruction = instruction;
         this.question = question;
@@ -95,7 +93,7 @@ public class Question implements Parcelable {
 
 
         protected Question(Parcel in) {
-            id = in.readInt();
+            //id = in.readInt();
             question = in.readString();
             option1 = in.readString();
             option2 = in.readString();
@@ -109,7 +107,7 @@ public class Question implements Parcelable {
 
     @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(id);
+            //dest.writeInt(id);
             dest.writeString(question);
             dest.writeString(option1);
             dest.writeString(option2);
@@ -137,7 +135,7 @@ public class Question implements Parcelable {
                 return new Question[size];
             }
         };
-
+/*
         public int getId() {
             return id;
         }
@@ -145,7 +143,7 @@ public class Question implements Parcelable {
     public void setId(int id) {
             this.id = id;
         }
-
+*/
         public String getQuestion() {
             return question;
         }
