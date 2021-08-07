@@ -21,14 +21,12 @@ import java.util.List;
 
 public class DictionaryPage extends Fragment {
 
-    //private Spinner spinnerLevel;
     private Spinner spinnerTopic;
     private Button buttonA1;
     private Button buttonA2;
     private Button buttonB1;
     private Button buttonB2;
     private Button buttonC1;
-    //private Button buttonAll;
     private Button buttonSearch;
     private Drawable blueBg;
     private Drawable blueAllBg;
@@ -46,14 +44,12 @@ public class DictionaryPage extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dictionary_page, container, false);
 
-        //spinnerLevel = view.findViewById(R.id.spinner_levels);
         spinnerTopic = view.findViewById(R.id.spinner_topics);
         buttonA1 = view.findViewById(R.id.button_a1);
         buttonA2 = view.findViewById(R.id.button_a2);
         buttonB1 = view.findViewById(R.id.button_b1);
         buttonB2 = view.findViewById(R.id.button_b2);
         buttonC1 = view.findViewById(R.id.button_c1);
-        //buttonAll = view.findViewById(R.id.button_all);
         buttonSearch = view.findViewById(R.id.button_search);
         listView = view.findViewById(R.id.list_view_vocab);
         textViewTopic = view.findViewById(R.id.text_view_topic_name);
@@ -70,14 +66,12 @@ public class DictionaryPage extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-
         buttonA1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectedLevel = "A1";
                 resetButtonColours();
-                buttonA1.setBackground(blueAllBg);
-                buttonA1.setTextColor(Color.WHITE);
+                changeSelectedColour(buttonA1);
                 loadTopics(selectedLevel);
             }
         });
@@ -88,8 +82,7 @@ public class DictionaryPage extends Fragment {
                 selectedLevel = String.valueOf(buttonA2.getText());
                 loadTopics(selectedLevel);
                 resetButtonColours();
-                buttonA2.setBackground(blueAllBg);
-                buttonA2.setTextColor(Color.WHITE);
+                changeSelectedColour(buttonA2);
             }
         });
 
@@ -99,8 +92,7 @@ public class DictionaryPage extends Fragment {
                 selectedLevel = String.valueOf(buttonB1.getText());
                 loadTopics(selectedLevel);
                 resetButtonColours();
-                buttonB1.setBackground(blueAllBg);
-                buttonB1.setTextColor(Color.WHITE);
+                changeSelectedColour(buttonB1);
             }
         });
 
@@ -110,8 +102,7 @@ public class DictionaryPage extends Fragment {
                 selectedLevel = String.valueOf(buttonB2.getText());
                 loadTopics(selectedLevel);
                 resetButtonColours();
-                buttonB2.setBackground(blueAllBg);
-                buttonB2.setTextColor(Color.WHITE);
+                changeSelectedColour(buttonB2);
             }
         });
 
@@ -121,57 +112,19 @@ public class DictionaryPage extends Fragment {
                 selectedLevel = String.valueOf(buttonC1.getText());
                 loadTopics(selectedLevel);
                 resetButtonColours();
-                buttonC1.setBackground(blueAllBg);
-                buttonC1.setTextColor(Color.WHITE);
+                changeSelectedColour(buttonC1);
             }
         });
-/*
-        buttonAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadAllTopics();
-                resetButtonColours();
-                buttonAll.setBackground(blueAllBg);
-                buttonAll.setTextColor(Color.WHITE);
-            }
-        });
-*/
+
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //get topic id from selected spinner item
-                Topic topic = (Topic) spinnerTopic.getSelectedItem();
-                selectedTopic = topic.getName();
-                topicId = topic.getId();
-                textViewTopic.setText(selectedTopic);
-                QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
-                ArrayList <Vocabulary> newVocabList = dbHelper.getVocab(topicId);
-                MyVocabAdapter myVocabAdapter = new MyVocabAdapter(getContext(), newVocabList);
-                listView.setAdapter(myVocabAdapter);
+                showDictionary();
             }
         });
-
-
-
-
-        //loadLevels();
-        //selectedLevel = spinnerLevel.getSelectedItem().toString();
     }
 
-    /*
-    public void loadLevels() {
-            QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
-            String[] levels = Question.getAllDifficultyLevels();
-
-        ArrayAdapter<String> adapterLevels = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, levels);
-
-        adapterLevels.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerLevel.setAdapter(adapterLevels);
-    }
-      */
-
-    private void loadAllTopics() {
+    public void loadAllTopics() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         List<Topic> topics = dbHelper.getAllVocabTopics();
 
@@ -180,10 +133,9 @@ public class DictionaryPage extends Fragment {
 
         adapterTopic.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTopic.setAdapter(adapterTopic);
-
     }
 
-    private void loadTopics(String selectedLevel) {
+    public void loadTopics(String selectedLevel) {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         List<Topic> topics = dbHelper.getTopics("VOCABULARY", selectedLevel);
 
@@ -193,17 +145,6 @@ public class DictionaryPage extends Fragment {
         adapterTopic.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTopic.setAdapter(adapterTopic);
     }
-/*
-    private void loadVocab(int topicId) {
-        //newVocabList = new ArrayList<Vocabulary>();
-
-
-        MyVocabAdapter myVocabAdapter = new MyVocabAdapter(getContext(), newVocabList);
-        listView.setAdapter(myVocabAdapter);
-
-        //return newVocabList;
-
-    }*/
 
     public void resetButtonColours() {
         buttonA1.setBackground(blueBg);
@@ -211,12 +152,27 @@ public class DictionaryPage extends Fragment {
         buttonB1.setBackground(blueBg);
         buttonB2.setBackground(blueBg);
         buttonC1.setBackground(blueBg);
-        //buttonAll.setBackground(blueBg);
         buttonA1.setTextColor(blueApp);
         buttonA2.setTextColor(blueApp);
         buttonB1.setTextColor(blueApp);
         buttonB2.setTextColor(blueApp);
         buttonC1.setTextColor(blueApp);
-        //buttonAll.setTextColor(blueApp);
+    }
+
+    public void changeSelectedColour(Button selectedButton) {
+        selectedButton.setBackground(blueAllBg);
+        selectedButton.setTextColor(Color.WHITE);
+    }
+
+    public void showDictionary() {
+        //get topic id from selected spinner item
+        Topic topic = (Topic) spinnerTopic.getSelectedItem();
+        selectedTopic = topic.getName();
+        topicId = topic.getId();
+        textViewTopic.setText(selectedTopic);
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        ArrayList<Vocabulary> newVocabList = dbHelper.getVocab(topicId);
+        MyVocabAdapter myVocabAdapter = new MyVocabAdapter(getContext(), newVocabList);
+        listView.setAdapter(myVocabAdapter);
     }
 }
