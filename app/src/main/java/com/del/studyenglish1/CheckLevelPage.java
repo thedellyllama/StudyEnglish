@@ -15,8 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class CheckLevelPage extends Fragment {
+
     private WebView webView;
     private ImageView imageViewClose;
+
     private SelectLevelPage selectLevelPage;
 
     @Nullable

@@ -21,6 +21,11 @@ import java.util.List;
 
 public class DictionaryPage extends Fragment {
 
+    private String selectedLevel;
+    private String selectedTopic;
+    private int topicId;
+    private List<Vocabulary> newVocabList;
+
     private Spinner spinnerTopic;
     private Button buttonA1;
     private Button buttonA2;
@@ -34,10 +39,6 @@ public class DictionaryPage extends Fragment {
     private TextView textViewTopic;
     private int blueApp;
 
-    private String selectedLevel;
-    private String selectedTopic;
-    private int topicId;
-    private List<Vocabulary> newVocabList;
 
     @Nullable
     @Override

@@ -40,6 +40,7 @@ public class ActivityHomePageReading extends Fragment {
     private SelectTopicPage selectTopicPage;
     private ReadingQuiz readingQuiz;
 
+
     public static ActivityHomePageReading newInstance(String topic, String type, String level, String level_name) {
         ActivityHomePageReading fragment = new ActivityHomePageReading();
         Bundle args = new Bundle();

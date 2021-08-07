@@ -17,6 +17,13 @@ import androidx.fragment.app.Fragment;
 
 public class GoalsPage extends Fragment {
 
+    private int activitiesCompletedDaily;
+    private int activitiesCompletedWeekly;
+    private int activitiesGoal;
+    private String timeFrameGoals;
+
+    private QuizDbHelper dbHelper;
+
     private TextView textViewCurrentGoals;
     private TextView textViewCurrentTimeFrame;
     private ImageView imageViewGoal;
@@ -34,14 +41,6 @@ public class GoalsPage extends Fragment {
     private Drawable buttonYellowOutlineBg;
     private int appBlue;
     private int appYellow;
-
-    private int activitiesCompletedDaily;
-    private int activitiesCompletedWeekly;
-    private int activitiesGoal;
-    private String timeFrameGoals;
-
-    private QuizDbHelper dbHelper;
-
 
     @Nullable
     @Override
