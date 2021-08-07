@@ -32,6 +32,7 @@ public class DictionaryPage extends Fragment {
     private Button buttonB1;
     private Button buttonB2;
     private Button buttonC1;
+    private Button buttonAll;
     private Button buttonSearch;
     private Drawable blueBg;
     private Drawable blueAllBg;
@@ -51,6 +52,7 @@ public class DictionaryPage extends Fragment {
         buttonB1 = view.findViewById(R.id.button_b1);
         buttonB2 = view.findViewById(R.id.button_b2);
         buttonC1 = view.findViewById(R.id.button_c1);
+        buttonAll = view.findViewById(R.id.button_all);
         buttonSearch = view.findViewById(R.id.button_search);
         listView = view.findViewById(R.id.list_view_vocab);
         textViewTopic = view.findViewById(R.id.text_view_topic_name);
@@ -114,6 +116,15 @@ public class DictionaryPage extends Fragment {
                 loadTopics(selectedLevel);
                 resetButtonColours();
                 changeSelectedColour(buttonC1);
+            }
+        });
+
+        buttonAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadAllTopics();
+                resetButtonColours();
+                changeSelectedColour(buttonAll);
             }
         });
 
