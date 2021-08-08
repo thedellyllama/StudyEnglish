@@ -132,8 +132,8 @@ public class MultipleChoiceQuiz extends Fragment {
             Collections.shuffle(questionList);
             showNextQuestion();
         showActivityDetails(questionCountTotal);
-        } else {
-            savedInstanceCreate(savedInstanceState);
+       // } else {
+       //     savedInstanceCreate(savedInstanceState);
         }
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -299,7 +299,7 @@ public class MultipleChoiceQuiz extends Fragment {
         fragmentTransaction.replace(R.id.nav_host_fragment, activityHomePage);
         fragmentTransaction.commit();
     }
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -328,5 +328,5 @@ public class MultipleChoiceQuiz extends Fragment {
             showSolution(answeredCorrectly);
         }
     }
-
+*/
 }
