@@ -27,27 +27,21 @@ public class SelectTopicPage extends Fragment {
     private String type;
     private String level_name;
     private String level;
+    private SQLiteDatabase newDb;
 
     private SelectLevelPage page5;
     private SelectTypePage page5_1;
-    // TopicHomePage topicHomePage;
     private ActivityHomePage activityHomePage;
+
     private TextView textViewType;
     private TextView changeLevel;
     private TextView changeType;
-    private SQLiteDatabase newDb;
-    //private ListView recyclerView;
     private ListView listView;
-    //private MyTopicAdapter myTopicAdapter;
-    //private RecyclerView.LayoutManager mLayoutManager;
-
-    //private ArrayList<Topic> mTopics = new ArrayList<>();
 
 
 
-    public SelectTopicPage() {
-        // Required empty public constructor
-    }
+
+    public SelectTopicPage() {}
 
     public static SelectTopicPage newInstance(String type, String level, String level_name) {
         SelectTopicPage fragment = new SelectTopicPage();
@@ -65,9 +59,6 @@ public class SelectTopicPage extends Fragment {
         View v = inflater.inflate(R.layout.fragment_select_topic, container, false);
         textViewType = v.findViewById(R.id.text_view_type);
         listView = (ListView) v.findViewById(R.id.recycler_topic);
-
-        QuizDbHelper dbHelper = new QuizDbHelper(getActivity());
-        newDb = dbHelper.getReadableDatabase();
 
         loadTopics();
 
@@ -87,7 +78,6 @@ public class SelectTopicPage extends Fragment {
         changeLevel = (TextView) view.findViewById(R.id.text_view_change_level);
         changeType = (TextView) view.findViewById(R.id.text_view_change_type);
         listView = (ListView) view.findViewById(R.id.recycler_topic);
-
 
         changeLevel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,22 +102,19 @@ public class SelectTopicPage extends Fragment {
     private void loadTopics() {
         type = getArguments().getString(ARG_TYPE);
         level_name = getArguments().getString(ARG_LEVEL_NAME);
-        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        QuizDbHelper dbHelper = new QuizDbHelper(getActivity());
+        newDb = dbHelper.getReadableDatabase();
         ArrayList<Topic> topicList = dbHelper.getTopics(type, level_name);
-
         MyTopicAdapter myTopicAdapter = new MyTopicAdapter(getContext(), topicList);
         listView.setAdapter(myTopicAdapter);
 
-        Button topicButton = listView.findViewById(R.id.text_view_topic_item);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
                     String topicSelected = listView.getItemAtPosition(position).toString();
                     loadTopicHomePage(topicSelected, type, level_name);
             }
         });
-
     }
 
     public void loadTopicHomePage(String topicSelected, String type, String level_name) {

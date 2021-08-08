@@ -134,7 +134,6 @@ public class ReadingQuiz extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!answered) {
-                    //if (answeredAttempts < 2) {
                         if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()) {
                             answeredAttempts++;
                             checkAnswer();
@@ -181,20 +180,17 @@ public class ReadingQuiz extends Fragment {
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
-            //check if there is an image
             if (currentQuestion.getImageRef() != 0) {
                 Drawable imageQ = getResources().getDrawable(currentQuestion.getImageRef());
                 imageQuestion.setImageDrawable(imageQ);
                 imageQuestion.setVisibility(View.VISIBLE);
             }
-            //if there is a question
             if (currentQuestion.getQuestion() != null) {
                 textViewQuestion.setText(currentQuestion.getQuestion());
                 textViewInstruction.setText(currentQuestion.getInstruction());
             } else {
                 textViewInstruction.setText(currentQuestion.getInstruction());
             }
-
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -218,19 +214,13 @@ public class ReadingQuiz extends Fragment {
 
         if (answerNr == currentQuestion.getAnswerNr()) {
             buttonCheck.setBackgroundColor(buttonGreen);
-            //well done message
             showSolution(true);
-            //set answered correctly in db to TRUE
         } else if (answeredAttempts > 1) {
             questionList.add(currentQuestion);
             questionCountTotal++;
-            //no well done message
             showSolution(false);
-            //set answered correctly in db to FALSE
-            //add question to end of array
 
         } else {
-            //answeredAttempts++;
             rbGroup.clearCheck();
             buttonCheck.setBackgroundColor(Color.RED);
             buttonCheck.setText("Incorrect.\nTry Again!");
@@ -273,7 +263,6 @@ public class ReadingQuiz extends Fragment {
     }
 
     public void finishQuiz(String topic, String type, String level_name) {
-
         /**update activities_completed column in db**/
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         topicID = dbHelper.getTopicId(topic, type, level_name);

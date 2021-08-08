@@ -15,11 +15,12 @@ import android.widget.TextView;
 //import com.del.studyenglish1.SelectTypePage.SelectTypeListener;
 
 public class SelectLevelPage extends Fragment {
+    private String selected_level;
+    private String level_name;
 
     private SelectTypePage page5_1;
     private CheckLevelPage page5_checkLevel;
-    private String selected_level;
-    private String level_name;
+
     private Button button_a1;
     private Button button_a2;
     private Button button_b1;
