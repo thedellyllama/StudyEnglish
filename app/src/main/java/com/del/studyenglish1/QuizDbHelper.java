@@ -65,8 +65,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_ACT_NUM + " INTEGER, " +
                 "FOREIGN KEY(" + QuestionsTable.COLUMN_TOPIC_ID + ") REFERENCES " +
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE " +
-              // " FOREIGN KEY(" + QuestionsTable.COLUMN_ACT_NUM + ") REFERENCES " +
-               //ActivityTable.TABLE_NAME + "(" + TopicsTable._ID + ")" +
                 ")";
 
         final String SQL_CREATE_ACTIVITY_TABLE = "CREATE TABLE " +
@@ -79,15 +77,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(" + ActivityTable.COLUMN_TOPIC_ID + ") REFERENCES " +
                 TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
                 ")";
-/*
-        final String SQL_CREATE_GRAMMAR_TABLE = "CREATE TABLE " +
-                GrammarTable.TABLE_NAME + " ( " +
-                GrammarTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                GrammarTable.COLUMN_TOPIC_ID +  " INTEGER, " +
-                GrammarTable.COLUMN_EXPLANATION + " STRING, " +
-                "FOREIGN KEY(" + ActivityTable.COLUMN_TOPIC_ID + ") REFERENCES " +
-                TopicsTable.TABLE_NAME + "(" + TopicsTable._ID + ") ON DELETE CASCADE" +
-                ")";*/
 
         final String SQL_CREATE_VOCAB_TABLE = "CREATE TABLE " +
                 VocabTable.TABLE_NAME + " ( " +
@@ -110,14 +99,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TOPICS_TABLE);
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
         db.execSQL(SQL_CREATE_ACTIVITY_TABLE);
-        //db.execSQL(SQL_CREATE_GRAMMAR_TABLE);
         db.execSQL(SQL_CREATE_VOCAB_TABLE);
         db.execSQL(SQL_CREATE_GOALS_TABLE);
 
         fillTopicsTable();
         fillQuestionsTable();
         fillActivityTable();
-        //fillGrammarTable();
         fillVocabTable();
         fillGoalsTable();
     }
@@ -127,7 +114,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TopicsTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ActivityTable.TABLE_NAME);
-        ////db.execSQL("DROP TABLE IF EXISTS " + GrammarTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + VocabTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + GoalsTable.TABLE_NAME);
         onCreate(db);
@@ -140,84 +126,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillTopicsTable() {
-/*        Topic g1 = new Topic( "ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Adverbs of Frequency are adverbs of time that answer the question \'\'How frequently?\'\' or \'\'How often?\'\'. They tell us how often something happens. Here are some examples:\n-daily, weekly, yearly\n-often, sometimes, rarely\nThe words in a) describe definite frequency.\nThe words in b) describe indefinite frequency\nWe separate them into two groups because they normally go in different positions in the sentence.\n\nAdverbs of definite frequency, typically go in END position.\n-Most companies pay taxes yearly.\n-The manager checks the toilets every hour.\nThe directors meet weekly to review progress.\nSometimes, usually for reasons of emphasis or style, some adverbs of definite frequency may go at the FRONT, for example:\n-Every day, more than five thousand people die on our roads.\n\nHere are some adverbs of indefinite frequency:\n100%\t always, constantly\n\tusually, normally\n\tfrequently, regularly\n\toften\n50%\tsometimes\n\toccasionally\n\trarely, infrequently\n\tseldom\n\thardly ever\n0%\tnever\n\nAdverbs of indefinite frequency mainly go in MID position in the sentence. They go before the main verb (except the main verb TO BE):\n-We usually go shopping on Saturday.\n-I have often done that.\n-She is always late.");
-        Topic g2 = new Topic( "PRESENT SIMPLE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "The Present Simple tense uses the base form of the verb (except for the verb be). The only change from the base is the addition of s for third person singular.\nHow do we make the Present Simple tense?\nThere are two basic structures for the Present Simple:\n1. Positive sentences:\nsubject	+\tmain verb in present simple \n2.Negative and question sentences:\nsubject\t+\tauxiliary do (conjugated in Present Simple)\t+\tmain verb (base)\n\nExamples with the main verb like:\n\n-I, you, we, they\tlike\tcoffee.\n-He, she, it\tlikes\tcoffee.\n-I, you, we, they\tdo\tnot\tlike	coffee.\n-He, she, it\tdoes\tnot\tlike coffee.\n-Do\tI, you, we, they\tlike coffee?\n-Does\the, she, it\tlike\tcoffee?");
-        Topic g3 = new Topic( "QUESTION WORDS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "These are the most common question words in English: \nWHO is used when asking about people. (I want to know the person)\n\nWHERE is used when asking about a place or location. (= I want to know the place)\n\n WHEN is used to ask about time or an occasion. (= I want to know the time)\n\nWHY is used to ask for an explanation or a reason. (= I want to know the reason)\nNormally the response starts with \'Because...\'\nWHAT is used to ask about specific information. (= I want to know the thing)\n\nWHICH is used to ask about a choice. (= I want to know the chosen thing)\n\nHOW is used to describe the way or manner that something is done. (= I want to know the way)\nThere are more expressions with HOW:\nHow much – to ask about quantity or price (uncountable nouns)\nHow many – to ask about quantity (countable nouns)\nHow often – to ask about frequency");
-        Topic g4 = new Topic( "QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g5 = new Topic( "ADJECTIVES", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g6 = new Topic( "PAST SIMPLE", Topic.DIFFICULTY_A2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g7 = new Topic( "QUANTIFIERS", Topic.DIFFICULTY_A2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g8 = new Topic( "COMPARATIVES AND SUPERLATIVES", Topic.DIFFICULTY_A2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g9 = new Topic( "SOMETHING, ANYTHING, NOTHING", Topic.DIFFICULTY_A2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g10 = new Topic( "PRESENT PERFECT", Topic.DIFFICULTY_A2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g11 = new Topic( "REFLEXIVE PRONOUNS", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g12 = new Topic( "FIRST CONDITIONAL", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g13 = new Topic( "SECOND CONDITIONAL", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g14 = new Topic( "GERUND OR INFINITIVE", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g15 = new Topic( "QUESTION TAGS", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g16 = new Topic( "FUTURE FORMS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g17 = new Topic( "MODAL VERBS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g18 = new Topic( "THERE AND IT", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g19 = new Topic( "GENERIC PRONOUNDS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g20 = new Topic( "COMPOUND NOUNS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g21 = new Topic( "PASSIVES ", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g22 = new Topic( "REPORTING VERBS", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g23 = new Topic( "VERBS OF SENSES", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        //Topic g24 = new Topic( "", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        //Topic g25 = new Topic( "", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-
-        Topic v1 = new Topic( "CLOTHES 1", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v2 = new Topic( "ACCESSORIES", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v3 = new Topic( "HOLIDAYS", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v4 = new Topic( "CLOTHES 2", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v5 = new Topic( "BEDROOMS", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v6 = new Topic( "DAILY ROUTINE", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v7 = new Topic( "EVERYDAY OBJECTS", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v8 = new Topic( "HOMES", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v9 = new Topic( "HOTELS", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v10 = new Topic( "JOBS 1", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v11 = new Topic( "BATHROOMS", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v12 = new Topic( "CARS", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v13 = new Topic( "BICYCLES", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v14 = new Topic( "BODY PARTS", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v15 = new Topic( "MEAT AND FISH", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v16 = new Topic( "HEALTH", Topic.DIFFICULTY_B2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v17 = new Topic( "STREETS AND ROADS", Topic.DIFFICULTY_B2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v18 = new Topic( "TOOLS", Topic.DIFFICULTY_B2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v19 = new Topic( "WILD ANIMALS", Topic.DIFFICULTY_B2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v20 = new Topic( "VEGETABLES 1", Topic.DIFFICULTY_B2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v21 = new Topic( "DIET", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v22 = new Topic( "RELATIONSHIPS", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v23 = new Topic( "SYNONYMS AND ANTONYMS", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v24 = new Topic( "FOOD AND DRINK", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v25 = new Topic( "LEISURE ACTIVITIES", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-
-        Topic r1 = new Topic( "TRAVEL", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r2 = new Topic( "RESTAURANT", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r3 = new Topic( "JOBS", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r4 = new Topic( "STUDENT CARD APPLICATION", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r5 = new Topic( "TEXTING A FRIEND", Topic.DIFFICULTY_A1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r6 = new Topic( "JOB APPLICATION", Topic.DIFFICULTY_A2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r7 = new Topic( "CONTACTING FRIENDS", Topic.DIFFICULTY_A2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r8 = new Topic( "CHOOSING A COURSE", Topic.DIFFICULTY_A2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r9 = new Topic( "END OF TERM REPORT", Topic.DIFFICULTY_A2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r10 = new Topic( "PROFESSIONAL PROFILES", Topic.DIFFICULTY_A2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r11 = new Topic( "TRAVEL GUIDE", Topic.DIFFICULTY_B1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r12 = new Topic( "CONFERENCE PROGRAMME", Topic.DIFFICULTY_B1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r13 = new Topic( "GYM LEAFLET", Topic.DIFFICULTY_B1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r14 = new Topic( "PLANNING AN EVENT", Topic.DIFFICULTY_B1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r15 = new Topic( "BOOK REVIEW", Topic.DIFFICULTY_B1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r16 = new Topic( "SHORT STORY EXTRACT", Topic.DIFFICULTY_B2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r17 = new Topic( "EMAIL FROM A FRIEND", Topic.DIFFICULTY_B2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r18 = new Topic( "FILM REVIEW", Topic.DIFFICULTY_B2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r19 = new Topic( "ARTICLE: POLLUTION", Topic.DIFFICULTY_B2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r20 = new Topic( "ARTICLE: SOCIAL MEDIA", Topic.DIFFICULTY_B2, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r21 = new Topic( "ARTICLE: SPACE EXPLORATION", Topic.DIFFICULTY_C1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r22 = new Topic( "ARTICLE: RESTAURANT CRITICS AT WAR", Topic.DIFFICULTY_C1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r23 = new Topic( "BOOK SUMMARIES", Topic.DIFFICULTY_C1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r24 = new Topic( "ARTICLE: CULTURE IN THE WORKPLACE", Topic.DIFFICULTY_C1, Topic.TYPE_READING, Topic.NUM_READING);
-        Topic r25 = new Topic( "BIOGRAPHY", Topic.DIFFICULTY_C1, Topic.TYPE_READING, Topic.NUM_READING);
-*/
         Topic g1 = new Topic(Topic.g1_ID, "ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Adverbs of Frequency are adverbs of time that answer the question \'\'How frequently?\'\' or \'\'How often?\'\'. They tell us how often something happens. Here are some examples:\n-daily, weekly, yearly\n-often, sometimes, rarely\nThe words in a) describe definite frequency.\nThe words in b) describe indefinite frequency\nWe separate them into two groups because they normally go in different positions in the sentence.\n\nAdverbs of definite frequency, typically go in END position.\n-Most companies pay taxes yearly.\n-The manager checks the toilets every hour.\nThe directors meet weekly to review progress.\nSometimes, usually for reasons of emphasis or style, some adverbs of definite frequency may go at the FRONT, for example:\n-Every day, more than five thousand people die on our roads.\n\nHere are some adverbs of indefinite frequency:\n100%\t always, constantly\n\tusually, normally\n\tfrequently, regularly\n\toften\n50%\tsometimes\n\toccasionally\n\trarely, infrequently\n\tseldom\n\thardly ever\n0%\tnever\n\nAdverbs of indefinite frequency mainly go in MID position in the sentence. They go before the main verb (except the main verb TO BE):\n-We usually go shopping on Saturday.\n-I have often done that.\n-She is always late.");
         Topic g2 = new Topic(Topic.g2_ID, "PRESENT SIMPLE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "The Present Simple tense uses the base form of the verb (except for the verb be). The only change from the base is the addition of s for third person singular.\nHow do we make the Present Simple tense?\nThere are two basic structures for the Present Simple:\n1. Positive sentences:\nsubject	+\tmain verb in present simple \n2.Negative and question sentences:\nsubject\t+\tauxiliary do (conjugated in Present Simple)\t+\tmain verb (base)\n\nExamples with the main verb like:\n\n-I, you, we, they\tlike\tcoffee.\n-He, she, it\tlikes\tcoffee.\n-I, you, we, they\tdo\tnot\tlike	coffee.\n-He, she, it\tdoes\tnot\tlike coffee.\n-Do\tI, you, we, they\tlike coffee?\n-Does\the, she, it\tlike\tcoffee?");
         Topic g3 = new Topic(Topic.g3_ID, "QUESTION WORDS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "These are the most common question words in English: \nWHO is used when asking about people. (I want to know the person)\n\nWHERE is used when asking about a place or location. (= I want to know the place)\n\n WHEN is used to ask about time or an occasion. (= I want to know the time)\n\nWHY is used to ask for an explanation or a reason. (= I want to know the reason)\nNormally the response starts with \'Because...\'\n\nWHAT is used to ask about specific information. (= I want to know the thing)\n\nWHICH is used to ask about a choice. (= I want to know the chosen thing)\n\nHOW is used to describe the way or manner that something is done. (= I want to know the way)\nThere are more expressions with HOW:\nHow much – to ask about quantity or price (uncountable nouns)\nHow many – to ask about quantity (countable nouns)\nHow often – to ask about frequency");
@@ -373,72 +281,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addTopic(r23);
         addTopic(r24);
         addTopic(r25);
-
-
-
-
-        /*
-        Topic t1 = new Topic("PRESENT SIMPLE - TO BE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t2 = new Topic("POSSESSIVE ADJECTIVES & SUBJECT PRONOUNS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t3 = new Topic("ADJECTIVES", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t4 = new Topic("QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t5 = new Topic("ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Adverbs of Frequency are adverbs of time that answer the question \'\'How frequently?\'\' or \'\'How often?\'\'. They tell us how often something happens. Here are some examples:\n-daily, weekly, yearly\n-often, sometimes, rarely\nThe words in a) describe definite frequency.\nThe words in b) describe indefinite frequency\nWe separate them into two groups because they normally go in different positions in the sentence.\n\nAdverbs of definite frequency, typically go in END position.\n-Most companies pay taxes yearly.\n-The manager checks the toilets every hour.\nThe directors meet weekly to review progress.\nSometimes, usually for reasons of emphasis or style, some adverbs of definite frequency may go at the FRONT, for example:\n-Every day, more than five thousand people die on our roads.\n\nHere are some adverbs of indefinite frequency:\n100%\t always, constantly\n\tusually, normally\n\tfrequently, regularly\n\toften\n50%\tsometimes\n\toccasionally\n\trarely, infrequently\n\tseldom\n\thardly ever\n0%\tnever\n\nAdverbs of indefinite frequency mainly go in MID position in the sentence. They go before the main verb (except the main verb TO BE):\n-We usually go shopping on Saturday.\n-I have often done that.\n-She is always late.\n");
-        Topic t6 = new Topic("PREPOSITIONS OF TIME", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t7 = new Topic("PREPOSITIONS OF PLACE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t8 = new Topic("PRESENT CONTINUOUS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t9 = new Topic("IMPERATIVE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t10 = new Topic("PAST SIMPLE - TO BE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t11 = new Topic("PAST SIMPLE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t12 = new Topic("PAST SIMPLE - NEGATIVES & QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t13 = new Topic("VERBS + TO + INFINITIVE & VERBS + ING", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic t14 = new Topic("COUNTABLE & UNCOUNTABLE NOUNS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-
-
-        Topic t15 = new Topic("Vocab Topic 1", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t16 = new Topic("Vocab Topic 2", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t17 = new Topic("Vocab Topic 3", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t18 = new Topic("Vocab Topic 4", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t19 = new Topic("Vocab Topic 5", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t20 = new Topic("Vocab Topic 6", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t21 = new Topic("Vocab Topic 7", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t22 = new Topic("Vocab Topic 8", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t23 = new Topic("Vocab Topic 9", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t24 = new Topic("Vocab Topic 10", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t25 = new Topic("Vocab Topic 11", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t26 = new Topic("Vocab Topic 12", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic t27 = new Topic("Vocab Topic 13", Topic.DIFFICULTY_C1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-
-
-        addTopic(t1);
-        addTopic(t2);
-        addTopic(t3);
-        addTopic(t4);
-        addTopic(t5);
-        addTopic(t6);
-        addTopic(t7);
-        addTopic(t8);
-        addTopic(t9);
-        addTopic(t10);
-        addTopic(t11);
-        addTopic(t12);
-        addTopic(t13);
-        addTopic(t14);
-
-        addTopic(t15);
-        addTopic(t16);
-        addTopic(t17);
-        addTopic(t18);
-        addTopic(t19);
-        addTopic(t20);
-        addTopic(t21);
-        addTopic(t22);
-        addTopic(t23);
-        addTopic(t24);
-        addTopic(t25);
-        addTopic(t26);
-        addTopic(t27);
-*/
     }
+
+
 
     private void addTopic(Topic topic) {
         ContentValues cv = new ContentValues();
@@ -506,17 +351,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addActivity(a25);
         addActivity(a26);
 
-        /*
-        Activity a1 = new Activity(Topic.t5_ID, Activity.ACT_NUM_1, Activity.FALSE);
-        Activity a2 = new Activity(Topic.t5_ID, Activity.ACT_NUM_2, Activity.FALSE);
-        Activity a3 = new Activity(Topic.t5_ID, Activity.ACT_NUM_3, Activity.FALSE);
-        Activity a4 = new Activity(Topic.t5_ID, Activity.ACT_NUM_4, Activity.FALSE);
-
-        addActivity(a1);
-        addActivity(a2);
-        addActivity(a3);
-        addActivity(a4);
-*/
     }
 
     private void addActivity(Activity activity) {
@@ -1095,37 +929,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addVocab(v46);
         addVocab(v47);
         addVocab(v48);
-
-        /*
-        Vocabulary v1 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
-        Vocabulary v2 = new Vocabulary(Topic.t27_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
-        Vocabulary v3 = new Vocabulary(Topic.t26_ID, "plops", "insulting word used to express frustration");
-        Vocabulary v4 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
-        Vocabulary v5 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
-        Vocabulary v6 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
-        Vocabulary v7 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
-        Vocabulary v8 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
-        Vocabulary v9 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
-        Vocabulary v10 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
-        Vocabulary v11 = new Vocabulary(Topic.t26_ID, "tnetennba", "There are no known uses of the word, prior to the IT Crowd.");
-        Vocabulary v12 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
-        Vocabulary v13 = new Vocabulary(Topic.t27_ID, "plops", "insulting word used to express frustration");
-
-
-        addVocab(v1);
-        addVocab(v2);
-        addVocab(v3);
-        addVocab(v4);
-        addVocab(v5);
-        addVocab(v6);
-        addVocab(v7);
-        addVocab(v8);
-        addVocab(v9);
-        addVocab(v10);
-        addVocab(v11);
-        addVocab(v12);
-        addVocab(v13);
-*/
     }
 
     private void addVocab(Vocabulary vocabulary) {
@@ -1161,7 +964,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 Topic topic = new Topic();
                 topic.setId(c.getInt(c.getColumnIndex(TopicsTable._ID)));
                 topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
-                //topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
                 topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
                 topic.setActivitiesCount(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COUNT)));
                 topic.setActivitiesCompleted(c.getInt(c.getColumnIndex(TopicsTable.COLUMN_ACT_COMPLETED)));
@@ -1180,7 +982,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
-                //question.setId(c.getInt(c.getColumnIndex((QuestionsTable._ID))));
                 question.setInstruction(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_INSTRUCTION)));
                 question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
                 question.setImageRef(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_REF)));
@@ -1189,7 +990,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NUM)));
-                //question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
                 question.setTopicId(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_TOPIC_ID)));
                 question.setActivityNum(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ACT_NUM)));
                 questionList.add(question);
@@ -1235,8 +1035,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     public ArrayList<Question> getQuestions(int topicID, int activityNum) {
         ArrayList<Question> questionList = new ArrayList<>();
-        //will also need to filter activity number
-        //filter topic id
         String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? "
                 + " AND " + QuestionsTable.COLUMN_ACT_NUM + " = ? ";
         String[] selectionArgs = new String[] {String.valueOf(topicID), String.valueOf(activityNum)};
@@ -1254,7 +1052,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
-                //question.setId(c.getInt(c.getColumnIndex((QuestionsTable._ID))));
                 question.setInstruction(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_INSTRUCTION)));
                 question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
                 question.setImageRef(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_REF)));
@@ -1291,7 +1088,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Vocabulary vocabulary = new Vocabulary();
-                //vocabulary.setId(c.getInt(c.getColumnIndex((VocabTable._ID))));
                 vocabulary.setTopicId(c.getInt(c.getColumnIndex(VocabTable.COLUMN_TOPIC_ID)));
                 vocabulary.setName(c.getString(c.getColumnIndex(VocabTable.COLUMN_NAME)));
                 vocabulary.setDefinition(c.getString(c.getColumnIndex(VocabTable.COLUMN_DEFINITION)));
@@ -1306,8 +1102,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     public ArrayList<Topic> getTopicProgress() {
         db = getReadableDatabase();
         ArrayList<Topic> progressList = new ArrayList<>();
-
-        //String[] selectionArgs = null;
         String selection = TopicsTable.COLUMN_ACT_COMPLETED + " > 0 ";
         Cursor c = db.query(
                 TopicsTable.TABLE_NAME,
@@ -1339,7 +1133,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         int topicId = 0;
         db = getReadableDatabase();
 
-        //filter difficulty and type
         String[] selectionArgs = new String[]{selected_topic, type, level_name};
         String selection = TopicsTable.COLUMN_NAME + " = ? " +
                 " AND " + TopicsTable.COLUMN_TYPE + " = ? " +
@@ -1358,9 +1151,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             do {
                 Topic topic = new Topic();
                 topic.setId(c.getInt(c.getColumnIndex(TopicsTable._ID)));
-                //topic.setName(c.getString(c.getColumnIndex(TopicsTable.COLUMN_NAME)));
-                //topic.setDifficulty(c.getString(c.getColumnIndex(TopicsTable.COLUMN_DIFFICULTY)));
-                //topic.setType(c.getString(c.getColumnIndex(TopicsTable.COLUMN_TYPE)));
                 topicId = (int) topic.getId();
             } while (c.moveToNext());
         }
@@ -1370,7 +1160,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     public String getTopicInfo(int topicId) {
         String topic_info = "";
-       // db = getReadableDatabase();
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
         String selection = TopicsTable._ID + " = ? ";
         Cursor c = db.query(
@@ -1484,7 +1273,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     /*method to return the number of completed activities in topic*/
     public int getActivityCompleted(int topicId) {
         int activitiesCompleted = 0;
-        //create an Array List of Activity objects of the given Topic ID
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
         String selection = TopicsTable._ID + " = ? ";
         Cursor c = db.query(
@@ -1546,7 +1334,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 activity.setTopicId(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_TOPIC_ID)));
                 activity.setActivityNum(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_ACT_NUM)));
                 activity.setCompleted(c.getString(c.getColumnIndex(ActivityTable.COLUMN_COMPLETED)));
-                //activity.setTimeStamp(c.getBlob(c.getColumnIndex(ActivityTable.TIME_STAMP)));
                 activityList.add(activity);
 
             } while (c.moveToNext());
@@ -1557,19 +1344,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     /*method to update the activities completed column of Topics Table*/
     public void updateActCount(int topicId) {
-
-        //update activity table
-        //get the activities_completed value from Topics Table
-
         int activities_completed = getActivityCompleted(topicId);
         int activities_count = getActivityCount(topicId);
-
-
-        //increase activities_completed value if has not already been completed
-        //if (activities_completed < activities_count) {
-          //  activities_completed++;
-
-            //update activities_completed value
             String SQL_UPDATE_ACT_COMPLETED = " UPDATE " + TopicsTable.TABLE_NAME
                     + " SET " + TopicsTable.COLUMN_ACT_COMPLETED + " = "
                     + activities_completed
@@ -1581,11 +1357,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     /*method to check whether an activity num in topic has been completed*/
     public boolean checkCompleted(int topicId, int activity_num) {
-        //ArrayList<Activity> activityList = new ArrayList<>();
         db = getReadableDatabase();
         boolean activityCompleted = false;
 
-        //create an Array List of Activity objects of the given Topic ID
         String[] selectionArgs = new String[]{String.valueOf(topicId), String.valueOf(activity_num)};
         String selection = ActivityTable.COLUMN_TOPIC_ID + " = ? "
                 + "AND " + ActivityTable.COLUMN_ACT_NUM + " = ? ";
@@ -1670,5 +1444,4 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_UPDATE_GOALS);
     }
-
 }
