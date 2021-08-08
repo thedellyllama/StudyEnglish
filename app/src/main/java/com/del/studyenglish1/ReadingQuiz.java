@@ -127,8 +127,8 @@ public class ReadingQuiz extends Fragment {
             Collections.shuffle(questionList);
             showNextQuestion();
         showActivityDetails(questionCountTotal);
-        } else {
-            savedInstanceCreate(savedInstanceState);
+        //} else {
+            //savedInstanceCreate(savedInstanceState);
         }
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -293,7 +293,7 @@ public class ReadingQuiz extends Fragment {
         fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
         fragmentTransaction.commit();
     }
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -321,5 +321,5 @@ public class ReadingQuiz extends Fragment {
         if (answeredAttempts > 1) {
             showSolution(answeredCorrectly);
         }
-    }
+    }*/
 }
