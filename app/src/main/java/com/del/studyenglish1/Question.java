@@ -4,15 +4,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-public class Question implements Parcelable {
+public class Question {
+        /*
+        implements Parcelable {
+
         public static final String DIFFICULTY_A1 = "A1";
         public static final String DIFFICULTY_A2 = "A2";
         public static final String DIFFICULTY_B1 = "B1";
         public static final String DIFFICULTY_B2 = "B2";
         public static final String DIFFICULTY_C1 = "C1";
-
-        //private int id;
-        private int imageRef;
+*/
         private String instruction;
         private String question;
         private String option1;
@@ -20,33 +21,27 @@ public class Question implements Parcelable {
         private String option3;
         private String option4;
         private int answerNr;
-        private String difficulty;
         private int topicId;
         private int activityNum;
 
-        public Question() {
+    private int imageRef;
 
-        }
+        public Question() { }
 
         public Question(String instruction, String option1, String option2, String option3,
-                        String option4, int answerNr,
-                        //String difficulty,
-                        int topicId, int activityNum) {
+                        String option4, int answerNr, int topicId, int activityNum) {
             this.instruction = instruction;
             this.option1 = option1;
             this.option2 = option2;
             this.option3 = option3;
             this.option4 = option4;
             this.answerNr = answerNr;
-            //this.difficulty = difficulty;
             this.topicId = topicId;
             this.activityNum = activityNum;
         }
 
     public Question(String instruction, String question, String option1, String option2, String option3,
-                    String option4, int answerNr,
-                    //String difficulty,
-                    int topicId, int activityNum) {
+                    String option4, int answerNr, int topicId, int activityNum) {
         this.instruction = instruction;
         this.question = question;
         this.option1 = option1;
@@ -54,23 +49,18 @@ public class Question implements Parcelable {
         this.option3 = option3;
         this.option4 = option4;
         this.answerNr = answerNr;
-        //this.difficulty = difficulty;
         this.topicId = topicId;
         this.activityNum = activityNum;
     }
     public Question(int imageRef, String instruction, String option1, String option2, String option3,
-                    String option4, int answerNr,
-                    //String difficulty,
-                    int topicId, int activityNum) {
-            this.imageRef = imageRef;
+                    String option4, int answerNr, int topicId, int activityNum) {
+        this.imageRef = imageRef;
         this.instruction = instruction;
-        this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
         this.answerNr = answerNr;
-        //this.difficulty = difficulty;
         this.topicId = topicId;
         this.activityNum = activityNum;
     }
@@ -86,12 +76,10 @@ public class Question implements Parcelable {
         this.option3 = option3;
         this.option4 = option4;
         this.answerNr = answerNr;
-        //this.difficulty = difficulty;
         this.topicId = topicId;
         this.activityNum = activityNum;
     }
-
-
+/*
         protected Question(Parcel in) {
             //id = in.readInt();
             question = in.readString();
@@ -135,7 +123,7 @@ public class Question implements Parcelable {
                 return new Question[size];
             }
         };
-/*
+
         public int getId() {
             return id;
         }
@@ -196,15 +184,6 @@ public class Question implements Parcelable {
 
         public void setActivityNum(int activityNum) { this.activityNum = activityNum;    }
 
-    /*
-            public String getDifficulty() {
-                return difficulty;
-            }
-
-            public void setDifficulty(String difficulty) {
-                this.difficulty = difficulty;
-            }
-    */
         public int getTopicId() {
             return topicId;
         }
@@ -228,17 +207,6 @@ public class Question implements Parcelable {
     public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
-
-/*
-        public static String[] getAllDifficultyLevels() {
-            return new String[]{
-                    DIFFICULTY_A1,
-                    DIFFICULTY_A2,
-                    DIFFICULTY_B1,
-                    DIFFICULTY_B2,
-                    DIFFICULTY_C1
-            };
-        }*/
-    }
+}
 
 
