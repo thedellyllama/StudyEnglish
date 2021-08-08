@@ -12,9 +12,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MyProgressAdapter extends ArrayAdapter<Topic> {
+    private static final String LOG_TAG = MyProgressAdapter.class.getSimpleName();
 
     private ArrayList<Topic> progressList;
-    private static final String LOG_TAG = MyProgressAdapter.class.getSimpleName();
+
     private TextView topicLevelType;
     private TextView topicName;
     private ImageView imageProgress;
@@ -36,12 +37,6 @@ public class MyProgressAdapter extends ArrayAdapter<Topic> {
         if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(R.layout.progress_item, parent, false);
         }
-        /*
-        View listItemView = view;
-        if(listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.vocab_item, parent, false);*/
-
 
         topicLevelType = view.findViewById(R.id.text_view_level_type);
         topicName = view.findViewById(R.id.text_view_topic);
@@ -75,24 +70,10 @@ public class MyProgressAdapter extends ArrayAdapter<Topic> {
                     imageProgress.setImageDrawable(progressDone);
             }
         }
-        /*
-        if (progress == 1/4) {
-            imageProgress.setImageDrawable(progress1_4);
-        } else if (progress == 2/4 && activityCount == 4) {
-            imageProgress.setImageDrawable(progress2_4);
-        } else if (progress == 2/4 && activityCount == 2)  {
-            imageProgress.setImageDrawable(progress1_2);
-        } else if (progress == 3/4) {
-            imageProgress.setImageDrawable(progress3_4);
-        } else if (progress == 1) {
-            imageProgress.setImageDrawable(progressDone);
-        }*/
         topicLevelType.setText(levelType);
         topicName.setText(topic.getName());
 
         return view;
     }
-
-
 }
 
