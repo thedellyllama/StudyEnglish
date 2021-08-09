@@ -1,7 +1,6 @@
 package com.del.studyenglish1;
 
 public class Vocabulary {
-    private int id;
     private int topicId;
     private String name;
     private String definition;
@@ -13,15 +12,7 @@ public class Vocabulary {
         this.name = name;
         this.definition = definition;
     }
-/*
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-*/
     public int getTopicId() {
         return topicId;
     }
