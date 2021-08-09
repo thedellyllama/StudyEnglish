@@ -31,6 +31,7 @@ public class Question {
         public Question(String instruction, String option1, String option2, String option3,
                         String option4, int answerNr, int topicId, int activityNum) {
             this.instruction = instruction;
+            this.question = "";
             this.option1 = option1;
             this.option2 = option2;
             this.option3 = option3;
@@ -56,6 +57,7 @@ public class Question {
                     String option4, int answerNr, int topicId, int activityNum) {
         this.imageRef = imageRef;
         this.instruction = instruction;
+        this.question = "";
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;

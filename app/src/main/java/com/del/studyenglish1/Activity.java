@@ -24,15 +24,6 @@ public class Activity {
         this.activityNum = activityNum;
         this.completed = completed;
     }
-/*
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }*/
-
     public int getTopicId() {
         return topicId;
     }
