@@ -26,22 +26,16 @@ public class TopicHomePage extends Fragment {
     private String level_name;
     private String level;
 
-    private TextView textViewTopic;
-    private TextView textViewExplanation;
-    private TextView changeLevel;
-    private TextView changeType;
-    private TextView changeTopic;
-    private Button activities;
-
-    private SelectLevelPage selectLevelPage;
-    private SelectTypePage selectTypePage;
     private SelectTopicPage selectTopicPage;
     private ActivityHomePage activityHomePage;
     private ActivityHomePageReading activityHomePageReading;
 
-    public TopicHomePage() {
-        // Required empty public constructor
-    }
+    private TextView textViewTopic;
+    private TextView textViewExplanation;
+    private TextView changeTopic;
+    private Button activities;
+
+    public TopicHomePage() {}
 
     public static TopicHomePage newInstance(String topic, String type, String level, String level_name) {
         TopicHomePage fragment = new TopicHomePage();
@@ -50,7 +44,6 @@ public class TopicHomePage extends Fragment {
         args.putString(ARG_TYPE, type);
         args.putString(ARG_LEVEL, level);
         args.putString(ARG_LEVEL_NAME, level_name);
-        //args.putString(ARG_LEVEL, level);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,7 +55,6 @@ public class TopicHomePage extends Fragment {
         textViewTopic = v.findViewById(R.id.text_view_topic);
         textViewExplanation = v.findViewById(R.id.text_view_explanation);
         textViewExplanation.setMovementMethod(new ScrollingMovementMethod());
-        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
 
 
         if (getArguments() != null) {
@@ -71,19 +63,13 @@ public class TopicHomePage extends Fragment {
             level_name = getArguments().getString(ARG_LEVEL_NAME);
             level = getArguments().getString(ARG_LEVEL);
         }
-        int topicId = dbHelper.getTopicId(topic, type, level_name);
-        String explanation = dbHelper.getTopicInfo(topicId);
-        textViewExplanation.setText(explanation);
-        textViewTopic.setText(level_name + ": " + topic);
-
+        setExplanation();
         return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //changeLevel = (TextView) view.findViewById(R.id.text_view_change_level);
-        //changeType = (TextView) view.findViewById(R.id.text_view_change_type);
         changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
         activities = (Button) view.findViewById(R.id.button_activities);
 
@@ -97,7 +83,6 @@ public class TopicHomePage extends Fragment {
                 }
             }
         });
-
        changeTopic.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -105,6 +90,15 @@ public class TopicHomePage extends Fragment {
            }
        });
     }
+
+    public void setExplanation() {
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        int topicId = dbHelper.getTopicId(topic, type, level_name);
+        String explanation = dbHelper.getTopicInfo(topicId);
+        textViewExplanation.setText(explanation);
+        textViewTopic.setText(level_name + ": " + topic);
+    }
+
     public void changeTopicPage(String type, String level, String level_name) {
         selectTopicPage = selectTopicPage.newInstance(type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -125,5 +119,4 @@ public class TopicHomePage extends Fragment {
         fragmentTransaction.replace(R.id.nav_host_fragment, activityHomePageReading);
         fragmentTransaction.commit();
     }
-
 }
