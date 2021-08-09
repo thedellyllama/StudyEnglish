@@ -13,17 +13,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class SelectTypePage extends Fragment {
-
-    private SelectTopicPage page5_2;
-    private String selected_type;
-
     private static final String ARG_LEVEL = "argLevel";
     private static final String ARG_LEVEL_NAME = "argLevelName";
+
     private String level;
     private String level_name;
-    private SelectLevelPage selectLevelPage;
+    private String selected_type;
 
-    private TextView textView;
+    private SelectLevelPage selectLevelPage;
+    private SelectTopicPage selectTopicPage;
+
+    private TextView textViewLevel;
     private TextView changeLevel;
     private Button button_grammar;
     private Button button_vocabulary;
@@ -56,7 +56,7 @@ public class SelectTypePage extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textView = (TextView) view.findViewById(R.id.text_view_level);
+        textViewLevel = (TextView) view.findViewById(R.id.text_view_level);
         changeLevel = (TextView) view.findViewById(R.id.text_change_level);
         button_grammar = view.findViewById(R.id.button_grammar);
         button_vocabulary = view.findViewById(R.id.button_vocab);
@@ -96,14 +96,10 @@ public class SelectTypePage extends Fragment {
             }
         });
     }
-    private void nextPageType(String selected_type, String level, String level_name) {
-        page5_2 = page5_2.newInstance(selected_type, level, level_name);
+    public void nextPageType(String selected_type, String level, String level_name) {
+        selectTopicPage = selectTopicPage.newInstance(selected_type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page5_2);
+        fragmentTransaction.replace(R.id.nav_host_fragment, selectTopicPage);
         fragmentTransaction.commit();
     }
-/**
-    protected void updateTextView(String new_level) {
-        textView.setText(new_level);
-    }*/
 }
