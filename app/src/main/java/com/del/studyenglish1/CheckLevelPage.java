@@ -43,6 +43,11 @@ public class CheckLevelPage extends Fragment {
         });
 
     }
+
+    /**
+     * Opens the url in the current page
+     * @param webView the WebView displaying the web page
+     */
     public void openWebView(WebView webView) {
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("https://test-english.com/level-test/");
@@ -51,6 +56,9 @@ public class CheckLevelPage extends Fragment {
         webSettings.setJavaScriptEnabled(true);
     }
 
+    /**
+     * Opens a new Select Level Page
+     */
     public void openSelectLevelPage() {
         selectLevelPage = new SelectLevelPage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
