@@ -1,16 +1,16 @@
 package com.del.studyenglish1;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 //import com.del.studyenglish1.SelectTypePage.SelectTypeListener;
 
@@ -18,7 +18,7 @@ public class SelectLevelPage extends Fragment {
     private String selected_level;
     private String level_name;
 
-    private SelectTypePage page5_1;
+    private SelectTypePage selectTypePage;
     private CheckLevelPage page5_checkLevel;
 
     private Button button_a1;
@@ -102,10 +102,15 @@ public class SelectLevelPage extends Fragment {
         });
     }
 
+    /**
+     * Open new instance of Select Type Page with given arguments
+     * @param selected_level selected level description
+     * @param level_name selected level name
+     */
     public void nextPage(String selected_level, String level_name) {
-        page5_1 = page5_1.newInstance(selected_level, level_name);
+        selectTypePage = selectTypePage.newInstance(selected_level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page5_1);
+        fragmentTransaction.replace(R.id.nav_host_fragment, selectTypePage);
         fragmentTransaction.commit();
     }
 }

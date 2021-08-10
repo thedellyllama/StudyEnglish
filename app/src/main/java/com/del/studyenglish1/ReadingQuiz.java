@@ -1,7 +1,6 @@
 package com.del.studyenglish1;
 
 import android.content.res.ColorStateList;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -71,6 +70,14 @@ public class ReadingQuiz extends Fragment {
     private int buttonGreen;
     private int buttonBlue;
 
+    /**
+     * Create and open new instance of Reading Quiz
+     * @param topic selected topic name
+     * @param type selected topic type
+     * @param level_name selected level name
+     * @param activity_num selected activity number
+     * @return new Reading Quiz with selected arguments
+     */
     public static ReadingQuiz newInstance(String topic, String type, String level_name, int activity_num) {
         ReadingQuiz fragment = new ReadingQuiz();
         Bundle args = new Bundle();
@@ -154,13 +161,17 @@ public class ReadingQuiz extends Fragment {
     }
 
     /**
-     * method to show activity information: estimated time needed, number of questions
+     * Show activity information: estimated time needed, number of questions
+     * @param questionCountTotal number of questions in activity
      */
     public void showActivityDetails(int questionCountTotal) {
         informationDialog = informationDialog.newInstance(questionCountTotal);
         informationDialog.show(getActivity().getSupportFragmentManager(), "example dialog");
     }
 
+    /**
+     * Open dialog to show activity information: estimated time needed, number of questions
+     */
     public void getQuestionInformation(){
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         int topicID = dbHelper.getTopicId(topic, type, level_name);
@@ -168,6 +179,9 @@ public class ReadingQuiz extends Fragment {
         questionCountTotal = questionList.size();
     }
 
+    /**
+     * Load the next question onto page and update all text colours and buttons
+     */
     public void showNextQuestion() {
         rb1.setTextColor(textColorDefaultRb);
         rb2.setTextColor(textColorDefaultRb);
@@ -206,6 +220,11 @@ public class ReadingQuiz extends Fragment {
             finishQuiz(topic, type, level_name);
         }
     }
+
+    /**
+     * Check if the correct answer is given, an incorrect answer is given for the first or second
+     * time. Call showSolution() and/or update all text views and buttons and DB accordingly.
+     */
     public void checkAnswer() {
         answered = true;
 
@@ -230,6 +249,11 @@ public class ReadingQuiz extends Fragment {
 
     }
 
+    /**
+     * Update text colour and button colour/message accordingly
+     * @param answeredCorrectly true if the question has been answered correctly after two
+     *                          attempts, false otherwise.
+     */
     public void showSolution(boolean answeredCorrectly) {
         rb1.setTextColor(Color.RED);
         rb2.setTextColor(Color.RED);
@@ -262,8 +286,15 @@ public class ReadingQuiz extends Fragment {
         }
     }
 
+    /**
+     * Update database to show activity has been completed and open new instance
+     * of Activity Home Page.
+     * @param topic selected topic name
+     * @param type  selected activity type
+     * @param level_name selected level name
+     */
     public void finishQuiz(String topic, String type, String level_name) {
-        /**update activities_completed column in db**/
+        //update activities_completed column in db
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         topicID = dbHelper.getTopicId(topic, type, level_name);
         dbHelper.activityCompleted(topicID, activity_num);
@@ -276,6 +307,9 @@ public class ReadingQuiz extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Open new instance of Activity Home Reading with selected topic, type, level, level_name
+     */
     public void openActivityHomeReading() {
         activityHomeReading = activityHomeReading.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

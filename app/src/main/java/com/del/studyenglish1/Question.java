@@ -1,9 +1,5 @@
 package com.del.studyenglish1;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-
 public class Question {
         /*
         implements Parcelable {
@@ -15,19 +11,33 @@ public class Question {
         public static final String DIFFICULTY_C1 = "C1";
 */
         private String instruction;
-        private String question;
-        private String option1;
-        private String option2;
-        private String option3;
-        private String option4;
-        private int answerNr;
-        private int topicId;
-        private int activityNum;
+    private String question;
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
+    private int answerNr;
+    private int topicId;
+    private int activityNum;
 
     private int imageRef;
 
+    /**
+     * Empty Question constructor
+     */
         public Question() { }
 
+    /**
+     * Question constructor with no image reference and no question
+     * @param instruction instruction/question
+     * @param option1 possible answer 1
+     * @param option2 possible answer 2
+     * @param option3 possible answer 3
+     * @param option4 possible answer 4
+     * @param answerNr correct answer number
+     * @param topicId the topicId the question belongs to
+     * @param activityNum the activity number the question belongs to
+     */
         public Question(String instruction, String option1, String option2, String option3,
                         String option4, int answerNr, int topicId, int activityNum) {
             this.instruction = instruction;
@@ -41,6 +51,18 @@ public class Question {
             this.activityNum = activityNum;
         }
 
+    /**
+     * Question constructor with no image reference
+     * @param instruction instruction
+     * @param question question
+     * @param option1 possible answer 1
+     * @param option2 possible answer 2
+     * @param option3 possible answer 3
+     * @param option4 possible answer 4
+     * @param answerNr correct answer number
+     * @param topicId the topicId the question belongs to
+     * @param activityNum the activity number the question belongs to
+     */
     public Question(String instruction, String question, String option1, String option2, String option3,
                     String option4, int answerNr, int topicId, int activityNum) {
         this.instruction = instruction;
@@ -53,6 +75,19 @@ public class Question {
         this.topicId = topicId;
         this.activityNum = activityNum;
     }
+
+    /**Question constructor with no question
+     *
+     * @param imageRef image reference
+     * @param instruction instruction/question
+     * @param option1 possible answer 1
+     * @param option2 possible answer 2
+     * @param option3 possible answer 3
+     * @param option4 possible answer 4
+     * @param answerNr correct answer number
+     * @param topicId the topicId the question belongs to
+     * @param activityNum the activity number the question belongs to
+     */
     public Question(int imageRef, String instruction, String option1, String option2, String option3,
                     String option4, int answerNr, int topicId, int activityNum) {
         this.imageRef = imageRef;
@@ -67,7 +102,19 @@ public class Question {
         this.activityNum = activityNum;
     }
 
-    /**constructor for Reading Quiz Questions**/
+    /**Full question constructor for Reading Quiz Questions
+     *
+     * @param imageRef image reference
+     * @param instruction instruction/question
+     * @param question question
+     * @param option1 possible answer 1
+     * @param option2 possible answer 2
+     * @param option3 possible answer 3
+     * @param option4 possible answer 4
+     * @param answerNr correct answer number
+     * @param topicId the topicId the question belongs to
+     * @param activityNum the activity number the question belongs to
+     */
     public Question(int imageRef, String instruction, String question, String option1, String option2, String option3,
                     String option4, int answerNr, int topicId, int activityNum) {
         this.imageRef = imageRef;

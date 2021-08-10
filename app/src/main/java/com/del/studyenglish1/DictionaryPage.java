@@ -136,6 +136,9 @@ public class DictionaryPage extends Fragment {
         });
     }
 
+    /**
+     * Loads all topics into the spinner
+     */
     public void loadAllTopics() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         List<Topic> topics = dbHelper.getAllVocabTopics();
@@ -147,6 +150,10 @@ public class DictionaryPage extends Fragment {
         spinnerTopic.setAdapter(adapterTopic);
     }
 
+    /**
+     * Loads topics of selected level into the spinner
+     * @param selectedLevel  selected level
+     */
     public void loadTopics(String selectedLevel) {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         List<Topic> topics = dbHelper.getTopics("VOCABULARY", selectedLevel);
@@ -158,6 +165,9 @@ public class DictionaryPage extends Fragment {
         spinnerTopic.setAdapter(adapterTopic);
     }
 
+    /**
+     * Change button colours back to default
+     */
     public void resetButtonColours() {
         buttonA1.setBackground(blueBg);
         buttonA2.setBackground(blueBg);
@@ -171,11 +181,18 @@ public class DictionaryPage extends Fragment {
         buttonC1.setTextColor(blueApp);
     }
 
+    /**
+     * Change the button colour to show it is selected
+     * @param selectedButton
+     */
     public void changeSelectedColour(Button selectedButton) {
         selectedButton.setBackground(blueAllBg);
         selectedButton.setTextColor(Color.WHITE);
     }
 
+    /**
+     * Load dictionary of vocabulary from selected topic into ListView
+     */
     public void showDictionary() {
         //get topic id from selected spinner item
         Topic topic = (Topic) spinnerTopic.getSelectedItem();

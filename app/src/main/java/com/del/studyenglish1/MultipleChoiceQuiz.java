@@ -4,12 +4,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +13,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -71,7 +70,14 @@ public class MultipleChoiceQuiz extends Fragment {
     private int buttonGreen;
     private int buttonBlue;
 
-
+    /**
+     * Creates and opens new instance of Multiple Choice Quiz
+     * @param topic selected topic name
+     * @param type selected activity type
+     * @param level_name selected level name
+     * @param activity_num selected activity number
+     * @return
+     */
     public static MultipleChoiceQuiz newInstance(String topic, String type, String level_name, int activity_num) {
         MultipleChoiceQuiz fragment = new MultipleChoiceQuiz();
         Bundle args = new Bundle();
@@ -161,14 +167,16 @@ public class MultipleChoiceQuiz extends Fragment {
 
 
     /**
-     * method to show activity information: estimated time needed, number of questions
+     * Open dialog to show activity information: estimated time needed, number of questions
      */
     public void showActivityDetails(int questionCountTotal) {
         informationDialog = informationDialog.newInstance(questionCountTotal);
         informationDialog.show(getActivity().getSupportFragmentManager(), "example dialog");
     }
 
-
+    /**
+     * Access database to get the list of questions and get the list size
+     */
     public void getQuestionInformation(){
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         int topicID = dbHelper.getTopicId(topic, type, level_name);
@@ -176,6 +184,9 @@ public class MultipleChoiceQuiz extends Fragment {
         questionCountTotal = questionList.size();
     }
 
+    /**
+     * Load the next question onto page and update all text colours and buttons
+     */
     public void showNextQuestion() {
         rb1.setTextColor(textColorDefaultRb);
         rb2.setTextColor(textColorDefaultRb);
@@ -219,6 +230,11 @@ public class MultipleChoiceQuiz extends Fragment {
             finishQuiz(topic, type, level_name);
         }
     }
+
+    /**
+     * Check if the correct answer is given, an incorrect answer is given for the first or second
+     * time. Call showSolution() and/or update all text views and buttons and DB accordingly.
+     */
     public void checkAnswer() {
         answered = true;
 
@@ -247,6 +263,11 @@ public class MultipleChoiceQuiz extends Fragment {
         }
     }
 
+    /**
+     * Update text colour and button colour/message accordingly
+     * @param answeredCorrectly true if the question has been answered correctly after two
+     *                          attempts, false otherwise.
+     */
     public void showSolution(boolean answeredCorrectly) {
         rb1.setTextColor(Color.RED);
         rb2.setTextColor(Color.RED);
@@ -278,9 +299,15 @@ public class MultipleChoiceQuiz extends Fragment {
         }
     }
 
+    /**
+     * Update database to show activity has been completed and open new instance
+     * of Activity Home Page.
+     * @param topic selected topic name
+     * @param type  selected activity type
+     * @param level_name selected level name
+     */
     public void finishQuiz(String topic, String type, String level_name) {
-
-        /**update activities_completed column in db**/
+        //update activities_completed column in db
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         topicID = dbHelper.getTopicId(topic, type, level_name);
         dbHelper.activityCompleted(topicID, activity_num);
@@ -293,6 +320,9 @@ public class MultipleChoiceQuiz extends Fragment {
         fragmentTransaction.commit();
    }
 
+    /**
+     * Open new instance of Activity Home with selected topic, type, level, level_name
+     */
     public void openActivityHome() {
         activityHomePage = activityHomePage.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

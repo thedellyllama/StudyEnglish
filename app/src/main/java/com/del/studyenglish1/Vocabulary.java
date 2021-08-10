@@ -7,6 +7,12 @@ public class Vocabulary {
 
     public Vocabulary() {}
 
+    /**
+     * Vocabulary constructor
+     * @param topicId topic id object belongs to
+     * @param name word or phrase
+     * @param definition definition of word or phrase
+     */
     public Vocabulary(int topicId, String name, String definition) {
         this.topicId = topicId;
         this.name = name;

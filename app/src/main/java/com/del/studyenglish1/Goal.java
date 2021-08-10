@@ -6,12 +6,21 @@ public class Goal {
     public static final String WEEKLY = "WEEKLY";
 
     private int goalActivities;
-    private String goalTimeframe;
+    private String goalTimeFrame;
 
+    /**
+     * Empty Goal constructor
+     */
     public Goal(){}
-    public Goal(int goalActivities, String goalTimeframe) {
+
+    /**
+     * Goal constructor
+     * @param goalActivities number of activities
+     * @param goalTimeFrame time frame for goal "DAILY" or "WEEKLY"
+     */
+    public Goal(int goalActivities, String goalTimeFrame) {
         this.goalActivities = goalActivities;
-        this.goalTimeframe = goalTimeframe;
+        this.goalTimeFrame = goalTimeFrame;
     }
 
     public int getGoalActivities() {
@@ -22,11 +31,11 @@ public class Goal {
         this.goalActivities = goalActivities;
     }
 
-    public String getGoalTimeframe() {
-        return goalTimeframe;
+    public String getGoalTimeFrame() {
+        return goalTimeFrame;
     }
 
-    public void setGoalTimeframe(String goalTimeframe) {
-        this.goalTimeframe = goalTimeframe;
+    public void setGoalTimeFrame(String goalTimeFrame) {
+        this.goalTimeFrame = goalTimeFrame;
     }
 }

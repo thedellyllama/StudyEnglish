@@ -1,18 +1,17 @@
 package com.del.studyenglish1;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class TopicHomePage extends Fragment {
 
@@ -37,6 +36,14 @@ public class TopicHomePage extends Fragment {
 
     public TopicHomePage() {}
 
+    /**
+     * Create and open new instance of Topic Home Page with given arguments
+     * @param topic selected topic name
+     * @param type selected topic type
+     * @param level selected level description
+     * @param level_name selected level name
+     * @return TopicHomePage with given arguments set
+     */
     public static TopicHomePage newInstance(String topic, String type, String level, String level_name) {
         TopicHomePage fragment = new TopicHomePage();
         Bundle args = new Bundle();
@@ -91,6 +98,9 @@ public class TopicHomePage extends Fragment {
        });
     }
 
+    /**
+     * Access database to get Topic explanation and add it to textViewTopic
+     */
     public void setExplanation() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         int topicId = dbHelper.getTopicId(topic, type, level_name);
@@ -99,6 +109,12 @@ public class TopicHomePage extends Fragment {
         textViewTopic.setText(level_name + ": " + topic);
     }
 
+    /**
+     * Open new instance of SelectTopicPage with given arguments
+     * @param type selected topic type
+     * @param level selected level description
+     * @param level_name selected level name
+     */
     public void changeTopicPage(String type, String level, String level_name) {
         selectTopicPage = selectTopicPage.newInstance(type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -106,6 +122,12 @@ public class TopicHomePage extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Open new instance of ActivityHomePage with given arguments
+     * @param topic selected topic name
+     * @param type selected topic type
+     * @param level_name selected level name
+     */
     public void openActivities(String topic, String type, String level_name) {
         activityHomePage = activityHomePage.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -113,6 +135,12 @@ public class TopicHomePage extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Open new instance of ActivityHomePageReading
+     * @param topic selected topic name
+     * @param type selected topic type
+     * @param level_name selected level name
+     */
     public void openReadingActivities(String topic, String type, String level_name) {
         activityHomePageReading = activityHomePageReading.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

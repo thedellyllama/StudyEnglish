@@ -54,6 +54,9 @@ public class ProfilePage extends Fragment {
 
     }
 
+    /**
+     * Updates the number of activities completed in the Goal banner
+     */
     public void updateActivitiesCompleted() {
 
         if (timeFrameGoals.equals("DAILY")) {
@@ -73,12 +76,19 @@ public class ProfilePage extends Fragment {
         textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
 
     }
+
+    /**
+     * Access the database to update the Goal selection in the Goal banner
+     */
     public void updateGoals() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         timeFrameGoals = dbHelper.getTimeFrameGoals();
         activitiesGoal = dbHelper.getActivityGoals();
     }
 
+    /**
+     * Load all topics with >0 activities completed into listView
+     */
     public void loadProgress() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         ArrayList<Topic> progressList = dbHelper.getTopicProgress();

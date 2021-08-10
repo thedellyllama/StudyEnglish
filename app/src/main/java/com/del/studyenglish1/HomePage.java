@@ -32,6 +32,9 @@ public class HomePage extends Fragment {
     private TextView textViewCurrentGoals;
     private TextView textViewCurrentTimeFrame;
 
+    /**
+     * Empty Home Page constructor
+     */
     public HomePage() {
     }
 
@@ -85,6 +88,11 @@ public class HomePage extends Fragment {
         });
    }
 
+    /**
+     * Access the database to update the goal banner with Goal settings and
+     * number of completed activities
+     * @param view View where information is displayed
+     */
     public void getGoalDetails(View view) {
         dbHelper = QuizDbHelper.getInstance(getContext());
         textViewCurrentGoals = view.findViewById(R.id.text_view_current_goals);
@@ -95,6 +103,9 @@ public class HomePage extends Fragment {
         activitiesCompletedWeekly = dbHelper.getAllActivityCompletedWeekly();
     }
 
+    /**
+     * Updates the number of activities completed in the Goal banner
+     */
     public void updateActivitiesCompleted() {
         activitiesCompletedDaily = dbHelper.getAllActivityCompletedDaily();
         activitiesCompletedWeekly = dbHelper.getAllActivityCompletedWeekly();
@@ -117,12 +128,18 @@ public class HomePage extends Fragment {
         }
     }
 
+    /**
+     * Access the database to update the Goal selection in the Goal banner
+     */
     public void updateGoals() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         timeFrameGoals = dbHelper.getTimeFrameGoals();
         activitiesGoal = dbHelper.getActivityGoals();
     }
 
+    /**
+     * Open new Profile page
+     */
     public void openProfilePage() {
         profilePage = new ProfilePage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -130,6 +147,9 @@ public class HomePage extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Open new Goals page
+     */
     public void openGoalsPage() {
         goalsPage = new GoalsPage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -137,6 +157,9 @@ public class HomePage extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Open new Dictionary page
+     */
     public void openDictionaryPage() {
         dictionaryPage = new DictionaryPage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -144,6 +167,9 @@ public class HomePage extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Open new Select Level page
+     */
     public void openSelectLevelPage() {
         selectLevelPage = new SelectLevelPage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

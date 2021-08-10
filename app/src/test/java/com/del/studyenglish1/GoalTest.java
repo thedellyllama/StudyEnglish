@@ -19,11 +19,11 @@ private Goal g;
     }
 
     public void testGetGoalTimeframe() {
-        assertEquals("DAILY", g.getGoalTimeframe());
+        assertEquals("DAILY", g.getGoalTimeFrame());
     }
 
     public void testSetGoalTimeframe() {
-        g.setGoalTimeframe("WEEKLY");
-        assertEquals("WEEKLY", g.getGoalTimeframe());
+        g.setGoalTimeFrame("WEEKLY");
+        assertEquals("WEEKLY", g.getGoalTimeFrame());
     }
 }

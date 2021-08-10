@@ -25,7 +25,11 @@ public class MyProgressAdapter extends ArrayAdapter<Topic> {
     private Drawable progress1_2;
     private Drawable progressDone;
 
-
+    /**
+     * MyProgressAdapter constructor
+     * @param context current context
+     * @param progressList list of all topics with >0 activities completed to show in adapter
+     */
     public MyProgressAdapter(Context context, ArrayList<Topic> progressList) {
         super(context, 0, progressList);
         this.progressList = progressList;

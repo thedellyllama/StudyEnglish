@@ -14,6 +14,11 @@ public class MyTopicAdapter extends ArrayAdapter<Topic> {
 
     private ArrayList<Topic> topicsList;
 
+    /**
+     * MyTopicAdapter constructor
+     * @param context current context
+     * @param topicsList list of topics of selected type and level to show in adapter
+     */
     public MyTopicAdapter(Context context, ArrayList<Topic> topicsList) {
         super(context, 0, topicsList);
         this.topicsList = topicsList;

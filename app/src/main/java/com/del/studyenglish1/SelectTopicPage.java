@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,8 +28,8 @@ public class SelectTopicPage extends Fragment {
     private String level;
     private SQLiteDatabase newDb;
 
-    private SelectLevelPage page5;
-    private SelectTypePage page5_1;
+    private SelectLevelPage selectLevelPage;
+    private SelectTypePage selectTypePage;
     private ActivityHomePage activityHomePage;
 
     private TextView textViewType;
@@ -38,11 +37,15 @@ public class SelectTopicPage extends Fragment {
     private TextView changeType;
     private ListView listView;
 
-
-
-
     public SelectTopicPage() {}
 
+    /**
+     * Create and open new instance of Select Topic Page with selected arguments
+     * @param type selected type
+     * @param level selected level description
+     * @param level_name selected level name
+     * @return new Select Topic Page with given arguments
+     */
     public static SelectTopicPage newInstance(String type, String level, String level_name) {
         SelectTopicPage fragment = new SelectTopicPage();
         Bundle args = new Bundle();
@@ -95,10 +98,11 @@ public class SelectTopicPage extends Fragment {
             }
         });
     }
-    /**
-     * @return Cursor finds all topics filtered by chosen type and level
-     */
 
+    /**
+     * Access data base to add all Topic names of selected type and level name
+     * to listView
+     */
     private void loadTopics() {
         type = getArguments().getString(ARG_TYPE);
         level_name = getArguments().getString(ARG_LEVEL_NAME);
@@ -117,6 +121,12 @@ public class SelectTopicPage extends Fragment {
         });
     }
 
+    /**
+     * Open new instance of TopicHomePage with selected arguments
+     * @param topicSelected selected topic name
+     * @param type selected type
+     * @param level_name selected level name
+     */
     public void loadTopicHomePage(String topicSelected, String type, String level_name) {
         TopicHomePage fragment = TopicHomePage.newInstance(topicSelected, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -124,17 +134,25 @@ public class SelectTopicPage extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Open new Select Level Page
+     */
     private void changeLevelPage() {
-        page5 = new SelectLevelPage();
+        selectLevelPage = new SelectLevelPage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page5);
+        fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
         fragmentTransaction.commit();
     }
 
+    /**
+     * Open new Select Type PAge
+     * @param level selected level description
+     * @param level_name selected level name
+     */
     private void changeTypePage(String level, String level_name) {
-        page5_1 = page5_1.newInstance(level, level_name);
+        selectTypePage = selectTypePage.newInstance(level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, page5_1);
+        fragmentTransaction.replace(R.id.nav_host_fragment, selectTypePage);
         fragmentTransaction.commit();
     }
 }

@@ -29,6 +29,12 @@ public class SelectTypePage extends Fragment {
     private Button button_vocabulary;
     Button button_reading;
 
+    /**
+     * Create and open new instance of Select Type Page with selected arguments
+     * @param level  selected level description
+     * @param level_name selected level name
+     * @return SelectTypePage with given arguments
+     */
     public static SelectTypePage newInstance(String level, String level_name) {
         SelectTypePage fragment = new SelectTypePage();
         Bundle args = new Bundle();
@@ -96,6 +102,13 @@ public class SelectTypePage extends Fragment {
             }
         });
     }
+
+    /**
+     * Open new instance of SelectTopicPage with given arguments
+     * @param selected_type selected topic type
+     * @param level selected level description
+     * @param level_name selected level name
+     */
     public void nextPageType(String selected_type, String level, String level_name) {
         selectTopicPage = selectTopicPage.newInstance(selected_type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

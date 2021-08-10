@@ -139,6 +139,9 @@ public class GoalsPage extends Fragment {
         });
     }
 
+    /**
+     * Update the number of activities completed in the Goal banner
+     */
     public void updateActivitiesCompleted() {
         if (timeFrameGoals.equals("DAILY")) {
             if (activitiesCompletedDaily >= activitiesGoal) {
@@ -156,12 +159,21 @@ public class GoalsPage extends Fragment {
         }
         textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
     }
+
+    /**
+     * Access the database to update the Goal selection in the Goal banner
+     */
     public void updateGoals() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         timeFrameGoals = dbHelper.getTimeFrameGoals();
         activitiesGoal = dbHelper.getActivityGoals();
     }
 
+    /**
+     * Updates button colours based on selected Goal settings
+     * @param colour selected button colour
+     * @param textColor selected text colour
+     */
     public void updateButtonColours(Drawable colour, int textColor) {
         button1.setBackground(buttonBg);
         button3.setBackground(buttonBg);

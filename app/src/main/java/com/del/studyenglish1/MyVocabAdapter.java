@@ -5,17 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyVocabAdapter extends ArrayAdapter<Vocabulary> {
     private static final String LOG_TAG = MyVocabAdapter.class.getSimpleName();
 
     private ArrayList<Vocabulary> vocabList;
 
+    /**
+     * MyVocabAdapter constructor
+     * @param context current context
+     * @param vocabList list of vocabulary of selected topic to show in adapter
+     */
     public MyVocabAdapter(Context context, ArrayList<Vocabulary> vocabList) {
         super(context, 0, vocabList);
         this.vocabList = vocabList;

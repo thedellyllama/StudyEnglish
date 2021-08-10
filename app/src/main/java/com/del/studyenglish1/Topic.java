@@ -106,7 +106,14 @@ public class Topic {
     public Topic() {
     }
 
-    /**constructor for Topic object with no information**/
+    /**
+     * Topic constructor with no information
+     * @param id selected topic id
+     * @param name selected topic name
+     * @param difficulty selected topic difficulty name
+     * @param type selected topic type
+     * @param activitiesCount  number of activities
+     */
     public Topic(int id, String name, String difficulty, String type, int activitiesCount) {
         this.id = id;
         this.name = name;
@@ -117,7 +124,13 @@ public class Topic {
         this.information = "No information available";
     }
 
-    /**constructor for topics with no activities added and no information*/
+    /**
+     * Topic constructor with no information or activities added
+     * @param id selected topic id
+     * @param name selected topic name
+     * @param difficulty selected topic difficulty name
+     * @param type selected topic type
+     */
     public Topic(int id, String name, String difficulty, String type) {
         this.id = id;
         this.name = name;
@@ -128,7 +141,15 @@ public class Topic {
         this.information = "No information available";
     }
 
-    /**full constructor for topics**/
+    /**
+     * Full Topic constructor
+     * @param id selected topic id
+     * @param name selected topic name
+     * @param difficulty selected topic difficulty name
+     * @param type selected topic type
+     * @param activitiesCount  number of activities
+     * @param information topic information
+     */
     public Topic(int id, String name, String difficulty, String type, int activitiesCount, String information) {
         this.id = id;
         this.name = name;
@@ -195,16 +216,10 @@ public class Topic {
         this.information = information;
     }
 
-    //list of all types
-    public static String[] getAllActivityTypes() {
-        return new String[] {
-                TYPE_GRAMMAR,
-                TYPE_VOCABULARY,
-                TYPE_READING
-        };
-    }
-
-    //so the adapter returns to the name of the topic instead of class name
+    /**
+     * Returns Topic name instead of class name when toString() is called in adapter
+     * @return
+     */
     @Override
     public String toString() {
         return getName();
