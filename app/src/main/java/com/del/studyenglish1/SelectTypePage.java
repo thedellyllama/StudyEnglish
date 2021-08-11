@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ public class SelectTypePage extends Fragment {
     private SelectTopicPage selectTopicPage;
 
     private TextView textViewLevel;
-    private TextView changeLevel;
+    private ImageView backButton;
     private Button button_grammar;
     private Button button_vocabulary;
     Button button_reading;
@@ -63,18 +64,15 @@ public class SelectTypePage extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         textViewLevel = (TextView) view.findViewById(R.id.text_view_level);
-        changeLevel = (TextView) view.findViewById(R.id.text_change_level);
+        backButton = view.findViewById(R.id.back_button);
         button_grammar = view.findViewById(R.id.button_grammar);
         button_vocabulary = view.findViewById(R.id.button_vocab);
         button_reading = view.findViewById(R.id.button_reading);
 
-        changeLevel.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectLevelPage = new SelectLevelPage();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
-                fragmentTransaction.commit();
+                openSelectLevelPage();
             }
         });
 
@@ -82,7 +80,7 @@ public class SelectTypePage extends Fragment {
             @Override
             public void onClick(View v) {
                 selected_type = button_grammar.getText().toString();
-                nextPageType(selected_type, level, level_name);
+                openSelectTopicPage(selected_type, level, level_name);
             }
         });
 
@@ -90,7 +88,7 @@ public class SelectTypePage extends Fragment {
             @Override
             public void onClick(View v) {
                 selected_type = button_vocabulary.getText().toString();
-                nextPageType(selected_type, level, level_name);
+                openSelectTopicPage(selected_type, level, level_name);
             }
         });
 
@@ -98,9 +96,19 @@ public class SelectTypePage extends Fragment {
             @Override
             public void onClick(View v) {
                 selected_type = button_reading.getText().toString();
-                nextPageType(selected_type, level, level_name);
+                openSelectTopicPage(selected_type, level, level_name);
             }
         });
+    }
+
+    /**
+     * Open new SelectLevelPage
+     */
+    public void openSelectLevelPage() {
+        selectLevelPage = new SelectLevelPage();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
+        fragmentTransaction.commit();
     }
 
     /**
@@ -109,7 +117,7 @@ public class SelectTypePage extends Fragment {
      * @param level selected level description
      * @param level_name selected level name
      */
-    public void nextPageType(String selected_type, String level, String level_name) {
+    public void openSelectTopicPage(String selected_type, String level, String level_name) {
         selectTopicPage = selectTopicPage.newInstance(selected_type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, selectTopicPage);
