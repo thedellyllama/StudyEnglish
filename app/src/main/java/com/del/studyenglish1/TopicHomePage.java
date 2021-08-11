@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,8 @@ public class TopicHomePage extends Fragment {
 
     private TextView textViewTopic;
     private TextView textViewExplanation;
-    private TextView changeTopic;
+    //private TextView changeTopic;
+    private ImageView backButton;
     private Button activities;
 
     public TopicHomePage() {}
@@ -77,7 +79,8 @@ public class TopicHomePage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
+        //changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
+        backButton = view.findViewById(R.id.button_back);
         activities = (Button) view.findViewById(R.id.button_activities);
 
         activities.setOnClickListener(new View.OnClickListener() {
@@ -90,10 +93,10 @@ public class TopicHomePage extends Fragment {
                 }
             }
         });
-       changeTopic.setOnClickListener(new View.OnClickListener() {
+       backButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               changeTopicPage(type, level, level_name);
+               openSelectTopicPage(type, level, level_name);
            }
        });
     }
@@ -115,7 +118,7 @@ public class TopicHomePage extends Fragment {
      * @param level selected level description
      * @param level_name selected level name
      */
-    public void changeTopicPage(String type, String level, String level_name) {
+    public void openSelectTopicPage(String type, String level, String level_name) {
         selectTopicPage = selectTopicPage.newInstance(type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, selectTopicPage);
