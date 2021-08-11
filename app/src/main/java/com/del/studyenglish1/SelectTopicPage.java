@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,8 +34,9 @@ public class SelectTopicPage extends Fragment {
     private ActivityHomePage activityHomePage;
 
     private TextView textViewType;
-    private TextView changeLevel;
-    private TextView changeType;
+    private ImageView backButton;
+    //private TextView changeLevel;
+    //private TextView changeType;
     private ListView listView;
 
     public SelectTopicPage() {}
@@ -62,6 +64,7 @@ public class SelectTopicPage extends Fragment {
         View v = inflater.inflate(R.layout.fragment_select_topic, container, false);
         textViewType = v.findViewById(R.id.text_view_type);
         listView = (ListView) v.findViewById(R.id.recycler_topic);
+        backButton = v.findViewById(R.id.button_back);
 
         loadTopics();
 
@@ -78,10 +81,19 @@ public class SelectTopicPage extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        changeLevel = (TextView) view.findViewById(R.id.text_view_change_level);
-        changeType = (TextView) view.findViewById(R.id.text_view_change_type);
-        listView = (ListView) view.findViewById(R.id.recycler_topic);
+        //changeLevel = (TextView) view.findViewById(R.id.text_view_change_level);
+        //changeType = (TextView) view.findViewById(R.id.text_view_change_type);
+        //listView = (ListView) view.findViewById(R.id.recycler_topic);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                level_name = getArguments().getString(ARG_LEVEL_NAME);
+                level = getArguments().getString(ARG_LEVEL);
+                openSelectTypePage(level, level_name);
+            }
+        });
+/**
         changeLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +108,7 @@ public class SelectTopicPage extends Fragment {
                 level = getArguments().getString(ARG_LEVEL);
                changeTypePage(level, level_name);
             }
-        });
+        });**/
     }
 
     /**
@@ -134,22 +146,22 @@ public class SelectTopicPage extends Fragment {
         fragmentTransaction.commit();
     }
 
-    /**
+    /*
      * Open new Select Level Page
-     */
+
     private void changeLevelPage() {
         selectLevelPage = new SelectLevelPage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
         fragmentTransaction.commit();
-    }
+    }*/
 
     /**
-     * Open new Select Type PAge
+     * Open new Select Type Page
      * @param level selected level description
      * @param level_name selected level name
      */
-    private void changeTypePage(String level, String level_name) {
+    private void openSelectTypePage(String level, String level_name) {
         selectTypePage = selectTypePage.newInstance(level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, selectTypePage);
