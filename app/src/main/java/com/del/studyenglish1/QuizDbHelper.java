@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-
 import com.del.studyenglish1.QuizContract.*;
+
+import java.util.ArrayList;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "StudyEnglish.db";
@@ -23,10 +23,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    /*
-     * singleton: ensures only 1 database connection can be made to avoid any memory leaks
-     * synchronised in case we want to access it from other methods
-     * static so we don't have to create a quizDbHelper object first
+    /**
+     *  Gets instance of DbHelper from other methods and ensures only 1 database connection can be made to
+     *  avoid any memory leaks.
+     * @param context current context
+     * @return instance of QuizDbHelper
      */
     public static synchronized QuizDbHelper getInstance(Context context) {
         if (instance == null) {
@@ -125,7 +126,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.setForeignKeyConstraintsEnabled(true);
     }
 
-    private void fillTopicsTable() {
+    public void fillTopicsTable() {
         Topic g1 = new Topic(Topic.g1_ID, "ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Adverbs of Frequency are adverbs of time that answer the question \'\'How frequently?\'\' or \'\'How often?\'\'. They tell us how often something happens. Here are some examples:\n-daily, weekly, yearly\n-often, sometimes, rarely\nThe words in a) describe definite frequency.\nThe words in b) describe indefinite frequency\nWe separate them into two groups because they normally go in different positions in the sentence.\n\nAdverbs of definite frequency, typically go in END position.\n-Most companies pay taxes yearly.\n-The manager checks the toilets every hour.\nThe directors meet weekly to review progress.\nSometimes, usually for reasons of emphasis or style, some adverbs of definite frequency may go at the FRONT, for example:\n-Every day, more than five thousand people die on our roads.\n\nHere are some adverbs of indefinite frequency:\n100%\t always, constantly\n\tusually, normally\n\tfrequently, regularly\n\toften\n50%\tsometimes\n\toccasionally\n\trarely, infrequently\n\tseldom\n\thardly ever\n0%\tnever\n\nAdverbs of indefinite frequency mainly go in MID position in the sentence. They go before the main verb (except the main verb TO BE):\n-We usually go shopping on Saturday.\n-I have often done that.\n-She is always late.");
         Topic g2 = new Topic(Topic.g2_ID, "PRESENT SIMPLE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "The Present Simple tense uses the base form of the verb (except for the verb be). The only change from the base is the addition of s for third person singular.\nHow do we make the Present Simple tense?\nThere are two basic structures for the Present Simple:\n1. Positive sentences:\nsubject	+\tmain verb in present simple \n2.Negative and question sentences:\nsubject\t+\tauxiliary do (conjugated in Present Simple)\t+\tmain verb (base)\n\nExamples with the main verb like:\n\n-I, you, we, they\tlike\tcoffee.\n-He, she, it\tlikes\tcoffee.\n-I, you, we, they\tdo\tnot\tlike	coffee.\n-He, she, it\tdoes\tnot\tlike coffee.\n-Do\tI, you, we, they\tlike coffee?\n-Does\the, she, it\tlike\tcoffee?");
         Topic g3 = new Topic(Topic.g3_ID, "QUESTION WORDS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "These are the most common question words in English: \nWHO is used when asking about people. (I want to know the person)\n\nWHERE is used when asking about a place or location. (= I want to know the place)\n\n WHEN is used to ask about time or an occasion. (= I want to know the time)\n\nWHY is used to ask for an explanation or a reason. (= I want to know the reason)\nNormally the response starts with \'Because...\'\n\nWHAT is used to ask about specific information. (= I want to know the thing)\n\nWHICH is used to ask about a choice. (= I want to know the chosen thing)\n\nHOW is used to describe the way or manner that something is done. (= I want to know the way)\nThere are more expressions with HOW:\nHow much – to ask about quantity or price (uncountable nouns)\nHow many – to ask about quantity (countable nouns)\nHow often – to ask about frequency");
@@ -162,9 +163,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Topic v8 = new Topic(Topic.v8_ID, "HOMES", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
         Topic v9 = new Topic(Topic.v9_ID, "HOTELS", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
         Topic v10 = new Topic(Topic.v10_ID, "JOBS 1", Topic.DIFFICULTY_A2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v11 = new Topic(Topic.v11_ID, "BATHROOMS", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v12 = new Topic(Topic.v12_ID, "CARS", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
-        Topic v13 = new Topic(Topic.v13_ID, "BICYCLES", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
+        Topic v11 = new Topic(Topic.v11_ID, "BATHROOMS", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB, "Learning vocabulary will help you improve your English and communicate more effectively!\n\n\nNew vocabulary includes:\n\t-laundry\n\t-shampoo\n\t-tap\n\t-sink\n\t-mirror\n\t-clothes horse\n\n\nVisit the Dictionary section to read the full definitions!");
+        Topic v12 = new Topic(Topic.v12_ID, "BEACHES", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB, "Learning vocabulary will help you improve your English and communicate more effectively!\n\n\nNew vocabulary includes:\n\t-sunglasses\n\t-deckchair\n\t-sun hat\n\t-wave\n\t-beach\n\t-sand\n\n\nVisit the Dictionary section to read the full definitions!");
+        Topic v13 = new Topic(Topic.v13_ID, "GARDENS", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB, "Learning vocabulary will help you improve your English and communicate more effectively!\n\n\nNew vocabulary includes:\n\t-greenhouse\n\t-leaf\n\t-washing line\n\t-pond\n\t-fence\n\t-birdhouse\n\n\nVisit the Dictionary section to read the full definitions!");
         Topic v14 = new Topic(Topic.v14_ID, "BODY PARTS", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
         Topic v15 = new Topic(Topic.v15_ID, "MEAT AND FISH", Topic.DIFFICULTY_B1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
         Topic v16 = new Topic(Topic.v16_ID, "HEALTH", Topic.DIFFICULTY_B2, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB);
@@ -284,8 +285,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
 
-
-    private void addTopic(Topic topic) {
+    /**
+     * Add topic object to the Topics table
+     * @param topic Topic object to add to table
+     */
+    public void addTopic(Topic topic) {
         ContentValues cv = new ContentValues();
         cv.put(TopicsTable._ID, topic.getId());
         cv.put(TopicsTable.COLUMN_NAME, topic.getName());
@@ -296,7 +300,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(TopicsTable.TABLE_NAME, null, cv);
     }
 
-    private void fillActivityTable() {
+    public void fillActivityTable() {
         Activity a1 = new Activity(Topic.g1_ID, Activity.ACT_NUM_1, Activity.FALSE);
         Activity a2 = new Activity(Topic.g1_ID, Activity.ACT_NUM_2, Activity.FALSE);
         Activity a3 = new Activity(Topic.g1_ID, Activity.ACT_NUM_3, Activity.FALSE);
@@ -353,7 +357,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     }
 
-    private void addActivity(Activity activity) {
+    /**
+     * Adds Activity to Activity table
+     * @param activity Activity object to add to table
+     */
+    public void addActivity(Activity activity) {
         ContentValues cv = new ContentValues();
         cv.put(ActivityTable.COLUMN_TOPIC_ID, activity.getTopicId());
         cv.put(ActivityTable.COLUMN_ACT_NUM, activity.getActivityNum());
@@ -361,7 +369,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(ActivityTable.TABLE_NAME, null, cv);
     }
 
-    private void fillQuestionsTable() {
+    public void fillQuestionsTable() {
         Question q1 = new Question("Select the correct phrase:", "Our teacher is often late.", "Our teacher often is late.", "Is often our teacher late?", "Often our teacher is late", 1, Topic.g1_ID, Activity.ACT_NUM_1);
         Question q2 = new Question("Select the correct phrase:", "I am tired always.", "I am always tired.", "Always I am tired.", "Tired I am always.", 2, Topic.g1_ID, Activity.ACT_NUM_1);
         Question q3 = new Question("Select the correct phrase:", "My sister watches TV hardly ever.", "My sister doesn't hardly ever watch TV.", "My sister watches TV hardly ever.", "My sister hardly ever watches TV.", 4, Topic.g1_ID, Activity.ACT_NUM_1);
@@ -437,9 +445,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q73 = new Question("Select the correct question word:", "________ is your birthday?", "When", "Where", "How", "What", 1, Topic.g3_ID, Activity.ACT_NUM_1);
         Question q74 = new Question("Select the correct question word:", "________ music do you like?", "Where", "What", "Which", "When", 2, Topic.g3_ID, Activity.ACT_NUM_1);
         Question q75 = new Question("Select the correct question word:", "________ do you work?", "How", "Which", "Where", "What", 3, Topic.g3_ID, Activity.ACT_NUM_1);
-        Question q76 = new Question("Select the correct question word:", "________ one is yours?", "Where", "When", "How", "What", 4, Topic.g3_ID, Activity.ACT_NUM_1);
+        Question q76 = new Question("Select the correct question word:", "________ one is yours?", "Where", "When", "How", "Which", 4, Topic.g3_ID, Activity.ACT_NUM_1);
         Question q77 = new Question("Select the correct question word:", "________ is your favourite film?", "What", "How", "Which", "When", 1, Topic.g3_ID, Activity.ACT_NUM_1);
-        Question q78 = new Question("Select the correct question word:", "________ time is it?", "What", "How", "How", "Which", 2, Topic.g3_ID, Activity.ACT_NUM_1);
+        Question q78 = new Question("Select the correct question word:", "________ time is it?", "Where", "What", "How", "Which", 2, Topic.g3_ID, Activity.ACT_NUM_1);
         Question q79 = new Question("Select the correct question word:", "________ do you get to school, by bus or train?", "Where", "Which", "How", "What", 3, Topic.g3_ID, Activity.ACT_NUM_1);
         Question q80 = new Question("Select the correct question word:", "________ much does the scarf cost?", "What", "Which", "When", "How", 4, Topic.g3_ID, Activity.ACT_NUM_1);
         Question q81 = new Question("Select the correct question word:", "________ brought the cake?", "Who", "When", "Where", "Why", 1, Topic.g3_ID, Activity.ACT_NUM_2);
@@ -467,7 +475,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q103 = new Question("Select the correct response:", "Why are you tired?", "I am always tired", "I am hardly ever tired", "I am tired because it's late", "Yes, I am tired", 3, Topic.g3_ID, Activity.ACT_NUM_4);
         Question q104 = new Question("Select the correct response:", "Where does she live?", "She lives with her dog", "Her house has many rooms", "She is from Manchester", "She lives in Edinburgh", 4, Topic.g3_ID, Activity.ACT_NUM_4);
         Question q105 = new Question("Select the correct question word:", "________ is your favourite film?", "What", "How", "Which", "When", 1, Topic.g3_ID, Activity.ACT_NUM_4);
-        Question q106 = new Question("Select the correct question word:", "________ time is it?", "What", "How", "How", "Which", 2, Topic.g3_ID, Activity.ACT_NUM_4);
+        Question q106 = new Question("Select the correct question word:", "________ time is it?", "Where", "What", "How", "Which", 2, Topic.g3_ID, Activity.ACT_NUM_4);
         Question q107 = new Question("Select the correct question word:", "________ do you get to school, by bus or train?", "Where", "Which", "How", "What", 3, Topic.g3_ID, Activity.ACT_NUM_4);
         Question q108 = new Question("Select the correct question word:", "________ much does the scarf cost?", "What", "Which", "When", "How", 4, Topic.g3_ID, Activity.ACT_NUM_4);
         Question q109 = new Question(R.drawable.t_shirt, "Select the correct word or phrase:", "shirt", "jumper", "hoodie", "t-shirt", 4, Topic.v1_ID, Activity.ACT_NUM_1);
@@ -587,6 +595,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q223 = new Question(R.drawable.reading_plane, "Select the best answer:", "Where will flight LH9354 land?", "Copenhagen", "Chicago", "Nice", "Manchester", 2, Topic.r1_ID, Activity.ACT_NUM_2);
         Question q224 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "The plane is late", "cancelled", "boarding", "delayed", "departed", 3, Topic.r1_ID, Activity.ACT_NUM_1);
         Question q225 = new Question(R.drawable.reading_plane, "Select the best answer:", "What time will flight BA346 depart?", "0.423611111111111", "Cancelled", "Unknown", "0.430555555555556", 3, Topic.r1_ID, Activity.ACT_NUM_2);
+
+        Question q324 = new Question("Select the correct option to complete the question tag", "are you?", "do you?", "aren't you?", "don' you?", 3, Topic.g15_ID, Activity.ACT_NUM_1);
 
         addQuestion(q1);
         addQuestion(q2);
@@ -816,7 +826,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     }
 
-    private void addQuestion(Question question) {
+    /**
+     * Add Question to Questions table
+     * @param question Question object to add to table
+     */
+    public void addQuestion(Question question) {
         ContentValues cv = new ContentValues();
         cv.put(QuestionsTable.COLUMN_INSTRUCTION, question.getInstruction());
         cv.put(QuestionsTable.COLUMN_QUESTION, question.getQuestion());
@@ -831,7 +845,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
-    private void fillVocabTable() {
+    public void fillVocabTable() {
         Vocabulary v1 = new Vocabulary(Topic.v1_ID, "suit", "A set of clothes made of the same cloth, including a jacket and trousers or a skirt");
         Vocabulary v2 = new Vocabulary(Topic.v1_ID, "skirt", "A piece of clothing often worn by a woman or girl that hangs from the middle part of the body");
         Vocabulary v3 = new Vocabulary(Topic.v1_ID, "shirt", "A piece of clothing worn on the upper part of the body, made of light cloth, with sleeves and usually with a collar and buttons down the front");
@@ -880,6 +894,47 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Vocabulary v46 = new Vocabulary(Topic.v3_ID, "ferry", "A boat or ship that carries people, vehicles and goods across a river or across a narrow part of the sea");
         Vocabulary v47 = new Vocabulary(Topic.v3_ID, "flight", "A journey made by air, especially in a plane");
         Vocabulary v48 = new Vocabulary(Topic.v3_ID, "landmark", "Something, such as a large building, that you can see clearly from a distance and that will help you to know where you are");
+        Vocabulary v49 = new Vocabulary(Topic.v11_ID, "toilet paper", " [noun]\tThin, soft paper used for cleaning yourself after you have used the toilet");
+        Vocabulary v50 = new Vocabulary(Topic.v11_ID, "bath", " [noun]\tA large, long container that you put water in and then get into to wash your whole body, also known as a bathtub or tub (informal)");
+        Vocabulary v51 = new Vocabulary(Topic.v11_ID, "mirror", " [noun]\tA piece of special flat glass that reflects images, so that you can see yourself when you look in it");
+        Vocabulary v52 = new Vocabulary(Topic.v11_ID, "sink", " [noun]\tA large open container in a bathroom or kitchen that has taps to supply water");
+        Vocabulary v53 = new Vocabulary(Topic.v11_ID, "shower", " [noun]\tA piece of equipment producing a flow of water that you stand under to wash yourself; the small room or part of a room that contains a shower");
+        Vocabulary v54 = new Vocabulary(Topic.v11_ID, "toothpaste", " [noun]\tA substance that you put on a toothbrush and use to clean your teeth");
+        Vocabulary v55 = new Vocabulary(Topic.v11_ID, "soap", " [noun]\t[uncountable, countable] A substance that you use with water for washing your body");
+        Vocabulary v56 = new Vocabulary(Topic.v11_ID, "toothbrush", " [noun]\tA small brush for cleaning your teeth");
+        Vocabulary v57 = new Vocabulary(Topic.v11_ID, "tap", " [noun]\t[countable] A device for controlling the flow of water from a pipe into a bath or sink");
+        Vocabulary v58 = new Vocabulary(Topic.v11_ID, "towel", " [noun]\tA piece of cloth or paper used for drying things, especially your body");
+        Vocabulary v59 = new Vocabulary(Topic.v11_ID, "shampoo", " [noun]\tLiquid soap that is used for washing your hair; a similar liquid used for cleaning carpets, furniture covers or a car");
+        Vocabulary v60 = new Vocabulary(Topic.v11_ID, "medicine cabinet", " [noun]\t[countable] A piece of furniture with doors, drawers and/or shelves, that is used for storing medicine");
+        Vocabulary v61 = new Vocabulary(Topic.v11_ID, "clothes horse", " [noun]\t(U.K) A wooden or plastic folding frame that you put clothes on to dry after you have washed them");
+        Vocabulary v62 = new Vocabulary(Topic.v11_ID, "cosmetics", " [noun]\tSubstances that you put on your face or body, for example, make up");
+        Vocabulary v63 = new Vocabulary(Topic.v11_ID, "laundry", " [noun]\t[uncountable] Clothes, sheets, etc. that need washing, that are being washed, or that have been washed recently");
+        Vocabulary v64 = new Vocabulary(Topic.v11_ID, "washing machine", " [noun]\tAn electric machine for washing clothes");
+        Vocabulary v65 = new Vocabulary(Topic.v12_ID, "sand", " [noun] [uncountable]\tA substance that consists of very small fine grains of rock. Sand is found on beaches, in deserts, etc.");
+        Vocabulary v66 = new Vocabulary(Topic.v12_ID, "crab", " [noun]\t[countable] A sea creature with a hard shell, eight legs and two pincers (= curved and pointed arms for catching and holding things). Crabs move sideways (= towards the side) on land.");
+        Vocabulary v67 = new Vocabulary(Topic.v12_ID, "sunglasses", " [noun]\t[plural] A pair of glasses with dark glass in them that you wear to protect your eyes from bright light from the sun");
+        Vocabulary v68 = new Vocabulary(Topic.v12_ID, "surfboard", " [noun]\tA long narrow board used for surfing");
+        Vocabulary v69 = new Vocabulary(Topic.v12_ID, "shell", " [noun]\t[countable, uncountable] The hard outer part of eggs, nuts, some seeds, and some animals");
+        Vocabulary v70 = new Vocabulary(Topic.v12_ID, "boat", " [noun]\tA vehicle (smaller than a ship) that travels on water, moved by oars, sails or a motor");
+        Vocabulary v71 = new Vocabulary(Topic.v12_ID, "wave", " [noun]\t[countable] A raised line of water that moves across the surface of the sea, ocean, etc.");
+        Vocabulary v72 = new Vocabulary(Topic.v12_ID, "sun cream", " [noun]\t[uncountable, countable] Cream that you put on your skin to protect it from the harmful effects of the sun");
+        Vocabulary v73 = new Vocabulary(Topic.v12_ID, "beach umbrella", " [noun]\tAn object with a round folding frame of long, straight pieces of metal covered with material, that you use to protect yourself from the rain or from hot sun, also known as a brolly (U.K informal)");
+        Vocabulary v74 = new Vocabulary(Topic.v12_ID, "deckchair", " [noun]\tA folding chair with a seat made from a long piece of material on a wooden or metal frame, used for example on a beach");
+        Vocabulary v75 = new Vocabulary(Topic.v12_ID, "sun hat", " [noun]\tA hat worn to protect the head and neck from the sun");
+        Vocabulary v76 = new Vocabulary(Topic.v12_ID, "beach", " [noun]\tAn area of sand or small stones (called shingle), next to the sea or a lake");
+        Vocabulary v77 = new Vocabulary(Topic.v13_ID, "grass", " [noun]\t[uncountable] A common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.");
+        Vocabulary v78 = new Vocabulary(Topic.v13_ID, "tree", " [noun]\tA tall plant that can live a long time. Trees have a thick central wooden trunk from which branches grow, usually with leaves on them");
+        Vocabulary v79 = new Vocabulary(Topic.v13_ID, "pond", " [noun]\tA small area of still water, especially one that is artificial");
+        Vocabulary v80 = new Vocabulary(Topic.v13_ID, "greenhouse", " [noun]\tA building with glass sides and a glass roof for growing plants in");
+        Vocabulary v81 = new Vocabulary(Topic.v13_ID, "flower", " [noun]\tThe coloured part of a plant from which the seed or fruit develops. Flowers usually grow at the end of a stem and last only a short time.");
+        Vocabulary v82 = new Vocabulary(Topic.v13_ID, "washing line", " [noun]\tA piece of thin rope or wire, attached to posts, that you hang clothes on to dry outside after you have washed them, also known as a clothes line");
+        Vocabulary v83 = new Vocabulary(Topic.v13_ID, "barbecue", " [noun]\tA metal frame for cooking food on over an open fire outdoors");
+        Vocabulary v84 = new Vocabulary(Topic.v13_ID, "gate", " [noun]\t[countable] A barrier like a door that is used to close an opening in a fence or a wall outside a building");
+        Vocabulary v85 = new Vocabulary(Topic.v13_ID, "fence", " [noun]\tA structure made of wood or wire supported with posts that is put between two areas of land as a boundary, or around a garden, field, etc. to keep animals in, or to keep people and animals out");
+        Vocabulary v86 = new Vocabulary(Topic.v13_ID, "hammock", " [noun]\tA type of bed made from a net or from a piece of strong material, with ropes at each end that are used to hang it between two trees, posts, etc");
+        Vocabulary v87 = new Vocabulary(Topic.v13_ID, "birdhouse", " [noun]\tA small box, often made to look like a house, for a bird to build its nest in");
+        Vocabulary v88 = new Vocabulary(Topic.v13_ID, "leaf", " [noun]\t[countable] A flat green part of a plant, growing from a stem or branch or from the root");
+
 
         addVocab(v1);
         addVocab(v2);
@@ -929,9 +984,53 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addVocab(v46);
         addVocab(v47);
         addVocab(v48);
+        addVocab(v49);
+        addVocab(v50);
+        addVocab(v51);
+        addVocab(v52);
+        addVocab(v53);
+        addVocab(v54);
+        addVocab(v55);
+        addVocab(v56);
+        addVocab(v57);
+        addVocab(v58);
+        addVocab(v59);
+        addVocab(v60);
+        addVocab(v61);
+        addVocab(v62);
+        addVocab(v63);
+        addVocab(v64);
+        addVocab(v65);
+        addVocab(v66);
+        addVocab(v67);
+        addVocab(v68);
+        addVocab(v69);
+        addVocab(v70);
+        addVocab(v71);
+        addVocab(v72);
+        addVocab(v73);
+        addVocab(v74);
+        addVocab(v75);
+        addVocab(v76);
+        addVocab(v77);
+        addVocab(v78);
+        addVocab(v79);
+        addVocab(v80);
+        addVocab(v81);
+        addVocab(v82);
+        addVocab(v83);
+        addVocab(v84);
+        addVocab(v85);
+        addVocab(v86);
+        addVocab(v87);
+        addVocab(v88);
     }
 
-    private void addVocab(Vocabulary vocabulary) {
+    /**
+     * Add Vocabulary to Vocab table
+     * @param vocabulary Vocabulary object to add to table
+     */
+    public void addVocab(Vocabulary vocabulary) {
         ContentValues cv = new ContentValues();
         cv.put(VocabTable.COLUMN_TOPIC_ID, vocabulary.getTopicId());
         cv.put(VocabTable.COLUMN_NAME, vocabulary.getName());
@@ -939,18 +1038,26 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(VocabTable.TABLE_NAME, null, cv);
     }
 
-    private void fillGoalsTable() {
+    public void fillGoalsTable() {
         Goal userGoal = new Goal(5, Goal.DAILY);
         addGoals(userGoal);
     }
 
+    /**
+     * Add Goal to Goals table
+     * @param goal Goal object to add to table
+     */
     public void addGoals(Goal goal) {
         ContentValues cv = new ContentValues();
         cv.put(GoalsTable.COLUMN_GOAL_ACTIVITY, goal.getGoalActivities());
-        cv.put(GoalsTable.COLUMN_GOAL_TIME_FRAME, goal.getGoalTimeframe());
+        cv.put(GoalsTable.COLUMN_GOAL_TIME_FRAME, goal.getGoalTimeFrame());
         db.insert(GoalsTable.TABLE_NAME, null, cv);
     }
 
+    /**
+     * Get list of all vocabulary type Topics
+     * @return ArrayList of Topic objects
+     */
     public ArrayList<Topic> getAllVocabTopics() {
         ArrayList<Topic> topicList = new ArrayList<>();
         db = getReadableDatabase();
@@ -974,6 +1081,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return topicList;
     }
 
+    /**
+     * Get list of all Questions
+     * @return ArrayList of Question objects
+     */
     public ArrayList<Question> getAllQuestions() {
         ArrayList<Question> questionList = new ArrayList<>();
         db = getReadableDatabase();
@@ -999,12 +1110,18 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return questionList;
     }
 
-    public ArrayList<Topic> getTopics(String type, String difficulty) {
+        /**
+     * Get list of Topics of selected type and level_name
+     * @param type selected activity type
+     * @param level_name selected level name
+     * @return ArrayList of Topic objects of selected type and level
+     */
+    public ArrayList<Topic> getTopics(String type, String level_name) {
         ArrayList<Topic> topicList = new ArrayList<>();
         db = getReadableDatabase();
 
-        //filter difficulty and type
-        String[] selectionArgs = new String[]{type, difficulty};
+        //filter level_name and type
+        String[] selectionArgs = new String[]{type, level_name};
         String selection = TopicsTable.COLUMN_TYPE + " = ? " +
                 " AND " + TopicsTable.COLUMN_DIFFICULTY + " = ? ";
         Cursor c = db.query(
@@ -1033,6 +1150,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return topicList;
     }
 
+    /**
+     * Get list of Questions of selected topic Id and activity number
+     * @param topicID selected topicId
+     * @param activityNum selected activity number
+     * @return ArrayList of Question objects with selected topicId and activity number
+     */
     public ArrayList<Question> getQuestions(int topicID, int activityNum) {
         ArrayList<Question> questionList = new ArrayList<>();
         String selection = QuestionsTable.COLUMN_TOPIC_ID + " = ? "
@@ -1069,6 +1192,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return questionList;
     }
 
+    /**
+     * Get list of Vocabulary for selected topic
+     * @param topicId selected topic id
+     * @return ArrayList of Vocabulary objects with selected topic id
+     */
     public ArrayList<Vocabulary> getVocab(int topicId) {
         db = getReadableDatabase();
         ArrayList<Vocabulary> vocabList = new ArrayList<>();
@@ -1098,7 +1226,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return vocabList;
     }
 
-    /**a method to return an array list of topics with >1 completed activity**/
+    /**
+     * Get list of topics with >0 completed activities
+     * @return ArrayList of Topic objects with 1 or more completed activities
+     */
     public ArrayList<Topic> getTopicProgress() {
         db = getReadableDatabase();
         ArrayList<Topic> progressList = new ArrayList<>();
@@ -1129,6 +1260,13 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return progressList;
     }
 
+    /**
+     * Get the topic id from given topic name, type and level name
+     * @param selected_topic selected topic name
+     * @param type selected topic type
+     * @param level_name selected topic level name
+     * @return topicId for selected Topic
+     */
     public int getTopicId(String selected_topic, String type, String level_name) {
         int topicId = 0;
         db = getReadableDatabase();
@@ -1158,6 +1296,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return topicId;
     }
 
+    /**
+     * Get information about the topic
+     * @param topicId selected topic id
+     * @return Topic information
+     */
     public String getTopicInfo(int topicId) {
         String topic_info = "";
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
@@ -1182,8 +1325,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return topic_info;
     }
 
-    /*method to update the 'completed' column of Activity Table to true
-    /*and  update the timestamp when activity is completed */
+    /**
+     * Update the 'completed' column of Activity Table to
+     * true and update the timestamp when activity is completed
+     * @param topicId selected topic id
+     * @param activity_num selected activity number
+     * @return true if activity has been completed, false otherwise
+     */
+
     public boolean activityCompleted(int topicId, int activity_num) {
         //identify corresponding row in activity table and return activity_id
         String STRING_SQL_UPDATE_ACTIVITY_COMPLETED = "UPDATE " + ActivityTable.TABLE_NAME
@@ -1202,8 +1351,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     db.execSQL(STRING_SQL_UPDATE_TIMESTAMP);
         return true;
     }
-    /**method to update the activities_completed column in the Topics Table
-     * by counting the number of completed activities from activity table*/
+
+    /**
+     * Update the 'activities_completed' column in the Topics Table by counting
+     * the number of completed activities from activity table
+     * @param topicId selected topic id
+     */
     public void activityCompletedTopics(int topicId) {
         db = getWritableDatabase();
         int activitiesCompleted = 0;
@@ -1240,10 +1393,13 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
 
-    /* method to get the total activity count for a topic*/
+    /**
+     * Get the total number of activities for a Topic
+     * @param topicId selected topic id
+     * @return the number of activities added for selected topic
+     */
     public int getActivityCount(int topicId) {
         ArrayList<Activity> activityList = new ArrayList<>();
-        //db = getReadableDatabase();
 
         //create an Array List of Activity objects of the given Topic ID
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
@@ -1270,7 +1426,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return activityList.size();
     }
 
-    /*method to return the number of completed activities in topic*/
+    /**
+     * Get the number of activities completed in selected Topic
+     * @param topicId selected topic id
+     * @return number of completed activities
+     */
     public int getActivityCompleted(int topicId) {
         int activitiesCompleted = 0;
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
@@ -1295,7 +1455,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return activitiesCompleted;
      }
 
-     /**method to return the number of activities completed today**/
+     /**Get the number of activities completed today
+      * @return number of activities completed today
+      */
      public int getAllActivityCompletedDaily() {
          ArrayList<Activity> activityList = new ArrayList<>();
     db = getReadableDatabase();
@@ -1319,7 +1481,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
          return activityList.size();
      }
 
-    /**method to return the number of activities completed today**/
+    /**
+     * Get the number of activities completed this week
+     * @return the number of activities completed this week
+     */
     public int getAllActivityCompletedWeekly() {
         ArrayList<Activity> activityList = new ArrayList<>();
         db = getReadableDatabase();
@@ -1355,7 +1520,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         //}
     }
 
-    /*method to check whether an activity num in topic has been completed*/
+    /**
+     * Check whether selected activity number in selected topic has been completed
+     * @param topicId selected topic id
+     * @param activity_num selected activity number
+     * @return true if the activity has been completed, false otherwise
+     */
     public boolean checkCompleted(int topicId, int activity_num) {
         db = getReadableDatabase();
         boolean activityCompleted = false;
@@ -1385,7 +1555,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return activityCompleted;
     }
 
-    /**method to return the set user goals -> number of activities*/
+    /**
+     * Get the set user goals: number of activities
+     * @return number of activities set in Goals table
+     */
     public int getActivityGoals() {
         db = getReadableDatabase();
 
@@ -1396,7 +1569,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             do {
                 Goal goal = new Goal();
                 goal.setGoalActivities(c.getInt(c.getColumnIndex(GoalsTable.COLUMN_GOAL_ACTIVITY)));
-                goal.setGoalTimeframe(c.getString(c.getColumnIndex(GoalsTable.COLUMN_GOAL_TIME_FRAME)));
+                goal.setGoalTimeFrame(c.getString(c.getColumnIndex(GoalsTable.COLUMN_GOAL_TIME_FRAME)));
                 activityGoals = goal.getGoalActivities();
             } while (c.moveToNext());
         }
@@ -1404,6 +1577,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return activityGoals;
     }
 
+    /**
+     * Get the set user goals: time frame
+     * @return time frame set in Goals table: "DAILY" or "WEEKLY"
+     */
     public String getTimeFrameGoals() {
         db = getReadableDatabase();
 
@@ -1414,8 +1591,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             do {
                 Goal goal = new Goal();
                 goal.setGoalActivities(c.getInt(c.getColumnIndex(GoalsTable.COLUMN_GOAL_ACTIVITY)));
-                goal.setGoalTimeframe(c.getString(c.getColumnIndex(GoalsTable.COLUMN_GOAL_TIME_FRAME)));
-                timeFrame = goal.getGoalTimeframe();
+                goal.setGoalTimeFrame(c.getString(c.getColumnIndex(GoalsTable.COLUMN_GOAL_TIME_FRAME)));
+                timeFrame = goal.getGoalTimeFrame();
             } while (c.moveToNext());
         }
         c.close();
@@ -1423,7 +1600,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
 
-    /**method to update user goals**/
+    /**
+     * Update the Goals table: number of activities
+     * @param goalsActivities new number of activities
+     */
     public void updateGoalActivities(int goalsActivities) {
         db = getWritableDatabase();
 
@@ -1434,7 +1614,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_UPDATE_GOALS);
     }
 
-    /**method to update user goals by timeframe*/
+    /**
+     * Update the Goals table: time frame
+     * @param goalsTimeFrame new time frame: "DAILY" or "WEEKLY"
+     */
     public void updateGoalTimeFrame(String goalsTimeFrame) {
         db = getWritableDatabase();
 
