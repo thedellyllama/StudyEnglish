@@ -30,7 +30,7 @@ public class ActivityHomePage extends Fragment {
 
     private TextView textViewTopic;
     private TextView changeTopic;
-    private TextView toExplanation;
+    private ImageView backButton;
     private ImageView imageProgress;
     private Button activity1;
     private Button activity2;
@@ -88,8 +88,8 @@ public class ActivityHomePage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
-        toExplanation = (TextView) view.findViewById(R.id.text_view_to_explanation);
+        //changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
+        backButton = view.findViewById(R.id.button_back);
 
         updateButtonTexts();
 
@@ -142,33 +142,26 @@ public class ActivityHomePage extends Fragment {
                 }            }
         });
 
-        changeTopic.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toExplanationPage(topic, type, level_name);
-            }
-        });
-
-        toExplanation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeTopicPage(type, level, level_name);
+                openTopicHomePage(type, level, level_name);
             }
         });
     }
 
-    /**
+    /*
      * Opens new instance of the Select Topic Page with selected arguments
-     * @param topic the selected topic name
+     * @param topic the selected topic nam
      * @param type the selected topic type
      * @param level_name the selected level name
-     */
+
     public void toExplanationPage(String topic, String type, String level_name) {
         selectTopicPage = selectTopicPage.newInstance(type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, selectTopicPage);
         fragmentTransaction.commit();
-    }
+    }*/
 
     /**
      * Opens a new instance of Topic Home Page with selected arguments
@@ -176,7 +169,7 @@ public class ActivityHomePage extends Fragment {
      * @param level the selected level description
      * @param level_name the selected level name
      */
-    public void changeTopicPage(String type, String level, String level_name) {
+    public void openTopicHomePage(String type, String level, String level_name) {
         topicHomePage = topicHomePage.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, topicHomePage);
