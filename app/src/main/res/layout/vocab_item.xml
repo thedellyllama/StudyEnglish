@@ -14,11 +14,13 @@
         <Space
             android:layout_width="16dp"
             android:layout_height="3dp" />
+
         <TextView
             android:id="@+id/text_view_vocab"
             android:layout_width="113dp"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="16dp"
