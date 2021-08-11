@@ -110,6 +110,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="120dp"
+        android:background="@drawable/yellow_button_outline_bg"
+        android:padding="8dp"
         android:text="@string/check_level"
         android:textColor="@color/blue_app"
         android:textStyle="italic"
