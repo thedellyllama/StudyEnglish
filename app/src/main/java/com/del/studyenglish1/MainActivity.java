@@ -1,13 +1,14 @@
 package com.del.studyenglish1;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private Fragment fragment;
+
+    private long backPressedTime;
+    private Toast toast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,4 +67,18 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            toast.cancel();
+            super.onBackPressed();
+            return;
+        } else {
+           toast = Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+           toast.show();
+        }
+        //set time to now
+        backPressedTime = System.currentTimeMillis();
+    }
 }
