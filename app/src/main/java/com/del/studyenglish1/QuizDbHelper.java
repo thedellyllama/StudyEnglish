@@ -594,7 +594,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q222 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "You can get on the plane now", "cancelled", "boarding", "delayed", "departed", 2, Topic.r1_ID, Activity.ACT_NUM_1);
         Question q223 = new Question(R.drawable.reading_plane, "Select the best answer:", "Where will flight LH9354 land?", "Copenhagen", "Chicago", "Nice", "Manchester", 2, Topic.r1_ID, Activity.ACT_NUM_2);
         Question q224 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "The plane is late", "cancelled", "boarding", "delayed", "departed", 3, Topic.r1_ID, Activity.ACT_NUM_1);
-        Question q225 = new Question(R.drawable.reading_plane, "Select the best answer:", "What time will flight BA346 depart?", "0.423611111111111", "Cancelled", "Unknown", "0.430555555555556", 3, Topic.r1_ID, Activity.ACT_NUM_2);
+        Question q225 = new Question(R.drawable.reading_plane, "Select the best answer:", "What time will flight BA346 depart?", "10:10", "Cancelled", "Unknown", "10:20", 3, Topic.r1_ID, Activity.ACT_NUM_2);
 
         Question q324 = new Question("Select the correct option to complete the question tag", "are you?", "do you?", "aren't you?", "don' you?", 3, Topic.g15_ID, Activity.ACT_NUM_1);
 
