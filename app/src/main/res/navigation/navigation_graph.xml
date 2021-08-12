@@ -31,10 +31,10 @@
         tools:layout="@layout/fragment_goals_page" />
 
     <fragment
-        android:id="@+id/nav_profile"
-        android:name="com.del.studyenglish1.ProfilePage"
+        android:id="@+id/nav_progress"
+        android:name="com.del.studyenglish1.ProgressPage"
         android:label="fragment_profile_page"
-        tools:layout="@layout/fragment_profile_page" />
+        tools:layout="@layout/fragment_progress_page" />
 
     <fragment
         android:id="@+id/nav_dictionary"

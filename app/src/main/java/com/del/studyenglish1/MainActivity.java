@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_goals:
                             selectedFragment = new GoalsPage();
                             break;
-                        case R.id.nav_profile:
-                            selectedFragment = new ProfilePage();
+                        case R.id.nav_progress:
+                            selectedFragment = new ProgressPage();
                             break;
                         case R.id.nav_dictionary:
                             selectedFragment = new DictionaryPage();

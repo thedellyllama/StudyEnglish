@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
-public class ProfilePage extends Fragment {
+public class ProgressPage extends Fragment {
 
     private int activitiesCompletedDaily;
     private int activitiesCompletedWeekly;
@@ -30,7 +30,7 @@ public class ProfilePage extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_progress_page, container, false);
         dbHelper = QuizDbHelper.getInstance(getContext());
         textViewCurrentGoals = view.findViewById(R.id.text_view_current_goals);
         textViewCurrentTimeFrame = view.findViewById(R.id.text_view_daily_goals);
