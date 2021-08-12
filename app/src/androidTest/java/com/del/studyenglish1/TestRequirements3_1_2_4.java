@@ -39,6 +39,13 @@ public class TestRequirements3_1_2_4 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * UI test for Requirements 3.1, 3.2, 3.4
+     *
+     * 3.1.	User can view learning tips
+     * 3.2.	User knows what language level each activity falls under
+     * 3.4.	User can clearly see progress within an activity (e.g. 2/10)
+     */
     @Test
     public void testRequirements3_1_2_4() {
         ViewInteraction cardView = onView(

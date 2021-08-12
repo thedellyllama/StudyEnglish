@@ -33,6 +33,12 @@ public class TestRequirement1_1 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * UI test for Requirement 1.1, 1.1.1
+     *
+     * 1.1.	User can select activity type (grammar, vocabulary)
+     * 1.1.1.	User can select activity type (reading)
+     */
     @Test
     public void testRequirement1_1_1() {
         ViewInteraction cardView = onView(

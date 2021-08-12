@@ -40,6 +40,9 @@ public class TestRequirement4_5 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * UI test for Requirement 4.5: User can complete a revision activity for each topic
+     */
     @Test
     public void testRequirement4_5() {
         ViewInteraction cardView = onView(

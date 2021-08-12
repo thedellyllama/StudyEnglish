@@ -41,6 +41,9 @@ public class TestRequirement3_3 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * UI test for Requirement 3.3: User can clearly see progress within a topic
+     */
     @Test
     public void testRequirement3_3() {
         ViewInteraction bottomNavigationItemView = onView(

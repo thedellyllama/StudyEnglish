@@ -30,6 +30,9 @@ import static org.hamcrest.Matchers.allOf;
 @RunWith(AndroidJUnit4.class)
 public class TestRequirement2_3 {
 
+    /**
+     * UI tests for Requirement 2.3: User can choose what topic to focus on
+     */
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 

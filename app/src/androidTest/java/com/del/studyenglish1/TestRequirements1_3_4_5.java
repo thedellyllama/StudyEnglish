@@ -39,6 +39,13 @@ public class TestRequirements1_3_4_5 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * UI tests for Requirements 1.3, 1.4, 1.5
+     *
+     * 1.3.	User can see estimated time needed to complete an activity
+     * 1.4.	User can see number of questions before beginning an activity
+     * 1.5.	User can read an explanation of grammar concepts before beginning an activity
+     */
     @Test
     public void testRequirements1_3_4_5() {
         ViewInteraction cardView = onView(

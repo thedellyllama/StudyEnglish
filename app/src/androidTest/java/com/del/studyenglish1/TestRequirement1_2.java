@@ -31,6 +31,12 @@ public class TestRequirement1_2 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * User test for Requirement 1.2, 1.2.1
+     *
+     * 1.2.	User can select activity by level
+     * 1.2.1.	User is directed to resource to test their level if unknown
+     */
     @Test
     public void testRequirement1_2() {
         ViewInteraction cardView = onView(

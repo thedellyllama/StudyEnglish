@@ -39,6 +39,10 @@ public class TestRequirements4_4 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * Test UI for Requirement 4.4: User is able to view all vocabulary introduced by the app
+     * in a dictionary section
+     */
     @Test
     public void testRequirements4_4() {
         ViewInteraction cardView = onView(

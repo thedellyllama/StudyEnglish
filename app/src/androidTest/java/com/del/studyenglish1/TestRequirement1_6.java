@@ -39,6 +39,9 @@ public class TestRequirement1_6 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * UI test for Requirement 1.6.	User has access to all activities, even if they have already been completed
+     */
     @Test
     public void testRequirement1_6() {
         ViewInteraction cardView = onView(

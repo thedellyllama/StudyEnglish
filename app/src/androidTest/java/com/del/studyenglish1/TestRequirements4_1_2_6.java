@@ -40,6 +40,13 @@ public class TestRequirements4_1_2_6 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * UI test for Requirements 4.1, 4.2, 4.6
+     *
+     * 4.1: User is given 2 attempts to answer each question correctly before being shown the correct answer
+     * 4.2:Mistakes from the current activity are added onto the end of the activity until answered correctly
+     * 4.6: User is shown ticks/encouraging messages for correct answers, cross + correction/clue for incorrect answers
+     */
     @Test
     public void testRequirements4_1_2_6() {
         ViewInteraction cardView = onView(
