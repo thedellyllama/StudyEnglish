@@ -15,17 +15,17 @@ import java.util.ArrayList;
 
 public class ProfilePage extends Fragment {
 
-    private ListView listView;
-
-    private TextView textViewCurrentGoals;
-    private TextView textViewCurrentTimeFrame;
-    private TextView textViewNoProgress;
     private int activitiesCompletedDaily;
     private int activitiesCompletedWeekly;
     private int activitiesGoal;
     private String timeFrameGoals;
+
     private QuizDbHelper dbHelper;
 
+    private ListView listView;
+    private TextView textViewCurrentGoals;
+    private TextView textViewCurrentTimeFrame;
+    private TextView textViewNoProgress;
 
     @Nullable
     @Override
@@ -36,7 +36,6 @@ public class ProfilePage extends Fragment {
         textViewCurrentTimeFrame = view.findViewById(R.id.text_view_daily_goals);
         listView = view.findViewById(R.id.list_view_progress);
         textViewNoProgress = view.findViewById(R.id.text_view_no_progress);
-        loadProgress();
 
         return view;
     }
@@ -44,7 +43,6 @@ public class ProfilePage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         timeFrameGoals = dbHelper.getTimeFrameGoals();
         activitiesGoal = dbHelper.getActivityGoals();
         activitiesCompletedDaily = dbHelper.getAllActivityCompletedDaily();
@@ -52,14 +50,17 @@ public class ProfilePage extends Fragment {
 
         updateGoals();
         updateActivitiesCompleted();
+        loadProgress();
 
     }
 
+    /**
+     * Updates the number of activities completed in the Goal banner
+     */
     public void updateActivitiesCompleted() {
 
         if (timeFrameGoals.equals("DAILY")) {
             if (activitiesCompletedDaily >= activitiesGoal) {
-                //textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
                 textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
 
             } else {
@@ -75,12 +76,19 @@ public class ProfilePage extends Fragment {
         textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
 
     }
+
+    /**
+     * Access the database to update the Goal selection in the Goal banner
+     */
     public void updateGoals() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         timeFrameGoals = dbHelper.getTimeFrameGoals();
         activitiesGoal = dbHelper.getActivityGoals();
     }
 
+    /**
+     * Load all topics with >0 activities completed into listView
+     */
     public void loadProgress() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         ArrayList<Topic> progressList = dbHelper.getTopicProgress();

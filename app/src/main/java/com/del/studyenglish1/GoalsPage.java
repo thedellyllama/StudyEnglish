@@ -17,6 +17,13 @@ import androidx.fragment.app.Fragment;
 
 public class GoalsPage extends Fragment {
 
+    private int activitiesCompletedDaily;
+    private int activitiesCompletedWeekly;
+    private int activitiesGoal;
+    private String timeFrameGoals;
+
+    private QuizDbHelper dbHelper;
+
     private TextView textViewCurrentGoals;
     private TextView textViewCurrentTimeFrame;
     private ImageView imageViewGoal;
@@ -28,19 +35,12 @@ public class GoalsPage extends Fragment {
     private Button buttonWeekly;
     private Button buttonUpdate;
     private ConstraintLayout bannerGoals;
-
-    private int activitiesCompletedDaily;
-    private int activitiesCompletedWeekly;
-    private int activitiesGoal;
-    private String timeFrameGoals;
-    private int appBlue;
-    private int appYellow;
     private Drawable buttonBg;
     private Drawable buttonYellowBg;
     private Drawable buttonBlueBg;
     private Drawable buttonYellowOutlineBg;
-    private QuizDbHelper dbHelper;
-
+    private int appBlue;
+    private int appYellow;
 
     @Nullable
     @Override
@@ -65,8 +65,6 @@ public class GoalsPage extends Fragment {
         buttonBlueBg = getResources().getDrawable(R.drawable.blue_button_all_bg);
         buttonYellowOutlineBg = getResources().getDrawable(R.drawable.yellow_button_outline_bg);
 
-        //updateActivitiesCompleted();
-
         return view;
     }
 
@@ -81,7 +79,6 @@ public class GoalsPage extends Fragment {
         updateGoals();
         updateActivitiesCompleted();
         updateButtonColours(buttonYellowOutlineBg, appBlue);
-        //updateGoalImage();
 
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,15 +86,6 @@ public class GoalsPage extends Fragment {
                 updateGoals();
                 updateButtonColours(buttonYellowOutlineBg, appBlue);
                 updateActivitiesCompleted();
-                //updateGoalImage();
-                /*
-                if (timeFrameGoals.equals("DAILY")) {
-                    textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
-                } else {
-                    textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
-                }
-
-                textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");*/
             }
         });
 
@@ -151,16 +139,12 @@ public class GoalsPage extends Fragment {
         });
     }
 
+    /**
+     * Update the number of activities completed in the Goal banner
+     */
     public void updateActivitiesCompleted() {
-        //QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
-        //newActivitiesCompletedDaily = dbHelper.getAllActivityCompletedDaily();
-        //newActivitiesCompletedWeekly = dbHelper.getAllActivityCompletedWeekly();
-        //textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
-       // textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed");
-       // textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
         if (timeFrameGoals.equals("DAILY")) {
             if (activitiesCompletedDaily >= activitiesGoal) {
-                //textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
                 textViewCurrentGoals.setText(activitiesCompletedDaily + "/" + activitiesGoal + " activities completed\nGOAL ACHIEVED!");
 
             } else {
@@ -173,18 +157,23 @@ public class GoalsPage extends Fragment {
                 textViewCurrentGoals.setText(activitiesCompletedWeekly + "/" + activitiesGoal + " activities completed");
             }
         }
-
-
         textViewCurrentTimeFrame.setText(timeFrameGoals + " GOALS:");
-
-
     }
+
+    /**
+     * Access the database to update the Goal selection in the Goal banner
+     */
     public void updateGoals() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         timeFrameGoals = dbHelper.getTimeFrameGoals();
         activitiesGoal = dbHelper.getActivityGoals();
     }
 
+    /**
+     * Updates button colours based on selected Goal settings
+     * @param colour selected button colour
+     * @param textColor selected text colour
+     */
     public void updateButtonColours(Drawable colour, int textColor) {
         button1.setBackground(buttonBg);
         button3.setBackground(buttonBg);

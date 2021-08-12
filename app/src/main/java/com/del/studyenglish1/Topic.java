@@ -1,6 +1,15 @@
 package com.del.studyenglish1;
 
 public class Topic {
+
+    private int id;
+    private String name;
+    private String difficulty;
+    private String type;
+    private int activitiesCount;
+    private int activitiesCompleted;
+    private String information;
+
     public static final int g1_ID = 1;
     public static final int g2_ID = 2;
     public static final int g3_ID = 3;
@@ -79,25 +88,6 @@ public class Topic {
     public static final int r24_ID = 74;
     public static final int r25_ID = 75;
 
-    /*
-    public static final int t1_ID = 1;
-    public static final int t2_ID = 2;
-    public static final int t3_ID = 3;
-    public static final int t4_ID = 4;
-    public static final int t5_ID = 5;
-    public static final int t6_ID = 6;
-    public static final int t7_ID = 7;
-    public static final int t8_ID = 8;
-    public static final int t9_ID = 9;
-    public static final int t10_ID = 10;
-    public static final int t11_ID = 11;
-    public static final int t12_ID = 12;
-    public static final int t13_ID = 13;
-    public static final int t14_ID = 14;
-*/
-    public static final int t26_ID = 26;
-    public static final int t27_ID = 27;
-
     public static final String DIFFICULTY_A1 = "A1";
     public static final String DIFFICULTY_A2 = "A2";
     public static final String DIFFICULTY_B1 = "B1";
@@ -112,33 +102,61 @@ public class Topic {
     public static final int NUM_VOCAB = 4;
     public static final int NUM_READING = 2;
 
-    private int id;
-    private String name;
-    private String difficulty;
-    private String type;
-    private int activitiesCount;
-    private int activitiesCompleted;
-    private String information;
 
     public Topic() {
     }
 
+    /**
+     * Topic constructor with no information
+     * @param id selected topic id
+     * @param name selected topic name
+     * @param difficulty selected topic difficulty name
+     * @param type selected topic type
+     * @param activitiesCount  number of activities
+     */
     public Topic(int id, String name, String difficulty, String type, int activitiesCount) {
         this.id = id;
         this.name = name;
         this.difficulty = difficulty;
         this.type = type;
         this.activitiesCount = activitiesCount;
-        activitiesCompleted = 0;
+        this.activitiesCompleted = 0;
+        this.information = "No information available";
     }
 
+    /**
+     * Topic constructor with no information or activities added
+     * @param id selected topic id
+     * @param name selected topic name
+     * @param difficulty selected topic difficulty name
+     * @param type selected topic type
+     */
+    public Topic(int id, String name, String difficulty, String type) {
+        this.id = id;
+        this.name = name;
+        this.difficulty = difficulty;
+        this.type = type;
+        activitiesCount = 0;
+        activitiesCompleted = 0;
+        this.information = "No information available";
+    }
+
+    /**
+     * Full Topic constructor
+     * @param id selected topic id
+     * @param name selected topic name
+     * @param difficulty selected topic difficulty name
+     * @param type selected topic type
+     * @param activitiesCount  number of activities
+     * @param information topic information
+     */
     public Topic(int id, String name, String difficulty, String type, int activitiesCount, String information) {
         this.id = id;
         this.name = name;
         this.difficulty = difficulty;
         this.type = type;
         this.activitiesCount = activitiesCount;
-        activitiesCompleted = 0;
+        this.activitiesCompleted = 0;
         this.information = information;
     }
 
@@ -198,31 +216,13 @@ public class Topic {
         this.information = information;
     }
 
-    //so the adapter returns to the name of the topic instead of class name
+    /**
+     * Returns Topic name instead of class name when toString() is called in adapter
+     * @return
+     */
     @Override
     public String toString() {
         return getName();
-    }
-
-
-    //list of all types
-    public static String[] getAllActivityTypes() {
-        return new String[] {
-                TYPE_GRAMMAR,
-                TYPE_VOCABULARY,
-                TYPE_READING
-        };
-    }
-
-    //list of difficulties
-    public static String[] getAllDifficultyLevels() {
-        return new String[] {
-                DIFFICULTY_A1,
-                DIFFICULTY_A2,
-                DIFFICULTY_B1,
-                DIFFICULTY_B2,
-                DIFFICULTY_C1
-        };
     }
 }
 

@@ -1,52 +1,70 @@
 package com.del.studyenglish1;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class Question {
+        /*
+        implements Parcelable {
 
-
-public class Question implements Parcelable {
         public static final String DIFFICULTY_A1 = "A1";
         public static final String DIFFICULTY_A2 = "A2";
         public static final String DIFFICULTY_B1 = "B1";
         public static final String DIFFICULTY_B2 = "B2";
         public static final String DIFFICULTY_C1 = "C1";
-
-        private int id;
-        private int imageRef;
+*/
         private String instruction;
-        private String question;
-        private String option1;
-        private String option2;
-        private String option3;
-        private String option4;
-        private int answerNr;
-        private String difficulty;
-        private int topicId;
-        private int activityNum;
+    private String question;
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
+    private int answerNr;
+    private int topicId;
+    private int activityNum;
 
-        public Question() {
+    private int imageRef;
 
-        }
+    /**
+     * Empty Question constructor
+     */
+        public Question() { }
 
+    /**
+     * Question constructor with no image reference and no question
+     * @param instruction instruction/question
+     * @param option1 possible answer 1
+     * @param option2 possible answer 2
+     * @param option3 possible answer 3
+     * @param option4 possible answer 4
+     * @param answerNr correct answer number
+     * @param topicId the topicId the question belongs to
+     * @param activityNum the activity number the question belongs to
+     */
         public Question(String instruction, String option1, String option2, String option3,
-                        String option4, int answerNr,
-                        //String difficulty,
-                        int topicId, int activityNum) {
+                        String option4, int answerNr, int topicId, int activityNum) {
             this.instruction = instruction;
+            this.question = "";
             this.option1 = option1;
             this.option2 = option2;
             this.option3 = option3;
             this.option4 = option4;
             this.answerNr = answerNr;
-            //this.difficulty = difficulty;
             this.topicId = topicId;
             this.activityNum = activityNum;
         }
 
+    /**
+     * Question constructor with no image reference
+     * @param instruction instruction
+     * @param question question
+     * @param option1 possible answer 1
+     * @param option2 possible answer 2
+     * @param option3 possible answer 3
+     * @param option4 possible answer 4
+     * @param answerNr correct answer number
+     * @param topicId the topicId the question belongs to
+     * @param activityNum the activity number the question belongs to
+     */
     public Question(String instruction, String question, String option1, String option2, String option3,
-                    String option4, int answerNr,
-                    //String difficulty,
-                    int topicId, int activityNum) {
+                    String option4, int answerNr, int topicId, int activityNum) {
         this.instruction = instruction;
         this.question = question;
         this.option1 = option1;
@@ -54,32 +72,51 @@ public class Question implements Parcelable {
         this.option3 = option3;
         this.option4 = option4;
         this.answerNr = answerNr;
-        //this.difficulty = difficulty;
-        this.topicId = topicId;
-        this.activityNum = activityNum;
-    }
-    public Question(int imageRef, String instruction, String option1, String option2, String option3,
-                    String option4, int answerNr,
-                    //String difficulty,
-                    int topicId, int activityNum) {
-            this.imageRef = imageRef;
-        this.instruction = instruction;
-        this.question = question;
-        this.option1 = option1;
-        this.option2 = option2;
-        this.option3 = option3;
-        this.option4 = option4;
-        this.answerNr = answerNr;
-        //this.difficulty = difficulty;
         this.topicId = topicId;
         this.activityNum = activityNum;
     }
 
-    /**constructor for Reading Quiz Questions**/
+    /**Question constructor with no question
+     *
+     * @param imageRef image reference
+     * @param instruction instruction/question
+     * @param option1 possible answer 1
+     * @param option2 possible answer 2
+     * @param option3 possible answer 3
+     * @param option4 possible answer 4
+     * @param answerNr correct answer number
+     * @param topicId the topicId the question belongs to
+     * @param activityNum the activity number the question belongs to
+     */
+    public Question(int imageRef, String instruction, String option1, String option2, String option3,
+                    String option4, int answerNr, int topicId, int activityNum) {
+        this.imageRef = imageRef;
+        this.instruction = instruction;
+        this.question = "";
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
+        this.answerNr = answerNr;
+        this.topicId = topicId;
+        this.activityNum = activityNum;
+    }
+
+    /**Full question constructor for Reading Quiz Questions
+     *
+     * @param imageRef image reference
+     * @param instruction instruction/question
+     * @param question question
+     * @param option1 possible answer 1
+     * @param option2 possible answer 2
+     * @param option3 possible answer 3
+     * @param option4 possible answer 4
+     * @param answerNr correct answer number
+     * @param topicId the topicId the question belongs to
+     * @param activityNum the activity number the question belongs to
+     */
     public Question(int imageRef, String instruction, String question, String option1, String option2, String option3,
-                    String option4, int answerNr,
-                    //String difficulty,
-                    int topicId, int activityNum) {
+                    String option4, int answerNr, int topicId, int activityNum) {
         this.imageRef = imageRef;
         this.instruction = instruction;
         this.question = question;
@@ -88,14 +125,12 @@ public class Question implements Parcelable {
         this.option3 = option3;
         this.option4 = option4;
         this.answerNr = answerNr;
-        //this.difficulty = difficulty;
         this.topicId = topicId;
         this.activityNum = activityNum;
     }
-
-
+/*
         protected Question(Parcel in) {
-            id = in.readInt();
+            //id = in.readInt();
             question = in.readString();
             option1 = in.readString();
             option2 = in.readString();
@@ -109,7 +144,7 @@ public class Question implements Parcelable {
 
     @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(id);
+            //dest.writeInt(id);
             dest.writeString(question);
             dest.writeString(option1);
             dest.writeString(option2);
@@ -145,7 +180,7 @@ public class Question implements Parcelable {
     public void setId(int id) {
             this.id = id;
         }
-
+*/
         public String getQuestion() {
             return question;
         }
@@ -198,15 +233,6 @@ public class Question implements Parcelable {
 
         public void setActivityNum(int activityNum) { this.activityNum = activityNum;    }
 
-    /*
-            public String getDifficulty() {
-                return difficulty;
-            }
-
-            public void setDifficulty(String difficulty) {
-                this.difficulty = difficulty;
-            }
-    */
         public int getTopicId() {
             return topicId;
         }
@@ -230,17 +256,6 @@ public class Question implements Parcelable {
     public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
-
-/*
-        public static String[] getAllDifficultyLevels() {
-            return new String[]{
-                    DIFFICULTY_A1,
-                    DIFFICULTY_A2,
-                    DIFFICULTY_B1,
-                    DIFFICULTY_B2,
-                    DIFFICULTY_C1
-            };
-        }*/
-    }
+}
 
 

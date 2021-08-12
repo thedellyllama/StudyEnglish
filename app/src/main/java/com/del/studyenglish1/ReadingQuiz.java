@@ -1,7 +1,6 @@
 package com.del.studyenglish1;
 
 import android.content.res.ColorStateList;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -43,6 +42,16 @@ public class ReadingQuiz extends Fragment {
     private String level;
     private int topicID;
     private int activity_num;
+    private ArrayList<Question> questionList;
+    private int questionCounter;
+    private int questionCountTotal;
+    private Question currentQuestion;
+    private boolean answered;
+    private boolean answeredCorrectly;
+    private int answeredAttempts;
+
+    ActivityHomePageReading activityHomeReading;
+    InformationDialog informationDialog;
 
     private TextView textViewQuestion;
     private TextView textViewQuestionCount;
@@ -58,31 +67,24 @@ public class ReadingQuiz extends Fragment {
     private ImageView buttonClose;
     private ImageView imageQuestion;
     private ColorStateList textColorDefaultRb;
-    private ArrayList<Question> questionList;
-    private int questionCounter;
-    private int questionCountTotal;
-    private Question currentQuestion;
-    private boolean answered;
-    private boolean answeredCorrectly;
-    private int answeredAttempts;
-    private long backPressedTime;
-
-    ActivityHomePageReading activityHomeReading;
-    InformationDialog informationDialog;
     private int buttonGreen;
     private int buttonBlue;
 
-    //private SQLiteDatabase newDb;
-
+    /**
+     * Create and open new instance of Reading Quiz
+     * @param topic selected topic name
+     * @param type selected topic type
+     * @param level_name selected level name
+     * @param activity_num selected activity number
+     * @return new Reading Quiz with selected arguments
+     */
     public static ReadingQuiz newInstance(String topic, String type, String level_name, int activity_num) {
-    //public static MultipleChoiceQuiz newInstance(int topicID, String topic, String type, String level_name, int activity_num) {
         ReadingQuiz fragment = new ReadingQuiz();
         Bundle args = new Bundle();
         args.putString(ARG_TOPIC, topic);
         args.putString(ARG_TYPE, type);
         args.putString(ARG_LEVEL_NAME, level_name);
         args.putInt(ARG_ACTIVITY_NUM, activity_num);
-        //args.putInt(ARG_TOPIC_ID, topicID);
         fragment.setArguments(args);
         return fragment;
     }
@@ -127,41 +129,24 @@ public class ReadingQuiz extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (savedInstanceState == null) {
-            QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
-            int topicID = dbHelper.getTopicId(topic, type, level_name);
-            questionList = dbHelper.getQuestions(topicID, activity_num);
-            questionCountTotal = questionList.size();
+            getQuestionInformation();
             showActivityDetails(questionCountTotal);
             Collections.shuffle(questionList);
             showNextQuestion();
         showActivityDetails(questionCountTotal);
-        } else {
-            questionList = savedInstanceState.getParcelableArrayList(KEY_QUESTION_LIST);
-            questionCountTotal = questionList.size();
-            questionCounter = savedInstanceState.getInt(KEY_QUESTION_COUNT);
-            currentQuestion = questionList.get(questionCounter -1);
-            answered = savedInstanceState.getBoolean(KEY_ANSWERED);
-            answeredCorrectly = savedInstanceState.getBoolean(KEY_ANSWERED_CORRECTLY);
-            answeredAttempts = savedInstanceState.getInt(KEY_ANSWER_ATTEMPTS);
-
-            if (answeredAttempts > 1) {
-                showSolution(answeredCorrectly);
-            }
+        //} else {
+            //savedInstanceCreate(savedInstanceState);
         }
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!answered) {
-                    //if (answeredAttempts < 2) {
                         if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()) {
                             answeredAttempts++;
                             checkAnswer();
                         } else {
                             Toast.makeText(getContext(), "Please select an answer", Toast.LENGTH_SHORT).show();
                         }
-                    //} else {
-                    //    showSolution();
-                    //}
                 } else {
                     showNextQuestion();
                 }
@@ -170,15 +155,34 @@ public class ReadingQuiz extends Fragment {
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityHomeReading = activityHomeReading.newInstance(topic, type, level, level_name);
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
-                fragmentTransaction.commit();
+                openActivityHomeReading();
             }
         });
     }
 
-    private void showNextQuestion() {
+    /**
+     * Show activity information: estimated time needed, number of questions
+     * @param questionCountTotal number of questions in activity
+     */
+    public void showActivityDetails(int questionCountTotal) {
+        informationDialog = informationDialog.newInstance(questionCountTotal);
+        informationDialog.show(getActivity().getSupportFragmentManager(), "example dialog");
+    }
+
+    /**
+     * Open dialog to show activity information: estimated time needed, number of questions
+     */
+    public void getQuestionInformation(){
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        int topicID = dbHelper.getTopicId(topic, type, level_name);
+        questionList = dbHelper.getQuestions(topicID, activity_num);
+        questionCountTotal = questionList.size();
+    }
+
+    /**
+     * Load the next question onto page and update all text colours and buttons
+     */
+    public void showNextQuestion() {
         rb1.setTextColor(textColorDefaultRb);
         rb2.setTextColor(textColorDefaultRb);
         rb3.setTextColor(textColorDefaultRb);
@@ -190,20 +194,17 @@ public class ReadingQuiz extends Fragment {
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
-            //check if there is an image
             if (currentQuestion.getImageRef() != 0) {
                 Drawable imageQ = getResources().getDrawable(currentQuestion.getImageRef());
                 imageQuestion.setImageDrawable(imageQ);
                 imageQuestion.setVisibility(View.VISIBLE);
             }
-            //if there is a question
             if (currentQuestion.getQuestion() != null) {
                 textViewQuestion.setText(currentQuestion.getQuestion());
                 textViewInstruction.setText(currentQuestion.getInstruction());
             } else {
                 textViewInstruction.setText(currentQuestion.getInstruction());
             }
-
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -219,7 +220,12 @@ public class ReadingQuiz extends Fragment {
             finishQuiz(topic, type, level_name);
         }
     }
-    private void checkAnswer() {
+
+    /**
+     * Check if the correct answer is given, an incorrect answer is given for the first or second
+     * time. Call showSolution() and/or update all text views and buttons and DB accordingly.
+     */
+    public void checkAnswer() {
         answered = true;
 
         RadioButton rbSelected = getActivity().findViewById(rbGroup.getCheckedRadioButtonId());
@@ -227,19 +233,13 @@ public class ReadingQuiz extends Fragment {
 
         if (answerNr == currentQuestion.getAnswerNr()) {
             buttonCheck.setBackgroundColor(buttonGreen);
-            //well done message
             showSolution(true);
-            //set answered correctly in db to TRUE
         } else if (answeredAttempts > 1) {
             questionList.add(currentQuestion);
             questionCountTotal++;
-            //no well done message
             showSolution(false);
-            //set answered correctly in db to FALSE
-            //add question to end of array
 
         } else {
-            //answeredAttempts++;
             rbGroup.clearCheck();
             buttonCheck.setBackgroundColor(Color.RED);
             buttonCheck.setText("Incorrect.\nTry Again!");
@@ -249,7 +249,12 @@ public class ReadingQuiz extends Fragment {
 
     }
 
-    private void showSolution(boolean answeredCorrectly) {
+    /**
+     * Update text colour and button colour/message accordingly
+     * @param answeredCorrectly true if the question has been answered correctly after two
+     *                          attempts, false otherwise.
+     */
+    public void showSolution(boolean answeredCorrectly) {
         rb1.setTextColor(Color.RED);
         rb2.setTextColor(Color.RED);
         rb3.setTextColor(Color.RED);
@@ -258,19 +263,15 @@ public class ReadingQuiz extends Fragment {
         switch (currentQuestion.getAnswerNr()) {
             case 1:
                 rb1.setTextColor(buttonGreen);
-                //textViewQuestion.setText("Answer 1 is correct");
                 break;
             case 2:
                 rb2.setTextColor(buttonGreen);
-                //textViewQuestion.setText("Answer 2 is correct");
                 break;
             case 3:
                 rb3.setTextColor(buttonGreen);
-                //textViewQuestion.setText("Answer 3 is correct");
                 break;
             case 4:
                 rb4.setTextColor(buttonGreen);
-                //textViewQuestion.setText("Answer 4 is correct");
                 break;
         }
 
@@ -285,37 +286,37 @@ public class ReadingQuiz extends Fragment {
         }
     }
 
-    private void finishQuiz(String topic, String type, String level_name) {
-
-        /**update activities_completed column in db**/
+    /**
+     * Update database to show activity has been completed and open new instance
+     * of Activity Home Page.
+     * @param topic selected topic name
+     * @param type  selected activity type
+     * @param level_name selected level name
+     */
+    public void finishQuiz(String topic, String type, String level_name) {
+        //update activities_completed column in db
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         topicID = dbHelper.getTopicId(topic, type, level_name);
         dbHelper.activityCompleted(topicID, activity_num);
         dbHelper.activityCompletedTopics(topicID);
         dbHelper.updateActCount(topicID);
-        //dbHelper.activityCompleted(topicID, activity_num);
-        //dbHelper.updateActivitiesCompleted(topicID);
 
         activityHomeReading = activityHomeReading.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
         fragmentTransaction.commit();
     }
-/*
-    public void onBackPressed() {
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
-            finishQuiz(topic, type, level_name);
 
-            activityHomeReading.newInstance(topic, type, level, level_name);
-            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
-            fragmentTransaction.commit();
-        } else {
-            Toast.makeText(getContext(), "Press back again to finish", Toast.LENGTH_SHORT).show();
-        }
-        backPressedTime = System.currentTimeMillis();
+    /**
+     * Open new instance of Activity Home Reading with selected topic, type, level, level_name
+     */
+    public void openActivityHomeReading() {
+        activityHomeReading = activityHomeReading.newInstance(topic, type, level, level_name);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
+        fragmentTransaction.commit();
     }
-*/
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -331,12 +332,17 @@ public class ReadingQuiz extends Fragment {
         outState.putParcelableArrayList(KEY_QUESTION_LIST, questionList);
     }
 
-    /**
-     * method to show activity information: estimated time needed, number of questions
-     */
-    public void showActivityDetails(int questionCountTotal) {
-        informationDialog = informationDialog.newInstance(questionCountTotal);
-        informationDialog.show(getActivity().getSupportFragmentManager(), "example dialog");
-    }
+    public void savedInstanceCreate(Bundle savedInstanceState) {
+        questionList = savedInstanceState.getParcelableArrayList(KEY_QUESTION_LIST);
+        questionCountTotal = questionList.size();
+        questionCounter = savedInstanceState.getInt(KEY_QUESTION_COUNT);
+        currentQuestion = questionList.get(questionCounter -1);
+        answered = savedInstanceState.getBoolean(KEY_ANSWERED);
+        answeredCorrectly = savedInstanceState.getBoolean(KEY_ANSWERED_CORRECTLY);
+        answeredAttempts = savedInstanceState.getInt(KEY_ANSWER_ATTEMPTS);
 
+        if (answeredAttempts > 1) {
+            showSolution(answeredCorrectly);
+        }
+    }*/
 }

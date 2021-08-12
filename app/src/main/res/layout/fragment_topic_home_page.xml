@@ -7,18 +7,6 @@
     android:backgroundTint="@color/white_background"
     tools:context=".SelectLevelPage">
 
-    <TextView
-        android:id="@+id/text_view_change_topic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="@string/change_topic"
-        android:textColor="@color/blue_app"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/header_name"
@@ -50,8 +38,8 @@
 
     <TextView
         android:id="@+id/text_view_explanation"
-        android:layout_width="276dp"
-        android:layout_height="337dp"
+        android:layout_width="304dp"
+        android:layout_height="309dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:paddingTop="4dp"
@@ -66,15 +54,28 @@
         android:id="@+id/button_activities"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/activities_caps"
         app:backgroundTint="@color/blue_app"
         app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/text_view_change_topic"
+        app:layout_constraintBottom_toTopOf="@+id/button_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_explanation" />
 
+    <ImageView
+        android:id="@+id/button_back"
+        android:layout_width="85dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/back_button"
+        android:text="@string/change_topic"
+        android:textColor="@color/blue_app"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,8 +29,8 @@ public class ActivityHomePageReading extends Fragment {
     private int activityNum;
 
     private TextView textViewTopic;
-    private TextView changeTopic;
-    private TextView toExplanation;
+    //private TextView changeTopic;
+    private ImageView backButton;
     private ImageView imageProgress;
     private Button activity1;
     private Button activity2;
@@ -40,6 +40,14 @@ public class ActivityHomePageReading extends Fragment {
     private SelectTopicPage selectTopicPage;
     private ReadingQuiz readingQuiz;
 
+    /**
+     * New instance of Activity Home Page Reading with the selected arguments
+     * @param topic the selected topic name
+     * @param type  the selected topic type
+     * @param level the selected level description
+     * @param level_name the selected level name as saved in the DB
+     * @return new Reading Activity Home Page
+     */
     public static ActivityHomePageReading newInstance(String topic, String type, String level, String level_name) {
         ActivityHomePageReading fragment = new ActivityHomePageReading();
         Bundle args = new Bundle();
@@ -76,8 +84,8 @@ public class ActivityHomePageReading extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
-        toExplanation = (TextView) view.findViewById(R.id.text_view_to_explanation);
+        //changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
+        backButton = view.findViewById(R.id.button_back);
 
         updateButtonTexts();
 
@@ -97,36 +105,54 @@ public class ActivityHomePageReading extends Fragment {
                     openReadingQuiz(topic, type, level_name, activityNum);
                 }
         });
-
+/*
            changeTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toExplanationPage(topic, type, level_name);
             }
         });
-
-        toExplanation.setOnClickListener(new View.OnClickListener() {
+*/
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeTopicPage(type, level, level_name);
+                openTopicHomePage(type, level, level_name);
             }
         });
     }
+    /*
+     * Opens new instance of the Select Topic Page with selected arguments
+     * @param topic the selected topic name
+     * @param type the selected topic type
+     * @param level_name the selected level name
 
     public void toExplanationPage(String topic, String type, String level_name) {
         selectTopicPage = selectTopicPage.newInstance(type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, selectTopicPage);
         fragmentTransaction.commit();
-    }
+    }*/
 
-    public void changeTopicPage(String type, String level, String level_name) {
+    /**
+     * Opens a new instance of Topic Home Page with selected arguments
+     * @param type the selected topic type
+     * @param level the selected level description
+     * @param level_name the selected level name
+     */
+    public void openTopicHomePage(String type, String level, String level_name) {
         topicHomePage = topicHomePage.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, topicHomePage);
         fragmentTransaction.commit();
     }
 
+    /**
+     * Opens a new instance of Reading Quiz with selected arguments
+     * @param topic the selected topic name
+     * @param type the selected topic type
+     * @param level_name the selected level name
+     * @param activity_num the activity number
+     */
     public void openReadingQuiz(String topic, String type, String level_name, int activity_num) {
         readingQuiz = readingQuiz.newInstance(topic, type, level_name, activity_num);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -134,7 +160,9 @@ public class ActivityHomePageReading extends Fragment {
         fragmentTransaction.commit();
     }
 
-    /*method to show progress by updating button text and colour after completing activity*/
+    /**
+     * Shows progress by updating button text and colour after completing activity
+     */
     public void updateButtonTexts() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         int topicId = dbHelper.getTopicId(topic, type, level_name);
@@ -150,7 +178,9 @@ public class ActivityHomePageReading extends Fragment {
         }
     }
 
-    /*method to update progress image based on number of activities completed*/
+    /**
+     *method to update progress image based on number of activities completed
+     * */
     public void updateProgressImage() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         int topicId = dbHelper.getTopicId(topic, type, level_name);

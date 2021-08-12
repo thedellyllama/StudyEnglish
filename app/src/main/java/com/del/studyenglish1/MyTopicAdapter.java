@@ -10,10 +10,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MyTopicAdapter extends ArrayAdapter<Topic> {
-
-    private ArrayList<Topic> topicsList;
     private static final String LOG_TAG = MyTopicAdapter.class.getSimpleName();
 
+    private ArrayList<Topic> topicsList;
+
+    /**
+     * MyTopicAdapter constructor
+     * @param context current context
+     * @param topicsList list of topics of selected type and level to show in adapter
+     */
     public MyTopicAdapter(Context context, ArrayList<Topic> topicsList) {
         super(context, 0, topicsList);
         this.topicsList = topicsList;
@@ -31,7 +36,6 @@ public class MyTopicAdapter extends ArrayAdapter<Topic> {
         textView.setText(chosenTopic.getName());
         return listItemView;
     }
-
 
 }
 

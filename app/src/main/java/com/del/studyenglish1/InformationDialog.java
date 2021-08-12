@@ -12,6 +12,13 @@ public class InformationDialog extends AppCompatDialogFragment {
     private int questionCount;
     private long time;
 
+    /**
+     * Creates and opens new instance of Information Dialog with the
+     * given number of questions
+     * @param questionCount number of questions in activity
+     * @return Dialog with information about number of questions
+     * and estimated time to complete activity
+     */
    public static InformationDialog newInstance(int questionCount) {
         InformationDialog informationDialog = new InformationDialog();
         Bundle args = new Bundle();

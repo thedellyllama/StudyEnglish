@@ -15,8 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class CheckLevelPage extends Fragment {
+
     private WebView webView;
     private ImageView imageViewClose;
+
     private SelectLevelPage selectLevelPage;
 
     @Nullable
@@ -31,22 +33,37 @@ public class CheckLevelPage extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         webView = view.findViewById(R.id.webView);
+        openWebView(webView);
+
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSelectLevelPage();
+            }
+        });
+
+    }
+
+    /**
+     * Opens the url in the current page
+     * @param webView the WebView displaying the web page
+     */
+    public void openWebView(WebView webView) {
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("https://test-english.com/level-test/");
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
-        imageViewClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectLevelPage = new SelectLevelPage();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
-                fragmentTransaction.commit();
-            }
-        });
     }
 
+    /**
+     * Opens a new Select Level Page
+     */
+    public void openSelectLevelPage() {
+        selectLevelPage = new SelectLevelPage();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
+        fragmentTransaction.commit();
+    }
 
 }

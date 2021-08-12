@@ -2,18 +2,17 @@ package com.del.studyenglish1;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class ActivityHomePage extends Fragment {
 
@@ -31,7 +30,7 @@ public class ActivityHomePage extends Fragment {
 
     private TextView textViewTopic;
     private TextView changeTopic;
-    private TextView toExplanation;
+    private ImageView backButton;
     private ImageView imageProgress;
     private Button activity1;
     private Button activity2;
@@ -44,6 +43,14 @@ public class ActivityHomePage extends Fragment {
     private MultipleChoiceQuiz multipleChoiceQuiz;
     private ReadingQuiz readingQuiz;
 
+    /**
+     * Opens a new instance of the Activity Home Page using the given parameters
+     * @param topic the selected topic name
+     * @param type  the selected topic type
+     * @param level the selected level description
+     * @param level_name the selected level name as saved in the DB
+     * @return new Activity Home Page
+     */
     public static ActivityHomePage newInstance(String topic, String type, String level, String level_name) {
         ActivityHomePage fragment = new ActivityHomePage();
         Bundle args = new Bundle();
@@ -81,8 +88,8 @@ public class ActivityHomePage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
-        toExplanation = (TextView) view.findViewById(R.id.text_view_to_explanation);
+        //changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
+        backButton = view.findViewById(R.id.button_back);
 
         updateButtonTexts();
 
@@ -135,45 +142,61 @@ public class ActivityHomePage extends Fragment {
                 }            }
         });
 
-        changeTopic.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toExplanationPage(topic, type, level_name);
-            }
-        });
-
-        toExplanation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeTopicPage(type, level, level_name);
+                openTopicHomePage(type, level, level_name);
             }
         });
     }
+
+    /*
+     * Opens new instance of the Select Topic Page with selected arguments
+     * @param topic the selected topic nam
+     * @param type the selected topic type
+     * @param level_name the selected level name
 
     public void toExplanationPage(String topic, String type, String level_name) {
         selectTopicPage = selectTopicPage.newInstance(type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, selectTopicPage);
         fragmentTransaction.commit();
-    }
+    }*/
 
-    public void changeTopicPage(String type, String level, String level_name) {
+    /**
+     * Opens a new instance of Topic Home Page with selected arguments
+     * @param type the selected topic type
+     * @param level the selected level description
+     * @param level_name the selected level name
+     */
+    public void openTopicHomePage(String type, String level, String level_name) {
         topicHomePage = topicHomePage.newInstance(topic, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, topicHomePage);
         fragmentTransaction.commit();
     }
 
+    /**
+     * Opens a new instance of Multiple Choice Quiz with selected arguments
+     * @param topic the selected topic name
+     * @param type the selected topic type
+     * @param level_name the selected level name
+     * @param activity_num the activity number
+     */
     public void openMultipleChoiceQuiz(String topic, String type, String level_name, int activity_num) {
-        //int topicId = topic.getID()
-        //multipleChoiceQuiz = multipleChoiceQuiz.newInstance(topicID, topic, type, level_name, activity_num);
-
         multipleChoiceQuiz = multipleChoiceQuiz.newInstance(topic, type, level_name, activity_num);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, multipleChoiceQuiz);
         fragmentTransaction.commit();
     }
 
+    /**
+     * Opens a new instance of Reading Quiz with selected arguments
+     * @param topic the selected topic name
+     * @param type the selected topic type
+     * @param level_name the selected level name
+     * @param activity_num the activity number
+     */
     public void openReadingQuiz(String topic, String type, String level_name, int activity_num) {
         //int topicId = topic.getID()
         //multipleChoiceQuiz = multipleChoiceQuiz.newInstance(topicID, topic, type, level_name, activity_num);
@@ -184,7 +207,9 @@ public class ActivityHomePage extends Fragment {
         fragmentTransaction.commit();
     }
 
-    /*method to show progress by updating button text and colour after completing activity*/
+    /**
+     * Shows progress by updating button text and colour after completing activity
+     */
     public void updateButtonTexts() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         int topicId = dbHelper.getTopicId(topic, type, level_name);
@@ -208,7 +233,9 @@ public class ActivityHomePage extends Fragment {
         }
     }
 
-    /*method to update progress image based on number of activities completed*/
+    /**
+     *method to update progress image based on number of activities completed
+     * */
     public void updateProgressImage() {
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         int topicId = dbHelper.getTopicId(topic, type, level_name);
