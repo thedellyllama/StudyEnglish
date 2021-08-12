@@ -19,6 +19,8 @@
             android:id="@+id/text_view_vocab"
             android:layout_width="113dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:text="TextView"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -31,6 +33,7 @@
             android:id="@+id/text_view_definition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="TextView" />
 
 

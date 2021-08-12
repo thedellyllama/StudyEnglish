@@ -174,11 +174,13 @@ public class DictionaryPage extends Fragment {
         buttonB1.setBackground(blueBg);
         buttonB2.setBackground(blueBg);
         buttonC1.setBackground(blueBg);
+        buttonAll.setBackground(blueBg);
         buttonA1.setTextColor(blueApp);
         buttonA2.setTextColor(blueApp);
         buttonB1.setTextColor(blueApp);
         buttonB2.setTextColor(blueApp);
         buttonC1.setTextColor(blueApp);
+        buttonAll.setTextColor(blueApp);
     }
 
     /**
