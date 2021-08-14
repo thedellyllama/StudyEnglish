@@ -12,8 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-//import com.del.studyenglish1.SelectTypePage.SelectTypeListener;
-
 public class SelectLevelPage extends Fragment {
     private String selected_level;
     private String level_name;

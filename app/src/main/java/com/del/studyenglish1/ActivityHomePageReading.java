@@ -20,7 +20,6 @@ public class ActivityHomePageReading extends Fragment {
     private static final String ARG_TYPE = "argType";
     private static final String ARG_LEVEL_NAME = "argLevelName";
     private static final String ARG_LEVEL = "argLevel";
-    private static final String ARG_TOPIC_ID = "argTopicID";
 
     private String topic;
     private String type;
@@ -29,7 +28,6 @@ public class ActivityHomePageReading extends Fragment {
     private int activityNum;
 
     private TextView textViewTopic;
-    //private TextView changeTopic;
     private ImageView backButton;
     private ImageView imageProgress;
     private Button activity1;
@@ -37,7 +35,6 @@ public class ActivityHomePageReading extends Fragment {
     private int yellow;
 
     private TopicHomePage topicHomePage;
-    private SelectTopicPage selectTopicPage;
     private ReadingQuiz readingQuiz;
 
     /**
@@ -84,7 +81,6 @@ public class ActivityHomePageReading extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
         backButton = view.findViewById(R.id.button_back);
 
         updateButtonTexts();
@@ -92,7 +88,6 @@ public class ActivityHomePageReading extends Fragment {
         activity1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //showActivityDetails();
                 activityNum = 1;
                     openReadingQuiz(topic, type, level_name, activityNum);
             }
@@ -105,14 +100,6 @@ public class ActivityHomePageReading extends Fragment {
                     openReadingQuiz(topic, type, level_name, activityNum);
                 }
         });
-/*
-           changeTopic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toExplanationPage(topic, type, level_name);
-            }
-        });
-*/
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,18 +107,6 @@ public class ActivityHomePageReading extends Fragment {
             }
         });
     }
-    /*
-     * Opens new instance of the Select Topic Page with selected arguments
-     * @param topic the selected topic name
-     * @param type the selected topic type
-     * @param level_name the selected level name
-
-    public void toExplanationPage(String topic, String type, String level_name) {
-        selectTopicPage = selectTopicPage.newInstance(type, level, level_name);
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, selectTopicPage);
-        fragmentTransaction.commit();
-    }*/
 
     /**
      * Opens a new instance of Topic Home Page with selected arguments

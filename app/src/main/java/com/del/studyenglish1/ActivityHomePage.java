@@ -42,6 +42,7 @@ public class ActivityHomePage extends Fragment {
     private SelectTopicPage selectTopicPage;
     private MultipleChoiceQuiz multipleChoiceQuiz;
     private ReadingQuiz readingQuiz;
+    private QuizDbHelper dbHelper;
 
     /**
      * Opens a new instance of the Activity Home Page using the given parameters
@@ -211,7 +212,7 @@ public class ActivityHomePage extends Fragment {
      * Shows progress by updating button text and colour after completing activity
      */
     public void updateButtonTexts() {
-        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        dbHelper = QuizDbHelper.getInstance(getContext());
         int topicId = dbHelper.getTopicId(topic, type, level_name);
 
         if (dbHelper.checkCompleted(topicId, 1)) {
@@ -237,7 +238,7 @@ public class ActivityHomePage extends Fragment {
      *method to update progress image based on number of activities completed
      * */
     public void updateProgressImage() {
-        QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
+        dbHelper = QuizDbHelper.getInstance(getContext());
         int topicId = dbHelper.getTopicId(topic, type, level_name);
         dbHelper.activityCompletedTopics(topicId);
         int activitiesCompleted = dbHelper.getActivityCompleted(topicId);

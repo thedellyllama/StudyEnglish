@@ -1,7 +1,6 @@
 package com.del.studyenglish1;
 
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,16 +26,12 @@ public class SelectTopicPage extends Fragment {
     private String type;
     private String level_name;
     private String level;
-    private SQLiteDatabase newDb;
 
-    private SelectLevelPage selectLevelPage;
     private SelectTypePage selectTypePage;
-    private ActivityHomePage activityHomePage;
+    private TopicHomePage topicHomePage;
 
     private TextView textViewType;
     private ImageView backButton;
-    //private TextView changeLevel;
-    //private TextView changeType;
     private ListView listView;
 
     public SelectTopicPage() {}
@@ -81,10 +76,6 @@ public class SelectTopicPage extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //changeLevel = (TextView) view.findViewById(R.id.text_view_change_level);
-        //changeType = (TextView) view.findViewById(R.id.text_view_change_type);
-        //listView = (ListView) view.findViewById(R.id.recycler_topic);
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,22 +84,6 @@ public class SelectTopicPage extends Fragment {
                 openSelectTypePage(level, level_name);
             }
         });
-/**
-        changeLevel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeLevelPage();
-            }
-        });
-
-        changeType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                level_name = getArguments().getString(ARG_LEVEL_NAME);
-                level = getArguments().getString(ARG_LEVEL);
-               changeTypePage(level, level_name);
-            }
-        });**/
     }
 
     /**
@@ -119,7 +94,7 @@ public class SelectTopicPage extends Fragment {
         type = getArguments().getString(ARG_TYPE);
         level_name = getArguments().getString(ARG_LEVEL_NAME);
         QuizDbHelper dbHelper = new QuizDbHelper(getActivity());
-        newDb = dbHelper.getReadableDatabase();
+        dbHelper.getReadableDatabase();
         ArrayList<Topic> topicList = dbHelper.getTopics(type, level_name);
         MyTopicAdapter myTopicAdapter = new MyTopicAdapter(getContext(), topicList);
         listView.setAdapter(myTopicAdapter);
@@ -140,21 +115,11 @@ public class SelectTopicPage extends Fragment {
      * @param level_name selected level name
      */
     public void loadTopicHomePage(String topicSelected, String type, String level_name) {
-        TopicHomePage fragment = TopicHomePage.newInstance(topicSelected, type, level, level_name);
+        topicHomePage = TopicHomePage.newInstance(topicSelected, type, level, level_name);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+        fragmentTransaction.replace(R.id.nav_host_fragment, topicHomePage);
         fragmentTransaction.commit();
     }
-
-    /*
-     * Open new Select Level Page
-
-    private void changeLevelPage() {
-        selectLevelPage = new SelectLevelPage();
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, selectLevelPage);
-        fragmentTransaction.commit();
-    }*/
 
     /**
      * Open new Select Type Page

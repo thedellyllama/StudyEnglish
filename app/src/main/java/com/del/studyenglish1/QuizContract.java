@@ -39,12 +39,6 @@ public final class QuizContract {
         public static final String COLUMN_TIME_STAMP = "time_stamp";
     }
 
-    public static class GrammarTable implements BaseColumns {
-        public static final String TABLE_NAME = "information_grammar";
-        public static final String COLUMN_TOPIC_ID = "topic_id";
-        public static final String COLUMN_EXPLANATION = "explanation";
-    }
-
     public static class VocabTable implements BaseColumns {
         public static final String TABLE_NAME = "information_vocabulary";
         public static final String COLUMN_TOPIC_ID = "topic_id";

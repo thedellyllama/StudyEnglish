@@ -32,7 +32,6 @@ public class TopicHomePage extends Fragment {
 
     private TextView textViewTopic;
     private TextView textViewExplanation;
-    //private TextView changeTopic;
     private ImageView backButton;
     private Button activities;
 
