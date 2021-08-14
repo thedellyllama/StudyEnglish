@@ -32,7 +32,6 @@ public class TopicHomePage extends Fragment {
 
     private TextView textViewTopic;
     private TextView textViewExplanation;
-    //private TextView changeTopic;
     private ImageView backButton;
     private Button activities;
 
@@ -79,7 +78,6 @@ public class TopicHomePage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //changeTopic = (TextView) view.findViewById(R.id.text_view_change_topic);
         backButton = view.findViewById(R.id.button_back);
         activities = (Button) view.findViewById(R.id.button_activities);
 

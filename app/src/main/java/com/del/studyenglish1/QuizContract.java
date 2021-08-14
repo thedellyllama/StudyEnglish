@@ -3,7 +3,6 @@ package com.del.studyenglish1;
 import android.provider.BaseColumns;
 
 public final class QuizContract {
-    //empty constructor to stop instances being created
     private QuizContract() {}
 
     public static class TopicsTable implements BaseColumns {
@@ -37,12 +36,6 @@ public final class QuizContract {
         public static final String COLUMN_ACT_NUM = "activity_num";
         public static final String COLUMN_COMPLETED= "activity_completed";
         public static final String COLUMN_TIME_STAMP = "time_stamp";
-    }
-
-    public static class GrammarTable implements BaseColumns {
-        public static final String TABLE_NAME = "information_grammar";
-        public static final String COLUMN_TOPIC_ID = "topic_id";
-        public static final String COLUMN_EXPLANATION = "explanation";
     }
 
     public static class VocabTable implements BaseColumns {

@@ -189,7 +189,6 @@ public class GoalsPage extends Fragment {
         buttonDaily.setTextColor(appBlue);
         buttonWeekly.setTextColor(appBlue);
 
-        //set button colours based on goal settings
         switch (activitiesGoal) {
             case 1:
                 button1.setBackground(colour);
@@ -209,7 +208,6 @@ public class GoalsPage extends Fragment {
                 break;
         }
 
-        //set button colours based on time frame settings
         switch (timeFrameGoals) {
             case "DAILY":
                 buttonDaily.setBackground(colour);

@@ -21,11 +21,11 @@ public class HomePage extends Fragment {
 
     private SelectLevelPage selectLevelPage;
     private GoalsPage goalsPage;
-    private ProfilePage profilePage;
+    private ProgressPage progressPage;
     private DictionaryPage dictionaryPage;
     private QuizDbHelper dbHelper;
 
-    private CardView cardProfile;
+    private CardView cardProgress;
     private CardView cardGoals;
     private CardView cardDictionary;
     private CardView cardStudy;
@@ -51,7 +51,7 @@ public class HomePage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        cardProfile = view.findViewById(R.id.card_view_profile);
+        cardProgress = view.findViewById(R.id.card_view_progress);
         cardGoals = view.findViewById(R.id.card_view_goals);
         cardDictionary = view.findViewById(R.id.card_view_dictionary);
         cardStudy = view.findViewById(R.id.card_view_study);
@@ -59,7 +59,7 @@ public class HomePage extends Fragment {
         updateGoals();
         updateActivitiesCompleted();
 
-        cardProfile.setOnClickListener(new View.OnClickListener() {
+        cardProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openProfilePage();
@@ -141,9 +141,9 @@ public class HomePage extends Fragment {
      * Open new Profile page
      */
     public void openProfilePage() {
-        profilePage = new ProfilePage();
+        progressPage = new ProgressPage();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, profilePage);
+        fragmentTransaction.replace(R.id.nav_host_fragment, progressPage);
         fragmentTransaction.commit();
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/white_background"
-    tools:context=".ProfilePage">
+    tools:context=".ProgressPage">
 
     <TextView
         android:id="@+id/header_name"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="@string/my_profile"
+        android:text="@string/my_progress"
         android:textColor="@color/blue_app"
         android:textSize="36sp"
         android:textStyle="bold"
