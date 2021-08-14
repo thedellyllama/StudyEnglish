@@ -127,8 +127,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     public void fillTopicsTable() {
-        Topic g1 = new Topic(Topic.g1_ID, "ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Topic Explanation:\n\nAdverbs of Frequency are adverbs of time that answer the question \'\'How frequently?\'\' or \'\'How often?\'\'. They tell us how often something happens. Here are some examples:\n-daily, weekly, yearly\n-often, sometimes, rarely\nThe words in a) describe definite frequency.\nThe words in b) describe indefinite frequency\nWe separate them into two groups because they normally go in different positions in the sentence.\n\nAdverbs of definite frequency, typically go in END position.\n-Most companies pay taxes yearly.\n-The manager checks the toilets every hour.\nThe directors meet weekly to review progress.\nSometimes, usually for reasons of emphasis or style, some adverbs of definite frequency may go at the FRONT, for example:\n-Every day, more than five thousand people die on our roads.\n\nHere are some adverbs of indefinite frequency:\n100%\t always, constantly\n\tusually, normally\n\tfrequently, regularly\n\toften\n50%\tsometimes\n\toccasionally\n\trarely, infrequently\n\tseldom\n\thardly ever\n0%\tnever\n\nAdverbs of indefinite frequency mainly go in MID position in the sentence. They go before the main verb (except the main verb TO BE):\n-We usually go shopping on Saturday.\n-I have often done that.\n-She is always late.");
-        Topic g2 = new Topic(Topic.g2_ID, "PRESENT SIMPLE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Topic Explanation:\n\nThe Present Simple tense uses the base form of the verb (except for the verb be). The only change from the base is the addition of s for third person singular.\nHow do we make the Present Simple tense?\nThere are two basic structures for the Present Simple:\n1. Positive sentences:\nsubject	+\tmain verb in present simple \n2.Negative and question sentences:\nsubject\t+\tauxiliary do (conjugated in Present Simple)\t+\tmain verb (base)\n\nExamples with the main verb like:\n\n-I, you, we, they\tlike\tcoffee.\n-He, she, it\tlikes\tcoffee.\n-I, you, we, they\tdo\tnot\tlike	coffee.\n-He, she, it\tdoes\tnot\tlike coffee.\n-Do\tI, you, we, they\tlike coffee?\n-Does\the, she, it\tlike\tcoffee?");
+        Topic g1 = new Topic(Topic.g1_ID, "ADVERBS OF FREQUENCY", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Topic Explanation:\n\nAdverbs of Frequency are adverbs of time that answer the question \'How frequently?\' or \'How often?\'. They tell us how often something happens. Here are some examples:\n-daily, weekly, yearly\n-often, sometimes, rarely\nThe words in a) describe definite frequency.\nThe words in b) describe indefinite frequency\nWe separate them into two groups because they normally go in different positions in the sentence.\n\nAdverbs of definite frequency, typically go in END position.\n-Most companies pay taxes yearly.\n-The manager checks the toilets every hour.\nThe directors meet weekly to review progress.\nSometimes, usually for reasons of emphasis or style, some adverbs of definite frequency may go at the FRONT, for example:\n-Every day, more than five thousand people die on our roads.\n\nHere are some adverbs of indefinite frequency:\n100%\t always, constantly\n\tusually, normally\n\tfrequently, regularly\n\toften\n50%\tsometimes\n\toccasionally\n\trarely, infrequently\n\tseldom\n\thardly ever\n0%\tnever\n\nAdverbs of indefinite frequency mainly go in MID position in the sentence. They go before the main verb (except the main verb TO BE):\n-We usually go shopping on Saturday.\n-I have often done that.\n-She is always late.");
+        Topic g2 = new Topic(Topic.g2_ID, "PRESENT SIMPLE", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Topic Explanation:\n\nThe Present Simple tense uses the base form of the verb (except for the verb be). The only change from the base is the addition of s for third person singular.\nHow do we make the Present Simple tense?\nThere are two basic structures for the Present Simple:\n1. Positive sentences:\nsubject +\tmain verb in present simple \n2.Negative and question sentences:\nsubject\t+\tauxiliary do (conjugated in Present Simple)\t+\tmain verb (base)\n\nExamples with the main verb like:\n\n-I, you, we, they\tlike\tcoffee.\n-He, she, it\tlikes\tcoffee.\n-I, you, we, they\tdo\tnot\tlike coffee.\n-He, she, it\tdoes\tnot\tlike coffee.\n-Do\tI, you, we, they\tlike coffee?\n-Does\the, she, it\tlike\tcoffee?");
         Topic g3 = new Topic(Topic.g3_ID, "QUESTION WORDS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Topic Explanation:\n\nThese are the most common question words in English: \nWHO is used when asking about people. (I want to know the person)\n\nWHERE is used when asking about a place or location. (= I want to know the place)\n\n WHEN is used to ask about time or an occasion. (= I want to know the time)\n\nWHY is used to ask for an explanation or a reason. (= I want to know the reason)\nNormally the response starts with \'Because...\'\n\nWHAT is used to ask about specific information. (= I want to know the thing)\n\nWHICH is used to ask about a choice. (= I want to know the chosen thing)\n\nHOW is used to describe the way or manner that something is done. (= I want to know the way)\nThere are more expressions with HOW:\nHow much – to ask about quantity or price (uncountable nouns)\nHow many – to ask about quantity (countable nouns)\nHow often – to ask about frequency");
         Topic g4 = new Topic(Topic.g4_ID, "QUESTIONS", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g5 = new Topic(Topic.g5_ID, "ADJECTIVES", Topic.DIFFICULTY_A1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
@@ -137,21 +137,19 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Topic g8 = new Topic(Topic.g8_ID, "COMPARATIVES AND SUPERLATIVES", Topic.DIFFICULTY_A2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g9 = new Topic(Topic.g9_ID, "SOMETHING, ANYTHING, NOTHING", Topic.DIFFICULTY_A2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g10 = new Topic(Topic.g10_ID, "PRESENT PERFECT", Topic.DIFFICULTY_A2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g11 = new Topic(Topic.g11_ID, "REFLEXIVE PRONOUNS", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g12 = new Topic(Topic.g12_ID, "FIRST CONDITIONAL", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g13 = new Topic(Topic.g13_ID, "SECOND CONDITIONAL", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g14 = new Topic(Topic.g14_ID, "GERUND OR INFINITIVE", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g15 = new Topic(Topic.g15_ID, "QUESTION TAGS", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic g11 = new Topic(Topic.g11_ID, "GERUND OR INFINITIVE", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Topic Explanation:\n\nGerunds are the \'ing\' form of a verb:\n\t-thinking\n\t-walking\n\ttalking\nInfinitives are the verb prefaced with \'to\':\n\t-to think\n\t-to walk\n\tto talk\n\nBoth Gerunds and Infinitives can be the subject of a sentence.\nOnly Gerunds can be the object of a preposition, Infinitives cannot.\n\nWhen to use which\n\nGerunds are usually used in sentences about actions that are real or complete, or that have been completed:\n-I stopped worrying about the future\n-We really enjoy playing games\n\nInfinitives are usually used in sentences about actions that are unreal or abstract, or that will occur in the future:\n-I\'d like you to imagine something.\n-Can we get a table without making a reservation?");
+        Topic g12 = new Topic(Topic.g12_ID, "0 & FIRST CONDITIONAL", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Topic Explanation:\n\nThe conditinoal tense describes the result of a certain condition. The if clause tells you the condition (\'If you study hard\') and the main clause tells you the result (\'you will pass your exams\'). The order of the clauses does not change the meaning.\n\t-If you study hard, you will pass your exams.\n\t-You will pass your exams if you study hard.\n\nThere are different types of conditional sentences.\n\nZero conditional\nThe zero conditional talks about things that are generally true, in particular, laws and rules.\nStructure: if/when + present simple, present simple.\n\t-If I drink too much coffee, I can\'t sleep at night.\n\t-If you drive too fast, you will get a ticket.\n\nFirst conditional\nWe use the first conditional when we talk about future situations we believe are real or possible.\nStructure: if/when + present simple, will + infinitive.\n\t-If it doesn\'t rain tomorrow, we\'ll go to the park.\n\t-When I get home, I\'ll call you.\nIt is also common to use this structure with unless, as long as, as soon as, in case.\n\t-I\'ll leave now, unless you need something else.\n\t-Let\'s bring an umbrella incase it rains.");
+        Topic g13 = new Topic(Topic.g13_ID, "QUESTION TAGS", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR, "Topic Explanation:\n\nWe can add question tags \'like isn\'t it?\', \'can you?\' or \'didn\'t they?\' to make a statement a question. They are more common in speaking than writing.\nWe often use question tags when we expect the listener to agree with our statement. If the statement is positive, we use a negative question tag:\n\t-She's a doctor, isn\'t she?\n\t-Yesterday was so much fun, wasn\'t it?\nIf the statement is negative, we use a positive question tag:\n\t-He isn\'t here, is he?\n\t-The trains are never on time, are they?\n\nIf there is an auxiliary verb in the statement, we use it to form the question tag:\n\t-I don't need to finish this today, do I?\n\t-The phone didn't ring, did it?\n\nIt the verb in the statement is present simple or past simple and is positive, we use \'don\'t\', \'doesn\'t\' or \'didn\'t\':\n\t-Jenni eats cheese, doesn\'t she?\n\t-I said that already, didn\'t I? \n\nIf the verb in the statement is \'to b\'e in the present simple or past simple, use \'to be\' to make the question tag:\n\t-The bus stop\'s over there, isn\'t it?\n\t-None of those customers were happy, were they?\n\nIf the verb in the statement is a modal verb, we use the modal verb to make the question tag:\n\tThey could hear me, couldn\'t they?\n\tYou won\'t tell anyone, will you?\n\nIf the main verb or auxiliary verb in the statement is am, the positive question tag is \'am I?\' but the negative question tag is usually \'aren\'t I?\':\n\tI\'m never on time, am I?\n\tI\'m going to get an email with the details, aren\'t I?");
+        Topic g14 = new Topic(Topic.g14_ID, "REFLEXIVE PRONOUNS", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic g15 = new Topic(Topic.g15_ID, "SECOND CONDITIONAL", Topic.DIFFICULTY_B1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g16 = new Topic(Topic.g16_ID, "FUTURE FORMS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g17 = new Topic(Topic.g17_ID, "MODAL VERBS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g18 = new Topic(Topic.g18_ID, "THERE AND IT", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        Topic g19 = new Topic(Topic.g19_ID, "GENERIC PRONOUNS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
+        Topic g19 = new Topic(Topic.g19_ID, "GENERIC PRONOUNDS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g20 = new Topic(Topic.g20_ID, "COMPOUND NOUNS", Topic.DIFFICULTY_B2, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g21 = new Topic(Topic.g21_ID, "PASSIVES ", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g22 = new Topic(Topic.g22_ID, "REPORTING VERBS", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
         Topic g23 = new Topic(Topic.g23_ID, "VERBS OF SENSES", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        //Topic g24 = new Topic(Topic.g24_ID, "", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
-        //Topic g25 = new Topic(Topic.g25_ID, "", Topic.DIFFICULTY_C1, Topic.TYPE_GRAMMAR, Topic.NUM_GRAMMAR);
 
         Topic v1 = new Topic(Topic.v1_ID, "CLOTHES 1", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB, "Topic Information:\n\nLearning vocabulary will help you improve your English and communicate more effectively!\n\n\nNew vocabulary includes:\n\t-socks\n\t-jumper\n\t-hoodie\n\t-jacket\n\t-shoes\n\t-boots\n\n\nVisit the Dictionary section to read the full definitions!");
         Topic v2 = new Topic(Topic.v2_ID, "ACCESSORIES", Topic.DIFFICULTY_A1, Topic.TYPE_VOCABULARY, Topic.NUM_VOCAB, "Topic Information:\n\nLearning vocabulary will help you improve your English and communicate more effectively!\n\n\nNew vocabulary includes:\n\t-rucksack\n\t-hat\n\t-gloves\n\t-tie\n\t-watch\n\t-bracelet\n\n\nVisit the Dictionary section to read the full definitions!");
@@ -228,8 +226,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addTopic(g21);
         addTopic(g22);
         addTopic(g23);
-        //addTopic(g24);
-        //addTopic(g25);
 
         addTopic(v1);
         addTopic(v2);
@@ -284,7 +280,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addTopic(r25);
     }
 
-
     /**
      * Add topic object to the Topics table
      * @param topic Topic object to add to table
@@ -327,6 +322,30 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Activity a24 = new Activity(Topic.v3_ID, Activity.ACT_NUM_4, Activity.FALSE);
         Activity a25 = new Activity(Topic.r1_ID, Activity.ACT_NUM_1, Activity.FALSE);
         Activity a26 = new Activity(Topic.r1_ID, Activity.ACT_NUM_2, Activity.FALSE);
+        Activity a27 = new Activity(Topic.v11_ID, Activity.ACT_NUM_1, Activity.FALSE);
+        Activity a28 = new Activity(Topic.v11_ID, Activity.ACT_NUM_2, Activity.FALSE);
+        Activity a29 = new Activity(Topic.v11_ID, Activity.ACT_NUM_3, Activity.FALSE);
+        Activity a30 = new Activity(Topic.v11_ID, Activity.ACT_NUM_4, Activity.FALSE);
+        Activity a31 = new Activity(Topic.v12_ID, Activity.ACT_NUM_1, Activity.FALSE);
+        Activity a32 = new Activity(Topic.v12_ID, Activity.ACT_NUM_2, Activity.FALSE);
+        Activity a33 = new Activity(Topic.v12_ID, Activity.ACT_NUM_3, Activity.FALSE);
+        Activity a34 = new Activity(Topic.v12_ID, Activity.ACT_NUM_4, Activity.FALSE);
+        Activity a35 = new Activity(Topic.v13_ID, Activity.ACT_NUM_1, Activity.FALSE);
+        Activity a36 = new Activity(Topic.v13_ID, Activity.ACT_NUM_2, Activity.FALSE);
+        Activity a37 = new Activity(Topic.v13_ID, Activity.ACT_NUM_3, Activity.FALSE);
+        Activity a38 = new Activity(Topic.v13_ID, Activity.ACT_NUM_4, Activity.FALSE);
+        Activity a39 = new Activity(Topic.g11_ID, Activity.ACT_NUM_1, Activity.FALSE);
+        Activity a40 = new Activity(Topic.g11_ID, Activity.ACT_NUM_2, Activity.FALSE);
+        Activity a41 = new Activity(Topic.g11_ID, Activity.ACT_NUM_3, Activity.FALSE);
+        Activity a42 = new Activity(Topic.g11_ID, Activity.ACT_NUM_4, Activity.FALSE);
+        Activity a43 = new Activity(Topic.g12_ID, Activity.ACT_NUM_1, Activity.FALSE);
+        Activity a44 = new Activity(Topic.g12_ID, Activity.ACT_NUM_2, Activity.FALSE);
+        Activity a45 = new Activity(Topic.g12_ID, Activity.ACT_NUM_3, Activity.FALSE);
+        Activity a46 = new Activity(Topic.g12_ID, Activity.ACT_NUM_4, Activity.FALSE);
+        Activity a47 = new Activity(Topic.g13_ID, Activity.ACT_NUM_1, Activity.FALSE);
+        Activity a48 = new Activity(Topic.g13_ID, Activity.ACT_NUM_2, Activity.FALSE);
+        Activity a49 = new Activity(Topic.g13_ID, Activity.ACT_NUM_3, Activity.FALSE);
+        Activity a50 = new Activity(Topic.g13_ID, Activity.ACT_NUM_4, Activity.FALSE);
 
         addActivity(a1);
         addActivity(a2);
@@ -354,7 +373,30 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addActivity(a24);
         addActivity(a25);
         addActivity(a26);
-
+        addActivity(a27);
+        addActivity(a28);
+        addActivity(a29);
+        addActivity(a30);
+        addActivity(a31);
+        addActivity(a32);
+        addActivity(a33);
+        addActivity(a34);
+        addActivity(a35);
+        addActivity(a36);
+        addActivity(a37);
+        addActivity(a38);
+        addActivity(a39);
+        addActivity(a40);
+        addActivity(a41);
+        addActivity(a42);
+        addActivity(a43);
+        addActivity(a44);
+        addActivity(a45);
+        addActivity(a46);
+        addActivity(a47);
+        addActivity(a48);
+        addActivity(a49);
+        addActivity(a50);
     }
 
     /**
@@ -595,8 +637,210 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q223 = new Question(R.drawable.reading_plane, "Select the best answer:", "Where will flight LH9354 land?", "Copenhagen", "Chicago", "Nice", "Manchester", 2, Topic.r1_ID, Activity.ACT_NUM_2);
         Question q224 = new Question(R.drawable.reading_plane, "Select the correct phrase:", "The plane is late", "cancelled", "boarding", "delayed", "departed", 3, Topic.r1_ID, Activity.ACT_NUM_1);
         Question q225 = new Question(R.drawable.reading_plane, "Select the best answer:", "What time will flight BA346 depart?", "10:10", "Cancelled", "Unknown", "10:20", 3, Topic.r1_ID, Activity.ACT_NUM_2);
-
-        Question q324 = new Question("Select the correct option to complete the question tag", "are you?", "do you?", "aren't you?", "don' you?", 3, Topic.g15_ID, Activity.ACT_NUM_1);
+        Question q226 = new Question(R.drawable.toiletpaper, "Select the correct word or phrase:", "toilet paper", "shampoo", "laundry", "clothes horse", 1, Topic.v11_ID, Activity.ACT_NUM_1);
+        Question q227 = new Question(R.drawable.bath, "Select the correct word or phrase:", "shower", "bath", "washing machine", "washing machine", 2, Topic.v11_ID, Activity.ACT_NUM_1);
+        Question q228 = new Question(R.drawable.mirror, "Select the correct word or phrase:", "toothpaste", "toothbrush", "mirror", "medicine cabinet", 3, Topic.v11_ID, Activity.ACT_NUM_1);
+        Question q229 = new Question(R.drawable.sink, "Select the correct word or phrase:", "soap", "medicine cabinet", "tap", "sink", 4, Topic.v11_ID, Activity.ACT_NUM_1);
+        Question q230 = new Question(R.drawable.shower, "Select the correct word or phrase:", "shower", "bath", "shampoo", "cosmetics", 1, Topic.v11_ID, Activity.ACT_NUM_1);
+        Question q231 = new Question(R.drawable.toothpaste, "Select the correct word or phrase:", "medicine cabinet", "toothpaste", "cosmetics", "laundry", 2, Topic.v11_ID, Activity.ACT_NUM_1);
+        Question q232 = new Question(R.drawable.soap, "Select the correct word or phrase:", "clothes horse", "toilet paper", "soap", "washing machine", 3, Topic.v11_ID, Activity.ACT_NUM_1);
+        Question q233 = new Question(R.drawable.toothbrush, "Select the correct word or phrase:", "cosmetics", "bath", "shampoo", "toothbrush", 4, Topic.v11_ID, Activity.ACT_NUM_1);
+        Question q234 = new Question(R.drawable.tap, "Select the correct word or phrase:", "tap", "mirror", "medicine cabinet", "toothbrush", 1, Topic.v11_ID, Activity.ACT_NUM_2);
+        Question q235 = new Question(R.drawable.towel, "Select the correct word or phrase:", "toilet paper", "towel", "clothes horse", "tap", 2, Topic.v11_ID, Activity.ACT_NUM_2);
+        Question q236 = new Question(R.drawable.shampoo, "Select the correct word or phrase:", "bath", "soap", "shampoo", "towel", 3, Topic.v11_ID, Activity.ACT_NUM_2);
+        Question q237 = new Question(R.drawable.medicinecabinet, "Select the correct word or phrase:", "mirror", "toothbrush", "sink", "medicine cabinet", 4, Topic.v11_ID, Activity.ACT_NUM_2);
+        Question q238 = new Question(R.drawable.clotheshorse, "Select the correct word or phrase:", "clothes horse", "tap", "shower", "bath", 1, Topic.v11_ID, Activity.ACT_NUM_2);
+        Question q239 = new Question(R.drawable.cosmetics, "Select the correct word or phrase:", "medicine cabinet", "cosmetics", "toothpaste", "mirror", 2, Topic.v11_ID, Activity.ACT_NUM_2);
+        Question q240 = new Question(R.drawable.laundry, "Select the correct word or phrase:", "washing machine", "clothes horse", "laundry", "sink", 3, Topic.v11_ID, Activity.ACT_NUM_2);
+        Question q241 = new Question(R.drawable.washingmachine, "Select the correct word or phrase:", "laundry", "towel", "sink", "washing machine", 4, Topic.v11_ID, Activity.ACT_NUM_2);
+        Question q242 = new Question("Select the word that is being described:", "clothes horse", "bath", "toilet paper", "cosmetics", 1, Topic.v11_ID, Activity.ACT_NUM_3);
+        Question q243 = new Question("Select the word that is being described:", "cosmetics", "medicine cabinet", "bath", "laundry", 2, Topic.v11_ID, Activity.ACT_NUM_3);
+        Question q244 = new Question("Select the word that is being described:", "laundry", "bath", "towel", "washing machine", 3, Topic.v11_ID, Activity.ACT_NUM_3);
+        Question q245 = new Question("Select the word that is being described:", "washing machine", "mirror", "shower", "sink", 4, Topic.v11_ID, Activity.ACT_NUM_3);
+        Question q246 = new Question("Select the word that is being described:", "laundry", "sink", "toothpaste", "mirror", 1, Topic.v11_ID, Activity.ACT_NUM_3);
+        Question q247 = new Question("Select the word that is being described:", "tap", "mirror", "soap", "sink", 2, Topic.v11_ID, Activity.ACT_NUM_3);
+        Question q248 = new Question("Select the word that is being described:", "towel", "toothbrush", "toothpaste", "shower", 3, Topic.v11_ID, Activity.ACT_NUM_3);
+        Question q249 = new Question("Select the word that is being described:", "shampoo", "soap", "medicine cabinet", "shampoo", 4, Topic.v11_ID, Activity.ACT_NUM_3);
+        Question q250 = new Question(R.drawable.clotheshorse, "Select the correct word or phrase:", "clothes horse", "tap", "shower", "bath", 1, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q251 = new Question(R.drawable.cosmetics, "Select the correct word or phrase:", "medicine cabinet", "cosmetics", "toothpaste", "mirror", 2, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q252 = new Question(R.drawable.laundry, "Select the correct word or phrase:", "washing machine", "clothes horse", "laundry", "sink", 3, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q253 = new Question(R.drawable.washingmachine, "Select the correct word or phrase:", "laundry", "towel", "sink", "washing machine", 4, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q254 = new Question("Select the word that is being described:", "clothes horse", "bath", "toilet paper", "cosmetics", 1, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q255 = new Question("Select the word that is being described:", "cosmetics", "medicine cabinet", "bath", "laundry", 2, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q256 = new Question("Select the word that is being described:", "laundry", "bath", "towel", "washing machine", 3, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q257 = new Question("Select the word that is being described:", "washing machine", "mirror", "shower", "sink", 4, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q258 = new Question(R.drawable.shower, "Select the correct word or phrase:", "shower", "bath", "shampoo", "cosmetics", 1, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q259 = new Question(R.drawable.toothpaste, "Select the correct word or phrase:", "medicine cabinet", "toothpaste", "cosmetics", "laundry", 2, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q260 = new Question(R.drawable.soap, "Select the correct word or phrase:", "clothes horse", "toilet paper", "soap", "washing machine", 3, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q261 = new Question(R.drawable.toothbrush, "Select the correct word or phrase:", "cosmetics", "bath", "shampoo", "toothbrush", 4, Topic.v11_ID, Activity.ACT_NUM_4);
+        Question q262 = new Question(R.drawable.sand, "Select the correct word or phrase:", "sand", "deckchair", "sun cream", "sun hat", 1, Topic.v12_ID, Activity.ACT_NUM_1);
+        Question q263 = new Question(R.drawable.beach, "Select the correct word or phrase:", "crab", "beach", "beach umbrella", "sun cream", 2, Topic.v12_ID, Activity.ACT_NUM_1);
+        Question q264 = new Question(R.drawable.crab, "Select the correct word or phrase:", "sunglasses", "shell", "crab", "beach umbrella", 3, Topic.v12_ID, Activity.ACT_NUM_1);
+        Question q265 = new Question(R.drawable.sunglasses, "Select the correct word or phrase:", "surfboard", "boat", "beach", "sunglasses", 4, Topic.v12_ID, Activity.ACT_NUM_1);
+        Question q266 = new Question(R.drawable.surfboard, "Select the correct word or phrase:", "surfboard", "wave", "crab", "deckchair", 1, Topic.v12_ID, Activity.ACT_NUM_1);
+        Question q267 = new Question(R.drawable.shell, "Select the correct word or phrase:", "crab", "shell", "sunglasses", "sun cream", 2, Topic.v12_ID, Activity.ACT_NUM_1);
+        Question q268 = new Question(R.drawable.boat, "Select the correct word or phrase:", "sunglasses", "shell", "boat", "beach umbrella", 3, Topic.v12_ID, Activity.ACT_NUM_2);
+        Question q269 = new Question(R.drawable.wave, "Select the correct word or phrase:", "surfboard", "boat", "sunglasses", "wave", 4, Topic.v12_ID, Activity.ACT_NUM_2);
+        Question q270 = new Question(R.drawable.sunhat, "Select the correct word or phrase:", "sun hat", "wave", "deckchair", "sand", 1, Topic.v12_ID, Activity.ACT_NUM_2);
+        Question q271 = new Question(R.drawable.suncream, "Select the correct word or phrase:", "sun hat", "sun cream", "crab", "beach", 2, Topic.v12_ID, Activity.ACT_NUM_2);
+        Question q272 = new Question(R.drawable.beachumbrella, "Select the correct word or phrase:", "sunglasses", "sand", "beach umbrella", "boat", 3, Topic.v12_ID, Activity.ACT_NUM_2);
+        Question q273 = new Question(R.drawable.deckchair, "Select the correct word or phrase:", "surfboard", "beach", "sunglasses", "deckchair", 4, Topic.v12_ID, Activity.ACT_NUM_2);
+        Question q274 = new Question("Select the word that is being described:", "wave", "beach", "surfboard", "sun cream", 1, Topic.v12_ID, Activity.ACT_NUM_3);
+        Question q275 = new Question("Select the word that is being described:", "deckchair", "beach umbrella", "shell", "sand", 2, Topic.v12_ID, Activity.ACT_NUM_3);
+        Question q276 = new Question("Select the word that is being described:", "beach umbrella", "shell", "crab", "sun hat", 3, Topic.v12_ID, Activity.ACT_NUM_3);
+        Question q277 = new Question("Select the word that is being described:", "deckchair", "sand", "sun cream", "shell", 4, Topic.v12_ID, Activity.ACT_NUM_3);
+        Question q278 = new Question("Select the word that is being described:", "boat", "wave", "beach umbrella", "crab", 1, Topic.v12_ID, Activity.ACT_NUM_3);
+        Question q279 = new Question("Select the word that is being described:", "wave", "beach", "shell", "boat", 2, Topic.v12_ID, Activity.ACT_NUM_3);
+        Question q280 = new Question(R.drawable.crab, "Select the correct word or phrase:", "sunglasses", "shell", "crab", "beach umbrella", 3, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q281 = new Question(R.drawable.sunglasses, "Select the correct word or phrase:", "surfboard", "boat", "beach", "sunglasses", 4, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q282 = new Question(R.drawable.surfboard, "Select the correct word or phrase:", "surfboard", "wave", "crab", "deckchair", 1, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q283 = new Question(R.drawable.shell, "Select the correct word or phrase:", "crab", "shell", "sunglasses", "sun cream", 2, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q284 = new Question(R.drawable.boat, "Select the correct word or phrase:", "sunglasses", "shell", "boat", "beach umbrella", 3, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q285 = new Question(R.drawable.wave, "Select the correct word or phrase:", "surfboard", "boat", "sunglasses", "wave", 4, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q286 = new Question(R.drawable.sunhat, "Select the correct word or phrase:", "sun hat", "wave", "deckchair", "sand", 1, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q287 = new Question(R.drawable.suncream, "Select the correct word or phrase:", "sun hat", "sun cream", "crab", "beach", 2, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q288 = new Question("Select the word that is being described:", "wave", "beach", "surfboard", "sun cream", 1, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q289 = new Question("Select the word that is being described:", "deckchair", "beach umbrella", "shell", "sand", 2, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q290 = new Question("Select the word that is being described:", "beach umbrella", "shell", "crab", "sun hat", 3, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q291 = new Question("Select the word that is being described:", "deckchair", "sand", "sun cream", "shell", 4, Topic.v12_ID, Activity.ACT_NUM_4);
+        Question q292 = new Question(R.drawable.grass, "Select the correct word or phrase:", "grass", "flower", "tree", "barbecue", 1, Topic.v13_ID, Activity.ACT_NUM_1);
+        Question q293 = new Question(R.drawable.tree, "Select the correct word or phrase:", "birdhouse", "tree", "pond", "leaf", 2, Topic.v13_ID, Activity.ACT_NUM_1);
+        Question q294 = new Question(R.drawable.pond, "Select the correct word or phrase:", "fence", "leaf", "pond", "hammock", 3, Topic.v13_ID, Activity.ACT_NUM_1);
+        Question q295 = new Question(R.drawable.greenhouse, "Select the correct word or phrase:", "hammock", "fence", "tree", "greenhouse", 4, Topic.v13_ID, Activity.ACT_NUM_1);
+        Question q296 = new Question(R.drawable.flower, "Select the correct word or phrase:", "flower", "hammock", "pond", "grass", 1, Topic.v13_ID, Activity.ACT_NUM_1);
+        Question q297 = new Question(R.drawable.washingline, "Select the correct word or phrase:", "leaf", "washing line", "birdhouse", "tree", 2, Topic.v13_ID, Activity.ACT_NUM_1);
+        Question q298 = new Question(R.drawable.barbecue, "Select the correct word or phrase:", "fence", "greenhouse", "barbecue", "pond", 3, Topic.v13_ID, Activity.ACT_NUM_2);
+        Question q299 = new Question(R.drawable.gate, "Select the correct word or phrase:", "hammock", "flower", "greenhouse", "gate", 4, Topic.v13_ID, Activity.ACT_NUM_2);
+        Question q300 = new Question(R.drawable.birdhouse, "Select the correct word or phrase:", "birdhouse", "washing line", "flower", "barbecue", 1, Topic.v13_ID, Activity.ACT_NUM_2);
+        Question q301 = new Question(R.drawable.leaf, "Select the correct word or phrase:", "grass", "leaf", "washing line", "gate", 2, Topic.v13_ID, Activity.ACT_NUM_2);
+        Question q302 = new Question(R.drawable.fence, "Select the correct word or phrase:", "tree", "washing line", "fence", "birdhouse", 3, Topic.v13_ID, Activity.ACT_NUM_2);
+        Question q303 = new Question(R.drawable.hammock, "Select the correct word or phrase:", "pond", "barbecue", "gate", "hammock", 4, Topic.v13_ID, Activity.ACT_NUM_2);
+        Question q304 = new Question("Select the word that is being described:", "pond", "birdhouse", "fence", "washing line", 1, Topic.v13_ID, Activity.ACT_NUM_3);
+        Question q305 = new Question("Select the word that is being described:", "tree", "greenhouse", "hammock", "barbecue", 2, Topic.v13_ID, Activity.ACT_NUM_3);
+        Question q306 = new Question("Select the word that is being described:", "pond", "hammock", "birdhouse", "gate", 3, Topic.v13_ID, Activity.ACT_NUM_3);
+        Question q307 = new Question("Select the word that is being described:", "greenhouse", "birdhouse", "barbecue", "gate", 4, Topic.v13_ID, Activity.ACT_NUM_3);
+        Question q308 = new Question("Select the word that is being described:", "flower", "leaf", "gate", "greenhouse", 1, Topic.v13_ID, Activity.ACT_NUM_3);
+        Question q309 = new Question("Select the word that is being described:", "grass", "barbecue", "fence", "flower", 2, Topic.v13_ID, Activity.ACT_NUM_3);
+        Question q310 = new Question("Select the word that is being described:", "tree", "leaf", "tree", "washing line", 3, Topic.v13_ID, Activity.ACT_NUM_3);
+        Question q311 = new Question("Select the word that is being described:", "pond", "greenhouse", "grass", "leaf", 4, Topic.v13_ID, Activity.ACT_NUM_3);
+        Question q312 = new Question(R.drawable.birdhouse, "Select the correct word or phrase:", "birdhouse", "washing line", "flower", "barbecue", 1, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q313 = new Question(R.drawable.leaf, "Select the correct word or phrase:", "grass", "leaf", "washing line", "gate", 2, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q314 = new Question(R.drawable.fence, "Select the correct word or phrase:", "tree", "washing line", "fence", "birdhouse", 3, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q315 = new Question(R.drawable.hammock, "Select the correct word or phrase:", "pond", "barbecue", "gate", "hammock", 4, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q316 = new Question("Select the word that is being described:", "pond", "birdhouse", "fence", "washing line", 1, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q317 = new Question("Select the word that is being described:", "tree", "greenhouse", "hammock", "barbecue", 2, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q318 = new Question("Select the word that is being described:", "pond", "hammock", "birdhouse", "gate", 3, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q319 = new Question("Select the word that is being described:", "greenhouse", "birdhouse", "barbecue", "gate", 4, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q320 = new Question(R.drawable.grass, "Select the correct word or phrase:", "grass", "flower", "tree", "barbecue", 1, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q321 = new Question(R.drawable.tree, "Select the correct word or phrase:", "birdhouse", "tree", "pond", "leaf", 2, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q322 = new Question(R.drawable.pond, "Select the correct word or phrase:", "fence", "leaf", "pond", "hammock", 3, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q323 = new Question(R.drawable.greenhouse, "Select the correct word or phrase:", "hammock", "fence", "tree", "greenhouse", 4, Topic.v13_ID, Activity.ACT_NUM_4);
+        Question q324 = new Question("Select the correct option to complete the question tag", "You\'re a student,", "aren't you?", "don\' you?", "are you?", "do you?", 1, Topic.g11_ID, Activity.ACT_NUM_1);
+        Question q325 = new Question("Select the correct option to complete the question tag", "It's hot today,", "is it?", "isn't it?", "was it?", "wasn't it?", 2, Topic.g11_ID, Activity.ACT_NUM_1);
+        Question q326 = new Question("Select the correct option to complete the question tag", "You're drinking beer,", "don't you?", "do you?", "aren't you?", "are you?", 3, Topic.g11_ID, Activity.ACT_NUM_1);
+        Question q327 = new Question("Select the correct option to complete the question tag", "This isn't the right place,", "doesn't it?", "does it?", "isn't it?", "is it?", 4, Topic.g11_ID, Activity.ACT_NUM_1);
+        Question q328 = new Question("Select the correct option to complete the question tag", "You can't hear that sound,", "can you?", "can't you?", "do you?", "don't you?", 1, Topic.g11_ID, Activity.ACT_NUM_1);
+        Question q329 = new Question("Select the correct option to complete the question tag", "You're Sarah,", "are you?", "aren't you?", "isn't it?", "is it?", 2, Topic.g11_ID, Activity.ACT_NUM_1);
+        Question q330 = new Question("Select the correct option to complete the question tag", "He was too late,", "was he?", "is he?", "wasn't he?", "isn't he?", 3, Topic.g11_ID, Activity.ACT_NUM_1);
+        Question q331 = new Question("Select the correct option to complete the question tag", "They'll already be there,", "do they?", "don't they?", "will they?", "won't they?", 4, Topic.g11_ID, Activity.ACT_NUM_1);
+        Question q332 = new Question("Select the correct option to complete the question tag", "I'm not interrupting,", "am I?", "I am?", "aren't I?", "was I?", 1, Topic.g11_ID, Activity.ACT_NUM_2);
+        Question q333 = new Question("Select the correct option to complete the question tag", "He's quite old,", "he is?", "isn't he?", "is he?", "wasn't he?", 2, Topic.g11_ID, Activity.ACT_NUM_2);
+        Question q334 = new Question("Select the correct option to complete the question tag", "We should go now,", "aren't we?", "won't we?", "shouldn't we?", "don't we?", 3, Topic.g11_ID, Activity.ACT_NUM_2);
+        Question q335 = new Question("Select the correct option to complete the question tag", "She's finished school,", "shouldn't she?", "isn't she?", "doesn't she?", "hasn't she?", 4, Topic.g11_ID, Activity.ACT_NUM_2);
+        Question q336 = new Question("Select the correct option to complete the question tag", "You won't do anything stupid,", "will you?", "shall you?", "do you?", "wouldn't you?", 1, Topic.g11_ID, Activity.ACT_NUM_2);
+        Question q337 = new Question("Select the correct option to complete the question tag", "It's not your birthday,", "was it?", "is it?", "does it?", "isn't it?", 2, Topic.g11_ID, Activity.ACT_NUM_2);
+        Question q338 = new Question("Select the correct option to complete the question tag", "They had already seen her,", "had they?", "didn't they?", "hadn't they?", "did they?", 3, Topic.g11_ID, Activity.ACT_NUM_2);
+        Question q339 = new Question("Select the correct option to complete the question tag", "It's not too cold,", "isn't it?", "was it?", "has it?", "is it?", 4, Topic.g11_ID, Activity.ACT_NUM_2);
+        Question q340 = new Question("Select the incorrect phrase", "Everybody is very unhappy, weren' they?", "Everybody was very happy, weren' they?", "Everybody was very unhappy, weren' they?", "Everybody is very happy, aren't they?", 1, Topic.g11_ID, Activity.ACT_NUM_3);
+        Question q341 = new Question("Select the incorrect phrase", "I'm too impatient, aren't I?", "I was too impatient, was I?", "I'm not too impatient, am I?", "I can be too impatient, can't I?", 2, Topic.g11_ID, Activity.ACT_NUM_3);
+        Question q342 = new Question("Select the incorrect phrase", "You're listening, aren't you?", "You're not listening, are you?", "You weren't listening, are you?", "You're going to listen, aren't you?", 3, Topic.g11_ID, Activity.ACT_NUM_3);
+        Question q343 = new Question("Select the incorrect phrase", "He was joking, wasn't he?", "He wasn't joking was he?", "He's joking, isn't he?", "He wasn't joking, is he?", 4, Topic.g11_ID, Activity.ACT_NUM_3);
+        Question q344 = new Question("Select the incorrect phrase", "Should we meet at 10, should we?", "Let's meet at 10, shall we?", "We could meet at 10, couldn't we?", "We met at 10, didn't we?", 1, Topic.g11_ID, Activity.ACT_NUM_3);
+        Question q345 = new Question("Select the incorrect phrase", "Nobody knew what to do, did they?", "Everybody knew what to do, did they?", "Nobody knows what to do, do they?", "Everybody knows what to do, don't they?", 2, Topic.g11_ID, Activity.ACT_NUM_3);
+        Question q346 = new Question("Select the incorrect phrase", "Should we meet at 10, should we?", "Let's meet at 10, shall we?", "We could meet at 10, couldn't we?", "We met at 10, didn't we?", 1, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q347 = new Question("Select the incorrect phrase", "Nobody knew what to do, did they?", "Everybody knew what to do, did they?", "Nobody knows what to do, do they?", "Everybody knows what to do, don't they?", 2, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q348 = new Question("Select the incorrect phrase", "Everybody is very unhappy, weren' they?", "Everybody was very happy, weren' they?", "Everybody was very unhappy, weren' they?", "Everybody is very happy, aren't they?", 1, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q349 = new Question("Select the incorrect phrase", "I'm too impatient, aren't I?", "I was too impatient, was I?", "I'm not too impatient, am I?", "I can be too impatient, can't I?", 2, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q350 = new Question("Select the correct option to complete the question tag", "You can't hear that sound,", "can you?", "can't you?", "do you?", "don't you?", 1, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q351 = new Question("Select the correct option to complete the question tag", "You're Sarah,", "are you?", "aren't you?", "isn't it?", "is it?", 2, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q352 = new Question("Select the correct option to complete the question tag", "He was too late,", "was he?", "is he?", "wasn't he?", "isn't he?", 3, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q353 = new Question("Select the correct option to complete the question tag", "They'll already be there,", "do they?", "don't they?", "will they?", "won't they?", 4, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q354 = new Question("Select the correct option to complete the question tag", "I'm not interrupting,", "am I?", "I am?", "aren't I?", "was I?", 1, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q355 = new Question("Select the correct option to complete the question tag", "He's quite old,", "he is?", "isn't he?", "is he?", "wasn't he?", 2, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q356 = new Question("Select the correct option to complete the question tag", "We should go now,", "aren't we?", "won't we?", "shouldn't we?", "don't we?", 3, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q357 = new Question("Select the correct option to complete the question tag", "She's finished school,", "shouldn't she?", "isn't she?", "doesn't she?", "hasn't she?", 4, Topic.g11_ID, Activity.ACT_NUM_4);
+        Question q358 = new Question("Fill the gap to complete the 0 Conditional", "The students don’t care if the lesson ________  boring", "was", "is", "are", "will be", 1, Topic.g12_ID, Activity.ACT_NUM_1);
+        Question q359 = new Question("Fill the gap to complete the 0 Conditional", "When it rains, my dog ________ inside", "stayed", "stays", "stay", "will stay", 2, Topic.g12_ID, Activity.ACT_NUM_1);
+        Question q360 = new Question("Fill the gap to complete the 0 Conditional", "We go to the park if school ________ early", "will close", "closed", "closes", "does close", 3, Topic.g12_ID, Activity.ACT_NUM_1);
+        Question q361 = new Question("Fill the gap to complete the 0 Conditional", "I always ________ to the cinema if it rains", "will go", "goes", "go to", "go", 4, Topic.g12_ID, Activity.ACT_NUM_1);
+        Question q362 = new Question("Fill the gap to complete the 0 Conditional", "If I cook, I ________ the dishes", "do not do", "do not", "will not", "will not do", 1, Topic.g12_ID, Activity.ACT_NUM_1);
+        Question q363 = new Question("Fill the gap to complete the 0 Conditional", "I drink hot tea if I ________  sleep", "don't", "can't", "will not", "do not do", 2, Topic.g12_ID, Activity.ACT_NUM_1);
+        Question q364 = new Question("Fill the gap to complete the 0 Conditional", "They do not ________ football if the weather is bad", "plays", "play not", "playing", "play", 3, Topic.g12_ID, Activity.ACT_NUM_1);
+        Question q365 = new Question("Fill the gap to complete the 0 Conditional", "They ________ me if I wear sunglasses", "shall not", "didn't", "do not recognise", "won't recognise me", 4, Topic.g12_ID, Activity.ACT_NUM_1);
+        Question q366 = new Question("Fill the gap to complete the 1 Conditional", "If I wake up late, I ________ late", "will be", "am", "will", "\'m not", 1, Topic.g12_ID, Activity.ACT_NUM_2);
+        Question q367 = new Question("Fill the gap to complete the 1 Conditional", "If I go to the concert tonight, I ________ at 9pm", "arrive", "will arrive", "arrived", "didn't arrive", 2, Topic.g12_ID, Activity.ACT_NUM_2);
+        Question q368 = new Question("Fill the gap to complete the 1 Conditional", "If we ________ on holiday, we will go to Spain", "are going", "went", "go", "will go", 3, Topic.g12_ID, Activity.ACT_NUM_2);
+        Question q369 = new Question("Fill the gap to complete the 1 Conditional", "I she doesn't come tomorrow, she ________ on Friday", "doesn't come", "comes", "is coming", "will come", 4, Topic.g12_ID, Activity.ACT_NUM_2);
+        Question q370 = new Question("Fill the gap to complete the 1 Conditional", "If you ________ to go out, we can cook here", "don't want", "want", "wanted", "are wanting", 1, Topic.g12_ID, Activity.ACT_NUM_2);
+        Question q371 = new Question("Fill the gap to complete the 1 Conditional", "He ________ a taxi if it rains", "takes", "will take", "took", "is taking", 2, Topic.g12_ID, Activity.ACT_NUM_2);
+        Question q372 = new Question("Fill the gap to complete the 1 Conditional", "If you ________, you will be an engineer", "passes", "will pass", "pass", "are passing", 3, Topic.g12_ID, Activity.ACT_NUM_2);
+        Question q373 = new Question("Fill the gap to complete the 1 Conditional", "They ________ me if I wear sunglasses", "shall not", "didn't", "do not recognise", "won't recognise me", 4, Topic.g12_ID, Activity.ACT_NUM_2);
+        Question q374 = new Question("Fill the gap to complete the 0 or 1 Conditional", "The table will break if you ________ on it.", "sit", "will sit", "are sitting", "sat", 1, Topic.g12_ID, Activity.ACT_NUM_3);
+        Question q375 = new Question("Fill the gap to complete the 0 or 1 Conditional", "If I find your card, I ________ for you", "bring", "will bring", "am bringing", "brought", 2, Topic.g12_ID, Activity.ACT_NUM_3);
+        Question q376 = new Question("Fill the gap to complete the 0 or 1 Conditional", "If she ________ late, we will go without her", "isn't", "will be", "is", "is going to be", 3, Topic.g12_ID, Activity.ACT_NUM_3);
+        Question q377 = new Question("Fill the gap to complete the 0 or 1 Conditional", "If you ________ late, they will not let you in", "will be", "is", "aren't", "are", 4, Topic.g12_ID, Activity.ACT_NUM_3);
+        Question q378 = new Question("Fill the gap to complete the 0 or 1 Conditional", "Unless I have a quiet room, I  ________ do any work.", "will not", "will", "am not doing", "haven't done", 1, Topic.g12_ID, Activity.ACT_NUM_3);
+        Question q379 = new Question("Fill the gap to complete the 0 or 1 Conditional", "If you don't like this colour, ________ you another one", "show", "will show", "am showing", "showed", 2, Topic.g12_ID, Activity.ACT_NUM_3);
+        Question q380 = new Question("Fill the gap to complete the 0 or 1 Conditional", "If you ________ the kettle on, I will make some tea", "will put", "puts", "put", "are putting", 3, Topic.g12_ID, Activity.ACT_NUM_3);
+        Question q381 = new Question("Fill the gap to complete the 0 or 1 Conditional", "What ________ if my parachute does not?", "will happens", "happen", "happened", "will happen", 4, Topic.g12_ID, Activity.ACT_NUM_3);
+        Question q382 = new Question("Fill the gap to complete the 1 Conditional", "If you ________ to go out, we can cook here", "don't want", "want", "wanted", "are wanting", 1, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q383 = new Question("Fill the gap to complete the 1 Conditional", "He ________ a taxi if it rains", "takes", "will take", "took", "is taking", 2, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q384 = new Question("Fill the gap to complete the 1 Conditional", "If you ________, you will be an engineer", "passes", "will pass", "pass", "are passing", 3, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q385 = new Question("Fill the gap to complete the 1 Conditional", "They ________ me if I wear sunglasses", "shall not", "didn't", "do not recognise", "won't recognise me", 4, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q386 = new Question("Fill the gap to complete the 0 or 1 Conditional", "The table will break if you ________ on it.", "sit", "will sit", "are sitting", "sat", 1, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q387 = new Question("Fill the gap to complete the 0 or 1 Conditional", "If I find your card, I ________ for you", "bring", "will bring", "am bringing", "brought", 2, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q388 = new Question("Fill the gap to complete the 0 or 1 Conditional", "If she ________ late, we will go without her", "isn't", "will be", "is", "is going to be", 3, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q389 = new Question("Fill the gap to complete the 0 or 1 Conditional", "If you ________ late, they will not let you in", "will be", "is", "aren't", "are", 4, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q390 = new Question("Fill the gap to complete the 0 Conditional", "The students don’t care if the lesson ________  boring", "was", "is", "are", "will be", 1, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q391 = new Question("Fill the gap to complete the 0 Conditional", "When it rains, my dog ________ inside", "stayed", "stays", "stay", "will stay", 2, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q392 = new Question("Fill the gap to complete the 0 Conditional", "We go to the park if school ________ early", "will close", "closed", "closes", "does close", 3, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q393 = new Question("Fill the gap to complete the 0 Conditional", "I always ________ to the cinema if it rains", "will go", "goes", "go to", "go", 4, Topic.g12_ID, Activity.ACT_NUM_4);
+        Question q394 = new Question("Fill the gap to complete the phrase", "The kids say it is very easy ________ up that tree", "to climb", "climb", "climbing", "to climbing", 1, Topic.g13_ID, Activity.ACT_NUM_1);
+        Question q395 = new Question("Fill the gap to complete the phrase", "They hardly ever ________ to the cinema anymore", "to go", "go", "going", "to going", 2, Topic.g13_ID, Activity.ACT_NUM_1);
+        Question q396 = new Question("Fill the gap to complete the phrase", "Do you usually ________ up early?", "to wake", "waking", "wake", "wakes", 3, Topic.g13_ID, Activity.ACT_NUM_1);
+        Question q397 = new Question("Fill the gap to complete the phrase", "She is keen on ________ and always goes on trips", "travels", "travel", "to travel", "travelling", 4, Topic.g13_ID, Activity.ACT_NUM_1);
+        Question q398 = new Question("Fill the gap to complete the phrase", "They liked me idea and offered ________ me", "to help", "helping", "help", "to helping", 1, Topic.g13_ID, Activity.ACT_NUM_1);
+        Question q399 = new Question("Fill the gap to complete the phrase", "Don't forget ________ the tomatoes", "buying", "to buy", "to buying", "buy", 2, Topic.g13_ID, Activity.ACT_NUM_1);
+        Question q400 = new Question("Fill the gap to complete the phrase", "Are you interested in ________ for us?", "to working", "working", "to work", "work", 3, Topic.g13_ID, Activity.ACT_NUM_1);
+        Question q401 = new Question("Fill the gap to complete the phrase", "Would you like ________ a cup of tea?", "drinking", "drink", "to drinking", "to drink", 4, Topic.g13_ID, Activity.ACT_NUM_1);
+        Question q402 = new Question("Fill the gap to best complete the phrase", "The pupils hope ________ the exam so they can graduate", "to pass", "passing", "to take", "to pass", 1, Topic.g13_ID, Activity.ACT_NUM_2);
+        Question q403 = new Question("Fill the gap to best complete the phrase", "Don't forget ________ the letter", "to buy", "to post", "buying", "posting", 2, Topic.g13_ID, Activity.ACT_NUM_2);
+        Question q404 = new Question("Fill the gap to best complete the phrase", "He seems ________ his new job", "liking", "to start", "to like", "starting", 3, Topic.g13_ID, Activity.ACT_NUM_2);
+        Question q405 = new Question("Fill the gap to best complete the phrase", "We managed ________ the car", "liking", "to like", "repairing", "to repair", 4, Topic.g13_ID, Activity.ACT_NUM_2);
+        Question q406 = new Question("Fill the gap to best complete the phrase", "I am interested in ________ German", "learning", "to learn", "to talk", "talking", 1, Topic.g13_ID, Activity.ACT_NUM_2);
+        Question q407 = new Question("Fill the gap to best complete the phrase", "Why not ________ Scotland?", "visiting", "visit", "go", "going", 2, Topic.g13_ID, Activity.ACT_NUM_2);
+        Question q408 = new Question("Fill the gap to best complete the phrase", "He never stops ________", "say", "saying", "talking", "talk", 3, Topic.g13_ID, Activity.ACT_NUM_2);
+        Question q409 = new Question("Fill the gap to best complete the phrase", "This city is perfect for ________", "to cycle", "cycle", "going", "cycling", 4, Topic.g13_ID, Activity.ACT_NUM_2);
+        Question q410 = new Question("Fill the gap to complete the phrase", "I am too old ________ a new language", "to learn", "learning", "learn", "to learning", 1, Topic.g13_ID, Activity.ACT_NUM_3);
+        Question q411 = new Question("Fill the gap to complete the phrase", "I used to like ________ to work", "to walking", "walking", "walk", "to walk", 2, Topic.g13_ID, Activity.ACT_NUM_3);
+        Question q412 = new Question("Fill the gap to complete the phrase", "I can't understand him ________ like that", "to behave", "behave", "behaving", "to behaving", 3, Topic.g13_ID, Activity.ACT_NUM_3);
+        Question q413 = new Question("Fill the gap to complete the phrase", "She showed me how ________ cookies", "baking", "to baking", "bake", "to bake", 4, Topic.g13_ID, Activity.ACT_NUM_3);
+        Question q414 = new Question("Fill the gap to complete the phrase", "We are looking forward ________ you tomorrow", "to seeing", "seeing", "to see", "see", 1, Topic.g13_ID, Activity.ACT_NUM_3);
+        Question q415 = new Question("Fill the gap to complete the phrase", "The kids hate ________ the phone", "to answer", "answering", "to answering", "answer", 2, Topic.g13_ID, Activity.ACT_NUM_3);
+        Question q416 = new Question("Fill the gap to complete the phrase", "Octopus are known ________ very intelligent", "to being", "being", "to be", "be", 3, Topic.g13_ID, Activity.ACT_NUM_3);
+        Question q417 = new Question("Fill the gap to complete the phrase", "This book shows you how ________ animals", "to drawing", "drawing", "draw", "to draw", 4, Topic.g13_ID, Activity.ACT_NUM_3);
+        Question q418 = new Question("Fill the gap to best complete the phrase", "I am interested in ________ German", "learning", "to learn", "to talk", "talking", 1, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q419 = new Question("Fill the gap to best complete the phrase", "Why not ________ Scotland?", "visiting", "visit", "go", "going", 2, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q420 = new Question("Fill the gap to best complete the phrase", "He never stops ________", "say", "saying", "talking", "talk", 3, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q421 = new Question("Fill the gap to best complete the phrase", "This city is perfect for ________", "to cycle", "cycle", "going", "cycling", 4, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q422 = new Question("Fill the gap to complete the phrase", "I am too old ________ a new language", "to learn", "learning", "learn", "to learning", 1, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q423 = new Question("Fill the gap to complete the phrase", "I used to like ________ to work", "to walking", "walking", "walk", "to walk", 2, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q424 = new Question("Fill the gap to complete the phrase", "I can't understand him ________ like that", "to behave", "behave", "behaving", "to behaving", 3, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q425 = new Question("Fill the gap to complete the phrase", "She showed me how ________ cookies", "baking", "to baking", "bake", "to bake", 4, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q426 = new Question("Fill the gap to complete the phrase", "They liked me idea and offered ________ me", "to help", "helping", "help", "to helping", 1, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q427 = new Question("Fill the gap to complete the phrase", "Don't forget ________ the tomatoes", "buying", "to buy", "to buying", "buy", 2, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q428 = new Question("Fill the gap to complete the phrase", "Are you interested in ________ for us?", "to working", "working", "to work", "work", 3, Topic.g13_ID, Activity.ACT_NUM_4);
+        Question q429 = new Question("Fill the gap to complete the phrase", "Would you like ________ a cup of tea?", "drinking", "drink", "to drinking", "to drink", 4, Topic.g13_ID, Activity.ACT_NUM_4);
 
         addQuestion(q1);
         addQuestion(q2);
@@ -823,6 +1067,210 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q223);
         addQuestion(q224);
         addQuestion(q225);
+        addQuestion(q226);
+        addQuestion(q227);
+        addQuestion(q228);
+        addQuestion(q229);
+        addQuestion(q230);
+        addQuestion(q231);
+        addQuestion(q232);
+        addQuestion(q233);
+        addQuestion(q234);
+        addQuestion(q235);
+        addQuestion(q236);
+        addQuestion(q237);
+        addQuestion(q238);
+        addQuestion(q239);
+        addQuestion(q240);
+        addQuestion(q241);
+        addQuestion(q242);
+        addQuestion(q243);
+        addQuestion(q244);
+        addQuestion(q245);
+        addQuestion(q246);
+        addQuestion(q247);
+        addQuestion(q248);
+        addQuestion(q249);
+        addQuestion(q250);
+        addQuestion(q251);
+        addQuestion(q252);
+        addQuestion(q253);
+        addQuestion(q254);
+        addQuestion(q255);
+        addQuestion(q256);
+        addQuestion(q257);
+        addQuestion(q258);
+        addQuestion(q259);
+        addQuestion(q260);
+        addQuestion(q261);
+        addQuestion(q262);
+        addQuestion(q263);
+        addQuestion(q264);
+        addQuestion(q265);
+        addQuestion(q266);
+        addQuestion(q267);
+        addQuestion(q268);
+        addQuestion(q269);
+        addQuestion(q270);
+        addQuestion(q271);
+        addQuestion(q272);
+        addQuestion(q273);
+        addQuestion(q274);
+        addQuestion(q275);
+        addQuestion(q276);
+        addQuestion(q277);
+        addQuestion(q278);
+        addQuestion(q279);
+        addQuestion(q280);
+        addQuestion(q281);
+        addQuestion(q282);
+        addQuestion(q283);
+        addQuestion(q284);
+        addQuestion(q285);
+        addQuestion(q286);
+        addQuestion(q287);
+        addQuestion(q288);
+        addQuestion(q289);
+        addQuestion(q290);
+        addQuestion(q291);
+        addQuestion(q292);
+        addQuestion(q293);
+        addQuestion(q294);
+        addQuestion(q295);
+        addQuestion(q296);
+        addQuestion(q297);
+        addQuestion(q298);
+        addQuestion(q299);
+        addQuestion(q300);
+        addQuestion(q301);
+        addQuestion(q302);
+        addQuestion(q303);
+        addQuestion(q304);
+        addQuestion(q305);
+        addQuestion(q306);
+        addQuestion(q307);
+        addQuestion(q308);
+        addQuestion(q309);
+        addQuestion(q310);
+        addQuestion(q311);
+        addQuestion(q312);
+        addQuestion(q313);
+        addQuestion(q314);
+        addQuestion(q315);
+        addQuestion(q316);
+        addQuestion(q317);
+        addQuestion(q318);
+        addQuestion(q319);
+        addQuestion(q320);
+        addQuestion(q321);
+        addQuestion(q322);
+        addQuestion(q323);
+        addQuestion(q324);
+        addQuestion(q325);
+        addQuestion(q326);
+        addQuestion(q327);
+        addQuestion(q328);
+        addQuestion(q329);
+        addQuestion(q330);
+        addQuestion(q331);
+        addQuestion(q332);
+        addQuestion(q333);
+        addQuestion(q334);
+        addQuestion(q335);
+        addQuestion(q336);
+        addQuestion(q337);
+        addQuestion(q338);
+        addQuestion(q339);
+        addQuestion(q340);
+        addQuestion(q341);
+        addQuestion(q342);
+        addQuestion(q343);
+        addQuestion(q344);
+        addQuestion(q345);
+        addQuestion(q346);
+        addQuestion(q347);
+        addQuestion(q348);
+        addQuestion(q349);
+        addQuestion(q350);
+        addQuestion(q351);
+        addQuestion(q352);
+        addQuestion(q353);
+        addQuestion(q354);
+        addQuestion(q355);
+        addQuestion(q356);
+        addQuestion(q357);
+        addQuestion(q358);
+        addQuestion(q359);
+        addQuestion(q360);
+        addQuestion(q361);
+        addQuestion(q362);
+        addQuestion(q363);
+        addQuestion(q364);
+        addQuestion(q365);
+        addQuestion(q366);
+        addQuestion(q367);
+        addQuestion(q368);
+        addQuestion(q369);
+        addQuestion(q370);
+        addQuestion(q371);
+        addQuestion(q372);
+        addQuestion(q373);
+        addQuestion(q374);
+        addQuestion(q375);
+        addQuestion(q376);
+        addQuestion(q377);
+        addQuestion(q378);
+        addQuestion(q379);
+        addQuestion(q380);
+        addQuestion(q381);
+        addQuestion(q382);
+        addQuestion(q383);
+        addQuestion(q384);
+        addQuestion(q385);
+        addQuestion(q386);
+        addQuestion(q387);
+        addQuestion(q388);
+        addQuestion(q389);
+        addQuestion(q390);
+        addQuestion(q391);
+        addQuestion(q392);
+        addQuestion(q393);
+        addQuestion(q394);
+        addQuestion(q395);
+        addQuestion(q396);
+        addQuestion(q397);
+        addQuestion(q398);
+        addQuestion(q399);
+        addQuestion(q400);
+        addQuestion(q401);
+        addQuestion(q402);
+        addQuestion(q403);
+        addQuestion(q404);
+        addQuestion(q405);
+        addQuestion(q406);
+        addQuestion(q407);
+        addQuestion(q408);
+        addQuestion(q409);
+        addQuestion(q410);
+        addQuestion(q411);
+        addQuestion(q412);
+        addQuestion(q413);
+        addQuestion(q414);
+        addQuestion(q415);
+        addQuestion(q416);
+        addQuestion(q417);
+        addQuestion(q418);
+        addQuestion(q419);
+        addQuestion(q420);
+        addQuestion(q421);
+        addQuestion(q422);
+        addQuestion(q423);
+        addQuestion(q424);
+        addQuestion(q425);
+        addQuestion(q426);
+        addQuestion(q427);
+        addQuestion(q428);
+        addQuestion(q429);
 
     }
 
@@ -1120,7 +1568,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         ArrayList<Topic> topicList = new ArrayList<>();
         db = getReadableDatabase();
 
-        //filter level_name and type
         String[] selectionArgs = new String[]{type, level_name};
         String selection = TopicsTable.COLUMN_TYPE + " = ? " +
                 " AND " + TopicsTable.COLUMN_DIFFICULTY + " = ? ";
@@ -1334,7 +1781,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
      */
 
     public boolean activityCompleted(int topicId, int activity_num) {
-        //identify corresponding row in activity table and return activity_id
         String STRING_SQL_UPDATE_ACTIVITY_COMPLETED = "UPDATE " + ActivityTable.TABLE_NAME
                 + " SET " + ActivityTable.COLUMN_COMPLETED + "= 'TRUE' WHERE " +
                 ActivityTable.COLUMN_TOPIC_ID + " = " + topicId + " AND " +
@@ -1401,7 +1847,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     public int getActivityCount(int topicId) {
         ArrayList<Activity> activityList = new ArrayList<>();
 
-        //create an Array List of Activity objects of the given Topic ID
         String[] selectionArgs = new String[]{String.valueOf(topicId)};
         String selection = ActivityTable.COLUMN_TOPIC_ID + " = ? ";
         Cursor c = db.query(
@@ -1472,7 +1917,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                  activity.setTopicId(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_TOPIC_ID)));
                  activity.setActivityNum(c.getInt(c.getColumnIndex(ActivityTable.COLUMN_ACT_NUM)));
                  activity.setCompleted(c.getString(c.getColumnIndex(ActivityTable.COLUMN_COMPLETED)));
-                 //activity.setTimeStamp(c.getBlob(c.getColumnIndex(ActivityTable.TIME_STAMP)));
                  activityList.add(activity);
 
              } while (c.moveToNext());
@@ -1507,17 +1951,19 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return activityList.size();
     }
 
-    /*method to update the activities completed column of Topics Table*/
+    /**
+     * Update the activities completed column of Topics Table when an activity is completed
+     * @param topicId topic id of completed activity
+     */
+
     public void updateActCount(int topicId) {
         int activities_completed = getActivityCompleted(topicId);
-        int activities_count = getActivityCount(topicId);
             String SQL_UPDATE_ACT_COMPLETED = " UPDATE " + TopicsTable.TABLE_NAME
                     + " SET " + TopicsTable.COLUMN_ACT_COMPLETED + " = "
                     + activities_completed
                     + " WHERE " + TopicsTable._ID + " = " + topicId
                     ;
             db.execSQL(SQL_UPDATE_ACT_COMPLETED);
-        //}
     }
 
     /**
