@@ -1,16 +1,7 @@
 package com.del.studyenglish1;
 
 public class Question {
-        /*
-        implements Parcelable {
-
-        public static final String DIFFICULTY_A1 = "A1";
-        public static final String DIFFICULTY_A2 = "A2";
-        public static final String DIFFICULTY_B1 = "B1";
-        public static final String DIFFICULTY_B2 = "B2";
-        public static final String DIFFICULTY_C1 = "C1";
-*/
-        private String instruction;
+    private String instruction;
     private String question;
     private String option1;
     private String option2;
@@ -128,59 +119,6 @@ public class Question {
         this.topicId = topicId;
         this.activityNum = activityNum;
     }
-/*
-        protected Question(Parcel in) {
-            //id = in.readInt();
-            question = in.readString();
-            option1 = in.readString();
-            option2 = in.readString();
-            option3 = in.readString();
-            option4 = in.readString();
-            answerNr = in.readInt();
-            //difficulty = in.readString();
-            topicId = in.readInt();
-            activityNum = in.readInt();
-        }
-
-    @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            //dest.writeInt(id);
-            dest.writeString(question);
-            dest.writeString(option1);
-            dest.writeString(option2);
-            dest.writeString(option3);
-            dest.writeString(option4);
-            dest.writeInt(answerNr);
-            //dest.writeString(difficulty);
-            dest.writeInt(topicId);
-            dest.writeInt(activityNum);
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        public static final Creator<Question> CREATOR = new Creator<Question>() {
-            @Override
-            public Question createFromParcel(Parcel in) {
-                return new Question(in);
-            }
-
-            @Override
-            public Question[] newArray(int size) {
-                return new Question[size];
-            }
-        };
-
-        public int getId() {
-            return id;
-        }
-
-    public void setId(int id) {
-            this.id = id;
-        }
-*/
         public String getQuestion() {
             return question;
         }

@@ -78,7 +78,6 @@ public class MultipleChoiceQuiz extends Fragment {
         args.putString(ARG_TYPE, type);
         args.putString(ARG_LEVEL_NAME, level_name);
         args.putInt(ARG_ACTIVITY_NUM, activity_num);
-        //args.putInt(ARG_TOPIC_ID, topicID);
         fragment.setArguments(args);
         return fragment;
     }
@@ -111,8 +110,6 @@ public class MultipleChoiceQuiz extends Fragment {
             type = getArguments().getString(ARG_TYPE);
             level_name = getArguments().getString(ARG_LEVEL_NAME);
             activity_num = getArguments().getInt(ARG_ACTIVITY_NUM);
-            //level = getArguments().getString(ARG_LEVEL);
-            //topicID = getArguments().getInt(ARG_TOPIC_ID);
         }
 
         textViewTopic.setText("Topic: " + topic);
@@ -124,16 +121,12 @@ public class MultipleChoiceQuiz extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        if (savedInstanceState == null) {
             getQuestionInformation();
             showActivityDetails(questionCountTotal);
             Collections.shuffle(questionList);
             showNextQuestion();
         showActivityDetails(questionCountTotal);
-       // } else {
-       //     savedInstanceCreate(savedInstanceState);
-        }
+
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,13 +185,11 @@ public class MultipleChoiceQuiz extends Fragment {
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
-            //check if there is an image
             if (currentQuestion.getImageRef() != 0) {
                 Drawable imageQ = getResources().getDrawable(currentQuestion.getImageRef());
                 imageQuestion.setImageDrawable(imageQ);
                 imageQuestion.setVisibility(View.VISIBLE);
             }
-            //if there is a question
             if (currentQuestion.getQuestion() != null) {
                 textViewQuestion.setText(currentQuestion.getQuestion());
                 textViewInstruction.setText(currentQuestion.getInstruction());
@@ -314,34 +305,4 @@ public class MultipleChoiceQuiz extends Fragment {
         fragmentTransaction.replace(R.id.nav_host_fragment, activityHomePage);
         fragmentTransaction.commit();
     }
-/*
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(KEY_QUESTION_COUNT, questionCounter);
-        outState.putBoolean(KEY_ANSWERED, answered);
-        outState.putBoolean(KEY_ANSWERED_CORRECTLY, answeredCorrectly);
-        outState.putInt(KEY_ANSWER_ATTEMPTS, answeredAttempts);
-        outState.putParcelableArrayList(KEY_QUESTION_LIST, questionList);
-    }
-
-    public void savedInstanceCreate(Bundle savedInstanceState) {
-        questionList = savedInstanceState.getParcelableArrayList(KEY_QUESTION_LIST);
-        questionCountTotal = questionList.size();
-        questionCounter = savedInstanceState.getInt(KEY_QUESTION_COUNT);
-        currentQuestion = questionList.get(questionCounter -1);
-        answered = savedInstanceState.getBoolean(KEY_ANSWERED);
-        answeredCorrectly = savedInstanceState.getBoolean(KEY_ANSWERED_CORRECTLY);
-        answeredAttempts = savedInstanceState.getInt(KEY_ANSWER_ATTEMPTS);
-
-        if (answeredAttempts > 1) {
-            showSolution(answeredCorrectly);
-        }
-    }
-*/
 }

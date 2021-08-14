@@ -128,15 +128,12 @@ public class ReadingQuiz extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (savedInstanceState == null) {
-            getQuestionInformation();
-            showActivityDetails(questionCountTotal);
-            Collections.shuffle(questionList);
-            showNextQuestion();
+        getQuestionInformation();
         showActivityDetails(questionCountTotal);
-        //} else {
-            //savedInstanceCreate(savedInstanceState);
-        }
+        Collections.shuffle(questionList);
+        showNextQuestion();
+        showActivityDetails(questionCountTotal);
+
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -294,7 +291,6 @@ public class ReadingQuiz extends Fragment {
      * @param level_name selected level name
      */
     public void finishQuiz(String topic, String type, String level_name) {
-        //update activities_completed column in db
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(getContext());
         topicID = dbHelper.getTopicId(topic, type, level_name);
         dbHelper.activityCompleted(topicID, activity_num);
@@ -316,33 +312,4 @@ public class ReadingQuiz extends Fragment {
         fragmentTransaction.replace(R.id.nav_host_fragment, activityHomeReading);
         fragmentTransaction.commit();
     }
-/*
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(KEY_QUESTION_COUNT, questionCounter);
-        outState.putBoolean(KEY_ANSWERED, answered);
-        outState.putBoolean(KEY_ANSWERED_CORRECTLY, answeredCorrectly);
-        outState.putInt(KEY_ANSWER_ATTEMPTS, answeredAttempts);
-        outState.putParcelableArrayList(KEY_QUESTION_LIST, questionList);
-    }
-
-    public void savedInstanceCreate(Bundle savedInstanceState) {
-        questionList = savedInstanceState.getParcelableArrayList(KEY_QUESTION_LIST);
-        questionCountTotal = questionList.size();
-        questionCounter = savedInstanceState.getInt(KEY_QUESTION_COUNT);
-        currentQuestion = questionList.get(questionCounter -1);
-        answered = savedInstanceState.getBoolean(KEY_ANSWERED);
-        answeredCorrectly = savedInstanceState.getBoolean(KEY_ANSWERED_CORRECTLY);
-        answeredAttempts = savedInstanceState.getInt(KEY_ANSWER_ATTEMPTS);
-
-        if (answeredAttempts > 1) {
-            showSolution(answeredCorrectly);
-        }
-    }*/
 }

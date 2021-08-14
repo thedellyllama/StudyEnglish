@@ -3,7 +3,6 @@ package com.del.studyenglish1;
 import android.provider.BaseColumns;
 
 public final class QuizContract {
-    //empty constructor to stop instances being created
     private QuizContract() {}
 
     public static class TopicsTable implements BaseColumns {

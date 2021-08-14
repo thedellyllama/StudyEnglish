@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
-        //if statement keeps fragment if device is rotated
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.nav_host_fragment, new HomePage())
@@ -78,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
            toast = Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT);
            toast.show();
         }
-        //set time to now
         backPressedTime = System.currentTimeMillis();
     }
 }
